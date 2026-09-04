@@ -583,3 +583,143 @@ export function applySeoMetadata(seo: SeoMetadata) {
   const combinedJsonLd = [...seo.jsonLd, breadcrumbListSchema];
   jsonLdScript.textContent = JSON.stringify(combinedJsonLd, null, 2);
 }
+
+function escapeHtmlAttr(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function escapeHtmlText(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+/**
+ * Injects route-specific SEO tags into raw HTML on the server.
+ * Guarantees that Raw HTML and Rendered HTML have identical Self-Canonical URLs,
+ * titles, meta descriptions, OpenGraph tags, and JSON-LD schemas.
+ */
+export function injectSeoIntoHtml(html: string, route: AppRoute): string {
+  const seo = getSeoMetadata(route);
+  const fullImageUrl = seo.ogImage.startsWith('http')
+    ? seo.ogImage
+    : `${CANONICAL_DOMAIN}${seo.ogImage.startsWith('/') ? '' : '/'}${seo.ogImage}`;
+
+  const breadcrumbListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: seo.breadcrumbs.map((b, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      name: b.name,
+      item: b.url
+    }))
+  };
+
+  const combinedJsonLd = [...seo.jsonLd, breadcrumbListSchema];
+  const jsonLdString = JSON.stringify(combinedJsonLd, null, 2);
+
+  let modified = html;
+
+  // 1. Replace Title
+  if (/<title>.*?<\/title>/i.test(modified)) {
+    modified = modified.replace(/<title>.*?<\/title>/i, `<title>${escapeHtmlText(seo.title)}</title>`);
+  }
+
+  // 2. Replace or Inject Canonical Tag
+  if (/<link\s+[^>]*rel=["']canonical["'][^>]*>/i.test(modified)) {
+    modified = modified.replace(
+      /<link\s+[^>]*rel=["']canonical["'][^>]*>/i,
+      `<link rel="canonical" href="${escapeHtmlAttr(seo.canonicalUrl)}" />`
+    );
+  } else {
+    modified = modified.replace(
+      /<\/head>/i,
+      `  <link rel="canonical" href="${escapeHtmlAttr(seo.canonicalUrl)}" />\n</head>`
+    );
+  }
+
+  // 3. Meta Description
+  if (/<meta\s+[^>]*name=["']description["'][^>]*>/i.test(modified)) {
+    modified = modified.replace(
+      /<meta\s+[^>]*name=["']description["'][^>]*>/i,
+      `<meta name="description" content="${escapeHtmlAttr(seo.description)}" />`
+    );
+  }
+
+  // 4. OpenGraph URL
+  if (/<meta\s+[^>]*property=["']og:url["'][^>]*>/i.test(modified)) {
+    modified = modified.replace(
+      /<meta\s+[^>]*property=["']og:url["'][^>]*>/i,
+      `<meta property="og:url" content="${escapeHtmlAttr(seo.canonicalUrl)}" />`
+    );
+  }
+
+  // 5. OpenGraph Title
+  if (/<meta\s+[^>]*property=["']og:title["'][^>]*>/i.test(modified)) {
+    modified = modified.replace(
+      /<meta\s+[^>]*property=["']og:title["'][^>]*>/i,
+      `<meta property="og:title" content="${escapeHtmlAttr(seo.ogTitle)}" />`
+    );
+  }
+
+  // 6. OpenGraph Description
+  if (/<meta\s+[^>]*property=["']og:description["'][^>]*>/i.test(modified)) {
+    modified = modified.replace(
+      /<meta\s+[^>]*property=["']og:description["'][^>]*>/i,
+      `<meta property="og:description" content="${escapeHtmlAttr(seo.ogDescription)}" />`
+    );
+  }
+
+  // 7. OpenGraph Type
+  if (/<meta\s+[^>]*property=["']og:type["'][^>]*>/i.test(modified)) {
+    modified = modified.replace(
+      /<meta\s+[^>]*property=["']og:type["'][^>]*>/i,
+      `<meta property="og:type" content="${escapeHtmlAttr(seo.ogType)}" />`
+    );
+  }
+
+  // 8. OpenGraph Image
+  if (/<meta\s+[^>]*property=["']og:image["'][^>]*>/i.test(modified)) {
+    modified = modified.replace(
+      /<meta\s+[^>]*property=["']og:image["'][^>]*>/i,
+      `<meta property="og:image" content="${escapeHtmlAttr(fullImageUrl)}" />`
+    );
+  }
+
+  // 9. Twitter Tags
+  if (/<meta\s+[^>]*name=["']twitter:title["'][^>]*>/i.test(modified)) {
+    modified = modified.replace(
+      /<meta\s+[^>]*name=["']twitter:title["'][^>]*>/i,
+      `<meta name="twitter:title" content="${escapeHtmlAttr(seo.ogTitle)}" />`
+    );
+  }
+  if (/<meta\s+[^>]*name=["']twitter:description["'][^>]*>/i.test(modified)) {
+    modified = modified.replace(
+      /<meta\s+[^>]*name=["']twitter:description["'][^>]*>/i,
+      `<meta name="twitter:description" content="${escapeHtmlAttr(seo.ogDescription)}" />`
+    );
+  }
+
+  // 10. Inject or replace JSON-LD structured data
+  if (/<script\s+[^>]*id=["']seo-json-ld["'][^>]*>[\s\S]*?<\/script>/i.test(modified)) {
+    modified = modified.replace(
+      /<script\s+[^>]*id=["']seo-json-ld["'][^>]*>[\s\S]*?<\/script>/i,
+      `<script id="seo-json-ld" type="application/ld+json">\n${jsonLdString}\n    </script>`
+    );
+  } else {
+    modified = modified.replace(
+      /<\/head>/i,
+      `  <script id="seo-json-ld" type="application/ld+json">\n${jsonLdString}\n    </script>\n  </head>`
+    );
+  }
+
+  return modified;
+}
+

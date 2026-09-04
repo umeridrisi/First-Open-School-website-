@@ -5,6 +5,8 @@ import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
 import { generateSitemapXml } from "./src/utils/sitemapGenerator";
+import { parsePath } from "./src/utils/router";
+import { injectSeoIntoHtml, CANONICAL_DOMAIN } from "./src/utils/seo";
 
 dotenv.config();
 
@@ -197,10 +199,8 @@ Create a kid-friendly encyclopedia entry formatted as JSON with:
 // ==========================================
 // SEO & AI CRAWLER ENDPOINTS
 // ==========================================
-app.get("/robots.txt", (req, res) => {
-  const host = req.get("host") || "ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app";
-  const protocol = req.protocol === "http" && host.includes("run.app") ? "https" : req.protocol;
-  const baseUrl = `${protocol}://${host}`;
+app.get("/robots.txt", (_req, res) => {
+  const baseUrl = CANONICAL_DOMAIN;
 
   const robotsTxt = `# ==============================================================================
 # First Open School - Robots.txt
@@ -259,11 +259,8 @@ Sitemap: ${baseUrl}/sitemap.xml
   res.type("text/plain; charset=utf-8").send(robotsTxt);
 });
 
-app.get("/sitemap.xml", (req, res) => {
-  const host = req.get("host") || "ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app";
-  const protocol = req.protocol === "http" && host.includes("run.app") ? "https" : req.protocol;
-  const baseUrl = `${protocol}://${host}`;
-  const xml = generateSitemapXml(baseUrl);
+app.get("/sitemap.xml", (_req, res) => {
+  const xml = generateSitemapXml(CANONICAL_DOMAIN);
   res.type("application/xml; charset=utf-8").send(xml);
 });
 
@@ -285,19 +282,55 @@ app.get("/llms-full.txt", (_req, res) => {
   }
 });
 
-// Vite middleware & Static serving
+// Vite middleware & Server-Side HTML Canonical/SEO Injector
 async function startServer() {
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
       server: { middlewareMode: true },
-      appType: "spa",
+      appType: "custom",
     });
     app.use(vite.middlewares);
+
+    // Dynamic Self-Canonical & Metadata Injection for Development
+    app.get("*", async (req, res, next) => {
+      const url = req.originalUrl;
+      if (url.startsWith("/api") || (path.extname(url) && !url.endsWith(".html"))) {
+        return next();
+      }
+      try {
+        const indexHtmlPath = path.resolve(process.cwd(), "index.html");
+        let template = fs.readFileSync(indexHtmlPath, "utf-8");
+        template = await vite.transformIndexHtml(url, template);
+        const route = parsePath(req.path);
+        const html = injectSeoIntoHtml(template, route);
+        res.status(200).set({ "Content-Type": "text/html; charset=utf-8" }).send(html);
+      } catch (e: any) {
+        vite.ssrFixStacktrace(e);
+        next(e);
+      }
+    });
   } else {
     const distPath = path.join(process.cwd(), "dist");
-    app.use(express.static(distPath));
-    app.get("*", (_req, res) => {
-      res.sendFile(path.join(distPath, "index.html"));
+    app.use(express.static(distPath, { index: false }));
+
+    // Dynamic Self-Canonical & Metadata Injection for Production
+    app.get("*", (req, res, next) => {
+      const url = req.originalUrl;
+      if (url.startsWith("/api") || (path.extname(url) && !url.endsWith(".html"))) {
+        return next();
+      }
+      try {
+        const indexHtmlPath = path.join(distPath, "index.html");
+        if (!fs.existsSync(indexHtmlPath)) {
+          return next();
+        }
+        const template = fs.readFileSync(indexHtmlPath, "utf-8");
+        const route = parsePath(req.path);
+        const html = injectSeoIntoHtml(template, route);
+        res.status(200).set({ "Content-Type": "text/html; charset=utf-8" }).send(html);
+      } catch (err) {
+        next(err);
+      }
     });
   }
 

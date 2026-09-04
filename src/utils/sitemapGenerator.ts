@@ -11,7 +11,7 @@ export interface SitemapEntry {
 /**
  * Generates all site URLs for the sitemap
  */
-export function getSiteUrls(baseUrl: string = 'https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app'): SitemapEntry[] {
+export function getSiteUrls(baseUrl: string = 'https://firstopenschool.com'): SitemapEntry[] {
   const cleanBase = baseUrl.replace(/\/+$/, '');
   const today = new Date().toISOString().split('T')[0];
 
@@ -80,7 +80,7 @@ export function getSiteUrls(baseUrl: string = 'https://ais-pre-gbznslzu6ygwfzaea
 /**
  * Builds standard XML sitemap
  */
-export function generateSitemapXml(baseUrl: string = 'https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app'): string {
+export function generateSitemapXml(baseUrl: string = 'https://firstopenschool.com'): string {
   const entries = getSiteUrls(baseUrl);
 
   const xmlItems = entries.map(e => `  <url>

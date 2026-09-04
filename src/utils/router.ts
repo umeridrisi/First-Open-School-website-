@@ -12,7 +12,7 @@ export interface AppRoute {
 /**
  * Parses the current pathname into a structured AppRoute
  */
-export function parsePath(pathname: string = window.location.pathname): AppRoute {
+export function parsePath(pathname: string = (typeof window !== 'undefined' && window.location ? window.location.pathname : '/')): AppRoute {
   const cleanPath = pathname.replace(/^\/+|\/+$/g, '');
   if (!cleanPath) {
     return { tab: 'overview' };
