@@ -31,7 +31,14 @@ export function getSiteUrls(baseUrl: string = 'https://firstopenschool.com'): Si
     { loc: `${cleanBase}/card-match`, lastmod: today, changefreq: 'monthly', priority: 0.8 },
     { loc: `${cleanBase}/phonics-stories`, lastmod: today, changefreq: 'weekly', priority: 0.85 },
     { loc: `${cleanBase}/assessment`, lastmod: today, changefreq: 'weekly', priority: 0.8 },
-    { loc: `${cleanBase}/parental-dashboard`, lastmod: today, changefreq: 'monthly', priority: 0.75 }
+    { loc: `${cleanBase}/parental-dashboard`, lastmod: today, changefreq: 'monthly', priority: 0.75 },
+
+    // Trust, Safety, Editorial & About Pages
+    { loc: `${cleanBase}/privacy`, lastmod: today, changefreq: 'monthly', priority: 0.7 },
+    { loc: `${cleanBase}/terms`, lastmod: today, changefreq: 'monthly', priority: 0.7 },
+    { loc: `${cleanBase}/data-safety`, lastmod: today, changefreq: 'monthly', priority: 0.75 },
+    { loc: `${cleanBase}/editorial-policy`, lastmod: today, changefreq: 'monthly', priority: 0.75 },
+    { loc: `${cleanBase}/about`, lastmod: today, changefreq: 'monthly', priority: 0.8 }
   ];
 
   // All 26 Alphabets Deep Permalinks

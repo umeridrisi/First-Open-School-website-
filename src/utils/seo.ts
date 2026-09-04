@@ -487,6 +487,156 @@ export function getSeoMetadata(route: AppRoute): SeoMetadata {
       };
     }
 
+    case 'privacy': {
+      const pageTitle = 'Privacy Policy & COPPA Children Safety Pledge | First Open School';
+      const pageDesc = 'Our strict COPPA, GDPR-K, and FERPA privacy policy. 100% ad-free, zero tracking, and local-only data storage for child learners.';
+      return {
+        title: pageTitle,
+        description: pageDesc,
+        canonicalUrl,
+        ogTitle: 'Privacy Policy & Child Safe Harbor - First Open School',
+        ogDescription: pageDesc,
+        ogType: 'website',
+        ogImage: DEFAULT_IMAGE,
+        twitterCard: 'summary_large_image',
+        keywords: ['first open school privacy policy', 'coppa compliant learning app', 'kids data privacy', 'safe early learning', 'gdpr kids policy'],
+        breadcrumbs: [...defaultBreadcrumbs, { name: 'Privacy Policy', url: canonicalUrl }],
+        jsonLd: [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            name: 'Privacy Policy & Children Safety Harbor',
+            url: canonicalUrl,
+            description: pageDesc,
+            publisher: {
+              '@type': 'Organization',
+              name: 'Arkade Digital Limited',
+              founder: 'Umer Idrisi'
+            }
+          }
+        ]
+      };
+    }
+
+    case 'terms': {
+      const pageTitle = 'Terms of Service & Open Access Charter | First Open School';
+      const pageDesc = 'Educational terms of use for parents, teachers, and homeschoolers. Free open curriculum guidelines and copyright governance by Arkade Digital Limited.';
+      return {
+        title: pageTitle,
+        description: pageDesc,
+        canonicalUrl,
+        ogTitle: 'Terms of Service - First Open School',
+        ogDescription: pageDesc,
+        ogType: 'website',
+        ogImage: DEFAULT_IMAGE,
+        twitterCard: 'summary_large_image',
+        keywords: ['terms of service', 'classroom use license', 'open educational resource terms', 'first open school terms'],
+        breadcrumbs: [...defaultBreadcrumbs, { name: 'Terms of Service', url: canonicalUrl }],
+        jsonLd: [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            name: 'Terms of Service',
+            url: canonicalUrl,
+            description: pageDesc
+          }
+        ]
+      };
+    }
+
+    case 'data-safety': {
+      const pageTitle = "Children's Data Safety & Multi-Layer Protection | First Open School";
+      const pageDesc = "Explore First Open School's 5-pillar child data safety framework: Zero cloud tracking, no open chats, PIN-protected parental gates, and offline resilience.";
+      return {
+        title: pageTitle,
+        description: pageDesc,
+        canonicalUrl,
+        ogTitle: "Children's Data Safety Pledge - First Open School",
+        ogDescription: pageDesc,
+        ogType: 'website',
+        ogImage: DEFAULT_IMAGE,
+        twitterCard: 'summary_large_image',
+        keywords: ['kids data safety', 'child online protection', 'safe kids app', 'ad free educational app', 'offline kids learning'],
+        breadcrumbs: [...defaultBreadcrumbs, { name: 'Data Safety', url: canonicalUrl }],
+        jsonLd: [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            name: "Children's Data Safety Pledge",
+            url: canonicalUrl,
+            description: pageDesc
+          }
+        ]
+      };
+    }
+
+    case 'editorial-policy': {
+      const pageTitle = 'Pedagogical Framework & Editorial Standards | First Open School';
+      const pageDesc: string = 'Evidence-based early literacy methodology: Synthetic phonics, mouth mechanics, concrete-representational numeracy, and CDE-style clarity standard.';
+      return {
+        title: pageTitle,
+        description: pageDesc,
+        canonicalUrl,
+        ogTitle: 'Pedagogical & Editorial Standards - First Open School',
+        ogDescription: pageDesc,
+        ogType: 'article',
+        ogImage: DEFAULT_IMAGE,
+        twitterCard: 'summary_large_image',
+        keywords: ['pedagogical standards', 'synthetic phonics methodology', 'cde clarity style', 'early childhood curriculum', 'orton gillingham foundations'],
+        breadcrumbs: [...defaultBreadcrumbs, { name: 'Editorial Policy', url: canonicalUrl }],
+        jsonLd: [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            name: 'Pedagogical Framework & Editorial Standards',
+            url: canonicalUrl,
+            description: pageDesc
+          }
+        ]
+      };
+    }
+
+    case 'about': {
+      const pageTitle = 'About Us & Credits: Umer Idrisi & Arkade Digital Limited | First Open School';
+      const pageDesc = 'Learn about First Open School, founded by Pakistani blogger & entrepreneur Umer Idrisi, and published by Arkade Digital Limited (UK).';
+      return {
+        title: pageTitle,
+        description: pageDesc,
+        canonicalUrl,
+        ogTitle: 'About First Open School - Created by Umer Idrisi (Arkade Digital Limited)',
+        ogDescription: pageDesc,
+        ogType: 'website',
+        ogImage: DEFAULT_IMAGE,
+        twitterCard: 'summary_large_image',
+        keywords: ['about first open school', 'umer idrisi', 'arkade digital limited', 'pakistani edtech entrepreneur', 'free kids school'],
+        breadcrumbs: [...defaultBreadcrumbs, { name: 'About & Credits', url: canonicalUrl }],
+        jsonLd: [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'AboutPage',
+            name: 'About First Open School',
+            url: canonicalUrl,
+            description: pageDesc,
+            mainEntity: {
+              '@type': 'Person',
+              name: 'Umer Idrisi',
+              jobTitle: 'Founder, Blogger & Entrepreneur',
+              nationality: 'Pakistani',
+              sameAs: 'https://firstopenschool.com/about'
+            },
+            publisher: {
+              '@type': 'Organization',
+              name: 'Arkade Digital Limited',
+              address: {
+                '@type': 'PostalAddress',
+                addressCountry: 'UK'
+              }
+            }
+          }
+        ]
+      };
+    }
+
     default:
       return {
         title: 'First Open School - Early Literacy, Phonics, Math & Kids Encyclopedia',

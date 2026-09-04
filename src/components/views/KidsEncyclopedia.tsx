@@ -504,18 +504,125 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
               </div>
             </div>
 
-            {/* 2. The Kid's Everyday Analogy (CDE Hallmark Metaphor) */}
-            <div className="bg-[#FFF9F0] rounded-[28px] p-6 border-4 border-[#FFD93D] shadow-[0_6px_0_#C9A92E] space-y-3">
-              <div className="flex items-center space-x-2 text-[#2D2D2D]">
-                <span className="text-2xl">{currentEntry.analogy.emoji}</span>
-                <h2 className="text-lg font-black tracking-tight uppercase">
-                  Everyday Life Analogy: {currentEntry.analogy.title}
-                </h2>
-              </div>
-              <p className="text-base text-[#2D2D2D]/90 font-medium leading-relaxed">
-                {currentEntry.analogy.story}
-              </p>
-            </div>
+            {/* 2. Distinctive Info & Mental Model Spotlight (Category-Tailored) */}
+            {(() => {
+              const getCategoryTheme = (category: EncyclopediaCategory) => {
+                switch (category) {
+                  case 'alphabets':
+                    return {
+                      badge: 'Letter Info',
+                      borderColor: 'border-[#FF6B6B]',
+                      shadowColor: 'shadow-[0_6px_0_#D94B4B]',
+                      bg: 'bg-rose-50/70',
+                      tagBg: 'bg-[#FF6B6B]',
+                      tagText: 'text-white',
+                      titlePrefix: 'How to Picture It'
+                    };
+                  case 'numbers':
+                    return {
+                      badge: 'Math Info',
+                      borderColor: 'border-[#6BCB77]',
+                      shadowColor: 'shadow-[0_6px_0_#4E9B56]',
+                      bg: 'bg-emerald-50/70',
+                      tagBg: 'bg-[#6BCB77]',
+                      tagText: 'text-white',
+                      titlePrefix: 'In Real Life'
+                    };
+                  case 'solar-system':
+                    return {
+                      badge: 'Cosmic Info',
+                      borderColor: 'border-[#4D96FF]',
+                      shadowColor: 'shadow-[0_6px_0_#3A72C1]',
+                      bg: 'bg-blue-50/70',
+                      tagBg: 'bg-[#4D96FF]',
+                      tagText: 'text-white',
+                      titlePrefix: 'Space Spotlight'
+                    };
+                  case 'earth-elements':
+                    return {
+                      badge: 'Earth Info',
+                      borderColor: 'border-[#FFD93D]',
+                      shadowColor: 'shadow-[0_6px_0_#C9A92E]',
+                      bg: 'bg-amber-50/70',
+                      tagBg: 'bg-[#FFD93D]',
+                      tagText: 'text-[#2D2D2D]',
+                      titlePrefix: 'Nature in Action'
+                    };
+                  case 'animals-dinosaurs':
+                    return {
+                      badge: 'Creature Info',
+                      borderColor: 'border-emerald-400',
+                      shadowColor: 'shadow-[0_6px_0_#2B8A4E]',
+                      bg: 'bg-emerald-50/70',
+                      tagBg: 'bg-emerald-600',
+                      tagText: 'text-white',
+                      titlePrefix: 'Creature Spotlight'
+                    };
+                  case 'human-body':
+                    return {
+                      badge: 'Body Power Info',
+                      borderColor: 'border-rose-400',
+                      shadowColor: 'shadow-[0_6px_0_#B8334E]',
+                      bg: 'bg-rose-50/70',
+                      tagBg: 'bg-rose-500',
+                      tagText: 'text-white',
+                      titlePrefix: 'Inside You'
+                    };
+                  case 'how-things-work':
+                    return {
+                      badge: 'Engineering Info',
+                      borderColor: 'border-amber-400',
+                      shadowColor: 'shadow-[0_6px_0_#B8860B]',
+                      bg: 'bg-amber-50/70',
+                      tagBg: 'bg-amber-500',
+                      tagText: 'text-[#2D2D2D]',
+                      titlePrefix: 'Behind the Scenes'
+                    };
+                  case 'countries-world':
+                    return {
+                      badge: 'World Explorer Info',
+                      borderColor: 'border-purple-400',
+                      shadowColor: 'shadow-[0_6px_0_#6B3BA7]',
+                      bg: 'bg-purple-50/70',
+                      tagBg: 'bg-purple-600',
+                      tagText: 'text-white',
+                      titlePrefix: 'World Spotlight'
+                    };
+                  default:
+                    return {
+                      badge: 'Key Info',
+                      borderColor: 'border-[#FFD93D]',
+                      shadowColor: 'shadow-[0_6px_0_#C9A92E]',
+                      bg: 'bg-[#FFF9F0]',
+                      tagBg: 'bg-[#FFD93D]',
+                      tagText: 'text-[#2D2D2D]',
+                      titlePrefix: 'Picture It'
+                    };
+                }
+              };
+
+              const theme = getCategoryTheme(currentEntry.category);
+
+              return (
+                <div className={`${theme.bg} rounded-[28px] p-6 border-4 ${theme.borderColor} ${theme.shadowColor} space-y-3`}>
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-2xl">{currentEntry.analogy.emoji}</span>
+                      <h2 className="text-lg font-black tracking-tight text-[#2D2D2D]">
+                        <span className="text-xs font-black uppercase text-gray-500 mr-2 tracking-wider">{theme.titlePrefix}:</span>
+                        <span>{currentEntry.analogy.title}</span>
+                      </h2>
+                    </div>
+                    <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-black uppercase tracking-wider ${theme.tagBg} ${theme.tagText} shadow-xs`}>
+                      {theme.badge}
+                    </span>
+                  </div>
+                  <p className="text-base text-[#2D2D2D]/90 font-medium leading-relaxed">
+                    {currentEntry.analogy.story}
+                  </p>
+                </div>
+              );
+            })()}
 
             {/* 3. How It Works / Mouth Mechanics & Phonics Rules */}
             <div className="space-y-4">

@@ -11,7 +11,12 @@ export type ActiveTab =
   | 'card-match'
   | 'assessment'
   | 'phonics-stories'
-  | 'parental-dashboard';
+  | 'parental-dashboard'
+  | 'privacy'
+  | 'terms'
+  | 'data-safety'
+  | 'editorial-policy'
+  | 'about';
 
 export type EncyclopediaCategory = 
   | 'alphabets'

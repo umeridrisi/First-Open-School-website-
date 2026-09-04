@@ -69,6 +69,21 @@ export function parsePath(pathname: string = (typeof window !== 'undefined' && w
     case 'parental-dashboard':
       return { tab: 'parental-dashboard' };
 
+    case 'privacy':
+      return { tab: 'privacy' };
+
+    case 'terms':
+      return { tab: 'terms' };
+
+    case 'data-safety':
+      return { tab: 'data-safety' };
+
+    case 'editorial-policy':
+      return { tab: 'editorial-policy' };
+
+    case 'about':
+      return { tab: 'about' };
+
     default:
       return { tab: 'overview' };
   }
@@ -117,6 +132,21 @@ export function formatRouteUrl(route: AppRoute): string {
 
     case 'parental-dashboard':
       return '/parental-dashboard';
+
+    case 'privacy':
+      return '/privacy';
+
+    case 'terms':
+      return '/terms';
+
+    case 'data-safety':
+      return '/data-safety';
+
+    case 'editorial-policy':
+      return '/editorial-policy';
+
+    case 'about':
+      return '/about';
 
     default:
       return '/';

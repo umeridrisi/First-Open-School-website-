@@ -21,6 +21,7 @@ import { PhonicsStoryReader } from './components/games/PhonicsStoryReader';
 import { GamifiedQuiz } from './components/games/GamifiedQuiz';
 import { KidsEncyclopedia } from './components/views/KidsEncyclopedia';
 import { ParentalDashboard } from './components/parent/ParentalDashboard';
+import { LegalPages } from './components/views/LegalPages';
 import { ALPHABET_DATA, DIGIT_DATA } from './data/curriculumData';
 import { playSoundEffect } from './utils/sound';
 import { parsePath, navigateTo, ROUTE_CHANGE_EVENT, AppRoute } from './utils/router';
@@ -377,6 +378,18 @@ export default function App() {
           />
         )}
 
+        {(currentRoute.tab === 'privacy' || 
+          currentRoute.tab === 'terms' || 
+          currentRoute.tab === 'data-safety' || 
+          currentRoute.tab === 'editorial-policy' || 
+          currentRoute.tab === 'about') && (
+          <LegalPages
+            tab={currentRoute.tab}
+            settings={settings}
+            onNavigate={(tab) => navigateTo({ tab })}
+          />
+        )}
+
       </main>
 
       {/* Parental Gate Modal */}
@@ -389,9 +402,93 @@ export default function App() {
         />
       )}
 
-      {/* Footer */}
-      <footer className="bg-white border-t-4 border-[#FFD93D] py-4 px-6 text-center text-xs font-extrabold text-[#2D2D2D]/70 uppercase tracking-wider">
-        First Open School • 100% Ad-Free & Safe • Offline Ready Early Literacy & Numeracy Platform
+      {/* Comprehensive Footer with Creator Credits & Legal Links */}
+      <footer className="bg-white border-t-4 border-[#FFD93D] mt-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+          
+          {/* Credits Box */}
+          <div className="bg-[#FFF9F0] rounded-3xl p-6 sm:p-8 border-4 border-[#FFD93D] shadow-[0_6px_0_#C9A92E] flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="space-y-2 text-center md:text-left">
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
+                <span className="px-3 py-1 rounded-full bg-[#FF6B6B] text-white text-xs font-black uppercase tracking-wider shadow-xs">
+                  Created by Umer Idrisi
+                </span>
+                <span className="px-3 py-1 rounded-full bg-[#4D96FF] text-white text-xs font-black uppercase tracking-wider shadow-xs">
+                  Arkade Digital Limited (UK)
+                </span>
+                <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-black uppercase tracking-wider border border-emerald-300">
+                  🇵🇰 Pakistan & 🇬🇧 UK
+                </span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-black text-[#2D2D2D] tracking-tight">
+                First Open School
+              </h3>
+              <p className="text-sm text-[#2D2D2D]/80 font-medium max-w-2xl leading-relaxed">
+                This project is created by <strong>Umer Idrisi</strong> (a blogger and entrepreneur from Pakistan) and is a project of <strong>Arkade Digital Limited (UK)</strong>. Dedicated to 100% free, safe, and ad-free early childhood literacy and numeracy education worldwide.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
+              <button
+                onClick={() => navigateTo({ tab: 'about' })}
+                className="px-5 py-3 bg-[#2D2D2D] hover:bg-black text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-[0_4px_0_#000] active:translate-y-0.5 active:shadow-none transition-all cursor-pointer"
+              >
+                About & Creator Bio
+              </button>
+              <button
+                onClick={() => navigateTo({ tab: 'data-safety' })}
+                className="px-5 py-3 bg-[#6BCB77] hover:bg-[#4E9B56] text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-[0_4px_0_#4E9B56] active:translate-y-0.5 active:shadow-none transition-all cursor-pointer"
+              >
+                Data Safety Pledge
+              </button>
+            </div>
+          </div>
+
+          {/* Quick Legal & Pedagogical Navigation */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t-2 border-gray-100 text-xs font-black text-[#2D2D2D]/80">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+              <button 
+                onClick={() => navigateTo({ tab: 'privacy' })}
+                className="hover:text-[#FF6B6B] transition-colors cursor-pointer"
+              >
+                Privacy Policy
+              </button>
+              <span className="text-gray-300 hidden sm:inline">•</span>
+              <button 
+                onClick={() => navigateTo({ tab: 'terms' })}
+                className="hover:text-[#4D96FF] transition-colors cursor-pointer"
+              >
+                Terms of Service
+              </button>
+              <span className="text-gray-300 hidden sm:inline">•</span>
+              <button 
+                onClick={() => navigateTo({ tab: 'data-safety' })}
+                className="hover:text-[#6BCB77] transition-colors cursor-pointer"
+              >
+                Children's Data Safety
+              </button>
+              <span className="text-gray-300 hidden sm:inline">•</span>
+              <button 
+                onClick={() => navigateTo({ tab: 'editorial-policy' })}
+                className="hover:text-[#FFD93D] transition-colors cursor-pointer"
+              >
+                Editorial Policy
+              </button>
+              <span className="text-gray-300 hidden sm:inline">•</span>
+              <button 
+                onClick={() => navigateTo({ tab: 'about' })}
+                className="hover:text-[#2D2D2D] transition-colors cursor-pointer"
+              >
+                About & Credits
+              </button>
+            </div>
+
+            <div className="text-gray-500 font-bold text-center sm:text-right">
+              © 2026 First Open School • Arkade Digital Limited (UK)
+            </div>
+          </div>
+
+        </div>
       </footer>
 
     </div>
