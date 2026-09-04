@@ -600,7 +600,85 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
               </p>
             </div>
 
-            {/* 7. Fun Facts Bullet Points */}
+            {/* 7. Hands-On Mini Experiment or Activity (When Available) */}
+            {currentEntry.handsOnExperiment && (
+              <div className="bg-emerald-50 rounded-[28px] p-6 border-4 border-emerald-400 shadow-[0_6px_0_#2b8a3e] space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2 text-emerald-900">
+                    <span className="text-2xl">{currentEntry.handsOnExperiment.emoji || '🔬'}</span>
+                    <h3 className="font-black text-base uppercase tracking-tight">
+                      Try It Yourself: {currentEntry.handsOnExperiment.title}
+                    </h3>
+                  </div>
+                  <span className="text-[11px] font-black uppercase tracking-wider bg-emerald-200 text-emerald-900 px-2.5 py-1 rounded-full">
+                    Hands-On Activity
+                  </span>
+                </div>
+
+                {/* Materials List */}
+                {currentEntry.handsOnExperiment.materials && currentEntry.handsOnExperiment.materials.length > 0 && (
+                  <div className="bg-white/80 p-3.5 rounded-2xl border-2 border-emerald-200 space-y-1.5">
+                    <div className="text-xs font-black uppercase tracking-wider text-emerald-950">
+                      What You Need:
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {currentEntry.handsOnExperiment.materials.map((item, mIdx) => (
+                        <span key={mIdx} className="text-xs font-bold bg-white text-emerald-900 px-2.5 py-1 rounded-xl border border-emerald-300 shadow-2xs">
+                          ✓ {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Step-by-Step Instructions */}
+                <div className="space-y-2">
+                  <div className="text-xs font-black uppercase tracking-wider text-emerald-950">
+                    Step-by-Step Steps:
+                  </div>
+                  <div className="space-y-2">
+                    {currentEntry.handsOnExperiment.steps.map((step, sIdx) => (
+                      <div key={sIdx} className="flex items-start space-x-3 p-3 bg-white rounded-xl border border-emerald-200">
+                        <span className="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs font-black shrink-0 mt-0.5">
+                          {sIdx + 1}
+                        </span>
+                        <span className="text-xs sm:text-sm font-semibold text-emerald-950">{step}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* The Science Behind It */}
+                <div className="p-3 bg-emerald-100/70 rounded-xl border border-emerald-300 text-xs font-bold text-emerald-950">
+                  <span className="font-black">Why This Works: </span>
+                  <span>{currentEntry.handsOnExperiment.explanation}</span>
+                </div>
+              </div>
+            )}
+
+            {/* 8. Tongue Twister or Rhyme (When Available) */}
+            {currentEntry.kidTongueTwisterOrRhyme && (
+              <div className="bg-amber-50 rounded-[28px] p-5 border-4 border-amber-300 shadow-[0_4px_0_#d97706] space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2 text-amber-900 font-black text-sm uppercase tracking-tight">
+                    <Sparkles className="w-4 h-4 text-amber-600" />
+                    <span>Speedy Tongue Twister & Phonics Rhyme</span>
+                  </div>
+                  <button
+                    onClick={() => speakText(currentEntry.kidTongueTwisterOrRhyme || '', settings.voiceGuidance)}
+                    className="flex items-center space-x-1 px-2.5 py-1 bg-amber-200 hover:bg-amber-300 text-amber-950 font-black text-xs rounded-lg transition-all cursor-pointer"
+                  >
+                    <Volume2 className="w-3.5 h-3.5" />
+                    <span>Say Fast</span>
+                  </button>
+                </div>
+                <p className="text-sm sm:text-base font-extrabold text-amber-950 italic bg-white/70 p-3 rounded-xl border border-amber-200">
+                  "{currentEntry.kidTongueTwisterOrRhyme}"
+                </p>
+              </div>
+            )}
+
+            {/* 9. Fun Facts Bullet Points */}
             <div className="space-y-3">
               <h2 className="text-lg font-black text-[#2D2D2D] uppercase tracking-tight flex items-center gap-2">
                 <span>Fun Facts You Can Tell Your Friends</span>
@@ -616,7 +694,7 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
               </ul>
             </div>
 
-            {/* 8. Interactive Micro-Quiz ("Check Your Brain") */}
+            {/* 10. Interactive Micro-Quiz ("Check Your Brain") */}
             <div className="bg-[#FFF9F0] rounded-[28px] p-6 border-4 border-[#FF6B6B] shadow-[0_6px_0_#C44E4E] space-y-4">
               <div className="flex items-center space-x-2 text-[#FF6B6B]">
                 <HelpCircle className="w-5 h-5" />

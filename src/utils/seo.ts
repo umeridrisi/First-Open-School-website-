@@ -278,11 +278,14 @@ export function getSeoMetadata(route: AppRoute): SeoMetadata {
 
       if (route.category) {
         const catMap: Record<string, string> = {
-          'alphabets': 'Alphabets A-Z Encyclopedia Articles',
-          'numbers': 'Numbers & Math Encyclopedia Articles',
-          'solar-system': 'Solar System & Planetary Space Encyclopedia',
-          'earth-elements': 'Earth & Nature Elements Encyclopedia',
-          'countries-world': 'Countries & World Geography Encyclopedia'
+          'alphabets': 'Alphabets A-Z Phonics & Letter Origins',
+          'numbers': 'Numbers, Fractions & Math Superpowers',
+          'solar-system': 'Solar System, Rockets & Cosmic Space',
+          'earth-elements': 'Earth, Weather & Nature Elements',
+          'animals-dinosaurs': 'Animals & Prehistoric Dinosaurs',
+          'human-body': 'Human Body, Brain & 5 Senses',
+          'how-things-work': 'How Things Work & Engineering Wonders',
+          'countries-world': 'World Continents, Oceans & Geography'
         };
         const catName = catMap[route.category] || route.category;
         const pageTitle = `${catName} | Kids Encyclopedia | First Open School`;

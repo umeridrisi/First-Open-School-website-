@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <!-- Core Views -->
   <url>
     <loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/</loc>
     <lastmod>2026-09-04</lastmod>
@@ -24,7 +25,7 @@
     <loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.95</priority>
+    <priority>0.98</priority>
   </url>
   <url>
     <loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/tracing</loc>
@@ -68,7 +69,8 @@
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
-  <!-- Alphabets A to Z -->
+
+  <!-- Alphabets Individual Flashcards A to Z -->
   <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/a</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/b</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/c</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
@@ -95,6 +97,7 @@
   <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/x</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/y</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/z</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+
   <!-- Digits 0 to 20 -->
   <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/0</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/1</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
@@ -107,69 +110,76 @@
   <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/8</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/9</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/10</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/11</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/12</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/13</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/14</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/15</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/16</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/17</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/18</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/19</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/20</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+
   <!-- Kids Encyclopedia Category Hubs -->
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/alphabets</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/numbers</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/solar-system</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/earth-elements</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/countries-world</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <!-- Curated Encyclopedia Articles -->
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-a</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-b</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-c</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-d</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-e</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-f</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-g</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-h</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-i</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-j</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-k</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-l</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-m</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-n</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-o</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-p</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-q</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-r</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-s</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-t</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-u</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-v</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-w</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-x</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-y</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/letter-z</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/number-zero</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/number-one</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/number-two</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/number-ten</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/number-hundred</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/number-infinity</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/sun</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/earth</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/moon</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/mars</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/jupiter</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/saturn</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/water-element</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/air-element</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/trees-plants</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/rainbows</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/continents</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/oceans</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/japan</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/egypt</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/brazil</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/antarctica</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/alphabets</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/numbers</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/solar-system</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/earth-elements</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/animals-dinosaurs</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/human-body</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/how-things-work</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/countries-world</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+
+  <!-- High-Value Educational Articles -->
+  <!-- Animals & Dinosaurs -->
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/tyrannosaurus-rex</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/blue-whale</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/honeybees</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/chameleon</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/cheetah</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/owls</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/butterflies-metamorphosis</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/octopus</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/triceratops</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+
+  <!-- Human Body & Senses -->
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/human-brain</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/heart-blood</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/five-senses</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/skeleton-bones</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/lungs-breathing</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/taste-buds</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+
+  <!-- How Things Work -->
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/how-airplanes-fly</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/how-internet-works</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/how-clocks-work</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/wheels-gears</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/electricity-circuits</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/how-cameras-work</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+
+  <!-- Solar System & Space -->
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/the-sun</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/the-moon</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/planet-earth</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/planet-mars</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/planet-jupiter</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/planet-saturn</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/black-holes</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/astronauts-rockets</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+
+  <!-- Earth & Nature -->
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/water-cycle</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/rainbows</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/volcanoes</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/trees-photosynthesis</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/lightning-thunder</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/four-seasons</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+
+  <!-- Numbers & Math -->
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/zero-superpower</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/fractions-halves</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/geometric-shapes</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/infinity-concept</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+
+  <!-- Geography & Continents -->
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/seven-continents</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/world-oceans</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/great-wall-china</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/mount-everest</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/japan</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/egypt</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/brazil</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/antarctica</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
 </urlset>

@@ -10,7 +10,7 @@ First Open School is an interactive, multi-tiered educational curriculum built f
 - [Home Hub](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/): Main interactive world with age-tier switching (Pre-K to Elementary), live milestone badges, star tracker, and daily streaks.
 - [Alphabets A-Z](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets): All 26 uppercase and lowercase letters with phonetic sound pronunciation, mouth shape formation mechanics, and vocabulary associations.
 - [Digits 0-20](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits): Number sense curriculum focusing on subitizing dot patterns, visual grouping, audio counting, number bonds, and tactile numeral tracing.
-- [Kids Encyclopedia](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia): Modeled on Computer Language Company encyclopedic principles. Features plain-English definitions, phonetic guides, vivid everyday analogies (e.g. Letter A as a camping tent), visual anatomy breakdowns, ancient letter histories, and interactive micro-quizzes.
+- [Kids Encyclopedia](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia): Modeled on Computer Language Company encyclopedic principles. Features plain-English definitions, phonetic guides, vivid everyday analogies (e.g. Letter A as a camping tent), visual anatomy breakdowns, ancient origins, hands-on kitchen experiments, speedy tongue twisters, and interactive micro-quizzes.
 - [Letter & Digit Tracing](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/tracing): Multi-touch HTML5 canvas with directional stroke guidance, fine-motor path detection, and instant stroke accuracy calculation.
 - [Bubble Pop Game](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/bubble-pop): Audio-visual letter and sound recall game.
 - [Monster Counting Feast](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/counting-feast): Gamified subitizing and quantity association activity.
@@ -19,13 +19,16 @@ First Open School is an interactive, multi-tiered educational curriculum built f
 - [Adaptive Assessment Quiz](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/assessment): Gamified quiz engine testing letter sounds, numbers, and patterns with graduation milestone rewards.
 - [Parent & Educator Dashboard](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/parental-dashboard): Learning analytics, time-on-task, phonics accuracy metrics, AI Pedagogical Coach powered by Gemini, and printable completion certificates.
 
-## Encyclopedia Topics & Knowledge Clusters
+## Encyclopedia Topics & 8 Knowledge Clusters (80+ In-Depth Articles)
 
-1. **All 26 Alphabets (Aa to Zz)**: Every letter broken down with everyday analogies, mouth mechanics, phonetic notation, ancient Phoenician/Greek origins, and fun facts.
-2. **Numbers & Math Sense**: Zero (0), One (1), Two (2), Ten (10), One Hundred (100), and Infinity (∞).
-3. **Solar System**: The Sun, Planet Earth, The Moon, Mars, Jupiter, and Saturn.
-4. **Earth & Nature**: Water (H2O), Air & Atmosphere, Trees & Photosynthesis, and Rainbows.
-5. **World Geography**: The 7 Continents, Oceans, Japan, Egypt, Brazil, and Antarctica.
+1. **Alphabets A-Z (26 letters)**: Aa through Zz with analogies, mouth mechanics, phonetic symbols, ancient Phoenician/Greek origins, tongue twisters, and hands-on tactile craft projects.
+2. **Numbers & Math Sense**: Zero (0), One (1), Two (2), Ten (10), One Hundred (100), Fractions & Halves, Geometry & Shapes, and Infinity (∞).
+3. **Solar System & Space**: The Sun, Planet Earth, The Moon, Mars, Jupiter, Saturn, Black Holes, and Rockets & Astronauts.
+4. **Earth & Nature Elements**: Water Cycle (H2O), Rainbows & Light Spectrum, Volcanoes & Magma, Trees & Photosynthesis, Lightning & Thunder, and The 4 Seasons.
+5. **Animals & Dinosaurs**: Tyrannosaurus Rex, Blue Whale, Honeybees, Chameleon, Cheetah, Owls, Butterflies & Metamorphosis, Octopus, and Triceratops.
+6. **Human Body & Senses**: The Human Brain, Heart & Blood, The 5 Senses, Skeleton & Bones, Lungs & Breathing, and Taste Buds & Tongue.
+7. **How Things Work & Engineering**: How Airplanes Fly (Lift/Bernoulli), How the Internet Works (Packets/Wi-Fi), How Clocks Tell Time (Gears/Quartz), Wheels & Gears, Electricity & Circuits, and How Cameras Work.
+8. **World Geography & Continents**: The 7 Continents, World Oceans, The Great Wall of China, Mount Everest, Japan, Egypt, Brazil, and Antarctica.
 
 ## AI & Developer Endpoints
 

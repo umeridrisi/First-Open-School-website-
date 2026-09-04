@@ -18,6 +18,9 @@ export type EncyclopediaCategory =
   | 'numbers'
   | 'solar-system'
   | 'earth-elements'
+  | 'animals-dinosaurs'
+  | 'human-body'
+  | 'how-things-work'
   | 'countries-world';
 
 export interface EncyclopediaEntry {
@@ -49,6 +52,14 @@ export interface EncyclopediaEntry {
     correctIndex: number;
     explanation: string;
   };
+  handsOnExperiment?: {
+    title: string;
+    materials: string[];
+    steps: string[];
+    explanation: string;
+    emoji: string;
+  };
+  kidTongueTwisterOrRhyme?: string;
   seeAlso: { id: string; title: string; category: EncyclopediaCategory }[];
 }
 
