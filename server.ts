@@ -1,8 +1,10 @@
 import express from "express";
 import path from "path";
+import fs from "fs";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
+import { generateSitemapXml } from "./src/utils/sitemapGenerator";
 
 dotenv.config();
 
@@ -49,7 +51,7 @@ app.post("/api/ai-parent-coach", async (req, res) => {
     4. "encouragingNote": A short celebratory message to share with the student.`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-3.7-flash",
+      model: "gemini-2.5-flash",
       contents: prompt,
       config: {
         responseMimeType: "application/json",
@@ -96,7 +98,7 @@ app.post("/api/generate-phonics-story", async (req, res) => {
     4. "question": A fun simple comprehension question for the child.`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-3.7-flash",
+      model: "gemini-2.5-flash",
       contents: prompt,
       config: {
         responseMimeType: "application/json",
@@ -141,7 +143,7 @@ Create a kid-friendly encyclopedia entry formatted as JSON with:
 9. "microQuiz": Object with "question", "options" (array of 3 choices), "correctIndex" (number 0, 1, or 2), and "explanation" (warm positive sentence explaining the right answer).`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-3.8-flash",
+      model: "gemini-2.5-flash",
       contents: prompt,
       config: {
         responseMimeType: "application/json",
@@ -189,6 +191,97 @@ Create a kid-friendly encyclopedia entry formatted as JSON with:
         }
       }
     });
+  }
+});
+
+// ==========================================
+// SEO & AI CRAWLER ENDPOINTS
+// ==========================================
+app.get("/robots.txt", (req, res) => {
+  const host = req.get("host") || "ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app";
+  const protocol = req.protocol === "http" && host.includes("run.app") ? "https" : req.protocol;
+  const baseUrl = `${protocol}://${host}`;
+
+  const robotsTxt = `# ==============================================================================
+# First Open School - Robots.txt
+# Early Literacy, Phonics, Numeracy & Kids Science Encyclopedia
+# ==============================================================================
+
+# Search Engines
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# AI Crawlers & Large Language Models
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Cohere-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# XML Sitemap
+Sitemap: ${baseUrl}/sitemap.xml
+
+# LLM Documentation Standard
+# ${baseUrl}/llms.txt
+# ${baseUrl}/llms-full.txt
+`;
+  res.type("text/plain; charset=utf-8").send(robotsTxt);
+});
+
+app.get("/sitemap.xml", (req, res) => {
+  const host = req.get("host") || "ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app";
+  const protocol = req.protocol === "http" && host.includes("run.app") ? "https" : req.protocol;
+  const baseUrl = `${protocol}://${host}`;
+  const xml = generateSitemapXml(baseUrl);
+  res.type("application/xml; charset=utf-8").send(xml);
+});
+
+app.get("/llms.txt", (_req, res) => {
+  const filePath = path.join(process.cwd(), "public", "llms.txt");
+  if (fs.existsSync(filePath)) {
+    res.type("text/plain; charset=utf-8").sendFile(filePath);
+  } else {
+    res.status(404).send("llms.txt not found");
+  }
+});
+
+app.get("/llms-full.txt", (_req, res) => {
+  const filePath = path.join(process.cwd(), "public", "llms-full.txt");
+  if (fs.existsSync(filePath)) {
+    res.type("text/plain; charset=utf-8").sendFile(filePath);
+  } else {
+    res.status(404).send("llms-full.txt not found");
   }
 });
 

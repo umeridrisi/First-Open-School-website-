@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DigitData, StudentProfile, ParentSettings } from '../../types';
 import { DIGIT_DATA } from '../../data/curriculumData';
 import { speakText, playSoundEffect } from '../../utils/sound';
@@ -7,6 +7,8 @@ import { Volume2, PenTool, CheckCircle, Sparkles, Hash } from 'lucide-react';
 interface DigitsExplorerProps {
   student: StudentProfile;
   settings: ParentSettings;
+  initialDigitValue?: number;
+  onDigitChange?: (value: number) => void;
   onSelectDigitForTracing: (digit: DigitData) => void;
   onMarkDigitPracticed: (value: number) => void;
 }
@@ -14,11 +16,29 @@ interface DigitsExplorerProps {
 export const DigitsExplorer: React.FC<DigitsExplorerProps> = ({
   student,
   settings,
+  initialDigitValue,
+  onDigitChange,
   onSelectDigitForTracing,
   onMarkDigitPracticed
 }) => {
-  const [selectedDigit, setSelectedDigit] = useState<DigitData>(DIGIT_DATA[1]); // Default to 1
+  const [selectedDigit, setSelectedDigit] = useState<DigitData>(() => {
+    if (initialDigitValue !== undefined) {
+      const found = DIGIT_DATA.find(d => d.value === initialDigitValue);
+      if (found) return found;
+    }
+    return DIGIT_DATA[1]; // Default to 1
+  });
   const [tappedCount, setTappedCount] = useState<number>(0);
+
+  // Sync when initialDigitValue changes from URL
+  useEffect(() => {
+    if (initialDigitValue !== undefined) {
+      const found = DIGIT_DATA.find(d => d.value === initialDigitValue);
+      if (found && found.value !== selectedDigit.value) {
+        setSelectedDigit(found);
+      }
+    }
+  }, [initialDigitValue]);
 
   const handlePlayDigitSound = (digit: DigitData) => {
     playSoundEffect('pop', settings.soundEffects);
@@ -158,6 +178,7 @@ export const DigitsExplorer: React.FC<DigitsExplorerProps> = ({
               key={item.value}
               onClick={() => {
                 setSelectedDigit(item);
+                onDigitChange?.(item.value);
                 handlePlayDigitSound(item);
               }}
               onMouseEnter={() => speakText(String(item.value), settings.voiceGuidance)}

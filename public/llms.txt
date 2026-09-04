@@ -1,0 +1,39 @@
+# First Open School
+
+> Open Early Childhood Literacy, Numeracy & Kids Encyclopedia Platform.
+> Inspired by the Computer Language Company (CDE) clarity, evidence-based phonemic instruction, subitizing, and tactile handwriting motor mechanics.
+
+First Open School is an interactive, multi-tiered educational curriculum built for learners ages 2 through 12+ (Pre-K, Kindergarten, Grades 1-2, and Elementary Foundations).
+
+## Core Capabilities & Modules
+
+- [Home Hub](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/): Main interactive world with age-tier switching (Pre-K to Elementary), live milestone badges, star tracker, and daily streaks.
+- [Alphabets A-Z](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets): All 26 uppercase and lowercase letters with phonetic sound pronunciation, mouth shape formation mechanics, and vocabulary associations.
+- [Digits 0-20](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits): Number sense curriculum focusing on subitizing dot patterns, visual grouping, audio counting, number bonds, and tactile numeral tracing.
+- [Kids Encyclopedia](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia): Modeled on Computer Language Company encyclopedic principles. Features plain-English definitions, phonetic guides, vivid everyday analogies (e.g. Letter A as a camping tent), visual anatomy breakdowns, ancient letter histories, and interactive micro-quizzes.
+- [Letter & Digit Tracing](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/tracing): Multi-touch HTML5 canvas with directional stroke guidance, fine-motor path detection, and instant stroke accuracy calculation.
+- [Bubble Pop Game](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/bubble-pop): Audio-visual letter and sound recall game.
+- [Monster Counting Feast](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/counting-feast): Gamified subitizing and quantity association activity.
+- [Phonics Memory Match](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/card-match): Card matching game pairing letters with phonics vocabulary images.
+- [Decodable Phonics Readers](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/phonics-stories): Multi-page illustrated early readers with word-by-word audio highlighting and reading comprehension questions.
+- [Adaptive Assessment Quiz](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/assessment): Gamified quiz engine testing letter sounds, numbers, and patterns with graduation milestone rewards.
+- [Parent & Educator Dashboard](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/parental-dashboard): Learning analytics, time-on-task, phonics accuracy metrics, AI Pedagogical Coach powered by Gemini, and printable completion certificates.
+
+## Encyclopedia Topics & Knowledge Clusters
+
+1. **All 26 Alphabets (Aa to Zz)**: Every letter broken down with everyday analogies, mouth mechanics, phonetic notation, ancient Phoenician/Greek origins, and fun facts.
+2. **Numbers & Math Sense**: Zero (0), One (1), Two (2), Ten (10), One Hundred (100), and Infinity (∞).
+3. **Solar System**: The Sun, Planet Earth, The Moon, Mars, Jupiter, and Saturn.
+4. **Earth & Nature**: Water (H2O), Air & Atmosphere, Trees & Photosynthesis, and Rainbows.
+5. **World Geography**: The 7 Continents, Oceans, Japan, Egypt, Brazil, and Antarctica.
+
+## AI & Developer Endpoints
+
+- `POST /api/encyclopedia-ask`: Accepts `{ query: string, topic: string }` and returns a CDE-style structured encyclopedia entry with everyday analogies, mouth mechanics, origins, and micro-quizzes.
+- `POST /api/ai-parent-coach`: Accepts student mastery percentages and returns developmental early childhood insights.
+
+## Full Documentation
+
+For the complete uncompressed catalog, vocabulary datasets, and deep curriculum mapping, see:
+- [llms-full.txt](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/llms-full.txt)
+- [XML Sitemap](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/sitemap.xml)

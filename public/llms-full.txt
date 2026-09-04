@@ -1,0 +1,113 @@
+# First Open School - Complete Educational Documentation & Knowledge Base (llms-full.txt)
+
+> Full curriculum index, alphabet phonics reference, numeracy specifications, and CDE-style Kids Encyclopedia for AI assistants, search engines, and automated crawlers.
+> Canonical Website: https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app
+
+---
+
+## 1. Pedagogical Foundation
+
+First Open School uses structured multisensory early-learning methods combining:
+1. **Phonemic Awareness**: Teaching letter sounds ('Ah', 'Buh', 'Kuh') prior to letter names, accompanied by mouth-shape formation cues (lip positioning, tongue posture, voiced vs unvoiced).
+2. **Subitizing & Early Numeracy**: Training visual recognition of small sets (1-5) without counting one-by-one, progressing to numbers 0-20 with base-10 grouping and zero concept.
+3. **Tactile Motor Tracing**: Vector stroke waypoints with numbered step-by-step paths for upper/lowercase letters and digits.
+4. **CDE Encyclopedic Clarity**: Inspired by Computer Language Company architecture — plain English definitions, relatable metaphors, phonetic guides, physical anatomy diagrams, ancient origins, and interactive brain checks.
+
+---
+
+## 2. Age-Tier Curriculum Progression
+
+- **Pre-K & Toddlers (Ages 2-4)**:
+  - Focus: Letter shape recognition, audio phonics sounds, visual numbers 1-5, large touch targets.
+  - Recommended Modules: Home World, Alphabets A-Z, Bubble Pop audio recall.
+- **Kindergarten & Early K-1 (Ages 5-6)**:
+  - Focus: Upper/lowercase pairing, letter stroke tracing, subitizing numbers 1-10, Monster Feast food counting.
+  - Recommended Modules: Letter Tracing, Digits 0-20, Monster Feast, Memory Match.
+- **Grade 1-2 Foundations (Ages 7-8)**:
+  - Focus: Numbers 10-20, decodable phonics storybooks, speed quizzes, CDE Kids Encyclopedia.
+  - Recommended Modules: Phonics Readers, Adaptive Assessment, Kids Encyclopedia.
+- **K-12 Elementary Mastery (Ages 9-12+)**:
+  - Focus: Ancient word origins, scientific principles, planetary astronomy, geometry, parental analytics.
+  - Recommended Modules: Kids Encyclopedia deep dive, AI Coach insights.
+
+---
+
+## 3. Complete Alphabet A-Z Phonics Catalog
+
+- **Letter A (Aa)** | Vowel | Sound: "Ah / Ay" | Example: Apple | Tent/Belt analogy | Ancient Phoenician "Aleph" (Ox head).
+- **Letter B (Bb)** | Consonant | Sound: "Buh" | Example: Bear | Hiker with two backpacks | Ancient "Beth" (House/Shelter).
+- **Letter C (Cc)** | Consonant | Sound: "Kuh" | Example: Cat | Crescent moon shape | Derived from "Gimel" (Camel).
+- **Letter D (Dd)** | Consonant | Sound: "Duh" | Example: Duck | Sailboat with full wind sail | Phoenician "Daleth" (Tent door).
+- **Letter E (Ee)** | Vowel | Sound: "Eh" | Example: Elephant | Three-tier bookshelf | Ancient "He" (Person cheering).
+- **Letter F (Ff)** | Consonant | Sound: "Fff" | Example: Fish | Flag flying with two banners | Ancient "Waw" (Tent peg).
+- **Letter G (Gg)** | Consonant | Sound: "Guh" | Example: Giraffe | Whirlpool with entry ramp | Roman modification of C.
+- **Letter H (Hh)** | Consonant | Sound: "Huh" | Example: Hippo | Two trees with rope hammock | Ancient "Heth" (Fence).
+- **Letter I (Ii)** | Vowel | Sound: "Ih / Eye" | Example: Iguana | Tall lighthouse pole; dot is a "tittle" | Phoenician "Yodh" (Hand/Arm).
+- **Letter J (Jj)** | Consonant | Sound: "Juh" | Example: Jellyfish | Umbrella handle or pirate hook | Newest Latin letter (16th century).
+- **Letter K (Kk)** | Consonant | Sound: "Kuh" | Example: Kangaroo | Tree with two branches reaching out | Ancient "Kaph" (Open palm).
+- **Letter L (Ll)** | Consonant | Sound: "Lll" | Example: Lion | Cozy boot with flat sole | Ancient "Lamedh" (Shepherd crook).
+- **Letter M (Mm)** | Consonant | Sound: "Mmm" | Example: Monkey | Two mountain peaks | Phoenician "Mem" (Rippling water).
+- **Letter N (Nn)** | Consonant | Sound: "Nnn" | Example: Newt | Lightning bolt connecting two poles | Ancient "Nun" (Snake/Eel).
+- **Letter O (Oo)** | Vowel | Sound: "Oh / Aw" | Example: Owl | Rolling wheel, doughnut, full moon | Phoenician "Ayin" (Eye).
+- **Letter P (Pp)** | Consonant | Sound: "Puh" | Example: Panda | Magnifying glass on a stick | Ancient "Pe" (Mouth).
+- **Letter Q (Qq)** | Consonant | Sound: "Kwuh" | Example: Quail | Apple with stick resting at base | Ancient "Qoph" (Monkey/Needle eye).
+- **Letter R (Rr)** | Consonant | Sound: "Rrr" | Example: Rabbit | Walking figure kicking leg out | Phoenician "Resh" (Head).
+- **Letter S (Ss)** | Consonant | Sound: "Sss" | Example: Snake | Slithering river winding down | Phoenician "Shin" (Teeth).
+- **Letter T (Tt)** | Consonant | Sound: "Tuh" | Example: Tiger | Hammer with handle and head | Ancient "Taw" (Mark/Cross).
+- **Letter U (Uu)** | Vowel | Sound: "Uh / Yew" | Example: Unicorn | Smiling bowl holding soup | Split from Latin V.
+- **Letter V (Vv)** | Consonant | Sound: "Vvv" | Example: Vulture | Sharp bird beak pointing down | Ancient Latin ancestor of U and W.
+- **Letter W (Ww)** | Consonant | Sound: "Wuh" | Example: Whale | Two interlocking mountains (Double-U) | Originated as two V's in Middle English.
+- **Letter X (Xx)** | Consonant | Sound: "Kss" | Example: X-ray Fish | Crossing searchlight beams | Greek Chi / Latin X.
+- **Letter Y (Yy)** | Consonant/Vowel | Sound: "Yuh" | Example: Yak | Slingshot fork with handle | Greek Upsilon.
+- **Letter Z (Zz)** | Consonant | Sound: "Zzz" | Example: Zebra | Zig-zag lightning bolt | Ancient "Zayin" (Sword/Dagger).
+
+---
+
+## 4. Digits 0 to 20 Specifications
+
+- **0 (Zero)**: Empty basket, starting line on ruler, power booster in 10, 100, 1000.
+- **1 (One)**: Single Sun in the sky, unit building block of all counting.
+- **2 (Two)**: Pair of eyes, ears, hands, bicycle wheels.
+- **3 (Three)**: Tricycle wheels, triangle sides, three primary colors.
+- **4 (Four)**: Dog legs, car wheels, rectangle corners.
+- **5 (Five)**: Fingers on one hand, starfish arms.
+- **6 (Six)**: Insect legs, dice faces.
+- **7 (Seven)**: Colors of the rainbow, days of the week.
+- **8 (Eight)**: Octopus tentacles, spider legs.
+- **9 (Nine)**: Highest single digit, baseball inning count.
+- **10 (Ten)**: Base of our decimal system, two hands with all fingers.
+- **11 to 20**: Teen number progression (10 + N) building algebraic place-value foundations.
+
+---
+
+## 5. Kids Encyclopedia Knowledge Clusters
+
+- **Alphabets**: 26 entries (`/encyclopedia/letter-a` to `/encyclopedia/letter-z`).
+- **Numbers & Math**: Zero, One, Two, Ten, One Hundred, Infinity (`/encyclopedia/number-zero`, etc.).
+- **Solar System**: The Sun, Planet Earth, The Moon, Mars, Jupiter, Saturn (`/encyclopedia/sun`, `/encyclopedia/planet-earth`, etc.).
+- **Earth & Nature**: Water (H2O), Air & Atmosphere, Trees & Photosynthesis, Rainbows (`/encyclopedia/water-element`, etc.).
+- **World Geography**: 7 Continents, World Oceans, Japan, Egypt, Brazil, Antarctica (`/encyclopedia/continents`, `/encyclopedia/japan`, etc.).
+
+---
+
+## 6. Site Permalinks & Canonical Structure
+
+- `/` : Primary Home World
+- `/alphabets` : Alphabets Curriculum
+- `/alphabets/:letter` : Individual Letter Deep Link (e.g. `/alphabets/a`, `/alphabets/z`)
+- `/digits` : Digits 0-20 Curriculum
+- `/digits/:digit` : Individual Digit Deep Link (e.g. `/digits/0`, `/digits/10`)
+- `/encyclopedia` : Encyclopedia Hub
+- `/encyclopedia/category/:category` : Category Index (e.g. `/encyclopedia/category/solar-system`)
+- `/encyclopedia/:entryId` : In-Depth Article (e.g. `/encyclopedia/sun`, `/encyclopedia/letter-a`)
+- `/tracing` : Tracing Canvas
+- `/tracing/:target` : Targeted Tracing (e.g. `/tracing/A`, `/tracing/5`)
+- `/bubble-pop` : Phonics Bubble Pop Game
+- `/counting-feast` : Monster Feast Counting Game
+- `/card-match` : Memory Match Game
+- `/phonics-stories` : Phonics Reader Library
+- `/assessment` : Gamified Assessment Quiz
+- `/parental-dashboard` : Analytics & AI Pedagogical Coach
+
+XML Sitemap available at `/sitemap.xml`.
+Robots file available at `/robots.txt`.

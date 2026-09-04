@@ -1,6 +1,7 @@
 import React from 'react';
 import { ActiveTab, ParentSettings } from '../types';
 import { speakText, playSoundEffect } from '../utils/sound';
+import { formatRouteUrl } from '../utils/router';
 import { 
   Sparkles, 
   PenTool, 
@@ -108,16 +109,22 @@ export const SubjectNav: React.FC<SubjectNavProps> = ({ activeTab, onSelectTab, 
       <div className="max-w-7xl mx-auto flex items-center space-x-3 min-w-max">
         {navItems.map((item) => {
           const isActive = activeTab === item.id;
+          const href = formatRouteUrl({ tab: item.id });
 
           return (
-            <button
+            <a
               key={item.id}
-              onClick={() => {
-                playSoundEffect('click', settings.soundEffects);
-                onSelectTab(item.id);
-                speakText(item.voicePrompt, settings.voiceGuidance);
+              href={href}
+              onClick={(e) => {
+                // If standard left click without modifiers, prevent full reload and use client routing
+                if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                  e.preventDefault();
+                  playSoundEffect('click', settings.soundEffects);
+                  onSelectTab(item.id);
+                  speakText(item.voicePrompt, settings.voiceGuidance);
+                }
               }}
-              className={`flex items-center space-x-2 px-4 py-2.5 rounded-2xl border-4 font-black text-sm transition-all transform active:translate-y-1 active:shadow-none cursor-pointer ${
+              className={`flex items-center space-x-2 px-4 py-2.5 rounded-2xl border-4 font-black text-sm transition-all transform active:translate-y-1 active:shadow-none cursor-pointer no-underline ${
                 isActive
                   ? `${item.activeBg} ${item.color} scale-102`
                   : 'bg-[#FFF9F0] border-gray-200 text-[#2D2D2D]/70 hover:border-[#FFD93D] hover:text-[#2D2D2D]'
@@ -125,7 +132,7 @@ export const SubjectNav: React.FC<SubjectNavProps> = ({ activeTab, onSelectTab, 
             >
               <div className="flex items-center justify-center">{item.icon}</div>
               <span className="whitespace-nowrap uppercase tracking-tight">{item.label}</span>
-            </button>
+            </a>
           );
         })}
       </div>

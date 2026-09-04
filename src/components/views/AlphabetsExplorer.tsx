@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LetterData, StudentProfile, ParentSettings } from '../../types';
 import { ALPHABET_DATA } from '../../data/curriculumData';
 import { speakText, playSoundEffect } from '../../utils/sound';
@@ -7,6 +7,8 @@ import { Volume2, PenTool, CheckCircle, Sparkles } from 'lucide-react';
 interface AlphabetsExplorerProps {
   student: StudentProfile;
   settings: ParentSettings;
+  initialLetterChar?: string;
+  onLetterChange?: (char: string) => void;
   onSelectLetterForTracing: (letter: LetterData) => void;
   onMarkLetterPracticed: (char: string) => void;
 }
@@ -14,11 +16,29 @@ interface AlphabetsExplorerProps {
 export const AlphabetsExplorer: React.FC<AlphabetsExplorerProps> = ({
   student,
   settings,
+  initialLetterChar,
+  onLetterChange,
   onSelectLetterForTracing,
   onMarkLetterPracticed
 }) => {
-  const [selectedLetter, setSelectedLetter] = useState<LetterData>(ALPHABET_DATA[0]);
+  const [selectedLetter, setSelectedLetter] = useState<LetterData>(() => {
+    if (initialLetterChar) {
+      const found = ALPHABET_DATA.find(a => a.char.toUpperCase() === initialLetterChar.toUpperCase());
+      if (found) return found;
+    }
+    return ALPHABET_DATA[0];
+  });
   const [showCase, setShowCase] = useState<'uppercase' | 'lowercase' | 'both'>('both');
+
+  // Sync when initialLetterChar changes from URL
+  useEffect(() => {
+    if (initialLetterChar) {
+      const found = ALPHABET_DATA.find(a => a.char.toUpperCase() === initialLetterChar.toUpperCase());
+      if (found && found.char !== selectedLetter.char) {
+        setSelectedLetter(found);
+      }
+    }
+  }, [initialLetterChar]);
 
   const handlePlayLetterSound = (letter: LetterData) => {
     playSoundEffect('pop', settings.soundEffects);
@@ -148,6 +168,7 @@ export const AlphabetsExplorer: React.FC<AlphabetsExplorerProps> = ({
               key={item.char}
               onClick={() => {
                 setSelectedLetter(item);
+                onLetterChange?.(item.char.toLowerCase());
                 handlePlayLetterSound(item);
               }}
               onMouseEnter={() => speakText(item.char, settings.voiceGuidance)}

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { EncyclopediaEntry, EncyclopediaCategory, StudentProfile, ParentSettings } from '../../types';
 import { ENCYCLOPEDIA_ENTRIES, ENCYCLOPEDIA_CATEGORIES } from '../../data/encyclopediaData';
 import { speakText, playSoundEffect } from '../../utils/sound';
@@ -24,17 +24,60 @@ import {
 interface KidsEncyclopediaProps {
   student: StudentProfile;
   settings: ParentSettings;
+  initialEntryId?: string;
+  initialCategory?: string;
+  onEntryChange?: (entryId: string) => void;
+  onCategoryChange?: (category: string) => void;
   onNavigateToTracing?: (charOrDigit: string) => void;
 }
 
 export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
   student: _student,
   settings,
+  initialEntryId,
+  initialCategory,
+  onEntryChange,
+  onCategoryChange,
   onNavigateToTracing
 }) => {
-  const [selectedCategory, setSelectedCategory] = useState<EncyclopediaCategory | 'all'>('alphabets');
-  const [selectedEntryId, setSelectedEntryId] = useState<string>('letter-a');
+  const [selectedCategory, setSelectedCategory] = useState<EncyclopediaCategory | 'all'>(() => {
+    if (initialCategory) {
+      const isValid = ENCYCLOPEDIA_CATEGORIES.some(c => c.id === initialCategory);
+      if (isValid) return initialCategory as EncyclopediaCategory;
+    }
+    return 'alphabets';
+  });
+
+  const [selectedEntryId, setSelectedEntryId] = useState<string>(() => {
+    if (initialEntryId) {
+      const found = ENCYCLOPEDIA_ENTRIES.find(e => e.id === initialEntryId);
+      if (found) return found.id;
+    }
+    return 'letter-a';
+  });
+
   const [searchQuery, setSearchQuery] = useState<string>('');
+  
+  // Sync with initialEntryId
+  useEffect(() => {
+    if (initialEntryId) {
+      const found = ENCYCLOPEDIA_ENTRIES.find(e => e.id === initialEntryId);
+      if (found && found.id !== selectedEntryId) {
+        setSelectedEntryId(found.id);
+        setSelectedCategory(found.category);
+      }
+    }
+  }, [initialEntryId]);
+
+  // Sync with initialCategory
+  useEffect(() => {
+    if (initialCategory) {
+      const isValid = ENCYCLOPEDIA_CATEGORIES.some(c => c.id === initialCategory);
+      if (isValid && initialCategory !== selectedCategory) {
+        setSelectedCategory(initialCategory as EncyclopediaCategory);
+      }
+    }
+  }, [initialCategory]);
   
   // Custom AI generated entry state
   const [customEntry, setCustomEntry] = useState<EncyclopediaEntry | null>(null);
@@ -81,6 +124,7 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
     setSelectedEntryId(entry.id);
     setSelectedQuizAnswer(null);
     setShowQuizResult(false);
+    onEntryChange?.(entry.id);
     playSoundEffect('click', settings.soundEffects);
     speakText(entry.title, settings.voiceGuidance);
   };
@@ -254,6 +298,7 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
             onClick={() => {
               playSoundEffect('click', settings.soundEffects);
               setSelectedCategory('all');
+              onCategoryChange?.('all');
             }}
             className={`px-4 py-2.5 rounded-2xl border-4 font-black text-xs uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer ${
               selectedCategory === 'all'
@@ -272,8 +317,12 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
                 onClick={() => {
                   playSoundEffect('click', settings.soundEffects);
                   setSelectedCategory(cat.id);
+                  onCategoryChange?.(cat.id);
                   const firstOfCat = ENCYCLOPEDIA_ENTRIES.find(e => e.category === cat.id);
-                  if (firstOfCat) setSelectedEntryId(firstOfCat.id);
+                  if (firstOfCat) {
+                    setSelectedEntryId(firstOfCat.id);
+                    onEntryChange?.(firstOfCat.id);
+                  }
                 }}
                 className={`flex items-center space-x-1.5 px-4 py-2.5 rounded-2xl border-4 font-black text-xs uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer ${
                   isSelected

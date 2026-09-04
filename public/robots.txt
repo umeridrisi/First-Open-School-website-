@@ -1,0 +1,56 @@
+# ==============================================================================
+# First Open School - Robots.txt
+# Early Literacy, Phonics, Numeracy & Kids Science Encyclopedia
+# ==============================================================================
+
+# Default Crawlers (Google, Bing, Yahoo, DuckDuckGo, etc.)
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /*?*preview=*
+Disallow: /*?*debug=*
+
+# AI & LLM Crawlers (OpenAI, Anthropic, Google, Perplexity, Apple, etc.)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Cohere-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Canonical XML Sitemap
+Sitemap: https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/sitemap.xml
+
+# LLM Documentation Standards
+# Discoverable structured curriculum content for LLMs and AI Agents:
+# https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/llms.txt
+# https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/llms-full.txt
