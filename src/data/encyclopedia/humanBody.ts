@@ -340,5 +340,476 @@ export const HUMAN_BODY_ENTRIES: EncyclopediaEntry[] = [
       { id: 'skeleton-bones', title: 'Skeleton & Bones', category: 'human-body' },
       { id: 'heart-blood', title: 'The Heart & Blood', category: 'human-body' }
     ]
+  },
+  {
+    id: 'human-eyes',
+    title: 'Eyes & Vision',
+    symbol: '👁️',
+    pronunciation: '(EYEZ and VIZH-uhn)',
+    category: 'human-body',
+    tagline: 'Twin high-definition biological video cameras capturing millions of colors every second.',
+    analogy: {
+      title: 'The Dual HD Video Cameras with Auto-Focus and Wiper Blades',
+      story: 'Your eyes are like two incredible color movie cameras connected to your brain! The colored ring (iris) works like a camera aperture lens opening wide in the dark and closing small in bright sun; your eyelids act like windshield wipers that blink clean moisture every 4 seconds.',
+      emoji: '📸'
+    },
+    howItWorks: {
+      title: 'How Light Becomes a Picture',
+      points: [
+        'Cornea & Lens: Clear curved windows at the front of the eye that bend and focus incoming light rays.',
+        'Retina Screen: The back wall of the eyeball packed with 130 million light-detecting rod and cone cells.',
+        'Optic Cable Highway: The optic nerve transmits electrical pixel impulses upside down to the brain, which flips the image right-side up instantly!'
+      ]
+    },
+    anatomyDiagram: {
+      headline: 'Anatomy of the Human Eye',
+      parts: [
+        { label: 'Pupil', desc: 'The black center hole that lets light inside the eyeball.' },
+        { label: 'Iris', desc: 'The colored muscular ring (brown, blue, green) that controls pupil size.' },
+        { label: 'Retina', desc: 'The light-sensitive screen at the back of your eye with rods and cones.' },
+        { label: 'Optic Nerve', desc: 'High-speed data cord sending visual signals to your occipital brain lobe.' }
+      ]
+    },
+    funFacts: [
+      'You blink about 15 to 20 times every minute — that is over 28,000 times every day!',
+      'Your eye muscles are the fastest reacting muscles in your entire body.',
+      'Rods help you see in dim darkness and black-and-white, while cones let you see red, green, and blue colors.'
+    ],
+    kidWords: [
+      { word: 'Retina', emoji: '🖼️', meaning: 'The light-sensitive inner coating at the back of the eyeball.' },
+      { word: 'Pupil', emoji: '⚫', meaning: 'The dark opening in the center of the iris that admits light.' },
+      { word: 'Cornea', emoji: '🔍', meaning: 'The transparent front dome layer that covers and protects the iris.' }
+    ],
+    didYouKnowOrigin: 'All babies with blue eyes inherit that color because of low melanin in the iris! When exposed to sunlight as they grow, melanin develops and may turn eyes hazel, green, or deep brown.',
+    microQuiz: {
+      question: 'Which part of your eye is the colorful ring that controls how much light enters?',
+      options: ['The Iris', 'The Eyelash', 'The Optic Nerve'],
+      correctIndex: 0,
+      explanation: 'The iris is the colorful muscular disc (blue, brown, green) that expands or contracts your pupil!'
+    },
+    handsOnExperiment: {
+      title: 'The Pupil Flashlight Mirror Test',
+      materials: ['A mirror', 'A dim room', 'A flashlight or soft lamp'],
+      steps: [
+        'Look at your eyes in a mirror in a dimly lit room — notice how big and wide your black pupils are!',
+        'Turn on a lamp or shine a soft light near your face (never directly into the eye).',
+        'Watch your pupils immediately shrink down to tiny black dots to protect your retina!'
+      ],
+      explanation: 'Your iris muscles contract automatically within 200 milliseconds to protect your light-sensitive rods and cones!',
+      emoji: '🪞'
+    },
+    kidTongueTwisterOrRhyme: 'Eagle-eyed Eddie effortlessly examines eight emerald eagles!',
+    seeAlso: [
+      { id: 'five-senses', title: 'The 5 Senses', category: 'human-body' },
+      { id: 'human-brain', title: 'The Human Brain', category: 'human-body' }
+    ]
+  },
+  {
+    id: 'human-ears',
+    title: 'Ears, Hearing & Balance',
+    symbol: '👂',
+    pronunciation: '(EERZ, HEER-ing and BAL-uhns)',
+    category: 'human-body',
+    tagline: 'Acoustic sound catchers containing the 3 smallest bones in your body and a balance gyroscope.',
+    analogy: {
+      title: 'The Musical Concert Hall & Gyroscope Navigator',
+      story: 'Your outer ear (pinna) acts like a cupped satellite dish catching invisible sound waves vibrating in the air! Inside your head, those sound waves tap on a tiny drum skin, vibrating three microscopic musical bone hammers that splash ripples through a tiny fluid snail shell (cochlea).',
+      emoji: '🥁'
+    },
+    howItWorks: {
+      title: 'The 3 Parts of the Ear',
+      points: [
+        'Outer Ear (Pinna): Catches sound waves and channels them down the ear canal to the eardrum.',
+        'Middle Ear (The 3 Tiny Bones): The Hammer (Malleus), Anvil (Incus), and Stirrup (Stapes) amplify vibrations — the stapes is the smallest bone in your entire body (size of a grain of rice!).',
+        'Inner Ear (Cochlea & Semicircular Canals): Converts fluid waves into nerve electrical signals and senses which way your head is tilting so you don’t fall over.'
+      ]
+    },
+    anatomyDiagram: {
+      headline: 'Inside the Ear Mechanism',
+      parts: [
+        { label: 'Eardrum', desc: 'A paper-thin cone membrane that vibrates when sound waves strike it.' },
+        { label: 'Ossicles (3 Bones)', desc: 'Hammer, anvil, and stirrup bones that amplify sound.' },
+        { label: 'Cochlea', desc: 'A fluid-filled spiral snail shell lined with 20,000 microscopic hair cell sensors.' },
+        { label: 'Semicircular Canals', desc: 'Three fluid balance loops that act like 3D gyroscopes for your head.' }
+      ]
+    },
+    funFacts: [
+      'Your ears never stop hearing — even when you are fast asleep, your ears hear sounds, but your brain ignores them so you can rest!',
+      'Earwax (cerumen) is actually a healthy, protective shield that traps dirt, dust, and bad bacteria.',
+      'If you spin around in circles and stop, you feel dizzy because the fluid inside your semicircular canals keeps sloshing for a few extra seconds!'
+    ],
+    kidWords: [
+      { word: 'Cochlea', emoji: '🐌', meaning: 'The spiral, snail-shaped chamber in the inner ear that decodes sound frequencies.' },
+      { word: 'Eardrum', emoji: '🥁', meaning: 'The thin membrane in the ear that vibrates in response to sound waves.' },
+      { word: 'Stirrup', emoji: '🌾', meaning: 'The stapes bone — the tiniest bone in the human body (about 3mm long).' }
+    ],
+    didYouKnowOrigin: 'The three bones in your middle ear are called "ossicles", which is Latin for "tiny bones"!',
+    microQuiz: {
+      question: 'What is the smallest bone in the human body, located inside your middle ear?',
+      options: ['The Stirrup (Stapes)', 'The Pinky finger bone', 'The Tooth'],
+      correctIndex: 0,
+      explanation: 'The stirrup (stapes) bone in your middle ear is only 3 millimeters long — roughly the size of a single grain of rice!'
+    },
+    seeAlso: [
+      { id: 'five-senses', title: 'The 5 Senses', category: 'human-body' },
+      { id: 'human-brain', title: 'The Human Brain', category: 'human-body' }
+    ]
+  },
+  {
+    id: 'human-nose',
+    title: 'Nose & Sense of Smell',
+    symbol: '👃',
+    pronunciation: '(NOHZ and SMEL)',
+    category: 'human-body',
+    tagline: 'The warming air-filtration vacuum and scent detector directly wired to your memory.',
+    analogy: {
+      title: 'The Air Conditioner & Scent Memory Machine',
+      story: 'Your nose is a high-tech climate control filter! When you breathe in chilly winter air, your nose instantly warms it to body temperature, humidifies it, and traps dust particles with tiny sticky hairs. Plus, its 400 scent receptors can recognize over 1 trillion distinct smells!',
+      emoji: '🌸'
+    },
+    howItWorks: {
+      title: 'How Your Nose Protects and Smells',
+      points: [
+        'Cilia & Mucus Filtration: Millions of microscopic waving hair brushes (cilia) trap pollen and dust before air reaches your delicate lungs.',
+        'Olfactory Bulb Connection: Odor molecules dissolve in the roof of your nasal cavity, sending instant signals straight to your brain’s emotion and memory centers.',
+        '80% of Taste: Much of what you think is "taste" is actually your nose smelling food vapors while you chew!'
+      ]
+    },
+    funFacts: [
+      'Your nose produces about 1 to 2 pints of clean protective mucus every day to keep your airways moist!',
+      'Smells trigger vivid memories faster than sounds or sights because the olfactory bulb is wired directly next to the hippocampus (memory center).',
+      'When you sneeze, air blasts out of your nose and mouth at speeds up to 100 miles per hour to clear out tickling dust!'
+    ],
+    kidWords: [
+      { word: 'Olfactory', emoji: '👃', meaning: 'Relating to the sense of smell and scent detection.' },
+      { word: 'Cilia', emoji: '🌾', meaning: 'Microscopic hair-like projections that sweep dust and mucus out of airways.' },
+      { word: 'Septum', emoji: '🧱', meaning: 'The bendable cartilage wall dividing your nose into two nostrils.' }
+    ],
+    didYouKnowOrigin: 'The word "Nose" traces back thousands of years to the ancient Proto-Indo-European root "nas", which is also where we get the word "nasal"!',
+    microQuiz: {
+      question: 'What happens when you hold your nose while eating a piece of fruit?',
+      options: ['It becomes much harder to taste the flavor', 'It tastes twice as sweet', 'It turns blue'],
+      correctIndex: 0,
+      explanation: 'About 80% of what we think is flavor actually comes from our nose smelling food aromas as we chew!'
+    },
+    seeAlso: [
+      { id: 'taste-buds', title: 'Taste Buds & Tongue', category: 'human-body' },
+      { id: 'lungs-breathing', title: 'Lungs & Breathing', category: 'human-body' }
+    ]
+  },
+  {
+    id: 'human-skin',
+    title: 'Skin (The Body’s Shield)',
+    symbol: '🛡️',
+    pronunciation: '(SKIN)',
+    category: 'human-body',
+    tagline: 'The largest organ of the human body — a waterproof, self-healing, climate-controlling suit.',
+    analogy: {
+      title: 'The Waterproof Smart Space-Suit',
+      story: 'Imagine wearing a magic space-suit that is 100% waterproof, stretches when you bend, cools you down with sweat drops when you are hot, gives you goosebumps when you are cold, and repairs its own rips and scrapes with fresh new cells in just a few days!',
+      emoji: '🧥'
+    },
+    howItWorks: {
+      title: 'The 3 Main Layers of Skin',
+      points: [
+        'Epidermis (Outer Shield): The tough waterproof surface made of keratin cells and melanin pigment that shields against sunshine UV rays.',
+        'Dermis (Control Room): Filled with sweat glands, hair follicles, blood vessels, and nerve touch sensors that feel soft silk, tickles, and warmth.',
+        'Hypodermis (Subcutaneous Fat Cushion): A bottom cushion layer of fat that stores energy and insulates your body like a cozy winter sleeping bag.'
+      ]
+    },
+    anatomyDiagram: {
+      headline: 'The 3 Layers of Skin',
+      parts: [
+        { label: 'Epidermis', desc: 'Outer waterproof protective coat shedding old dead cells constantly.' },
+        { label: 'Dermis', desc: 'Middle layer with sweat glands, oil pores, and touch nerve receptors.' },
+        { label: 'Sweat Glands', desc: 'Tiny coiled tubes pumping water droplets to skin surface for evaporative cooling.' },
+        { label: 'Melanin', desc: 'Natural pigment umbrella protecting deep cells from sun rays.' }
+      ]
+    },
+    funFacts: [
+      'Skin is the largest and heaviest organ in the human body, weighing about 8 to 10 pounds in an adult!',
+      'You shed about 30,000 to 40,000 dead skin cells every single minute — that is nearly 9 pounds of skin every year!',
+      'Your fingertips have unique raised friction ridges (fingerprints) that help you grip objects and are 100% unique to you.'
+    ],
+    kidWords: [
+      { word: 'Melanin', emoji: '🎨', meaning: 'The natural pigment that gives skin, hair, and eyes their color and sun protection.' },
+      { word: 'Epidermis', emoji: '🛡️', meaning: 'The outermost protective layer of skin cells.' },
+      { word: 'Pore', emoji: '🕳️', meaning: 'A tiny opening on the surface of the skin through which sweat and oils pass.' }
+    ],
+    didYouKnowOrigin: 'Goosebumps happen because tiny muscles at the base of every hair follicle contract to pull hairs upright! In furry animals, this puffs up their fur coat to trap extra warm air.',
+    microQuiz: {
+      question: 'What is the largest organ in the entire human body?',
+      options: ['The Skin', 'The Brain', 'The Liver'],
+      correctIndex: 0,
+      explanation: 'Skin is your body’s largest organ! Stretched flat, an adult’s skin covers roughly 20 square feet.'
+    },
+    seeAlso: [
+      { id: 'hands-fingers', title: 'Hands & Fingers', category: 'human-body' },
+      { id: 'immune-system', title: 'Immune System', category: 'human-body' }
+    ]
+  },
+  {
+    id: 'stomach-digestion',
+    title: 'Stomach & Digestive System',
+    symbol: '🍲',
+    pronunciation: '(STUM-uhk and dy-JES-chun)',
+    category: 'human-body',
+    tagline: 'The 30-foot nutrition factory that turns sandwiches and apples into rocket-fuel energy.',
+    analogy: {
+      title: 'The Nutrient Blender and Energy Powerplant',
+      story: 'Your digestive tract is a 30-foot magical water slide for food! When you chew an apple, saliva starts breaking down sugars; your muscular stomach churns it like a blender with acid juices, and your long intestines absorb all the vitamins, calcium, and minerals into your bloodstream.',
+      emoji: '🧃'
+    },
+    howItWorks: {
+      title: 'The Journey of a Bite of Food',
+      points: [
+        'Mouth & Esophagus: Chewing and saliva turn food into a soft bolus, pushed down the food pipe by muscular wave squeezes (peristalsis).',
+        'Stomach Blender: Churns food with gastric juices and hydrochloric acid to break down proteins into a soupy mix called chyme.',
+        'Small Intestine (20 Feet Long): Microscopic finger-like villi absorb vitamins, proteins, and minerals into the bloodstream.',
+        'Large Intestine (Colon): Reabsorbs water and prepares fiber waste for safe elimination.'
+      ]
+    },
+    funFacts: [
+      'Your small intestine is about 20 to 22 feet long — as long as four grown-up humans lying head-to-toe!',
+      'Stomach acid (hydrochloric acid) is so strong it could dissolve metal, but your stomach protects itself with a thick mucous lining renewed every 3 days.',
+      'Your gut is home to trillions of friendly microscopic bacteria (microbiome) that help digest food and keep you healthy.'
+    ],
+    kidWords: [
+      { word: 'Peristalsis', emoji: '🌊', meaning: 'Wave-like muscle contractions that push food smoothly down the digestive tract.' },
+      { word: 'Villi', emoji: '🌾', meaning: 'Millions of tiny finger-like projections lining the intestine to absorb nutrients.' },
+      { word: 'Microbiome', emoji: '🦠', meaning: 'The community of trillions of helpful bacteria living inside your gut.' }
+    ],
+    didYouKnowOrigin: 'The rumbling sound your stomach makes when you are hungry is called "borborygmus" (pronounced bor-buh-RIG-mus), which is an ancient Greek word imitating the bubbling sound of air and liquid moving in your belly!',
+    microQuiz: {
+      question: 'How long is the human small intestine if you stretched it out in a straight line?',
+      options: ['About 20 feet long (as long as a minivan!)', 'Only 6 inches', '1 foot'],
+      correctIndex: 0,
+      explanation: 'The small intestine is folded neatly in your abdomen and measures about 20 to 22 feet in length!'
+    },
+    seeAlso: [
+      { id: 'teeth-mouth', title: 'Teeth & Mouth', category: 'human-body' },
+      { id: 'human-kidneys', title: 'Kidneys & Water Balance', category: 'human-body' }
+    ]
+  },
+  {
+    id: 'teeth-mouth',
+    title: 'Teeth, Chewing & Smile',
+    symbol: '🦷',
+    pronunciation: '(TEETH and CHOO-ing)',
+    category: 'human-body',
+    tagline: 'Enamel diamond cutters and grinding stones that break down food and shape clear speech.',
+    analogy: {
+      title: 'The Body’s Diamond-Hard Kitchen Cutlery Set',
+      story: 'Your teeth are like a custom set of kitchen tools built right into your mouth! Incisors in the front act like sharp scissors for snipping apples; canines act like pointed forks, and molars in the back are heavy grinding stones that mash food into a smooth paste so it is safe to swallow.',
+      emoji: '💎'
+    },
+    howItWorks: {
+      title: 'The 4 Types of Human Teeth',
+      points: [
+        'Incisors (8 Front Teeth): Sharp chisel-like edges for cutting and slicing bites of food.',
+        'Canines (4 Corner Teeth): Pointed vampire-like teeth for gripping and tearing food.',
+        'Premolars (8 Transition Teeth): Flat tops with cusps for crushing and holding.',
+        'Molars (12 Back Teeth): Broad, flat grinding stones for pulverizing tough grains and veggies.'
+      ]
+    },
+    anatomyDiagram: {
+      headline: 'Layers of a Tooth',
+      parts: [
+        { label: 'Enamel', desc: 'The hard, mineralized outer white shell — the hardest substance in the human body!' },
+        { label: 'Dentin', desc: 'The firm yellow bone-like layer underneath the enamel.' },
+        { label: 'Pulp', desc: 'The soft living center filled with blood vessels and feeling nerves.' },
+        { label: 'Root', desc: 'Anchored deep into the jawbone with strong periodontal ligaments.' }
+      ]
+    },
+    funFacts: [
+      'Tooth enamel is the hardest substance in the entire human body — even harder than your leg bones!',
+      'Humans grow two sets of teeth in a lifetime: 20 primary baby teeth and 32 permanent adult teeth.',
+      'Just like fingerprints, no two people on Earth have the exact same bite or tooth arrangement.'
+    ],
+    kidWords: [
+      { word: 'Enamel', emoji: '💎', meaning: 'The super-hard, glossy white mineral shell that protects the outside of a tooth.' },
+      { word: 'Molar', emoji: '🦷', meaning: 'A broad back tooth with a flat surface used for grinding food.' },
+      { word: 'Fluoride', emoji: '🪥', meaning: 'A beneficial mineral found in toothpaste that rebuilds and strengthens enamel.' }
+    ],
+    didYouKnowOrigin: 'Elephants go through 6 sets of teeth in their lifetime, and sharks replace lost teeth continuously in days, but humans only get two sets — which is why brushing twice a day keeps permanent teeth smiling for life!',
+    microQuiz: {
+      question: 'What is the hardest substance found anywhere in the human body?',
+      options: ['Tooth Enamel', 'The Skull bone', 'The Fingernail'],
+      correctIndex: 0,
+      explanation: 'Tooth enamel is 96% mineral, making it even tougher and harder than bone!'
+    },
+    seeAlso: [
+      { id: 'taste-buds', title: 'Taste Buds & Tongue', category: 'human-body' },
+      { id: 'stomach-digestion', title: 'Stomach & Digestion', category: 'human-body' }
+    ]
+  },
+  {
+    id: 'hands-fingers',
+    title: 'Hands, Fingers & Touch',
+    symbol: '🖐️',
+    pronunciation: '(HANDZ and FING-gerz)',
+    category: 'human-body',
+    tagline: 'Dexterous 27-bone precision instruments equipped with opposable thumbs and fingerprints.',
+    analogy: {
+      title: 'The Master Inventor’s Universal Robotic Grippers',
+      story: 'Your hands are the ultimate multi-tools in nature! Thanks to your opposable thumb, you can grip a heavy baseball bat or delicately hold a tiny sewing needle. Your fingertips have thousands of touch sensors telling you if something is fuzzy like a kitten or cold like an ice cube.',
+      emoji: '🎨'
+    },
+    howItWorks: {
+      title: 'How Hands Operate',
+      points: [
+        '27 Bones in Each Hand: 8 wrist carpals, 5 palm metacarpals, and 14 finger phalanges work together in harmony.',
+        'Remote-Control Tendons: There are actually NO muscles inside your fingers! Your fingers are pulled by long tendon strings attached to strong forearm muscles.',
+        'Opposable Thumb: Can rotate and press against all four fingers, giving humans unmatched grasping dexterity.'
+      ]
+    },
+    funFacts: [
+      'One quarter (25%) of all the bones in your entire body are located in your two hands and wrists!',
+      'Your fingertips are so sensitive they can feel a microscopic bump only 1/1000th of a millimeter high.',
+      'Koalas and chimpanzees are the only other animals that have unique fingerprints just like humans.'
+    ],
+    kidWords: [
+      { word: 'Opposable', emoji: '👍', meaning: 'Able to rotate and touch all other fingertips for precision grip.' },
+      { word: 'Phalanges', emoji: '🦴', meaning: 'The small bones that form the fingers and toes.' },
+      { word: 'Dexterity', emoji: '✍️', meaning: 'Skill and swift grace in performing tasks with the hands.' }
+    ],
+    didYouKnowOrigin: 'The word "Thumb" comes from an ancient root meaning "thick or stout", describing the strongest, most important digit on your hand!',
+    microQuiz: {
+      question: 'Are there any muscles located directly inside your fingers?',
+      options: ['No (Fingers are moved by tendon cords pulled from your forearm!)', 'Yes, hundreds', 'Only in the thumb'],
+      correctIndex: 0,
+      explanation: 'Your fingers contain zero muscles! They move like puppets pulled by tough tendon strings linked to muscles in your palm and forearm.'
+    },
+    seeAlso: [
+      { id: 'muscles-movement', title: 'Muscles & Movement', category: 'human-body' },
+      { id: 'skeleton-bones', title: 'Skeleton & Bones', category: 'human-body' }
+    ]
+  },
+  {
+    id: 'immune-system',
+    title: 'Immune System & White Blood Cells',
+    symbol: '⚔️',
+    pronunciation: '(ih-MYOON SIS-tum)',
+    category: 'human-body',
+    tagline: 'The microscopic superhero defense army protecting your body from germs 24/7.',
+    analogy: {
+      title: 'The Fortress Defense League & Microscopic Superhero Army',
+      story: 'Inside your bloodstream is a fearless army of microscopic security guards called White Blood Cells! When pesky germs (bacteria or viruses) sneak into your body, scout cells sound the alarm, soldier cells gobble up the invaders, and memory cells make special protective shields (antibodies) so you never catch the same illness twice!',
+      emoji: '🛡️'
+    },
+    howItWorks: {
+      title: 'The 3 Main Squads of the Immune Army',
+      points: [
+        'Phagocytes (The Hungry Gobblers): White blood cells that surround, engulf, and dissolve harmful bacteria on sight.',
+        'B-Cells (The Shield Blacksmiths): Create billions of Y-shaped antibody keys that lock onto specific germs and tag them for destruction.',
+        'Memory T-Cells (The Master Archivists): Remember the exact blueprints of defeated germs so your body can fight them off next time before you even feel sick!'
+      ]
+    },
+    funFacts: [
+      'A fever is actually your body’s smart defense tactic: raising your temperature slightly cooks and slows down multiplying germs!',
+      'When you get a scratch, white blood cells rush to the scene, forming a clean red scab that acts like a natural biological band-aid.',
+      'Washing your hands with soap and warm water for 20 seconds washes away 99% of germs on your skin!'
+    ],
+    kidWords: [
+      { word: 'Antibody', emoji: '🛡️', meaning: 'A specialized Y-shaped protein that locks onto and neutralizes specific germs.' },
+      { word: 'Pathogen', emoji: '🦠', meaning: 'A bacterium, virus, or microorganism that can cause disease.' },
+      { word: 'Vaccine', emoji: '💉', meaning: 'A harmless training simulator that teaches your immune system how to defeat real germs.' }
+    ],
+    didYouKnowOrigin: 'The word "Immune" comes from the Latin word "immunis", which originally meant "free from burden or duty" — describing a body that is free and protected from illness!',
+    microQuiz: {
+      question: 'What do B-cells create to tag and neutralize specific germs in your body?',
+      options: ['Y-shaped Antibodies', 'Red blood drops', 'Bone marrow bricks'],
+      correctIndex: 0,
+      explanation: 'B-cells forge specialized Y-shaped protein antibodies that latch onto germs like custom handcuffs!'
+    },
+    seeAlso: [
+      { id: 'heart-blood', title: 'The Heart & Blood', category: 'human-body' },
+      { id: 'human-skin', title: 'Skin & Shield', category: 'human-body' }
+    ]
+  },
+  {
+    id: 'human-kidneys',
+    title: 'Kidneys & Water Recycling',
+    symbol: '💧',
+    pronunciation: '(KID-neez)',
+    category: 'human-body',
+    tagline: 'Twin bean-shaped water filters that clean 50 gallons of blood every single day.',
+    analogy: {
+      title: 'The High-Tech Eco Water Recycling Plant',
+      story: 'Your kidneys are two bean-shaped purification centers tucked near your lower back! They work 24 hours a day filtering every drop of blood in your body, recycling clean water and healthy minerals back into your veins while packaging liquid waste (urine) to be washed away.',
+      emoji: '🫘'
+    },
+    howItWorks: {
+      title: 'Microscopic Filtration Magic',
+      points: [
+        '1 Million Nephrons Each: Each kidney contains over 1,000,000 microscopic filtering units called nephrons.',
+        '50 Gallons a Day: Your kidneys clean your entire blood supply over 40 times every single day!',
+        'Blood Pressure & Salt Balance: They release hormones that control blood pressure and keep your body’s salt and potassium levels balanced.'
+      ]
+    },
+    funFacts: [
+      'Your kidneys filter about half a cup of blood every single minute!',
+      'Even though you have two kidneys, a person can live a completely normal, healthy, active life with just one kidney.',
+      'Drinking plenty of fresh water helps your kidneys flush out waste easily and keeps your energy high!'
+    ],
+    kidWords: [
+      { word: 'Nephron', emoji: '🔬', meaning: 'The microscopic functional filtering unit inside the kidney.' },
+      { word: 'Hydration', emoji: '💧', meaning: 'Supplying water to the body to maintain healthy fluid balance.' },
+      { word: 'Bladder', emoji: '🎈', meaning: 'The muscular pouch that stores urine before it is emptied.' }
+    ],
+    didYouKnowOrigin: 'Kidney beans got their name because they look almost identical in shape and reddish-brown color to human kidneys!',
+    microQuiz: {
+      question: 'How many filtering nephrons are inside each human kidney?',
+      options: ['Over 1,000,000 (One million!)', '10', '100'],
+      correctIndex: 0,
+      explanation: 'Each kidney contains more than 1 million microscopic nephron filters working continuously!'
+    },
+    seeAlso: [
+      { id: 'heart-blood', title: 'The Heart & Blood', category: 'human-body' },
+      { id: 'stomach-digestion', title: 'Stomach & Digestion', category: 'human-body' }
+    ]
+  },
+  {
+    id: 'spine-backbone',
+    title: 'Spine, Backbone & Posture',
+    symbol: '🦴',
+    pronunciation: '(SPYN and BAK-bohn)',
+    category: 'human-body',
+    tagline: 'The 33-bone flexible master pillar protecting your central nerve highway.',
+    analogy: {
+      title: 'The Flexible Tower of Beads & Armored Cable Highway',
+      story: 'Your spine is not one single stiff rod — it is an S-curved stack of 33 interlocking bone rings (vertebrae) separated by soft jelly shock cushions! It lets you bend forward to tie your shoes, twist to catch a ball, and stands tall like a mast while protecting the spinal cord nerve highway inside.',
+      emoji: '🗼'
+    },
+    howItWorks: {
+      title: 'The 4 Regions of the Spine',
+      points: [
+        'Cervical Spine (7 Neck Bones): Supports your 10-pound head and lets you nod and shake your head.',
+        'Thoracic Spine (12 Chest Bones): Anchors your rib cage to shield your heart and lungs.',
+        'Lumbar Spine (5 Lower Back Bones): Thick, heavy-duty weight-bearing blocks that carry your upper body.',
+        'Sacrum & Coccyx (Tailbone): Fused base bones anchoring into your pelvis.'
+      ]
+    },
+    funFacts: [
+      'You are actually about 1/2 inch taller in the morning when you wake up because spinal cushions expand with water while you sleep!',
+      'The human spine is curved like a gentle "S" to act like a natural spring that absorbs shock when you run or jump.',
+      'The spinal cord inside your backbone is about as thick as your index finger and carries billions of messages between your brain and toes.'
+    ],
+    kidWords: [
+      { word: 'Vertebrae', emoji: '🦴', meaning: 'The individual ring-shaped bones that form the spinal column.' },
+      { word: 'Cartilage Disc', emoji: '🍩', meaning: 'The spongy jelly cushion between spinal bones that absorbs shock.' },
+      { word: 'Posture', emoji: '🧍', meaning: 'The position in which you hold your body upright while standing or sitting.' }
+    ],
+    didYouKnowOrigin: 'Humans, giraffes, dogs, mice, and blue whales all have exactly 7 cervical vertebrae in their necks!',
+    microQuiz: {
+      question: 'Why are humans slightly taller in the morning than in the evening?',
+      options: ['Spinal jelly discs soak up water and expand overnight while resting', 'Bones grow every night and shrink in sun', 'Gravity stops at night'],
+      correctIndex: 0,
+      explanation: 'While lying down asleep, gravity is not compressing your spine, allowing your cartilage discs to absorb fluid and expand by about half an inch!'
+    },
+    seeAlso: [
+      { id: 'skeleton-bones', title: 'Skeleton & Bones', category: 'human-body' },
+      { id: 'human-brain', title: 'The Human Brain', category: 'human-body' }
+    ]
   }
 ];
