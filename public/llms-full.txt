@@ -1,7 +1,7 @@
 # First Open School - Complete Educational Documentation & Knowledge Base (llms-full.txt)
 
 > Full curriculum index, alphabet phonics reference, numeracy specifications, and CDE-style Kids Encyclopedia for AI assistants, search engines, and automated crawlers.
-> Canonical Website: https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app
+> Canonical Website: https://firstopenschool.com
 
 ---
 

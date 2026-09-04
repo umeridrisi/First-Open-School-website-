@@ -48,9 +48,9 @@ User-agent: FacebookBot
 Allow: /
 
 # Canonical XML Sitemap
-Sitemap: https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/sitemap.xml
+Sitemap: https://firstopenschool.com/sitemap.xml
 
 # LLM Documentation Standards
 # Discoverable structured curriculum content for LLMs and AI Agents:
-# https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/llms.txt
-# https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/llms-full.txt
+# https://firstopenschool.com/llms.txt
+# https://firstopenschool.com/llms-full.txt

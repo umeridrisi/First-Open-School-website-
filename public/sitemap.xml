@@ -4,182 +4,182 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <!-- Core Views -->
   <url>
-    <loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/</loc>
+    <loc>https://firstopenschool.com/</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.00</priority>
   </url>
   <url>
-    <loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets</loc>
+    <loc>https://firstopenschool.com/alphabets</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits</loc>
+    <loc>https://firstopenschool.com/digits</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia</loc>
+    <loc>https://firstopenschool.com/encyclopedia</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/tracing</loc>
+    <loc>https://firstopenschool.com/tracing</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/bubble-pop</loc>
+    <loc>https://firstopenschool.com/bubble-pop</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/counting-feast</loc>
+    <loc>https://firstopenschool.com/counting-feast</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/card-match</loc>
+    <loc>https://firstopenschool.com/card-match</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/phonics-stories</loc>
+    <loc>https://firstopenschool.com/phonics-stories</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/assessment</loc>
+    <loc>https://firstopenschool.com/assessment</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/parental-dashboard</loc>
+    <loc>https://firstopenschool.com/parental-dashboard</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
 
   <!-- Alphabets Individual Flashcards A to Z -->
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/a</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/b</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/c</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/d</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/e</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/f</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/g</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/h</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/i</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/j</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/k</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/l</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/m</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/n</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/o</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/p</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/q</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/r</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/s</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/t</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/u</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/v</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/w</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/x</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/y</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets/z</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/a</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/b</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/c</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/d</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/e</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/f</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/g</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/h</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/i</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/j</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/k</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/l</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/m</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/n</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/o</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/p</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/q</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/r</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/s</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/t</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/u</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/v</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/w</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/x</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/y</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/alphabets/z</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
 
   <!-- Digits 0 to 20 -->
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/0</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/1</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/2</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/3</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/4</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/5</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/6</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/7</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/8</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/9</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits/10</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/digits/0</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/digits/1</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/digits/2</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/digits/3</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/digits/4</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/digits/5</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/digits/6</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/digits/7</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/digits/8</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/digits/9</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://firstopenschool.com/digits/10</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
 
   <!-- Kids Encyclopedia Category Hubs -->
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/alphabets</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/numbers</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/solar-system</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/earth-elements</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/animals-dinosaurs</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/human-body</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/how-things-work</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/category/countries-world</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/category/alphabets</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/category/numbers</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/category/solar-system</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/category/earth-elements</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/category/animals-dinosaurs</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/category/human-body</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/category/how-things-work</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/category/countries-world</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
 
   <!-- High-Value Educational Articles -->
   <!-- Animals & Dinosaurs -->
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/tyrannosaurus-rex</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/blue-whale</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/honeybees</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/chameleon</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/cheetah</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/owls</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/butterflies-metamorphosis</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/octopus</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/triceratops</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/tyrannosaurus-rex</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/blue-whale</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/honeybees</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/chameleon</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/cheetah</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/owls</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/butterflies-metamorphosis</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/octopus</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/triceratops</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
 
   <!-- Human Body & Senses -->
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/human-brain</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/heart-blood</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/five-senses</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/skeleton-bones</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/lungs-breathing</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/taste-buds</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/human-brain</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/heart-blood</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/five-senses</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/skeleton-bones</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/lungs-breathing</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/taste-buds</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
 
   <!-- How Things Work -->
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/how-airplanes-fly</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/how-internet-works</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/how-clocks-work</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/wheels-gears</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/electricity-circuits</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/how-cameras-work</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/how-airplanes-fly</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/how-internet-works</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/how-clocks-work</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/wheels-gears</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/electricity-circuits</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/how-cameras-work</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
 
   <!-- Solar System & Space -->
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/the-sun</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/the-moon</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/planet-earth</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/planet-mars</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/planet-jupiter</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/planet-saturn</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/black-holes</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/astronauts-rockets</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/the-sun</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/the-moon</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/planet-earth</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/planet-mars</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/planet-jupiter</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/planet-saturn</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/black-holes</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/astronauts-rockets</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
 
   <!-- Earth & Nature -->
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/water-cycle</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/rainbows</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/volcanoes</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/trees-photosynthesis</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/lightning-thunder</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/four-seasons</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/water-cycle</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/rainbows</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/volcanoes</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/trees-photosynthesis</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/lightning-thunder</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/four-seasons</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
 
   <!-- Numbers & Math -->
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/zero-superpower</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/fractions-halves</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/geometric-shapes</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/infinity-concept</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/zero-superpower</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/fractions-halves</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/geometric-shapes</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/infinity-concept</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
 
   <!-- Geography & Continents -->
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/seven-continents</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/world-oceans</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/great-wall-china</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/mount-everest</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/japan</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/egypt</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/brazil</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia/antarctica</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/seven-continents</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/world-oceans</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/great-wall-china</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/mount-everest</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/japan</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/egypt</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/brazil</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://firstopenschool.com/encyclopedia/antarctica</loc><lastmod>2026-09-04</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
 </urlset>

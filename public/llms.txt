@@ -7,17 +7,17 @@ First Open School is an interactive, multi-tiered educational curriculum built f
 
 ## Core Capabilities & Modules
 
-- [Home Hub](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/): Main interactive world with age-tier switching (Pre-K to Elementary), live milestone badges, star tracker, and daily streaks.
-- [Alphabets A-Z](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/alphabets): All 26 uppercase and lowercase letters with phonetic sound pronunciation, mouth shape formation mechanics, and vocabulary associations.
-- [Digits 0-20](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/digits): Number sense curriculum focusing on subitizing dot patterns, visual grouping, audio counting, number bonds, and tactile numeral tracing.
-- [Kids Encyclopedia](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/encyclopedia): Modeled on Computer Language Company encyclopedic principles. Features plain-English definitions, phonetic guides, vivid everyday analogies (e.g. Letter A as a camping tent), visual anatomy breakdowns, ancient origins, hands-on kitchen experiments, speedy tongue twisters, and interactive micro-quizzes.
-- [Letter & Digit Tracing](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/tracing): Multi-touch HTML5 canvas with directional stroke guidance, fine-motor path detection, and instant stroke accuracy calculation.
-- [Bubble Pop Game](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/bubble-pop): Audio-visual letter and sound recall game.
-- [Monster Counting Feast](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/counting-feast): Gamified subitizing and quantity association activity.
-- [Phonics Memory Match](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/card-match): Card matching game pairing letters with phonics vocabulary images.
-- [Decodable Phonics Readers](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/phonics-stories): Multi-page illustrated early readers with word-by-word audio highlighting and reading comprehension questions.
-- [Adaptive Assessment Quiz](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/assessment): Gamified quiz engine testing letter sounds, numbers, and patterns with graduation milestone rewards.
-- [Parent & Educator Dashboard](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/parental-dashboard): Learning analytics, time-on-task, phonics accuracy metrics, AI Pedagogical Coach powered by Gemini, and printable completion certificates.
+- [Home Hub](https://firstopenschool.com/): Main interactive world with age-tier switching (Pre-K to Elementary), live milestone badges, star tracker, and daily streaks.
+- [Alphabets A-Z](https://firstopenschool.com/alphabets): All 26 uppercase and lowercase letters with phonetic sound pronunciation, mouth shape formation mechanics, and vocabulary associations.
+- [Digits 0-20](https://firstopenschool.com/digits): Number sense curriculum focusing on subitizing dot patterns, visual grouping, audio counting, number bonds, and tactile numeral tracing.
+- [Kids Encyclopedia](https://firstopenschool.com/encyclopedia): Modeled on Computer Language Company encyclopedic principles. Features plain-English definitions, phonetic guides, vivid everyday analogies (e.g. Letter A as a camping tent), visual anatomy breakdowns, ancient origins, hands-on kitchen experiments, speedy tongue twisters, and interactive micro-quizzes.
+- [Letter & Digit Tracing](https://firstopenschool.com/tracing): Multi-touch HTML5 canvas with directional stroke guidance, fine-motor path detection, and instant stroke accuracy calculation.
+- [Bubble Pop Game](https://firstopenschool.com/bubble-pop): Audio-visual letter and sound recall game.
+- [Monster Counting Feast](https://firstopenschool.com/counting-feast): Gamified subitizing and quantity association activity.
+- [Phonics Memory Match](https://firstopenschool.com/card-match): Card matching game pairing letters with phonics vocabulary images.
+- [Decodable Phonics Readers](https://firstopenschool.com/phonics-stories): Multi-page illustrated early readers with word-by-word audio highlighting and reading comprehension questions.
+- [Adaptive Assessment Quiz](https://firstopenschool.com/assessment): Gamified quiz engine testing letter sounds, numbers, and patterns with graduation milestone rewards.
+- [Parent & Educator Dashboard](https://firstopenschool.com/parental-dashboard): Learning analytics, time-on-task, phonics accuracy metrics, AI Pedagogical Coach powered by Gemini, and printable completion certificates.
 
 ## Encyclopedia Topics & 8 Knowledge Clusters (80+ In-Depth Articles)
 
@@ -38,5 +38,5 @@ First Open School is an interactive, multi-tiered educational curriculum built f
 ## Full Documentation
 
 For the complete uncompressed catalog, vocabulary datasets, and deep curriculum mapping, see:
-- [llms-full.txt](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/llms-full.txt)
-- [XML Sitemap](https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app/sitemap.xml)
+- [llms-full.txt](https://firstopenschool.com/llms-full.txt)
+- [XML Sitemap](https://firstopenschool.com/sitemap.xml)

@@ -20,13 +20,15 @@ const DEFAULT_SITE_NAME = 'First Open School';
 const DEFAULT_IMAGE = '/assets/kids-learning-hero.png';
 
 /**
- * Gets the current website origin or falls back to production canonical domain
+ * Official canonical production domain
+ */
+export const CANONICAL_DOMAIN = 'https://firstopenschool.com';
+
+/**
+ * Gets the authoritative canonical domain (https://firstopenschool.com)
  */
 export function getBaseUrl(): string {
-  if (typeof window !== 'undefined' && window.location && window.location.origin) {
-    return window.location.origin;
-  }
-  return 'https://ais-pre-gbznslzu6ygwfzaeadu6hg-604883253335.asia-east1.run.app';
+  return CANONICAL_DOMAIN;
 }
 
 /**
