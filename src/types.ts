@@ -4,6 +4,7 @@ export type ActiveTab =
   | 'overview'
   | 'alphabets'
   | 'digits'
+  | 'encyclopedia'
   | 'tracing'
   | 'bubble-pop'
   | 'counting-feast'
@@ -11,6 +12,45 @@ export type ActiveTab =
   | 'assessment'
   | 'phonics-stories'
   | 'parental-dashboard';
+
+export type EncyclopediaCategory = 
+  | 'alphabets'
+  | 'numbers'
+  | 'solar-system'
+  | 'earth-elements'
+  | 'countries-world';
+
+export interface EncyclopediaEntry {
+  id: string;
+  title: string;
+  symbol?: string;
+  pronunciation: string;
+  category: EncyclopediaCategory;
+  tagline: string;
+  analogy: {
+    title: string;
+    story: string;
+    emoji: string;
+  };
+  howItWorks: {
+    title: string;
+    points: string[];
+  };
+  anatomyDiagram?: {
+    headline: string;
+    parts: { label: string; desc: string }[];
+  };
+  funFacts: string[];
+  kidWords?: { word: string; emoji: string; meaning: string }[];
+  didYouKnowOrigin: string;
+  microQuiz: {
+    question: string;
+    options: string[];
+    correctIndex: number;
+    explanation: string;
+  };
+  seeAlso: { id: string; title: string; category: EncyclopediaCategory }[];
+}
 
 export interface LetterData {
   char: string; // Uppercase 'A'

@@ -9,6 +9,7 @@ import {
   Grid2X2, 
   Trophy, 
   BookOpenCheck,
+  BookOpen,
   Grid
 } from 'lucide-react';
 
@@ -43,6 +44,14 @@ export const SubjectNav: React.FC<SubjectNavProps> = ({ activeTab, onSelectTab, 
       color: 'text-[#6BCB77]', 
       activeBg: 'bg-white border-[#6BCB77] shadow-[0_4px_0_#4E9B56]',
       voicePrompt: 'Learn Digits and Counting'
+    },
+    { 
+      id: 'encyclopedia', 
+      label: 'Kids Encyclopedia', 
+      icon: <BookOpen className="w-5 h-5 text-[#FFD93D]" />, 
+      color: 'text-[#2D2D2D]', 
+      activeBg: 'bg-white border-[#FFD93D] shadow-[0_4px_0_#C9A92E]',
+      voicePrompt: 'Kids Encyclopedia. Clear definitions and analogies for alphabets, numbers, and science.'
     },
     { 
       id: 'tracing', 

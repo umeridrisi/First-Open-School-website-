@@ -68,6 +68,18 @@ export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings,
               <span>COUNT DIGITS 0-20</span>
               <Play className="w-4 h-4 fill-white" />
             </button>
+
+            <button
+              onClick={() => {
+                playSoundEffect('click', settings.soundEffects);
+                onNavigate('encyclopedia');
+                handleSpeak("Welcome to the Kids Encyclopedia!");
+              }}
+              className="flex items-center space-x-2 px-6 py-3.5 bg-[#FFD93D] text-[#2D2D2D] font-black text-base rounded-2xl border-4 border-[#2D2D2D] shadow-[0_6px_0_#000] active:translate-y-1 active:shadow-none transition-all cursor-pointer"
+            >
+              <span>KIDS ENCYCLOPEDIA 📚</span>
+              <BookOpen className="w-5 h-5 text-[#2D2D2D]" />
+            </button>
           </div>
         </div>
 
@@ -255,6 +267,39 @@ export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings,
           </button>
 
         </div>
+      </div>
+
+      {/* Encyclopedia Spotlight Banner */}
+      <div className="bg-gradient-to-r from-[#FFD93D]/30 via-[#FFF9F0] to-[#4D96FF]/20 rounded-[32px] p-6 sm:p-8 border-4 border-[#2D2D2D] shadow-[0_8px_0_#000] flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="space-y-3 max-w-xl">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#FF6B6B] text-white text-xs font-black uppercase tracking-wider">
+            <span>NEW CDE-INSPIRED FEATURE</span>
+          </div>
+          <h3 className="text-2xl sm:text-3xl font-black text-[#2D2D2D] tracking-tight">
+            The Kids Encyclopedia 📚
+          </h3>
+          <p className="text-sm font-semibold text-[#2D2D2D]/80 leading-relaxed">
+            Curious about letters, numbers, planets, or why things happen? Open full encyclopedia articles with real-world analogies, mouth shapes, ancient origins, and interactive brain quizzes!
+          </p>
+          <div className="flex flex-wrap gap-2 pt-1">
+            <span className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-gray-300">🔤 26 Alphabets</span>
+            <span className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-gray-300">🔢 Zero & Numbers</span>
+            <span className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-gray-300">🪐 Solar System</span>
+            <span className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-gray-300">🌍 Earth & Nature</span>
+            <span className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-gray-300">🗺️ World Continents</span>
+          </div>
+        </div>
+
+        <button
+          onClick={() => {
+            playSoundEffect('click', settings.soundEffects);
+            onNavigate('encyclopedia');
+          }}
+          className="px-6 py-4 bg-[#4D96FF] hover:bg-[#3A72C1] text-white font-black text-base uppercase tracking-tight rounded-2xl border-4 border-[#2D2D2D] shadow-[0_6px_0_#000] active:translate-y-1 active:shadow-none transition-all cursor-pointer whitespace-nowrap shrink-0 flex items-center gap-2"
+        >
+          <span>OPEN ENCYCLOPEDIA</span>
+          <ArrowRight className="w-5 h-5" />
+        </button>
       </div>
 
       {/* Badges Showcase */}

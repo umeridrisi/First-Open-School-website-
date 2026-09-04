@@ -122,6 +122,76 @@ app.post("/api/generate-phonics-story", async (req, res) => {
   }
 });
 
+// AI Kids Encyclopedia Explainer Endpoint (inspired by Computer Language Company style)
+app.post("/api/encyclopedia-ask", async (req, res) => {
+  const { topic, query } = req.body || {};
+  try {
+    const prompt = `You are the chief educator for the "First Open School Kids Encyclopedia", inspired by the Computer Language Company style (https://www.computerlanguage.com/results.php?definition=cache): clear definitions, phonetic pronunciation, plain-English "what is it", brilliant real-life kid analogies, bulleted explanations, and fun facts.
+Topic/Question asked by kid: "${query || topic || 'Alphabets'}"
+
+Create a kid-friendly encyclopedia entry formatted as JSON with:
+1. "title": Concise clean title (e.g., "The Sky", "Letter K", "Volcanoes")
+2. "symbol": An appropriate emoji symbol (e.g. "🌌", "🌋")
+3. "pronunciation": Phonetic pronunciation in parentheses, e.g. "(skye)" or "(vol-KAY-noh)"
+4. "tagline": A crisp, punchy one-sentence definition in simple words suitable for ages 5-9.
+5. "analogy": Object with "title" (short clever name), "story" (vivid everyday relatable kid metaphor, like comparing a computer cache to keeping cookies on your desk instead of walking to the pantry), and "emoji".
+6. "howItWorks": Object with "title" and "points" (array of 3 simple, clear bullet points).
+7. "funFacts": Array of 3 mind-blowing, fun kid facts.
+8. "didYouKnowOrigin": A brief fascinating history, origin, or secret about this topic.
+9. "microQuiz": Object with "question", "options" (array of 3 choices), "correctIndex" (number 0, 1, or 2), and "explanation" (warm positive sentence explaining the right answer).`;
+
+    const response = await ai.models.generateContent({
+      model: "gemini-3.8-flash",
+      contents: prompt,
+      config: {
+        responseMimeType: "application/json",
+        systemInstruction: "You write wonderful, clear, highly educational, delightfully illustrated Kids Encyclopedia entries inspired by the Computer Language Company style.",
+      },
+    });
+
+    const resultText = response.text || "{}";
+    const data = JSON.parse(resultText);
+    res.json({ success: true, data });
+  } catch (err: any) {
+    console.error("Error in Encyclopedia API:", err);
+    res.status(500).json({
+      success: false,
+      error: "Could not fetch AI encyclopedia entry.",
+      fallbackData: {
+        title: query || topic || "Curious Wonder",
+        symbol: "🌟",
+        pronunciation: "(KYUR-ee-us)",
+        tagline: "A wonderful wonder of our universe waiting for young minds to explore!",
+        analogy: {
+          title: "The Treasure Box of Knowledge",
+          story: "Every time you ask a question, it is like unlocking a magical treasure box full of sparkling ideas!",
+          emoji: "✨"
+        },
+        howItWorks: {
+          title: "How to Learn Anything",
+          points: [
+            "Observe with your eyes, ears, and curious senses.",
+            "Ask questions: Who, What, Why, and How?",
+            "Share what you discovered with your teachers and family!"
+          ]
+        },
+        funFacts: [
+          "Curious brains create stronger neural pathways every time they learn something new!",
+          "Great scientists like Albert Einstein always said their secret was simply staying curious.",
+          "Every expert in the world started out as a kid asking their first question."
+        ],
+        didYouKnowOrigin: "The word Encyclopedia comes from ancient Greek 'enkuklios paideia', meaning 'well-rounded education' for children!",
+        microQuiz: {
+          question: "What is the best way to become a super learner?",
+          options: ["Always stay curious and ask questions", "Never read books", "Sleep 24 hours a day"],
+          correctIndex: 0,
+          explanation: "Staying curious and asking questions unlocks knowledge!"
+        }
+      }
+    });
+  }
+});
+
 // Vite middleware & Static serving
 async function startServer() {
   if (process.env.NODE_ENV !== "production") {

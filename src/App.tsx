@@ -19,7 +19,9 @@ import { CountingFeastGame } from './components/games/CountingFeastGame';
 import { CardMatchGame } from './components/games/CardMatchGame';
 import { PhonicsStoryReader } from './components/games/PhonicsStoryReader';
 import { GamifiedQuiz } from './components/games/GamifiedQuiz';
+import { KidsEncyclopedia } from './components/views/KidsEncyclopedia';
 import { ParentalDashboard } from './components/parent/ParentalDashboard';
+import { ALPHABET_DATA } from './data/curriculumData';
 import { playSoundEffect } from './utils/sound';
 
 const INITIAL_STUDENT: StudentProfile = {
@@ -251,6 +253,19 @@ export default function App() {
             settings={settings}
             onSelectDigitForTracing={handleSelectDigitForTracing}
             onMarkDigitPracticed={(val) => handleMarkItemPracticed(String(val), 'digit')}
+          />
+        )}
+
+        {activeTab === 'encyclopedia' && (
+          <KidsEncyclopedia
+            student={student}
+            settings={settings}
+            onNavigateToTracing={(char) => {
+              const letter = ALPHABET_DATA.find(a => a.char === char);
+              if (letter) {
+                handleSelectLetterForTracing(letter);
+              }
+            }}
           />
         )}
 
