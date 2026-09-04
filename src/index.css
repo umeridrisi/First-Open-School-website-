@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    background-color: #FFF9F0;
+    color: #2D2D2D;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+}
+
+/* Custom Geometric Balance utility classes */
+.geo-border-yellow {
+  border-color: #FFD93D;
+}
+.geo-border-blue {
+  border-color: #4D96FF;
+}
+.geo-border-red {
+  border-color: #FF6B6B;
+}
+.geo-border-green {
+  border-color: #6BCB77;
+}
+
+.geo-shadow-red {
+  box-shadow: 0px 6px 0px #C44E4E;
+}
+.geo-shadow-blue {
+  box-shadow: 0px 6px 0px #3A72C1;
+}
+.geo-shadow-green {
+  box-shadow: 0px 6px 0px #4E9B56;
+}
+.geo-shadow-yellow {
+  box-shadow: 0px 6px 0px #C9A92E;
+}
+
+.geo-button-pop {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+.geo-button-pop:active {
+  transform: translateY(4px);
+  box-shadow: none !important;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "First Open School",
+  "description": "Kids learning app for alphabets & digits with interactive games, voice guidance, age tiers, parental analytics, and downloadable progress certificates.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
