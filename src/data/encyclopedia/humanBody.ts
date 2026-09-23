@@ -811,5 +811,90 @@ export const HUMAN_BODY_ENTRIES: EncyclopediaEntry[] = [
       { id: 'skeleton-bones', title: 'Skeleton & Bones', category: 'human-body' },
       { id: 'human-brain', title: 'The Human Brain', category: 'human-body' }
     ]
+  },
+  {
+    id: 'human-liver',
+    title: 'The Liver & Chemical Factory',
+    symbol: '🫀',
+    pronunciation: '(LIV-er)',
+    category: 'human-body',
+    tagline: 'The heaviest internal organ with 500 chemical jobs, including self-healing regeneration superpowers.',
+    analogy: {
+      title: 'The Master Chemical Refinery and Warehouse',
+      story: 'Your liver is the supreme biochemical mastermind of your body! Located on your right side just under your ribs, it handles over 500 distinct tasks at once: filtering toxins out of your blood, converting bread into quick glycogen energy fuel, manufacturing bile to break down fats, and storing vitamins until you need them!',
+      emoji: '🏭'
+    },
+    howItWorks: {
+      title: 'The Liver’s Key Superpowers',
+      points: [
+        'Blood Detoxification: Cleanses and breaks down waste products, medications, and chemical toxins.',
+        'Bile Production: Secretes a golden-green digestive fluid called bile to help your stomach and intestines digest fats.',
+        'Energy Storage: Stores glucose sugar as glycogen and releases it when you run or play sports.',
+        'Regeneration Wonder: The liver is the ONLY internal human organ that can regrow back to full size even if 75% of it is removed!'
+      ]
+    },
+    funFacts: [
+      'The liver is the heaviest internal organ in the human body, weighing about 3 pounds in an adult!',
+      'At any given second, the liver holds about 13% of your body’s entire blood supply circulating through its channels.',
+      'In ancient mythology, Prometheus’s liver was said to regenerate each night — ancient storytellers somehow anticipated modern regenerative science!'
+    ],
+    kidWords: [
+      { word: 'Detoxify', emoji: '🧼', meaning: 'To remove toxic substances or neutralize poisons.' },
+      { word: 'Glycogen', emoji: '⚡', meaning: 'The main storage form of glucose sugar kept in the liver and muscles.' },
+      { word: 'Regeneration', emoji: '🌱', meaning: 'The natural process of regrowing or renewing damaged tissues and organs.' }
+    ],
+    didYouKnowOrigin: 'The English word "Liver" comes from Old English "lifer", which shares roots with the word "live" — because ancient healers knew you cannot live without it!',
+    microQuiz: {
+      question: 'What unique self-healing superpower does the human liver have that no other internal organ has?',
+      options: ['It can regenerate and regrow back to full size even if a large part is removed!', 'It can turn into bone', 'It never needs blood'],
+      correctIndex: 0,
+      explanation: 'The liver possesses remarkable regenerative abilities, able to rebuild complete functioning liver tissue!'
+    },
+    seeAlso: [
+      { id: 'human-stomach', title: 'Stomach & Digestion', category: 'human-body' },
+      { id: 'heart-blood', title: 'The Heart & Blood', category: 'human-body' }
+    ]
+  },
+  {
+    id: 'sleep-dreams',
+    title: 'Sleep, Dreams & Brain Rest',
+    symbol: '💤',
+    pronunciation: '(SLEEP and DREEMZ)',
+    category: 'human-body',
+    tagline: 'The brain’s nighttime wash cycle, memory filing cabinet, and dream cinema.',
+    analogy: {
+      title: 'The Nighttime City Street Sweeper and Brain Filing Cabinet',
+      story: 'When you go to sleep, your body rests, but your brain throws an incredible nighttime organization party! A special fluid system (the glymphatic system) washes away daily metabolic debris, while brain neurons sort everything you learned that day into permanent memory drawers and project vivid, colorful movie adventures called Dreams!',
+      emoji: '🌙'
+    },
+    howItWorks: {
+      title: 'The Stages of Sleep',
+      points: [
+        'Non-REM Deep Sleep: Your muscles fully relax, your heart rate slows, and your body releases growth hormones to repair muscles and grow taller!',
+        'REM (Rapid Eye Movement) Sleep: Your eyes dart under eyelids, your brain lights up with activity, and you experience vivid dreams.',
+        'Memory Consolidation: Short-term facts from daytime are transferred and filed into long-term brain storage.'
+      ]
+    },
+    funFacts: [
+      'Kids aged 5 to 12 need 9 to 12 hours of sleep every night because growth hormones are almost entirely released during deep slumber!',
+      'Humans spend about one-third of their entire lives sleeping — about 25 to 30 years in total!',
+      'Everyone dreams every single night for about 2 hours total, even if you don’t remember your dreams when you wake up!'
+    ],
+    kidWords: [
+      { word: 'REM Sleep', emoji: '👁️', meaning: 'Rapid Eye Movement sleep, the phase of sleep characterized by vivid dreams and brain activity.' },
+      { word: 'Circadian Rhythm', emoji: '⏰', meaning: 'The internal 24-hour biological clock that regulates sleeping and waking.' },
+      { word: 'Melatonin', emoji: '😴', meaning: 'A natural hormone produced by the pineal gland that signals to your body that it is time to sleep.' }
+    ],
+    didYouKnowOrigin: 'Dolphins and whales sleep with only ONE half of their brain at a time (unihemispheric sleep) so they can keep swimming and surface to breathe air without drowning!',
+    microQuiz: {
+      question: 'Why do children need 9 to 11 hours of good sleep every single night?',
+      options: ['Because deep sleep is when the body releases growth hormones and files memories', 'So parents can watch TV', 'Bones stop working at night'],
+      correctIndex: 0,
+      explanation: 'Deep sleep triggers the release of growth hormones that build healthy bones and muscles, while sorting daytime memories!'
+    },
+    seeAlso: [
+      { id: 'human-brain', title: 'The Human Brain', category: 'human-body' },
+      { id: 'telling-time-clock', title: 'Telling Time & Clocks', category: 'numbers' }
+    ]
   }
 ];

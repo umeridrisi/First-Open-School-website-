@@ -368,5 +368,384 @@ export const SPACE_ENTRIES: EncyclopediaEntry[] = [
       { id: 'the-moon', title: 'The Moon', category: 'solar-system' },
       { id: 'planet-mars', title: 'Planet Mars', category: 'solar-system' }
     ]
+  },
+  {
+    id: 'planet-mercury',
+    title: 'Planet Mercury',
+    symbol: '☿️',
+    pronunciation: '(MUR-kyuh-ree)',
+    category: 'solar-system',
+    tagline: 'The speedy, sun-baked speed demon of our solar system with freezing nights and zero air.',
+    analogy: {
+      title: 'The Speeding Rollercoaster Next to the Bonfire',
+      story: 'Mercury is the closest planet to our Sun, racing around its orbit in just 88 days like a speedy little go-kart! Because it has virtually no blanket of atmosphere to trap warmth, its daytime is hot enough to melt tin, while its nighttime plunges into deep sub-zero freezer cold!',
+      emoji: '🏎️'
+    },
+    howItWorks: {
+      title: 'Extreme Life on Mercury',
+      points: [
+        'Closest to the Sun: Sits an average of 36 million miles from the Sun, moving at a blistering 29 miles per second.',
+        'Wild Temperature Swings: Daytime reaches a scorching 800°F (430°C), but night drops down to -290°F (-180°C).',
+        'Giant Iron Core: Mercury has a massive metallic core that takes up nearly 85% of its entire planetary radius!'
+      ]
+    },
+    funFacts: [
+      'A year on Mercury is only 88 Earth days, but one single day-night rotation takes 59 Earth days!',
+      'Mercury is covered in crater impact basins — its largest crater, the Caloris Basin, could fit the entire state of Texas inside it!',
+      'Even though it is the closest planet to the blazing Sun, radar telescopes discovered water ice hidden deep inside dark shadowed polar craters.'
+    ],
+    kidWords: [
+      { word: 'Crater', emoji: '🕳️', meaning: 'A bowl-shaped hollow on a planet surface formed by an exploding meteorite impact.' },
+      { word: 'Exosphere', emoji: '💨', meaning: 'An extremely thin, wispy envelope of gas atoms around a planet.' },
+      { word: 'Core', emoji: '🪨', meaning: 'The dense central molten or metallic heart of a celestial body.' }
+    ],
+    didYouKnowOrigin: 'Mercury is named after the ancient Roman messenger god with winged sandals because it zips across the night sky faster than any other planet!',
+    microQuiz: {
+      question: 'Which planet orbits the Sun faster than any other in the solar system?',
+      options: ['Mercury (Just 88 Earth days per orbit!)', 'Jupiter', 'Neptune'],
+      correctIndex: 0,
+      explanation: 'Mercury races around the Sun at 106,000 miles per hour, completing a full orbit in just 88 Earth days!'
+    },
+    seeAlso: [
+      { id: 'the-sun', title: 'The Sun', category: 'solar-system' },
+      { id: 'planet-venus', title: 'Planet Venus', category: 'solar-system' }
+    ]
+  },
+  {
+    id: 'planet-venus',
+    title: 'Planet Venus',
+    symbol: '♀️',
+    pronunciation: '(VEE-nuhs)',
+    category: 'solar-system',
+    tagline: 'The hottest planet in the solar system, shrouded in golden sulfuric acid greenhouse clouds.',
+    analogy: {
+      title: 'The Super-Pressure Pizza Oven of the Sky',
+      story: 'Venus is almost the exact same size as Earth, but it is not a paradise! It is wrapped in a suffocatingly thick blanket of carbon dioxide clouds that trap heat like an unstoppable super-greenhouse, making its surface hotter than a kitchen pizza oven (900°F) 24 hours a day!',
+      emoji: '🌋'
+    },
+    howItWorks: {
+      title: 'The Runaway Greenhouse Planet',
+      points: [
+        'Hottest Surface: Even though Mercury is closer to the Sun, Venus is hotter (around 900°F / 475°C) due to runaway greenhouse gas trapping.',
+        'Crushing Air Pressure: The atmosphere is 90 times heavier than Earth’s — standing on Venus would feel like being 3,000 feet underwater!',
+        'Spinning Backwards: Venus rotates clockwise on its axis in retrograde motion, meaning the Sun rises in the West and sets in the East!'
+      ]
+    },
+    funFacts: [
+      'A day on Venus is longer than its year! It takes Venus 243 Earth days to spin once, but only 225 Earth days to orbit the Sun.',
+      'Venus is often the brightest natural object in Earth’s night sky after the Moon, nicknamed the "Morning Star" or "Evening Star".',
+      'Venus has thousands of volcanoes, and rain clouds are made of corrosive sulfuric acid, which evaporates before hitting the searing ground!'
+    ],
+    kidWords: [
+      { word: 'Greenhouse Effect', emoji: '🌡️', meaning: 'The process where atmospheric gases trap warmth like glass on a greenhouse.' },
+      { word: 'Retrograde', emoji: '🔄', meaning: 'Moving or rotating in the opposite direction from most other planets.' },
+      { word: 'Sulfur', emoji: '🟡', meaning: 'A bright yellow chemical element that forms pungent acid vapors.' }
+    ],
+    didYouKnowOrigin: 'Venus was named after the Roman goddess of love and beauty because it gleamed so dazzlingly bright like a diamond in the dawn sky!',
+    microQuiz: {
+      question: 'Which is the hottest planet in our entire solar system?',
+      options: ['Venus (900°F because of thick greenhouse gases)', 'Mercury', 'Mars'],
+      correctIndex: 0,
+      explanation: 'Venus is the hottest planet in the solar system because its thick carbon dioxide atmosphere traps intense solar heat!'
+    },
+    seeAlso: [
+      { id: 'planet-mercury', title: 'Planet Mercury', category: 'solar-system' },
+      { id: 'planet-earth', title: 'Planet Earth', category: 'solar-system' }
+    ]
+  },
+  {
+    id: 'planet-earth',
+    title: 'Planet Earth (Terra)',
+    symbol: '🌍',
+    pronunciation: '(URTH)',
+    category: 'solar-system',
+    tagline: 'The glowing blue marble and cosmic oasis sheltering all known life in the universe.',
+    analogy: {
+      title: 'The Goldilocks Living Greenhouse of the Universe',
+      story: 'Earth is located in the miraculous "Goldilocks Zone" of our solar system — not too hot, not too cold, but just right! Shielded by a protective magnetic bubble and wrapped in fresh oxygen-nitrogen air, Earth carries 8 billion humans, majestic blue oceans, and green forests through space.',
+      emoji: '🌱'
+    },
+    howItWorks: {
+      title: 'Earth’s Life-Support Systems',
+      points: [
+        'Liquid Water Oceans: Over 71% of Earth is covered in shimmering liquid water, regulating world temperatures.',
+        'Magnetic Shield (Magnetosphere): Molten swirling iron in Earth’s core generates a magnetic umbrella blocking lethal cosmic radiation.',
+        'Nitrogen-Oxygen Air: A breathable atmosphere of 78% nitrogen and 21% oxygen maintained by plants and phytoplankton.'
+      ]
+    },
+    funFacts: [
+      'Earth is moving through space around the Sun at about 67,000 miles per hour — you are riding a cosmic spaceship right now!',
+      'Earth is the only planet in our solar system with active plate tectonics that continuously recycle carbon and minerals.',
+      'From space, Earth looks like a glowing blue marble swirling with pure white cloud ribbons and emerald green continents.'
+    ],
+    kidWords: [
+      { word: 'Habitable Zone', emoji: '🎯', meaning: 'The orbital distance around a star where liquid water can stably exist on a planet surface.' },
+      { word: 'Magnetosphere', emoji: '🧲', meaning: 'The magnetic force field around Earth that deflects energetic solar particles.' },
+      { word: 'Biosphere', emoji: '🌳', meaning: 'The global ecological system integrating all living beings and their relationships.' }
+    ],
+    didYouKnowOrigin: 'Earth is the only planet in our solar system whose English name does not come from Greek or Roman mythology — "Earth" comes from Old English "eorthe" meaning soil, dirt, and ground!',
+    microQuiz: {
+      question: 'What percentage of Earth’s surface is covered by liquid water oceans?',
+      options: ['About 71%', 'Only 10%', '100%'],
+      correctIndex: 0,
+      explanation: 'Approximately 71% of Earth’s surface is covered by oceans, making it look brilliant blue from space!'
+    },
+    seeAlso: [
+      { id: 'the-moon', title: 'The Moon', category: 'solar-system' },
+      { id: 'world-oceans', title: 'World Oceans', category: 'countries-world' },
+      { id: 'water-element', title: 'Water Cycle', category: 'earth-elements' }
+    ]
+  },
+  {
+    id: 'planet-uranus',
+    title: 'Planet Uranus',
+    symbol: '⛢',
+    pronunciation: '(YOOR-uh-nuhs)',
+    category: 'solar-system',
+    tagline: 'The tilted cyan ice giant rolling around the Sun on its side with 13 faint rings.',
+    analogy: {
+      title: 'The Rolling Bowling Ball of Pale Blue Ice',
+      story: 'While most planets spin upright like spinning tops, Uranus rolls along its orbital path on its side like a bowling ball! Scientists believe a massive protoplanet the size of Earth crashed into Uranus billions of years ago, permanently knocking it sideways.',
+      emoji: '🎳'
+    },
+    howItWorks: {
+      title: 'Inside the Cold Cyan Giant',
+      points: [
+        'Ice Giant Chemistry: Made mostly of slushy water, ammonia, and methane ices over a small rocky core.',
+        'Methane Color: Atmospheric methane gas absorbs red light and reflects cool pale turquoise-cyan light.',
+        '98-Degree Axial Tilt: Its poles point almost directly at the Sun, giving each pole 42 years of continuous sunlight followed by 42 years of night!'
+      ]
+    },
+    funFacts: [
+      'Uranus was the first planet discovered with a telescope by astronomer William Herschel in 1781!',
+      'Uranus holds the record for the coldest recorded atmosphere in the solar system, dipping to -371°F (-224°C)!',
+      'All 27 of Uranus’s known moons are named after magical characters from William Shakespeare and Alexander Pope stories (like Titania, Oberon, and Puck).'
+    ],
+    kidWords: [
+      { word: 'Ice Giant', emoji: '🧊', meaning: 'A giant planet composed mostly of elements heavier than hydrogen and helium, like water, ammonia, and methane.' },
+      { word: 'Cyan', emoji: '🩵', meaning: 'A greenish-blue color characteristic of methane atmospheres.' },
+      { word: 'Tilt', emoji: '📐', meaning: 'A slant or slope away from a vertical upright position.' }
+    ],
+    didYouKnowOrigin: 'Uranus was named after the ancient Greek primordial sky deity Ouranos, the father of Saturn (Cronus) and grandfather of Jupiter (Zeus)!',
+    microQuiz: {
+      question: 'What makes Uranus unique compared to every other planet in our solar system?',
+      options: ['It rolls on its side at a 98-degree tilt', 'It is made of pure gold', 'It has square moons'],
+      correctIndex: 0,
+      explanation: 'Uranus has an extreme 98-degree axial tilt, rolling on its side along its orbit around the Sun!'
+    },
+    seeAlso: [
+      { id: 'planet-neptune', title: 'Planet Neptune', category: 'solar-system' },
+      { id: 'saturn-rings', title: 'Saturn’s Rings', category: 'solar-system' }
+    ]
+  },
+  {
+    id: 'planet-neptune',
+    title: 'Planet Neptune',
+    symbol: '♆',
+    pronunciation: '(NEP-tyoon)',
+    category: 'solar-system',
+    tagline: 'The stormy deep-azure outermost planet swept by supersonic winds and diamond rain.',
+    analogy: {
+      title: 'The Supersonic Blue Whirlpool of Deep Space',
+      story: 'Neptune is the farthest official planet from our Sun, sitting nearly 2.8 billion miles away in the dark outer fringes! It is a deep, vivid cobalt blue world whipped by the fastest hurricane winds in the solar system — blowing faster than fighter jets at over 1,200 miles per hour!',
+      emoji: '🌀'
+    },
+    howItWorks: {
+      title: 'Mysteries of the Deep Azure World',
+      points: [
+        'Supersonic Winds: High-altitude jet streams scream at 1,200 mph (2,000 km/h), three times faster than Earth’s worst tornadoes.',
+        '165-Year Orbit: Neptune takes 165 Earth years to complete a single lap around the Sun; it completed its first full orbit since discovery in 2011!',
+        'Diamond Rain Theory: Deep inside, immense gravitational pressures may crush carbon methane into sparkling real diamonds that rain down toward the mantle!'
+      ]
+    },
+    funFacts: [
+      'Neptune was the first planet located through mathematical prediction before ever being seen through a telescope lens!',
+      'Neptune’s largest moon, Triton, is covered in frozen nitrogen ice and shoots geysers of black dust 5 miles high into space.',
+      'Triton orbits Neptune backwards (retrograde) and is slowly spiraling inward toward the planet over millions of years.'
+    ],
+    kidWords: [
+      { word: 'Supersonic', emoji: '💨', meaning: 'Faster than the speed of sound (greater than 767 mph).' },
+      { word: 'Cobalt', emoji: '💙', meaning: 'A deep, vivid rich blue shade.' },
+      { word: 'Geyser', emoji: '♨️', meaning: 'A vent that ejects columns of vapor and fluid into the air.' }
+    ],
+    didYouKnowOrigin: 'Neptune was named after the Roman god of the sea because of its gorgeous, ocean-blue appearance through early telescopes!',
+    microQuiz: {
+      question: 'How fast do the supersonic storm winds blow on planet Neptune?',
+      options: ['Over 1,200 miles per hour (Faster than the speed of sound!)', 'Only 5 mph', 'There is no wind in space'],
+      correctIndex: 0,
+      explanation: 'Neptune holds the solar system speed record with fierce atmospheric winds exceeding 1,200 mph!'
+    },
+    seeAlso: [
+      { id: 'planet-uranus', title: 'Planet Uranus', category: 'solar-system' },
+      { id: 'pluto-dwarf-planets', title: 'Pluto & Dwarf Planets', category: 'solar-system' }
+    ]
+  },
+  {
+    id: 'pluto-dwarf-planets',
+    title: 'Pluto & Dwarf Planets',
+    symbol: '♇',
+    pronunciation: '(PLOO-toh and DWARF PLAN-its)',
+    category: 'solar-system',
+    tagline: 'The frozen heart world of the Kuiper Belt and its fellow round dwarf planet companions.',
+    analogy: {
+      title: 'The Frozen Heart World at the Solar System’s Edge',
+      story: 'Far beyond Neptune lies a frozen cosmic frontier called the Kuiper Belt! In 2015, NASA’s New Horizons space probe flew past Pluto and took photos showing a bright, giant heart-shaped glacier of nitrogen ice named Tombaugh Regio, proving this tiny world is active, stunning, and full of character!',
+      emoji: '🤍'
+    },
+    howItWorks: {
+      title: 'What Is a Dwarf Planet?',
+      points: [
+        'Round Under Gravity: Dwarf planets are large enough that their own gravity has pulled them into a sphere shape.',
+        'Not Cleared Orbit: Unlike the 8 major planets, dwarf planets share their orbital neighborhood with thousands of other asteroids or icy debris.',
+        'The Famous 5: Official dwarf planets recognized by astronomers are Pluto, Eris, Haumea (shaped like an egg!), Makemake, and Ceres (in the asteroid belt).'
+      ]
+    },
+    funFacts: [
+      'Pluto is smaller than Earth’s Moon — it is roughly half the width of the United States!',
+      'Pluto has 5 moons; its largest moon, Charon, is so big that Pluto and Charon orbit each other like a dancing double-planet pair.',
+      'The sky on Pluto is blue, with pinkish haze layers and snowy mountain peaks made of rock-hard frozen water ice!'
+    ],
+    kidWords: [
+      { word: 'Kuiper Belt', emoji: '🪐', meaning: 'A ring of icy bodies and comets orbiting outside Neptune’s path.' },
+      { word: 'Glacier', emoji: '🧊', meaning: 'A slowly moving mass of compressed ice.' },
+      { word: 'Dwarf Planet', emoji: '⚪', meaning: 'A round celestial body that orbits a star but has not cleared its orbital neighborhood.' }
+    ],
+    didYouKnowOrigin: 'Pluto was named by an 11-year-old English schoolgirl named Venetia Burney in 1930, who suggested naming the dark, distant world after the Roman god of the underworld!',
+    microQuiz: {
+      question: 'What famous geological feature did the New Horizons spacecraft discover on Pluto’s surface?',
+      options: ['A giant heart-shaped nitrogen ice glacier', 'A giant swimming pool', 'A stone castle'],
+      correctIndex: 0,
+      explanation: 'New Horizons revealed Tombaugh Regio — a bright 1,000-mile-wide heart of frozen nitrogen ice!'
+    },
+    seeAlso: [
+      { id: 'planet-neptune', title: 'Planet Neptune', category: 'solar-system' },
+      { id: 'comets-asteroids', title: 'Comets & Asteroids', category: 'solar-system' }
+    ]
+  },
+  {
+    id: 'comets-asteroids',
+    title: 'Comets, Asteroids & Meteors',
+    symbol: '☄️',
+    pronunciation: '(KOM-its, AS-tuh-roydz and MEE-tee-erz)',
+    category: 'solar-system',
+    tagline: 'Dirty space snowballs and rocky space wanderers creating glowing tails and shooting stars.',
+    analogy: {
+      title: 'The Cosmic Snowballs and Shooting Fireworks',
+      story: 'Think of Comets like giant dirty space snowballs made of ice, dust, and rock! When they swing close to the hot Sun, their ice boils into gas, creating glowing heads and magical million-mile-long tails that stream across the sky. When tiny space pebbles burn up in Earth’s atmosphere, we see dazzling "shooting stars"!',
+      emoji: '🌠'
+    },
+    howItWorks: {
+      title: 'Asteroids vs. Comets vs. Meteors',
+      points: [
+        'Asteroids (🪨): Rocky, airless chunks left over from the formation of our solar system, mostly orbiting between Mars and Jupiter.',
+        'Comets (☄️): Icy wanderers from the cold Oort Cloud; the solar wind pushes solar radiation against their vapor to blow tails away from the Sun.',
+        'Meteors (🌟): Dust particles that burn with friction heat in Earth’s upper air (Meteors), reaching the ground if they survive (Meteorites).'
+      ]
+    },
+    funFacts: [
+      'Halley’s Comet is visible from Earth once every 75 to 76 years — its next return will be in the summer of 2061!',
+      'A comet’s glowing ion tail can stretch over 60 million miles long — further than the distance between Earth and Venus!',
+      'Every year, Earth passes through debris trails left by comets, creating spectacular Perseid and Geminid meteor showers with 100 shooting stars an hour!'
+    ],
+    kidWords: [
+      { word: 'Asteroid', emoji: '🪨', meaning: 'A rocky object orbiting the Sun, smaller than a dwarf planet.' },
+      { word: 'Comet', emoji: '☄️', meaning: 'A celestial object consisting of ice and dust with a glowing coma and tail.' },
+      { word: 'Meteorite', emoji: '💫', meaning: 'A space rock that survives its fiery atmospheric plunge and lands on Earth.' }
+    ],
+    didYouKnowOrigin: 'The word "Comet" comes from the ancient Greek word "kometes", which meant "long-haired star", because early stargazers thought comets looked like stars with flowing golden hair!',
+    microQuiz: {
+      question: 'What creates the glowing tail of a comet as it flies closer to the Sun?',
+      options: ['Solar heat turns frozen ice into glowing vapor gas blown by solar wind', 'Rocket engines firing', 'Electric neon lights'],
+      correctIndex: 0,
+      explanation: 'Sunlight evaporates frozen gas and dust, and the solar wind pushes this vapor into a luminous tail millions of miles long!'
+    },
+    seeAlso: [
+      { id: 'the-sun', title: 'The Sun', category: 'solar-system' },
+      { id: 'planet-earth', title: 'Planet Earth', category: 'solar-system' }
+    ]
+  },
+  {
+    id: 'milky-way-galaxy',
+    title: 'The Milky Way Galaxy',
+    symbol: '🌌',
+    pronunciation: '(MIL-kee WAY GAL-uk-see)',
+    category: 'solar-system',
+    tagline: 'Our spiraling cosmic metropolis of 200 billion stars, nebulae, and stellar nurseries.',
+    analogy: {
+      title: 'The Great Glowing Spiral Pinwheel of the Stars',
+      story: 'Imagine a gigantic glowing pinwheel spinning slowly in the darkness of space, 100,000 light-years across! It contains over 200 billion shining stars, and our Sun is just one single grain of sand sitting on one of its spiral arms called the Orion Spur, circling the galaxy once every 230 million years!',
+      emoji: '🌀'
+    },
+    howItWorks: {
+      title: 'Structure of Our Island Universe',
+      points: [
+        'Barred Spiral Shape: A central dense bar of ancient stars with four sweeping pinwheel arms (Perseus, Scutum-Centaurus, Sagittarius, and Norma).',
+        'Sagittarius A* Heart: At the exact gravitational center sits a supermassive black hole with the mass of 4.3 million Suns.',
+        'Galactic Year: It takes our solar system 230 million years to complete one giant orbit around the galactic core!'
+      ]
+    },
+    funFacts: [
+      'When the dinosaurs lived on Earth 100 million years ago, our solar system was on the completely opposite side of the Milky Way galaxy!',
+      'The Milky Way is part of a cluster of 54 neighboring galaxies called the "Local Group", including our giant neighbor Andromeda.',
+      'On a clear, dark night away from city lights, the Milky Way looks like a luminous cloudy river of spilled milk arched across the heavens.'
+    ],
+    kidWords: [
+      { word: 'Galaxy', emoji: '🌌', meaning: 'A gravitationally bound system of stars, stellar remnants, gas, and dark matter.' },
+      { word: 'Light-Year', emoji: '✨', meaning: 'The distance light travels in one Earth year (about 5.88 trillion miles).' },
+      { word: 'Nebula', emoji: '☁️', meaning: 'A giant interstellar cloud of dust and gas where baby stars are born.' }
+    ],
+    didYouKnowOrigin: 'Ancient Greek myth told that the goddess Hera spilled drops of milk across the starry night sky, which is why ancient Romans called it "Via Lactea" — the Milky Way!',
+    microQuiz: {
+      question: 'About how many stars shine inside our home Milky Way Galaxy?',
+      options: ['Over 100 to 400 Billion stars!', 'Only 1,000 stars', 'Exactly 8 stars'],
+      correctIndex: 0,
+      explanation: 'Our Milky Way galaxy contains between 100 and 400 billion stars, with billions of planetary solar systems orbiting them!'
+    },
+    seeAlso: [
+      { id: 'the-sun', title: 'The Sun', category: 'solar-system' },
+      { id: 'black-holes', title: 'Black Holes', category: 'solar-system' }
+    ]
+  },
+  {
+    id: 'james-webb-telescope',
+    title: 'Telescopes & The James Webb Observatory',
+    symbol: '🔭',
+    pronunciation: '(TEL-uh-skohps and JAYMZ WEB)',
+    category: 'solar-system',
+    tagline: 'Golden honeycomb mirrors floating 1 million miles in space to look back to the dawn of time.',
+    analogy: {
+      title: 'The Golden Time Machine Floating in the Dark',
+      story: 'Because light takes time to travel across space, looking far into space is literally looking backward in time! The James Webb Space Telescope has a giant 21-foot golden mirror shaped like a beehive honeycomb that detects invisible infrared heat waves, showing astronomers the very first stars that ignited after the Big Bang!',
+      emoji: '🐝'
+    },
+    howItWorks: {
+      title: 'Engineering the Webb Telescope',
+      points: [
+        '18 Beryllium Gold Segments: Hexagonal mirrors plated with real pure gold to reflect infrared light rays with supreme clarity.',
+        'Tennis-Court Sunshield: A 5-layer silver kite that blocks heat from the Sun, Earth, and Moon so instruments stay super-chilled at -388°F.',
+        'Orbiting Lagrange Point 2 (L2): Floats 1 million miles away from Earth, keeping its back to the Sun continuously.'
+      ]
+    },
+    funFacts: [
+      'The gold layer on Webb’s mirrors is so thin it used only about a golf ball’s worth of real gold spread across the entire 21-foot mirror!',
+      'Webb had to fold up like an origami sculpture inside an Ariane 5 rocket and unfold itself piece-by-piece in space over 30 days.',
+      'Webb can analyze the atmospheres of alien planets light-years away to search for water vapor, carbon dioxide, and signs of life!'
+    ],
+    kidWords: [
+      { word: 'Infrared', emoji: '🔴', meaning: 'Invisible heat radiation with wavelengths longer than visible red light.' },
+      { word: 'Lagrange Point', emoji: '📍', meaning: 'A gravitational parking spot in space where a telescope stays stable relative to Earth and Sun.' },
+      { word: 'Observatory', emoji: '🏛️', meaning: 'A facility equipped with instruments for observing astronomical phenomena.' }
+    ],
+    didYouKnowOrigin: 'Galileo Galilei was the first person to turn a telescope toward the night sky in 1609, discovering mountains on the Moon and four moons orbiting Jupiter!',
+    microQuiz: {
+      question: 'Why are the mirrors on the James Webb Space Telescope coated in real gold?',
+      options: ['Gold reflects infrared heat light better than almost any other metal', 'To make it expensive', 'Gold keeps it warm'],
+      correctIndex: 0,
+      explanation: 'Pure gold reflects 98% of infrared light, allowing Webb to see dim, distant infant galaxies from billions of years ago!'
+    },
+    seeAlso: [
+      { id: 'astronauts-rockets', title: 'Astronauts & Rockets', category: 'solar-system' },
+      { id: 'milky-way-galaxy', title: 'The Milky Way', category: 'solar-system' }
+    ]
   }
 ];

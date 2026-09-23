@@ -27,49 +27,49 @@ export const ENCYCLOPEDIA_CATEGORIES: {
     id: 'numbers',
     label: 'Numbers & Math',
     icon: '🔢',
-    description: 'From magical Zero to cosmic Infinity, fractions, shapes, and counting superpowers.',
+    description: 'Zero, Pi, Fibonacci spirals, addition, multiplication, fractions, clocks, money, geometry, and infinity.',
     badgeColor: 'bg-[#6BCB77]/15 text-[#6BCB77] border-[#6BCB77]'
   },
   {
     id: 'solar-system',
     label: 'Solar System & Space',
     icon: '🪐',
-    description: 'Blasting off through the Sun, Moon, ringed planets, black holes, and space rockets.',
+    description: 'All 8 planets, Pluto, the Milky Way, comets, asteroids, James Webb telescope, and astronauts.',
     badgeColor: 'bg-[#4D96FF]/15 text-[#4D96FF] border-[#4D96FF]'
   },
   {
     id: 'earth-elements',
     label: 'Earth & Nature',
     icon: '🌍',
-    description: 'Water cycle, rainbows, volcanoes, lightning, trees, photosynthesis, and the four seasons.',
+    description: 'Photosynthesis, trees, earthquakes, tornadoes, coral reefs, rocks, fossils, auroras, glaciers, and seasons.',
     badgeColor: 'bg-[#FFD93D]/25 text-[#2D2D2D] border-[#FFD93D]'
   },
   {
     id: 'animals-dinosaurs',
     label: 'Animals & Dinosaurs',
     icon: '🦖',
-    description: 'T-Rex, Blue Whales, Honeybees, Chameleons, Cheetahs, Owls, Butterflies, and Octopuses.',
+    description: 'T-Rex, Blue Whales, Polar Bears, Cheetahs, Lions, Honeybees, Sea Turtles, Elephants, and Octopuses.',
     badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300'
   },
   {
     id: 'human-body',
     label: 'Human Body & Senses',
     icon: '🧠',
-    description: 'The brain supercomputer, pumping heart, 5 senses, skeleton scaffolding, and breathing lungs.',
+    description: 'Brain, heart, lungs, skeleton, eyes, ears, skin, liver, kidneys, spine, sleep, and immune defenses.',
     badgeColor: 'bg-rose-100 text-rose-800 border-rose-300'
   },
   {
     id: 'how-things-work',
     label: 'How Things Work',
     icon: '⚙️',
-    description: 'Inventions decoded: How airplanes fly, the internet works, clocks tick, and bridges stand.',
+    description: 'Airplanes, the internet, smartphones, touchscreens, electric cars, solar panels, magnets, robots, and bridges.',
     badgeColor: 'bg-amber-100 text-amber-800 border-amber-300'
   },
   {
     id: 'countries-world',
     label: 'World & Continents',
     icon: '🗺️',
-    description: 'The 7 continents, vast oceans, Great Wall of China, Mount Everest, Egypt, and Antarctica.',
+    description: 'The 7 continents, world oceans, Pakistan, UK, USA, Canada, Japan, Brazil, France, Egypt, and Australia.',
     badgeColor: 'bg-purple-100 text-purple-800 border-purple-300'
   }
 ];

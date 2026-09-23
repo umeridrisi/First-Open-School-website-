@@ -951,5 +951,89 @@ export const ANIMALS_ENTRIES: EncyclopediaEntry[] = [
       { id: 'barn-owl', title: 'Barn Owl', category: 'animals-dinosaurs' },
       { id: 'united-states', title: 'United States', category: 'countries-world' }
     ]
+  },
+  {
+    id: 'polar-bear',
+    title: 'Polar Bear (King of Arctic Ice)',
+    symbol: '🐻‍❄️',
+    pronunciation: '(POH-ler BAIR)',
+    category: 'animals-dinosaurs',
+    tagline: 'The magnificent marine mammal with clear fur and black skin hunting on Arctic sea ice.',
+    analogy: {
+      title: 'The Sub-Zero Greenhouse Suit of the Frozen North',
+      story: 'Did you know a polar bear isn’t actually white? Underneath its thick fluffy coat, a polar bear has jet-black skin to soak up every drop of sun warmth! Its fur hairs are hollow, clear glass-like tubes that bounce and scatter light, making the bear look as pure white as the snowy Arctic ice sheets!',
+      emoji: '❄️'
+    },
+    howItWorks: {
+      title: 'Arctic Survival Engineering',
+      points: [
+        'Hollow Fur & Black Skin: Hollow translucent hairs trap warm body air, while black skin underneath absorbs infrared heat.',
+        'Blubber Layer: A 4-inch blanket of dense fat beneath the skin keeps them toasty warm even when swimming in freezing 28°F seawater!',
+        'Dinner-Plate Paws: Giant 12-inch wide paws act like built-in snowshoes and swim flippers, with tiny bumps (papillae) providing ice grip.'
+      ]
+    },
+    funFacts: [
+      'Polar bears are officially classified as marine mammals because they spend most of their lives on the ocean sea ice!',
+      'A polar bear’s sense of smell is so sharp it can sniff a seal breathing hole through 3 feet of solid ice from nearly a mile away.',
+      'Polar bears can swim continuously for days at a time across hundreds of miles of open Arctic ocean.'
+    ],
+    kidWords: [
+      { word: 'Translucent', emoji: '🪟', meaning: 'Allowing light to pass through, but not completely transparent.' },
+      { word: 'Blubber', emoji: '🧈', meaning: 'A thick layer of vascularized fat under the skin of marine mammals.' },
+      { word: 'Marine Mammal', emoji: '🌊', meaning: 'A warm-blooded mammal adapted to life in the ocean.' }
+    ],
+    didYouKnowOrigin: 'The scientific name for polar bear is "Ursus maritimus", which literally means "Maritime Bear" or "Sea Bear" in Latin!',
+    microQuiz: {
+      question: 'What color is the skin of a polar bear under its thick fur?',
+      options: ['Jet-black (to absorb warm solar heat)', 'Pure white', 'Bright pink'],
+      correctIndex: 0,
+      explanation: 'Polar bears have jet-black skin underneath their hollow clear fur coats to absorb and retain maximum warmth from the sun!'
+    },
+    seeAlso: [
+      { id: 'emperor-penguin', title: 'Emperor Penguin', category: 'animals-dinosaurs' },
+      { id: 'glaciers-icebergs', title: 'Glaciers & Icebergs', category: 'earth-elements' }
+    ]
+  },
+  {
+    id: 'sea-turtle',
+    title: 'Sea Turtle (Ocean Navigator)',
+    symbol: '🐢',
+    pronunciation: '(SEE TUR-tul)',
+    category: 'animals-dinosaurs',
+    tagline: 'Ancient reptilian mariners that navigate across oceans using Earth’s magnetic field.',
+    analogy: {
+      title: 'The Living Glider with a Built-in Magnetic Compass',
+      story: 'Sea turtles have been gliding through the world’s oceans for more than 100 million years, sharing the prehistoric seas with swimming mosasaurs! When a tiny sea turtle hatches on a sandy beach under moonlight, it scrambles to the foaming surf and embarks on a 10,000-mile ocean journey, using built-in magnetic sensors in its head to navigate like an ancient mariner!',
+      emoji: '🌊'
+    },
+    howItWorks: {
+      title: 'Built for Ocean Voyaging',
+      points: [
+        'Hydrodynamic Shell (Carapace): Streamlined flattened shell that cuts through ocean currents with minimal drag.',
+        'Wing-Like Flippers: Powerful front paddle flippers flap like bird wings to glide gracefully through deep water.',
+        'Geomagnetic Imprinting: They remember the unique magnetic signature of their birth beach and return 30 years later to lay their own eggs!'
+      ]
+    },
+    funFacts: [
+      'The Leatherback Sea Turtle can dive over 4,000 feet deep into the pitch-black ocean abyss and hold its breath for over an hour!',
+      'Sea turtles excrete excess ocean salt by crying salty "tears" from special glands behind their eyes.',
+      'Green sea turtles get their name not from their shells, but from the greenish color of their inner fat due to their vegetarian diet of seagrass and algae!'
+    ],
+    kidWords: [
+      { word: 'Carapace', emoji: '🛡️', meaning: 'The hard upper shell of a turtle, tortoise, or crustacean.' },
+      { word: 'Imprinting', emoji: '🧭', meaning: 'A rapid learning process by which an animal establishes a lifelong behavioral response to an environmental cue.' },
+      { word: 'Hatchling', emoji: '🐣', meaning: 'A young animal that has recently emerged from its egg.' }
+    ],
+    didYouKnowOrigin: 'Sea turtles cannot pull their heads and flippers inside their shells like land turtles can — their shells are designed for underwater speed rather than land hiding!',
+    microQuiz: {
+      question: 'How do mother sea turtles find their way back to the exact beach where they hatched decades earlier?',
+      options: ['They use geomagnetic sensors in their brains to follow Earth’s magnetic field', 'They follow road signs', 'They ask dolphins for directions'],
+      correctIndex: 0,
+      explanation: 'Baby turtles imprint on the Earth’s unique magnetic field coordinates at their birth beach and use this built-in compass to return as adults!'
+    },
+    seeAlso: [
+      { id: 'magnets-magnetism', title: 'Magnets & Navigation', category: 'how-things-work' },
+      { id: 'ocean-tides-coral', title: 'Coral Reefs & Oceans', category: 'earth-elements' }
+    ]
   }
 ];

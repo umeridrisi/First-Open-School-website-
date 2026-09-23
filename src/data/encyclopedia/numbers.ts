@@ -308,5 +308,343 @@ export const NUMBERS_ENTRIES: EncyclopediaEntry[] = [
       { id: 'zero-superpower', title: 'Number 0', category: 'numbers' },
       { id: 'black-holes', title: 'Black Holes', category: 'solar-system' }
     ]
+  },
+  {
+    id: 'addition-subtraction',
+    title: 'Addition & Subtraction',
+    symbol: '➕➖',
+    pronunciation: '(uh-DISH-un and sub-TRAK-shun)',
+    category: 'numbers',
+    tagline: 'The two foundational building blocks of arithmetic: joining together and taking away.',
+    analogy: {
+      title: 'The Picnic Basket and The Greedy Squirrel',
+      story: 'Imagine you have a picnic basket! Addition (+) is when you put 3 red apples and 2 green pears into the basket: you count them together and now you have 5 delicious fruits! Subtraction (-) is when a cheerful squirrel hops in and takes away 2 fruits: 5 minus 2 leaves 3 fruits remaining in your basket!',
+      emoji: '🧺'
+    },
+    howItWorks: {
+      title: 'The Number Line Dance',
+      points: [
+        'Addition (+): Taking steps FORWARD to the right on a number line (e.g., start at 4, jump forward 3 steps = land on 7).',
+        'Subtraction (-): Taking steps BACKWARD to the left on a number line (e.g., start at 9, step backward 4 = land on 5).',
+        'Inverse Operations: They undo each other! If 6 + 4 = 10, then 10 - 4 = 6.'
+      ]
+    },
+    funFacts: [
+      'The plus sign (+) was originally shorthand for the Latin word "et", which means "and"!',
+      'The equals sign (=) was invented in 1557 by Welsh mathematician Robert Recorde because "no two things can be more equal than two parallel twin lines"!',
+      'Zero is the additive identity: 1,000,000 + 0 is still 1,000,000!'
+    ],
+    kidWords: [
+      { word: 'Sum', emoji: '➕', meaning: 'The total amount resulting from the addition of two or more numbers.' },
+      { word: 'Difference', emoji: '➖', meaning: 'The result of subtracting one number from another.' },
+      { word: 'Number Line', emoji: '📏', meaning: 'A straight line on which numbers are marked at intervals to visualize arithmetic.' }
+    ],
+    didYouKnowOrigin: 'Before paper was common, ancient shopkeepers did addition and subtraction on wooden frames with sliding beads called an Abacus — which can calculate as fast as an electronic calculator!',
+    microQuiz: {
+      question: 'If you have 7 colorful balloons and give 3 to your best friend, how many do you have left?',
+      options: ['4 balloons (7 - 3 = 4)', '10 balloons', '0 balloons'],
+      correctIndex: 0,
+      explanation: 'Taking 3 away from 7 leaves 4 balloons: 7 - 3 = 4!'
+    },
+    seeAlso: [
+      { id: 'zero-superpower', title: 'Zero (0)', category: 'numbers' },
+      { id: 'multiplication-division', title: 'Multiplication & Division', category: 'numbers' }
+    ]
+  },
+  {
+    id: 'multiplication-division',
+    title: 'Multiplication & Division',
+    symbol: '✖️➗',
+    pronunciation: '(mul-tuh-plih-KAY-shun and duh-VIZH-un)',
+    category: 'numbers',
+    tagline: 'Skip-counting turbochargers and equal sharing superpowers.',
+    analogy: {
+      title: 'The Egg Carton and The Cookie Sharing Party',
+      story: 'Multiplication (×) is super-fast addition! Instead of counting 2 + 2 + 2 + 2 + 2 + 2, you say "6 groups of 2 eggs" — that’s 6 × 2 = 12 eggs instantly! Division (÷) is fair sharing: if you bake 12 cookies and want to share them equally with 3 friends, 12 ÷ 3 = exactly 4 cookies for each person with none left over!',
+      emoji: '🍪'
+    },
+    howItWorks: {
+      title: 'Arrays & Equal Groups',
+      points: [
+        'Multiplication (×): Equal groups added repeatedly. A 4-row by 5-column grid (array) has 4 × 5 = 20 total dots.',
+        'Commutative Law: The order doesn’t matter! 3 × 7 is the exact same number as 7 × 3 (both equal 21).',
+        'Division (÷): Splitting a total quantity into equal piles or finding how many groups fit inside.'
+      ]
+    },
+    funFacts: [
+      'The multiplication symbol "×" is known as the St. Andrew’s Cross, first introduced in math books in 1631.',
+      'Multiplying any number by 9 has a magic secret: the sum of the digits of the answer always adds up to 9! (9 × 2 = 18 and 1+8=9; 9 × 5 = 45 and 4+5=9)!',
+      'You cannot divide any number by zero in mathematics — it creates an impossible paradox!'
+    ],
+    kidWords: [
+      { word: 'Product', emoji: '✖️', meaning: 'The result obtained by multiplying two numbers together.' },
+      { word: 'Quotient', emoji: '➗', meaning: 'The result obtained by dividing one quantity by another.' },
+      { word: 'Array', emoji: '🍱', meaning: 'An orderly arrangement of objects or numbers into equal rows and columns.' }
+    ],
+    didYouKnowOrigin: 'Ancient Egyptians multiplied numbers using a clever method of doubling numbers and adding the binary rows together, requiring only the ability to add and multiply by 2!',
+    microQuiz: {
+      question: 'If you have 4 dog bowls and put 3 crunchy biscuits in each bowl, how many biscuits did you use in total?',
+      options: ['12 biscuits (4 groups of 3 = 12)', '7 biscuits', '1 biscuit'],
+      correctIndex: 0,
+      explanation: '4 bowls times 3 biscuits per bowl is 4 × 3 = 12 total dog treats!'
+    },
+    seeAlso: [
+      { id: 'addition-subtraction', title: 'Addition & Subtraction', category: 'numbers' },
+      { id: 'fractions-magic', title: 'Fractions', category: 'numbers' }
+    ]
+  },
+  {
+    id: 'pi-mathematics',
+    title: 'Pi (π = 3.14159...) — The Circle Number',
+    symbol: 'π',
+    pronunciation: '(PY)',
+    category: 'numbers',
+    tagline: 'The infinite, never-ending constant hidden inside every circle in the universe.',
+    analogy: {
+      title: 'The Invisible Tape Measure of Every Round Wheel',
+      story: 'No matter whether you measure a tiny coin, a giant bicycle wheel, or the equator of the planet Jupiter, if you measure the distance around the circle (circumference) and divide it by the distance straight across its middle (diameter), you ALWAYS get the exact same magical number: 3.14159... Pi!',
+      emoji: '🥧'
+    },
+    howItWorks: {
+      title: 'Why Pi Is Irrational and Infinite',
+      points: [
+        'The Ratio: Circumference ÷ Diameter = π (Pi).',
+        'Irrational Number: Pi cannot be written as a simple fraction; its decimal digits go on forever without ever repeating a pattern!',
+        'Everyday Value: In elementary school, people approximate Pi as 3.14 or 22/7, which is close enough to design racecars and bake pies.'
+      ]
+    },
+    funFacts: [
+      'Pi Day is celebrated around the world every March 14th (3/14) by eating delicious pies and reciting digits of Pi!',
+      'Supercomputers have calculated Pi to over 100 trillion decimal digits, and not a single pattern has ever repeated.',
+      'NASA’s Jet Propulsion Laboratory only uses 15 digits of Pi (3.141592653589793) to steer spacecraft between planets with pinpoint precision!'
+    ],
+    kidWords: [
+      { word: 'Circumference', emoji: '⭕', meaning: 'The perimeter or boundary distance all the way around a circle.' },
+      { word: 'Diameter', emoji: '↔️', meaning: 'A straight line passing from side to side through the center of a circle.' },
+      { word: 'Irrational Number', emoji: '♾️', meaning: 'A real number that cannot be expressed as a ratio of two integers and has non-repeating infinite decimals.' }
+    ],
+    didYouKnowOrigin: 'The symbol "π" is the 16th letter of the Greek alphabet, chosen because it is the first letter of the Greek word "perimetros" (meaning perimeter)!',
+    microQuiz: {
+      question: 'What are the first three common digits of the circle number Pi?',
+      options: ['3.14', '7.77', '1.00'],
+      correctIndex: 0,
+      explanation: 'Pi begins with 3.14159... and continues infinitely without repeating!'
+    },
+    seeAlso: [
+      { id: 'geometric-shapes', title: 'Geometric Shapes', category: 'numbers' },
+      { id: 'infinity-concept', title: 'Infinity', category: 'numbers' }
+    ]
+  },
+  {
+    id: 'fibonacci-nature',
+    title: 'The Fibonacci Spiral & Golden Ratio',
+    symbol: '🌀',
+    pronunciation: '(fib-uh-NAH-chee and GOHL-duhn RAY-shee-oh)',
+    category: 'numbers',
+    tagline: 'Nature’s secret mathematical growth code: 1, 1, 2, 3, 5, 8, 13, 21, 34...',
+    analogy: {
+      title: 'The Spiral Recipe of Pinecones and Galaxy Swirls',
+      story: 'Have you ever noticed how sunflower seeds curve into gorgeous spirals? Or how a nautilus seashell curls? They follow a secret mathematical code discovered by Italian mathematician Leonardo Fibonacci! Start with 1, 1. Add them to get 2. Then add the last two numbers: 1+2=3, 2+3=5, 3+5=8, 5+8=13... When you draw squares with these sizes, they form a perfect, breathtaking spiral!',
+      emoji: '🌻'
+    },
+    howItWorks: {
+      title: 'How the Fibonacci Sequence Grows',
+      points: [
+        'The Rule: Each number is the sum of the two preceding numbers (0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89...).',
+        'The Golden Ratio (Phi ≈ 1.618): Divide any Fibonacci number by the one before it (e.g. 55 ÷ 34), and the ratio approaches 1.618.',
+        'Efficient Packing: Plants use this angle (137.5 degrees) so every new petal or seed gets maximum sunshine without blocking its neighbors!'
+      ]
+    },
+    funFacts: [
+      'Almost all flower petals come in Fibonacci numbers: lilies have 3 petals, buttercups have 5, delphiniums have 8, marigolds have 13, and daisies often have 34 or 55!',
+      'Pinecones have two sets of spirals spiraling in opposite directions — count them, and they are always consecutive Fibonacci numbers like 5 and 8 or 8 and 13!',
+      'Hurricanes, whirlpools, and entire spiral galaxies spin in shapes nearly identical to the Fibonacci golden spiral.'
+    ],
+    kidWords: [
+      { word: 'Sequence', emoji: '🔢', meaning: 'An ordered list of numbers that follow a specific mathematical rule.' },
+      { word: 'Spiral', emoji: '🌀', meaning: 'A curve which emanates from a point, moving farther away as it revolves around the point.' },
+      { word: 'Golden Ratio', emoji: '✨', meaning: 'A special mathematical proportion approximately equal to 1.6180339887...' }
+    ],
+    didYouKnowOrigin: 'Fibonacci introduced this number sequence to Europe in 1202 in his famous book "Liber Abaci" while solving a puzzle about how many baby rabbits would be born in a garden!',
+    microQuiz: {
+      question: 'What is the next number in the Fibonacci sequence: 1, 1, 2, 3, 5, 8, __?',
+      options: ['13 (Because 5 + 8 = 13!)', '10', '20'],
+      correctIndex: 0,
+      explanation: 'Each Fibonacci number is the sum of the previous two numbers: 5 + 8 = 13!'
+    },
+    seeAlso: [
+      { id: 'photosynthesis-plants', title: 'Plants & Nature', category: 'earth-elements' },
+      { id: 'milky-way-galaxy', title: 'The Milky Way', category: 'solar-system' }
+    ]
+  },
+  {
+    id: 'patterns-sequences',
+    title: 'Patterns, Symmetry & Sequences',
+    symbol: '💠',
+    pronunciation: '(PAT-ernz, SIM-uh-tree and SEE-kwen-sez)',
+    category: 'numbers',
+    tagline: 'The repeating visual rhythms and mirror reflections that make math beautiful.',
+    analogy: {
+      title: 'The Musical Rhythm and Mirror Twin of the Eyes',
+      story: 'A pattern is a rule that repeats! Think of clapping hands to music: clap, stomp, clap, stomp! In math, patterns can be shapes (circle, square, circle, square), numbers (2, 4, 6, 8), or symmetry. Bilateral symmetry means if you draw a line down the middle of a butterfly’s wings, the left wing and right wing are exact mirror twins!',
+      emoji: '🦋'
+    },
+    howItWorks: {
+      title: 'Types of Symmetry & Patterns',
+      points: [
+        'Reflectional Symmetry: A mirror line splits the object into two identical matching halves (human faces, butterflies).',
+        'Rotational Symmetry: The shape looks identical when rotated around a central pin (snowflakes have 6-fold rotational symmetry, starfish have 5-fold!).',
+        'Tessellation: Tiling a flat surface with geometric shapes with zero overlaps and zero gaps (honeycomb hexagons, kitchen tiles).'
+      ]
+    },
+    funFacts: [
+      'Every single water snowflake falling from winter clouds has 6 symmetrical arms, yet no two snowflakes are ever identical!',
+      'Honeybees build their hives using hexagonal tessellation because hexagons use the least amount of wax to store the most honey!',
+      'Your own human face has bilateral symmetry — the left side closely matches the right side.'
+    ],
+    kidWords: [
+      { word: 'Symmetry', emoji: '🪞', meaning: 'Balanced proportions where parts on opposite sides of a dividing line correspond.' },
+      { word: 'Tessellation', emoji: '🧱', meaning: 'Covering a plane surface using one or more geometric shapes with no overlaps or gaps.' },
+      { word: 'Bilateral', emoji: '🦋', meaning: 'Having two sides that are mirror reflections of each other.' }
+    ],
+    didYouKnowOrigin: 'Dutch artist M.C. Escher became world-famous by drawing mind-bending mathematical tessellations of interlocking birds, lizards, and fish that fit together like magic jigsaw puzzles!',
+    microQuiz: {
+      question: 'How many symmetrical arms or branches does an ice snowflake always have?',
+      options: ['6 arms', '4 arms', '10 arms'],
+      correctIndex: 0,
+      explanation: 'Water molecules freeze into hexagonal crystal lattices, always giving snowflakes 6 symmetrical arms!'
+    },
+    seeAlso: [
+      { id: 'geometric-shapes', title: 'Geometric Shapes', category: 'numbers' },
+      { id: 'monarch-butterfly', title: 'Monarch Butterfly', category: 'animals-dinosaurs' }
+    ]
+  },
+  {
+    id: 'telling-time-clock',
+    title: 'Telling Time & The Clock',
+    symbol: '⏰',
+    pronunciation: '(TEL-ing TYM and the KLOK)',
+    category: 'numbers',
+    tagline: '60 seconds in a minute, 60 minutes in an hour, and 24 hours in Earth’s daily spin.',
+    analogy: {
+      title: 'The Spinning Sun Shadow and Race of the Two Clock Hands',
+      story: 'A clock face is a circular race track with 12 hourly stations! The short hand is the slow, steady Hour Hand — it tells you which big chapter of the day it is. The long hand is the fast Minute Hand — it zips all the way around the 60 tiny minute tick marks every single hour as Earth turns towards and away from the Sun!',
+      emoji: '🕰️'
+    },
+    howItWorks: {
+      title: 'How to Read an Analog Clock Face',
+      points: [
+        'Hour Hand (Short): Points to the current hour (1 to 12). If it’s between 3 and 4, it is still the 3 o’clock hour.',
+        'Minute Hand (Long): Counts minutes by skip-counting by 5s for each big number (1 = 5 min, 2 = 10 min, 6 = 30 min half-past).',
+        'AM vs PM: AM (Ante Meridiem) means before noon morning; PM (Post Meridiem) means after noon afternoon and night.'
+      ]
+    },
+    funFacts: [
+      'Why do clocks use base-60 (60 seconds, 60 minutes)? Because ancient Babylonians used a base-60 counting system 4,000 years ago because 60 can be divided evenly by 2, 3, 4, 5, 6, 10, 12, 15, 20, and 30!',
+      'Atomic clocks in scientific laboratories are so accurate they won’t lose or gain a single second in 100 million years!',
+      'Before clocks with gears, people told time using sundials, water-dripping bowls (clepsydras), and burning candle markings.'
+    ],
+    kidWords: [
+      { word: 'Analog', emoji: '🕒', meaning: 'Displaying time continuously using rotating hands on a dial face.' },
+      { word: 'Digital', emoji: '📟', meaning: 'Displaying time directly as digits (e.g. 03:45).' },
+      { word: 'Meridiem', emoji: '☀️', meaning: 'Latin word for midday or noon.' }
+    ],
+    didYouKnowOrigin: 'Why does a clock’s hands spin "clockwise"? Because in the Northern Hemisphere where sundials were first invented, the shadow cast by the sun rotates from left-to-right across the top!',
+    microQuiz: {
+      question: 'When the big minute hand points straight down at the number 6, how many minutes past the hour is it?',
+      options: ['30 minutes (Half-past the hour!)', '6 minutes', '60 minutes'],
+      correctIndex: 0,
+      explanation: 'The number 6 represents 6 × 5 = 30 minutes, exactly half of the 60-minute circle!'
+    },
+    seeAlso: [
+      { id: 'four-seasons', title: 'The Four Seasons', category: 'earth-elements' },
+      { id: 'planet-earth', title: 'Planet Earth', category: 'solar-system' }
+    ]
+  },
+  {
+    id: 'money-coins-currency',
+    title: 'Money, Coins & Smart Saving',
+    symbol: '🪙',
+    pronunciation: '(MUN-ee, KOYNZ and KUR-en-see)',
+    category: 'numbers',
+    tagline: 'Pennies, nickels, dimes, quarters, and dollars: the math of counting, trading, and saving.',
+    analogy: {
+      title: 'The Magic Token for Trading Work and Goods',
+      story: 'Imagine if you wanted a loaf of fresh bread, but you only owned a sheep! You’d have to find a baker who needed sheep wool! That’s why humans invented money: convenient metal coins and paper notes that everyone agrees represent value. Instead of carrying sheep, you can trade coins for bread, apples, books, and toys!',
+      emoji: '💰'
+    },
+    howItWorks: {
+      title: 'Counting Coin Values',
+      points: [
+        'Penny (🟤): Made of copper-plated zinc, worth 1 cent ($0.01).',
+        'Nickel (⚪): Thick nickel-copper coin, worth 5 cents ($0.05).',
+        'Dime (🪙): The smallest, thinnest coin, yet worth 10 cents ($0.10) — 10 dimes make $1.00!',
+        'Quarter (🪙): Worth 25 cents ($0.25) — 4 quarters equal one dollar ($1.00).'
+      ]
+    },
+    funFacts: [
+      'The edges of dimes and quarters have tiny ridges (called reeding) to prevent people 200 years ago from shaving off shavings of precious silver!',
+      'Paper money isn’t actually made of wood paper — US currency bills are made of a tough blend of 75% cotton and 25% linen cloth!',
+      'Compound interest means when you save money in a bank, the bank pays you interest, and then you earn interest on your interest, helping your savings grow like a snowball!'
+    ],
+    kidWords: [
+      { word: 'Currency', emoji: '💵', meaning: 'A system of money in common use within a nation or country.' },
+      { word: 'Budget', emoji: '📊', meaning: 'A plan that helps balance how much money you earn, spend, and save.' },
+      { word: 'Interest', emoji: '📈', meaning: 'Money paid regularly at a particular rate for the use of money lent or saved.' }
+    ],
+    didYouKnowOrigin: 'Before metal coins were stamped around 600 BC in ancient Lydia (modern Turkey), people used sea cowrie shells, salt bricks, and cocoa beans as money!',
+    microQuiz: {
+      question: 'How many 25-cent quarters does it take to make exactly one full dollar ($1.00)?',
+      options: ['4 quarters (25 + 25 + 25 + 25 = 100 cents!)', '2 quarters', '10 quarters'],
+      correctIndex: 0,
+      explanation: '4 quarters make 100 cents, which equals exactly one dollar ($1.00)!'
+    },
+    seeAlso: [
+      { id: 'addition-subtraction', title: 'Addition & Subtraction', category: 'numbers' },
+      { id: 'fractions-magic', title: 'Fractions', category: 'numbers' }
+    ]
+  },
+  {
+    id: 'probability-chance',
+    title: 'Probability & Chance',
+    symbol: '🎲',
+    pronunciation: '(prob-uh-BIL-ih-tee and CHANS)',
+    category: 'numbers',
+    tagline: 'Coin flips, rolling dice, weather forecasts, and predicting what is likely to happen.',
+    analogy: {
+      title: 'The Coin Flip and The Weather Forecaster’s Math',
+      story: 'When you flip a shiny coin into the air, which side will land facing up? There are only 2 possible outcomes: Heads or Tails! That means you have exactly a 1 out of 2 chance (50% probability) of getting heads. Probability is the math branch that helps scientists and doctors predict how likely an event is to occur!',
+      emoji: '🪙'
+    },
+    howItWorks: {
+      title: 'The Probability Scale (0 to 1)',
+      points: [
+        'Impossible (0%): You can never roll an 8 on a standard 6-sided die — probability is 0.',
+        'Equally Likely (50%): Flipping heads on a fair coin has a 1/2 probability.',
+        'Certain (100%): The Sun will rise tomorrow morning — probability is 1 (100%).',
+        'Formula: Number of Favorable Outcomes ÷ Total Number of Possible Outcomes.'
+      ]
+    },
+    funFacts: [
+      'On a standard 6-sided playing die, opposite sides always add up to 7! (1 opposite 6, 2 opposite 5, 3 opposite 4).',
+      'When weather forecasters say there is an "80% chance of rain", they calculated probability based on atmospheric models and historical weather records.',
+      'French mathematicians Blaise Pascal and Pierre de Fermat invented modern probability theory in 1654 while solving a game puzzle!'
+    ],
+    kidWords: [
+      { word: 'Probability', emoji: '🎲', meaning: 'The mathematical likelihood or chance of a given event occurring.' },
+      { word: 'Outcome', emoji: '🎯', meaning: 'A possible result of a random trial or experiment.' },
+      { word: 'Certain', emoji: '✅', meaning: 'Guaranteed to happen without any doubt (100% probability).' }
+    ],
+    didYouKnowOrigin: 'The word "Probability" comes from the Latin word "probabilis", which meant "credible", "provable", or "worthy of approval"!',
+    microQuiz: {
+      question: 'What is the probability of rolling the number 4 on a fair 6-sided die?',
+      options: ['1 out of 6 (1/6 chance)', '50%', '100%'],
+      correctIndex: 0,
+      explanation: 'Since there is only one side with a 4 out of 6 total sides, the probability is 1/6!'
+    },
+    seeAlso: [
+      { id: 'fractions-magic', title: 'Fractions', category: 'numbers' },
+      { id: 'addition-subtraction', title: 'Addition', category: 'numbers' }
+    ]
   }
 ];

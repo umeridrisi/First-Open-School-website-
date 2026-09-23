@@ -844,5 +844,91 @@ export const GEOGRAPHY_ENTRIES: EncyclopediaEntry[] = [
       { id: 'african-elephant', title: 'African Elephant', category: 'animals-dinosaurs' },
       { id: 'seven-continents', title: 'The 7 Continents', category: 'countries-world' }
     ]
+  },
+  {
+    id: 'japan',
+    title: 'Japan (Land of the Rising Sun)',
+    symbol: '🇯🇵',
+    pronunciation: '(juh-PAN)',
+    category: 'countries-world',
+    tagline: 'Snow-capped Mount Fuji, 200 mph Shinkansen bullet trains, robotic wonders, and pink cherry blossoms.',
+    analogy: {
+      title: 'The High-Speed Train Kingdom Where Ancient Meets the Future',
+      story: 'Japan is an archipelago of over 6,800 islands in East Asia where thousand-year-old wooden Buddhist temples sit right next to neon skyscrapers and high-speed Shinkansen bullet trains that glide smoothly at 200 miles per hour without spilling a single drop of green tea!',
+      emoji: '🗾'
+    },
+    howItWorks: {
+      title: 'Iconic Symbols of Japan',
+      points: [
+        'Mount Fuji: An active sacred volcano with a snow-capped symmetrical cone rising 12,389 feet.',
+        'Shinkansen Bullet Trains: High-speed trains that are so punctual their average yearly delay is less than one minute!',
+        'Sakura (Cherry Blossoms): In spring, millions of delicate pink blossoms bloom across parks, celebrated with outdoor Hanami picnics.',
+        'Capital Tokyo: The most populous metropolitan area on Earth, famous for the busy Shibuya pedestrian crossing and high-tech robotics.'
+      ]
+    },
+    funFacts: [
+      'Japan has more than 5 million vending machines that dispense hot soup, cold green tea, fresh umbrellas, and ice cream on street corners!',
+      'In Japan, school students clean their own classrooms and school cafeterias every day (called O-soji) to learn respect and teamwork.',
+      'Bow (Ojigi): In Japanese culture, people bow politely instead of shaking hands to say hello, thank you, and goodbye.'
+    ],
+    kidWords: [
+      { word: 'Archipelago', emoji: '🏝️', meaning: 'A chain, cluster, or collection of many islands.' },
+      { word: 'Punctual', emoji: '⏱️', meaning: 'Operating or doing something strictly at the scheduled time.' },
+      { word: 'Origami', emoji: '🦢', meaning: 'The traditional Japanese art of paper folding without scissors or glue.' }
+    ],
+    didYouKnowOrigin: 'The Japanese name for Japan is "Nihon" or "Nippon", which translates directly to "Origin of the Sun" — which is why Japan is poetically called "The Land of the Rising Sun"!',
+    microQuiz: {
+      question: 'What is the famous snow-capped volcanic mountain that is an iconic symbol of Japan?',
+      options: ['Mount Fuji', 'Mount Everest', 'Mount Rushmore'],
+      correctIndex: 0,
+      explanation: 'Mount Fuji is Japan’s highest mountain, revered for its graceful symmetrical snow-covered peak!'
+    },
+    seeAlso: [
+      { id: 'bridges-engineering', title: 'Bridges & Engineering', category: 'how-things-work' },
+      { id: 'robots-ai', title: 'Robots & AI', category: 'how-things-work' }
+    ]
+  },
+  {
+    id: 'brazil',
+    title: 'Brazil (Heart of South America)',
+    symbol: '🇧🇷',
+    pronunciation: '(bruh-ZIL)',
+    category: 'countries-world',
+    tagline: 'The vibrant giant of South America, home to the Amazon River, tropical rainforests, and soccer passion.',
+    analogy: {
+      title: 'The Green Giant with the World’s Biggest River',
+      story: 'Brazil is the largest country in South America, covering nearly half the entire continent! It is home to the mighty Amazon River, which carries more fresh water than the next seven largest rivers on Earth combined, and the Amazon Rainforest, packed with colorful toucans, jaguar cats, and giant river otters!',
+      emoji: '🌴'
+    },
+    howItWorks: {
+      title: 'Geographical Wonders of Brazil',
+      points: [
+        'The Amazon Basin: Contains 60% of the Amazon Rainforest, generating clouds that bring rain across South America.',
+        'Christ the Redeemer: A 98-foot Art Deco statue standing on top of Mount Corcovado overlooking Rio de Janeiro.',
+        'Iguazu Falls: A colossal chain of 275 thunderous waterfalls on the border with Argentina.',
+        'Samba & Carnival: The world’s largest festive street carnival celebrated with rhythmic samba drums and dazzling feathered costumes.'
+      ]
+    },
+    funFacts: [
+      'Brazil is the only country in the Americas that speaks Portuguese as its official language, not Spanish or English!',
+      'Brazil has won the soccer FIFA World Cup 5 times — more than any other nation in history!',
+      'The Amazon River releases so much fresh water into the Atlantic Ocean that seawater remains drinkable fresh water 100 miles out into the ocean!'
+    ],
+    kidWords: [
+      { word: 'Rainforest', emoji: '🌳', meaning: 'A luxuriant, dense forest rich in biodiversity, found typically in tropical areas with consistently heavy rainfall.' },
+      { word: 'Equator', emoji: '🌐', meaning: 'The imaginary circle around the middle of a planet halfway between the poles.' },
+      { word: 'Biodiversity', emoji: '🦜', meaning: 'The variety of plant and animal life in the world or in a particular habitat.' }
+    ],
+    didYouKnowOrigin: 'Brazil was named after the "Pau-Brasil" (Brazilwood) tree, which early European explorers harvested for its rich fiery-red dye ("brasa" meaning glowing red ember in Portuguese)!',
+    microQuiz: {
+      question: 'What is the official primary language spoken by over 210 million people in Brazil?',
+      options: ['Portuguese', 'Spanish', 'French'],
+      correctIndex: 0,
+      explanation: 'Portuguese is the official language of Brazil, because Portuguese explorers arrived there in the year 1500!'
+    },
+    seeAlso: [
+      { id: 'amazon-rainforest', title: 'Amazon Rainforest', category: 'countries-world' },
+      { id: 'seven-continents', title: 'The 7 Continents', category: 'countries-world' }
+    ]
   }
 ];

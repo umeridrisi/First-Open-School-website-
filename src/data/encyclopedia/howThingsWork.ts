@@ -395,5 +395,354 @@ export const HOW_THINGS_WORK_ENTRIES: EncyclopediaEntry[] = [
       { id: 'world-oceans', title: 'World Oceans', category: 'countries-world' },
       { id: 'water-element', title: 'Water (H2O)', category: 'earth-elements' }
     ]
+  },
+  {
+    id: 'smartphones-touchscreens',
+    title: 'Smartphones & Touchscreens',
+    symbol: '📱',
+    pronunciation: '(SMAHRT-fohnz and TUCH-skreenz)',
+    category: 'how-things-work',
+    tagline: 'Pocket glass supercomputers that sense your finger’s natural electric charge.',
+    analogy: {
+      title: 'The Invisible Electric Grid on Glass',
+      story: 'How does your phone screen know exactly where you tapped without any buttons? The smooth glass is coated with an invisible grid of transparent electrical wires! Your human body is naturally full of tiny electric charges. When your finger touches the glass, it absorbs a tiny bit of electricity from the grid, and the computer chip calculates the exact X-and-Y pixel coordinate in milliseconds!',
+      emoji: '⚡'
+    },
+    howItWorks: {
+      title: 'Capacitive Touch & Silicon Brains',
+      points: [
+        'Capacitive Glass Grid: An invisible grid of indium tin oxide lines holds a steady electric voltage across the glass.',
+        'Finger Distortion: Your fingertip draws a microscopic electrical charge, altering the local electrostatic field.',
+        'Microprocessor Magic: The phone’s processor recalculates your touch location 120 times every second, letting you swipe, pinch-to-zoom, and scroll smoothly.'
+      ]
+    },
+    funFacts: [
+      'The smartphone in your pocket has over 100,000 times more computing power than the guidance computer NASA used to land Apollo 11 astronauts on the Moon!',
+      'Why don’t touchscreens work with regular winter gloves? Because thick cloth blocks your finger’s natural electrical charge from reaching the glass!',
+      'A typical phone screen packs over 2 to 3 million microscopic red, green, and blue LED subpixels glowing together.'
+    ],
+    kidWords: [
+      { word: 'Capacitive', emoji: '⚡', meaning: 'Using electrostatic field changes to detect touch.' },
+      { word: 'Processor', emoji: '🧠', meaning: 'The microscopic electronic chip that executes program instructions.' },
+      { word: 'Pixel', emoji: '🔲', meaning: 'A tiny illuminated dot on a display screen that combines with millions of others to form an image.' }
+    ],
+    didYouKnowOrigin: 'The first finger-touchscreen concept was invented in 1965 by British engineer E.A. Johnson for air traffic control displays!',
+    microQuiz: {
+      question: 'Why does your finger make a smartphone touchscreen respond when you tap it?',
+      options: ['Your skin conducts a tiny natural electric charge that changes the screen’s field', 'Your finger is very heavy', 'The glass has tiny buttons'],
+      correctIndex: 0,
+      explanation: 'Human skin carries a small electric charge that disturbs the screen’s capacitive grid, allowing the processor to track your finger!'
+    },
+    seeAlso: [
+      { id: 'how-internet-works', title: 'How the Internet Works', category: 'how-things-work' },
+      { id: 'electricity-power', title: 'Electricity', category: 'how-things-work' }
+    ]
+  },
+  {
+    id: 'electric-cars-batteries',
+    title: 'Electric Cars & Rechargeable Batteries',
+    symbol: '🚗',
+    pronunciation: '(ee-LEK-trik KARZ and BAT-er-eez)',
+    category: 'how-things-work',
+    tagline: 'Quiet, zero-exhaust vehicles powered by billions of dancing lithium ions and electromagnetic motors.',
+    analogy: {
+      title: 'The Giant Remote-Controlled Car You Can Ride In',
+      story: 'An electric car is like a giant, comfortable RC toy car powered by a massive skateboard of rechargeable battery cells! Instead of burning noisy gasoline in hot explosive pistons, an electric car uses magnets and copper coils to spin electric motors silently with instant rocket acceleration — with zero tailpipe smoke!',
+      emoji: '🔋'
+    },
+    howItWorks: {
+      title: 'How Electric Vehicles Move',
+      points: [
+        'Lithium-Ion Battery Pack: Thousands of battery cells under the car floor store electrical energy through chemical reactions.',
+        'Electric Induction Motor: Magnetic fields created by alternating electric currents spin a metal rotor that turns the car wheels directly.',
+        'Regenerative Braking: When you take your foot off the accelerator, the motor reverses into a generator, slowing the car down while pumping electric energy BACK into the battery!'
+      ]
+    },
+    funFacts: [
+      'Electric motors have only ONE major moving part (the rotor), while gasoline engines have over 200 moving parts that need motor oil and spark plugs!',
+      'Electric cars can accelerate faster than many supercars because electric motors deliver maximum torque instantly at 0 RPM.',
+      'Regenerative braking saves so much energy that electric car brake pads can last over 100,000 miles without wearing out.'
+    ],
+    kidWords: [
+      { word: 'Lithium', emoji: '🔋', meaning: 'The lightest metallic element, ideal for storing dense electrical energy in rechargeable batteries.' },
+      { word: 'Torque', emoji: '⚙️', meaning: 'The twisting rotational force that gets wheels spinning quickly.' },
+      { word: 'Regenerative', emoji: '♻️', meaning: 'Recovering and reusing energy that would otherwise be wasted as friction heat.' }
+    ],
+    didYouKnowOrigin: 'Electric cars are not new! In the year 1900, about 38% of all automobiles in the United States were electric, but cheap gasoline later took over until modern lithium batteries brought them back!',
+    microQuiz: {
+      question: 'What happens when an electric car steps on its regenerative brakes?',
+      options: ['The electric motor acts as a generator and recharges the battery with kinetic energy', 'The battery turns off completely', 'The wheels blow steam'],
+      correctIndex: 0,
+      explanation: 'Regenerative braking captures the car’s forward rolling momentum and turns it back into stored electricity for the battery!'
+    },
+    seeAlso: [
+      { id: 'solar-panels-energy', title: 'Solar Panels & Energy', category: 'how-things-work' },
+      { id: 'magnets-magnetism', title: 'Magnets & Magnetism', category: 'how-things-work' }
+    ]
+  },
+  {
+    id: 'solar-panels-energy',
+    title: 'Solar Panels & Clean Energy',
+    symbol: '☀️',
+    pronunciation: '(SOH-ler PAN-ulz and EN-er-jee)',
+    category: 'how-things-work',
+    tagline: 'Silicon wafer sandwiches catching sunlight photons and knocking electrons into electric currents.',
+    analogy: {
+      title: 'The Sunlight Catcher and Electron Pinball Machine',
+      story: 'Imagine rays of golden sunlight like trillions of tiny bouncing ping-pong balls of energy called Photons. When photons strike a dark blue solar panel on your roof, they slam into silicon atoms and knock loose tiny electric electrons like a pinball machine! Those loose electrons flow through copper wires as clean, fresh electricity to power your television and refrigerator!',
+      emoji: '⚡'
+    },
+    howItWorks: {
+      title: 'The Photovoltaic (PV) Effect',
+      points: [
+        'Silicon Layers: Panels are made of two specially treated layers of purified silicon (N-type with extra electrons, P-type with holes).',
+        'Photon Strike: Sunlight packets knock electrons free across the electric boundary junction.',
+        'Inverter Conversion: Solar panels generate Direct Current (DC) electricity; a wall inverter converts it into Alternating Current (AC) for household wall plugs.'
+      ]
+    },
+    funFacts: [
+      'Enough sunlight strikes planet Earth in just ONE HOUR to power the entire human civilization for a whole year!',
+      'Solar panels have no moving parts, generate zero noise, and can produce clean electricity for 25 to 30 years with just occasional rain to wash off dust.',
+      'The International Space Station has giant solar wings stretching 240 feet wide that continuously rotate to track the Sun.'
+    ],
+    kidWords: [
+      { word: 'Photon', emoji: '✨', meaning: 'A discrete packet or quantum of light energy travelling at light speed.' },
+      { word: 'Photovoltaic', emoji: '🔆', meaning: 'Relating to the direct production of electric current at the junction of two materials exposed to light.' },
+      { word: 'Inverter', emoji: '🔌', meaning: 'An electrical device that converts direct current (DC) into alternating current (AC).' }
+    ],
+    didYouKnowOrigin: 'French physicist Edmond Becquerel discovered the photovoltaic effect in 1839 when he was just 19 years old while experimenting in his father’s laboratory!',
+    microQuiz: {
+      question: 'What material are most modern solar panels manufactured from?',
+      options: ['Purified Silicon (found abundantly in ordinary quartz sand!)', 'Solid plastic', 'Cardboard paper'],
+      correctIndex: 0,
+      explanation: 'Solar cells are made from silicon crystals, the second most abundant element in Earth’s crust, refined from silica sand!'
+    },
+    seeAlso: [
+      { id: 'the-sun', title: 'The Sun', category: 'solar-system' },
+      { id: 'electricity-power', title: 'Electricity', category: 'how-things-work' }
+    ]
+  },
+  {
+    id: 'magnets-magnetism',
+    title: 'Magnets & Magnetic Fields',
+    symbol: '🧲',
+    pronunciation: '(MAG-nits and MAG-nuh-tiz-um)',
+    category: 'how-things-work',
+    tagline: 'Invisible force fields with North and South poles that attract steel, guide compasses, and float bullet trains.',
+    analogy: {
+      title: 'The Invisible Tractor Beam and Magic Repelling Cushion',
+      story: 'Have you ever tried pushing two identical magnets together and felt an invisible, bouncy rubber cushion pushing back? Every magnet has a North pole and a South pole. Opposites attract (North loves South and snaps tight!), while likes repel (North pushes North away). Earth itself is a gigantic magnet with an invisible magnetic umbrella shielding us from space!',
+      emoji: '🧭'
+    },
+    howItWorks: {
+      title: 'How Magnetic Domains Work',
+      points: [
+        'Atomic Alignment: In magnetic metals like iron, nickel, and cobalt, trillions of microscopic atomic spinning electrons line up in the exact same direction (magnetic domains).',
+        'Invisible Field Lines: Force loops flow out from the North pole and curve back into the South pole.',
+        'Electromagnets: Running an electric current through a coiled copper wire creates an instant magnet that can be switched ON and OFF with a flip of a switch!'
+      ]
+    },
+    funFacts: [
+      'Maglev (Magnetic Levitation) bullet trains in Japan float 4 inches above the tracks on magnetic fields and travel at over 370 miles per hour with zero friction!',
+      'Homing pigeons and sea turtles have microscopic magnetic crystals in their beaks and brains that act like built-in GPS compasses to navigate across thousands of miles.',
+      'If you cut a bar magnet in half, you don’t get a North piece and a South piece — you instantly get TWO smaller complete magnets, each with its own North and South poles!'
+    ],
+    kidWords: [
+      { word: 'Attract', emoji: '🧲', meaning: 'To exert a pulling force that draws unlike poles together.' },
+      { word: 'Repel', emoji: '↔️', meaning: 'To exert a pushing force that forces like magnetic poles apart.' },
+      { word: 'Electromagnet', emoji: '⚡', meaning: 'A soft metal core made into a magnet by the passage of electric current through a surrounding coil.' }
+    ],
+    didYouKnowOrigin: 'Magnets were discovered over 2,500 years ago in ancient Greece in a region called Magnesia, where people found black stones (lodestones) that magically pulled iron needles!',
+    microQuiz: {
+      question: 'What happens when you bring the North pole of one magnet close to the North pole of another magnet?',
+      options: ['They push each other away (repel)', 'They stick tightly like glue', 'They turn into water'],
+      correctIndex: 0,
+      explanation: 'Like magnetic poles (North & North or South & South) always repel each other, while opposite poles attract!'
+    },
+    handsOnExperiment: {
+      title: 'Build a Floating Water Compass',
+      materials: ['A metal sewing needle', 'A refrigerator magnet', 'A slice of wine cork or foam leaf', 'A shallow bowl of water'],
+      steps: [
+        'Rub the needle 30 times in one direction against one pole of your refrigerator magnet to magnetize it.',
+        'Carefully lay the needle flat on top of the small floating cork slice in the center of the water bowl.',
+        'Watch the floating cork slowly spin by itself until it stops pointing directly along the Earth’s North-South magnetic axis!',
+        'Compare with a phone compass: You built an ancient working navigation instrument!'
+      ],
+      explanation: 'The magnetized needle aligns with planet Earth’s natural geomagnetic field lines!',
+      emoji: '🧭'
+    },
+    seeAlso: [
+      { id: 'planet-earth', title: 'Planet Earth', category: 'solar-system' },
+      { id: 'auroras-northern-lights', title: 'Northern Lights', category: 'earth-elements' }
+    ]
+  },
+  {
+    id: 'microscopes-telescopes',
+    title: 'Microscopes & Optical Lenses',
+    symbol: '🔬',
+    pronunciation: '(MY-kruh-skohps and OP-tih-kul LEN-zez)',
+    category: 'how-things-work',
+    tagline: 'Curved glass domes that bend light rays to zoom into single cells or faraway galaxies.',
+    analogy: {
+      title: 'The Light-Bending Glass Magic Looking Glasses',
+      story: 'Glass can bend light rays like a funhouse mirror! A curved glass lens (thicker in the middle) bends spreading light rays together into your pupil, making microscopic things like an ant’s eyelashes or bacteria look thousands of times bigger than they really are!',
+      emoji: '🔍'
+    },
+    howItWorks: {
+      title: 'Refraction & Magnification',
+      points: [
+        'Refraction: Light travels slower through dense glass than through air, causing light rays to bend at an angle when entering a curved lens.',
+        'Convex Lenses: Thicker in the center; focus light rays inward to a focal point to magnify images.',
+        'Compound Microscopes: Use an objective lens close to the slide and an eyepiece lens close to your eye, multiplying zoom power up to 2,000x!'
+      ]
+    },
+    funFacts: [
+      'Dutch draper Antonie van Leeuwenhoek looked through his handcrafted single-lens microscope in 1674 and became the first human ever to see living bacteria, which he called "animalcules"!',
+      'Electron Microscopes don’t use light at all — they shoot beams of electrons, magnifying objects up to 10,000,000 times to see individual DNA strands!',
+      'Water droplets act like natural magnifying lenses: place a drop of water on a newspaper letter and watch the font grow huge!'
+    ],
+    kidWords: [
+      { word: 'Refraction', emoji: '📐', meaning: 'The bending of a light wave when it passes from one transparent medium to another.' },
+      { word: 'Convex', emoji: '🔍', meaning: 'Curving outward like the exterior of a circle or sphere.' },
+      { word: 'Magnification', emoji: '🔬', meaning: 'The process of enlarging the apparent visual size of something.' }
+    ],
+    didYouKnowOrigin: 'The word "Microscope" comes from two Greek words: "Mikros" (meaning small) and "Skopein" (meaning to look or see) — literally "to look at small things"!',
+    microQuiz: {
+      question: 'What happens to a beam of light when it passes from air into a curved glass lens?',
+      options: ['It slows down and bends (refraction)', 'It turns completely black', 'It disappears into smoke'],
+      correctIndex: 0,
+      explanation: 'Because glass is denser than air, light slows down and bends at an angle, focusing the rays to magnify the image!'
+    },
+    seeAlso: [
+      { id: 'james-webb-telescope', title: 'Webb Telescope', category: 'solar-system' },
+      { id: 'human-eyes', title: 'Eyes & Vision', category: 'human-body' }
+    ]
+  },
+  {
+    id: 'cameras-photography',
+    title: 'Cameras & Photography',
+    symbol: '📷',
+    pronunciation: '(KAM-er-uhz and foh-TOG-ruh-fee)',
+    category: 'how-things-work',
+    tagline: 'Trapping moments of light through lenses, shutters, and millions of digital pixel sensors.',
+    analogy: {
+      title: 'Painting with Light in a Blink of an Eye',
+      story: 'A camera works almost identically to your own human eye! Light bounces off a smiling face, travels through a curved lens (the cornea), passes through an opening iris ring (aperture), and hits a digital sensor chip (retina) that records millions of tiny colored dots in a 1/1000th-of-a-second blink (shutter)!',
+      emoji: '📸'
+    },
+    howItWorks: {
+      title: 'The Exposure Triangle',
+      points: [
+        'Aperture (f-stop): The circular iris opening that controls how much light passes into the camera body.',
+        'Shutter Speed: The high-speed mechanical curtain that opens and closes in fractions of a second to freeze motion.',
+        'Digital Sensor (ISO): A grid of millions of light-sensitive photodiodes (pixels) that turn light into digital color numbers.'
+      ]
+    },
+    funFacts: [
+      'The word "Photography" literally means "Drawing with Light" in Greek!',
+      'The very first permanent photograph in human history was taken in 1826 by Joseph Nicéphore Niépce in France — and required an 8-hour exposure!',
+      'Today, humans take over 5 billion digital photographs every single day on smartphones!'
+    ],
+    kidWords: [
+      { word: 'Aperture', emoji: '⭕', meaning: 'The adjustable opening in a lens through which light passes to the sensor.' },
+      { word: 'Shutter', emoji: '🚪', meaning: 'A mechanical curtain that opens for a set duration to expose the sensor to light.' },
+      { word: 'Sensor', emoji: '🔲', meaning: 'An electronic chip covered in photodiodes that converts photons into digital electrical signals.' }
+    ],
+    didYouKnowOrigin: 'The earliest ancestor of the camera was the "Camera Obscura" (Latin for "Dark Chamber"), an ancient dark room with a tiny pinhole that projected an upside-down live image of the outside world onto the wall!',
+    microQuiz: {
+      question: 'What does the word "Photography" literally mean in ancient Greek?',
+      options: ['Drawing or Writing with Light', 'Magic paper', 'Freeze time'],
+      correctIndex: 0,
+      explanation: 'From "Photo" (Light) and "Graph" (Drawing/Writing) — photography literally means painting or drawing with light rays!'
+    },
+    seeAlso: [
+      { id: 'human-eyes', title: 'Eyes & Vision', category: 'human-body' },
+      { id: 'smartphones-touchscreens', title: 'Smartphones & Touchscreens', category: 'how-things-work' }
+    ]
+  },
+  {
+    id: 'robots-ai',
+    title: 'Robots & Artificial Intelligence',
+    symbol: '🤖',
+    pronunciation: '(ROH-bots and ahr-tuh-FISH-ul in-TEL-ih-jens)',
+    category: 'how-things-work',
+    tagline: 'Sensors, motors, microchips, and algorithms helping machines see, learn, and perform tasks.',
+    analogy: {
+      title: 'The Computer with Senses and Mechanical Muscles',
+      story: 'A robot is a computer that can physically interact with the real world! It has sensors (cameras for eyes, ultrasonic microphones for ears), computer chips for a brain, and electric motors and hydraulic gears for muscles. Artificial Intelligence (AI) is the software code that lets machines recognize patterns, learn from examples, and make smart decisions!',
+      emoji: '🧠'
+    },
+    howItWorks: {
+      title: 'The 3 Main Parts of Any Robot',
+      points: [
+        'Sensors (Perception): Cameras, lidar lasers, gyroscopes, and touch bumpers that gather data about the environment.',
+        'Controller / Computer Brain: Processes sensor inputs and calculates the best movement or answer based on algorithms.',
+        'Actuators (Action): Electric motors, servos, and wheels that physically move robotic arms, legs, or wheels.'
+      ]
+    },
+    funFacts: [
+      'NASA’s Perseverance and Curiosity rovers are autonomous robotic geologists driving across the red deserts of Mars right now!',
+      'The word "Robot" was coined in 1920 in a Czech play by Karel Čapek, derived from "robota" meaning forced work or labor.',
+      'Surgical robots help human doctors perform delicate brain and heart operations through incisions smaller than a pencil tip!'
+    ],
+    kidWords: [
+      { word: 'Actuator', emoji: '🦾', meaning: 'A mechanical device for moving or controlling a mechanism or robotic joint.' },
+      { word: 'Algorithm', emoji: '📝', meaning: 'A step-by-step set of mathematical instructions for solving a problem.' },
+      { word: 'Autonomous', emoji: '🛸', meaning: 'Able to navigate and perform operations independently without direct human remote control.' }
+    ],
+    didYouKnowOrigin: 'The robotic Mars rover Curiosity was programmed to sing "Happy Birthday" to itself on Mars on its first anniversary in August 2013 using vibrations in its soil analysis instrument!',
+    microQuiz: {
+      question: 'What do we call the mechanical motors and robotic joints that allow a robot to move its arms and wheels?',
+      options: ['Actuators', 'Antennas', 'Sensors'],
+      correctIndex: 0,
+      explanation: 'Actuators are the motors, pistons, and servos that convert electrical energy into physical robotic movement!'
+    },
+    seeAlso: [
+      { id: 'how-internet-works', title: 'The Internet', category: 'how-things-work' },
+      { id: 'astronauts-rockets', title: 'Astronauts & Rockets', category: 'solar-system' }
+    ]
+  },
+  {
+    id: 'refrigerators-cooling',
+    title: 'Refrigerators & Air Conditioners',
+    symbol: '❄️',
+    pronunciation: '(ree-FRIJ-er-ay-terz and AIR kun-DISH-un-ing)',
+    category: 'how-things-work',
+    tagline: 'How circulating coolant pumps heat OUT of your milk and home to make things icy cold.',
+    analogy: {
+      title: 'The Heat-Stealing Sponge and Evaporator Pump',
+      story: 'A refrigerator doesn’t actually "create cold" — it STEALS HEAT and throws it outside! Think of coolant liquid inside the metal pipes like a magic sponge. As it flows inside the fridge, it absorbs heat from your apples and milk and evaporates into gas. Then a noisy compressor pumps that gas outside to the back of the fridge, squeezing the heat out into your kitchen room!',
+      emoji: '🧃'
+    },
+    howItWorks: {
+      title: 'The Refrigeration Vapor-Compression Cycle',
+      points: [
+        'Expansion Valve: Coolant liquid drops in pressure and becomes freezing cold as it enters inside evaporator coils.',
+        'Evaporator (Heat Absorption): The icy liquid absorbs heat from inside the fridge, boiling into a warm gas.',
+        'Compressor (The Pump): Squeezes the gas, raising its temperature and pressure.',
+        'Condenser (Heat Release): Hot coils on the back/bottom release the stolen heat into the room air, turning coolant back into a liquid to repeat the cycle!'
+      ]
+    },
+    funFacts: [
+      'If you touch the metal coils on the back or bottom of a running refrigerator, you will feel warm air — that is the heat stolen from your ice cream!',
+      'Before electric refrigerators were invented in the 1920s, people stored food in wooden "iceboxes" filled with giant blocks of lake ice cut during winter and delivered by horse wagons!',
+      'Air conditioners in cars and homes work using the exact same four-step refrigeration cycle.'
+    ],
+    kidWords: [
+      { word: 'Refrigerant', emoji: '🧪', meaning: 'A fluid with a very low boiling point that circulates to absorb and transfer heat.' },
+      { word: 'Compressor', emoji: '⚙️', meaning: 'A mechanical pump that squeezes gas coolant into a high-pressure state.' },
+      { word: 'Condenser', emoji: '♨️', meaning: 'Coils where hot vapor gives off heat and condenses back into liquid.' }
+    ],
+    didYouKnowOrigin: 'If you leave the refrigerator door open, will it cool down your kitchen? No! Because the compressor motor generates more heat in the back than the open door cools in the front, leaving the door open actually makes the room hotter!',
+    microQuiz: {
+      question: 'How does a refrigerator keep milk and food cold inside?',
+      options: ['It absorbs heat from inside and pumps it out into the room air behind it', 'It manufactures ice from air', 'It blows winter wind from a freezer box'],
+      correctIndex: 0,
+      explanation: 'Refrigerators use circulating refrigerant fluid to absorb heat from food and expel it into the room through rear condenser coils!'
+    },
+    seeAlso: [
+      { id: 'water-element', title: 'Water Cycle', category: 'earth-elements' },
+      { id: 'electricity-power', title: 'Electricity', category: 'how-things-work' }
+    ]
   }
 ];

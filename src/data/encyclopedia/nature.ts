@@ -278,5 +278,356 @@ export const NATURE_ENTRIES: EncyclopediaEntry[] = [
       { id: 'planet-earth', title: 'Planet Earth', category: 'solar-system' },
       { id: 'the-sun', title: 'The Sun', category: 'solar-system' }
     ]
+  },
+  {
+    id: 'photosynthesis-plants',
+    title: 'Photosynthesis & Plant Superpowers',
+    symbol: '🌱',
+    pronunciation: '(foh-toh-SIN-thuh-sis)',
+    category: 'earth-elements',
+    tagline: 'The miraculous green kitchen turning sunlight, air, and water into sweet food and fresh oxygen.',
+    analogy: {
+      title: 'The Solar-Powered Sugar Bakery in Every Leaf',
+      story: 'Every green leaf is a miniature solar-powered kitchen! Plants don’t have mouths to eat hamburgers or apples; instead, their tiny green chef molecules (chlorophyll) catch rays of golden sunlight, drink water from the soil through root straws, suck in carbon dioxide air, and bake delicious plant sugar while gifting us pure, fresh oxygen to breathe!',
+      emoji: '🍃'
+    },
+    howItWorks: {
+      title: 'The Photosynthesis Recipe',
+      points: [
+        'Sunlight (Solar Power): Chlorophyll pigment traps photons of light in microscopic solar factories called chloroplasts.',
+        'Water (H2O): Sucked up through capillary tree root tubes from the ground to the leaves.',
+        'Carbon Dioxide (CO2): Absorbed from the air through microscopic leaf breathing pores called stomata.',
+        'The Output: Glucose sugar for plant energy and fresh Oxygen (O2) released for humans and animals to breathe!'
+      ]
+    },
+    funFacts: [
+      'Over 50% to 80% of all the oxygen on planet Earth is produced not by land trees, but by microscopic ocean algae and phytoplankton!',
+      'Leaves look green because chlorophyll absorbs blue and red wavelengths of light, reflecting green back to our eyes.',
+      'Without photosynthesis, Earth would have no breathable oxygen and no animal life could survive.'
+    ],
+    kidWords: [
+      { word: 'Chlorophyll', emoji: '🟢', meaning: 'The green pigment in plant cells that absorbs light energy.' },
+      { word: 'Stomata', emoji: '🕳️', meaning: 'Microscopic mouth-like pores on leaf surfaces that exchange gases.' },
+      { word: 'Glucose', emoji: '🍬', meaning: 'A simple sugar produced by plants for energy and growth.' }
+    ],
+    didYouKnowOrigin: 'The word "Photosynthesis" comes from two Greek words: "Photo" (meaning light) and "Synthesis" (meaning putting together) — literally "putting things together with light"!',
+    microQuiz: {
+      question: 'What gas do green plants absorb from the air during photosynthesis?',
+      options: ['Carbon Dioxide (CO2)', 'Helium', 'Pure Gold'],
+      correctIndex: 0,
+      explanation: 'Plants absorb carbon dioxide from the air and release fresh oxygen back into the atmosphere!'
+    },
+    handsOnExperiment: {
+      title: 'Watch a Leaf Breathe Underwater',
+      materials: ['A freshly plucked green leaf', 'A clear glass bowl filled with lukewarm water', 'A small clean pebble'],
+      steps: [
+        'Place the fresh green leaf in the bowl of water, fully submerged.',
+        'Rest a small pebble on the leaf to keep it from floating to the surface.',
+        'Place the bowl on a sunny windowsill for 1 hour.',
+        'Look closely: Tiny sparkling bubbles of oxygen gas will form on the leaf edges as it breathes out in real time!'
+      ],
+      explanation: 'Under sunlight, the submerged leaf conducts photosynthesis and releases oxygen gas bubbles that cling to its surface!',
+      emoji: '🫧'
+    },
+    seeAlso: [
+      { id: 'trees-forests', title: 'Trees & Forests', category: 'earth-elements' },
+      { id: 'the-sun', title: 'The Sun', category: 'solar-system' }
+    ]
+  },
+  {
+    id: 'trees-forests',
+    title: 'Trees & The Wood Wide Web',
+    symbol: '🌳',
+    pronunciation: '(TREEZ and FOR-ists)',
+    category: 'earth-elements',
+    tagline: 'Ancient woody giants connected by an underground fungal internet that shares food and warnings.',
+    analogy: {
+      title: 'The Underground Forest Internet and Living Towers',
+      story: 'Did you know trees talk and share with each other? Underneath the forest floor lies a vast, microscopic fungal network called mycorrhizae — the "Wood Wide Web"! Mother trees send sugar nutrients through this fungal web to feed baby saplings growing in dark shade, and send chemical warnings when pests attack!',
+      emoji: '🍄'
+    },
+    howItWorks: {
+      title: 'Anatomy of a Tree',
+      points: [
+        'Roots: Anchor the tree against storms and absorb gallons of water and minerals.',
+        'Trunk & Bark: Outer armor protecting inner pipelines — Xylem pumps water up to leaves; Phloem carries sugar food down to roots.',
+        'Canopy: Leafy umbrellas that shade the ground, cool the air, and provide homes for birds and squirrels.',
+        'Tree Rings: Count the circular rings in a cut trunk — each light and dark ring pair represents one full year of growth!'
+      ]
+    },
+    funFacts: [
+      'The oldest living individual tree on Earth is a Bristlecone Pine named Methuselah in California, over 4,850 years old!',
+      'The tallest trees on Earth are Coast Redwoods, standing over 380 feet tall — taller than the Statue of Liberty!',
+      'A single mature leafy oak tree can absorb 100 gallons of water per day and breathe out enough oxygen for four people.'
+    ],
+    kidWords: [
+      { word: 'Mycorrhizae', emoji: '🍄', meaning: 'Symbiotic underground fungal threads connecting tree roots to trade nutrients.' },
+      { word: 'Canopy', emoji: '🌿', meaning: 'The uppermost leafy roof layer formed by mature tree crowns.' },
+      { word: 'Deciduous', emoji: '🍂', meaning: 'Trees that shed their leaves seasonally every autumn.' }
+    ],
+    didYouKnowOrigin: 'Dendrochronology is the scientific study of tree rings to date ancient climates and historic wooden buildings!',
+    microQuiz: {
+      question: 'How can you tell the exact age of a fallen tree?',
+      options: ['Count the concentric growth rings inside its trunk', 'Weigh its branches', 'Measure the bark thickness'],
+      correctIndex: 0,
+      explanation: 'Trees add a new layer of wood every growing season, forming visible annual rings that record their age and climate history!'
+    },
+    seeAlso: [
+      { id: 'photosynthesis-plants', title: 'Photosynthesis', category: 'earth-elements' },
+      { id: 'four-seasons', title: 'The 4 Seasons', category: 'earth-elements' }
+    ]
+  },
+  {
+    id: 'earthquakes-tectonics',
+    title: 'Earthquakes & Plate Tectonics',
+    symbol: '🌋',
+    pronunciation: '(URTH-kwayks and TEK-ton-iks)',
+    category: 'earth-elements',
+    tagline: 'When Earth’s giant puzzle-piece crust plates grind and snap, shaking the ground.',
+    analogy: {
+      title: 'The Cracked Eggshell and Snapping Rubber Band',
+      story: 'Earth’s hard outer rocky crust is not one solid shell — it is cracked into a dozen giant moving puzzle pieces called tectonic plates, floating on hot, gooey molten rock! As plates crawl against each other, they get stuck. Elastic friction builds up until — SNAP! — they suddenly jerk free, sending seismic shockwaves rumbling through the ground!',
+      emoji: '🧩'
+    },
+    howItWorks: {
+      title: 'How Ground Shakes',
+      points: [
+        'Fault Lines: Fractures in the crust where rock blocks slide past each other (like the famous San Andreas Fault in California).',
+        'Hypocenter & Epicenter: The hypocenter is where the snap begins deep underground; the epicenter is the point directly above on Earth’s surface.',
+        'Seismic Waves: Primary (P) compression waves and Secondary (S) shear waves ripple through the ground at miles per second.'
+      ]
+    },
+    funFacts: [
+      'Over 500,000 earthquakes occur around the world every year, but humans only feel about 100,000 of them because most are tiny!',
+      'The "Ring of Fire" around the Pacific Ocean is home to 90% of the world’s earthquakes and 75% of all active volcanoes.',
+      'Scientists measure earthquake vibration waves using sensitive instruments called Seismographs.'
+    ],
+    kidWords: [
+      { word: 'Tectonic Plate', emoji: '🗺️', meaning: 'A massive, irregularly shaped slab of solid rock that makes up Earth’s crust.' },
+      { word: 'Seismograph', emoji: '📈', meaning: 'An instrument that measures and records details of earthquake ground vibrations.' },
+      { word: 'Epicenter', emoji: '📍', meaning: 'The point on Earth’s surface directly above where an earthquake starts.' }
+    ],
+    didYouKnowOrigin: 'The word "Seismic" comes from the ancient Greek word "seismos", which meant an earthquake or violent shaking!',
+    microQuiz: {
+      question: 'What is the crack in Earth’s crust called where two tectonic plates slide against each other?',
+      options: ['A Fault Line', 'A Trench Pipe', 'A Crater Rim'],
+      correctIndex: 0,
+      explanation: 'A fault line is a geological fracture where rock masses slip past each other, releasing earthquake energy!'
+    },
+    seeAlso: [
+      { id: 'volcanoes-element', title: 'Volcanoes', category: 'earth-elements' },
+      { id: 'mount-everest', title: 'Mount Everest', category: 'countries-world' }
+    ]
+  },
+  {
+    id: 'tornadoes-hurricanes',
+    title: 'Tornadoes & Hurricanes',
+    symbol: '🌪️',
+    pronunciation: '(tor-NAY-dohz and HUR-ih-kaynz)',
+    category: 'earth-elements',
+    tagline: 'The planet’s wildest weather vortexes: spinning land funnels and giant ocean storms.',
+    analogy: {
+      title: 'The Spinning Bathtub Whirlpool of the Atmosphere',
+      story: 'Have you ever pulled the drain plug in a bathtub and watched the water spin into a whirlpool? Tornadoes and hurricanes are giant air whirlpools! When warm, moist rising air collides with cool, dry descending air under strong crosswinds, the atmosphere starts spinning into a twisting vortex of unbelievable power.',
+      emoji: '🌀'
+    },
+    howItWorks: {
+      title: 'Tornadoes vs. Hurricanes',
+      points: [
+        'Tornadoes (🌪️): Fast, narrow funnels descending from supercell storm clouds onto land, with winds up to 300 mph lasting minutes to an hour.',
+        'Hurricanes / Typhoons (🌀): Colossal ocean storms spanning 300 to 500 miles wide, powered by warm tropical seawater over many days.',
+        'The Eye of the Hurricane: The calm, sunny, clear center of the storm surrounded by the violent, roaring Eyewall.'
+      ]
+    },
+    funFacts: [
+      'The central United States has an area called "Tornado Alley" where cold Canadian air and warm Gulf of Mexico air collide frequently.',
+      'Hurricanes spin counterclockwise in the Northern Hemisphere, but spin clockwise in the Southern Hemisphere because of Earth’s rotation (the Coriolis Effect)!',
+      'Hurricane hunter pilots fly specially fortified airplanes directly through violent hurricane eyewalls to drop scientific sensor probes.'
+    ],
+    kidWords: [
+      { word: 'Vortex', emoji: '🌀', meaning: 'A whirling mass of fluid or air with a low-pressure center.' },
+      { word: 'Supercell', emoji: '⛈️', meaning: 'A severe thunderstorm featuring a persistent rotating updraft called a mesocyclone.' },
+      { word: 'Eyewall', emoji: '👁️', meaning: 'The ring of intense thunderstorms immediately surrounding the calm eye of a hurricane.' }
+    ],
+    didYouKnowOrigin: 'Hurricanes are called "Hurricanes" in the Atlantic Ocean, "Typhoons" in the northwestern Pacific, and "Tropical Cyclones" in the Indian Ocean — they are all the exact same weather phenomenon!',
+    microQuiz: {
+      question: 'What is weather like inside the very center ("the Eye") of a powerful hurricane?',
+      options: ['Surprisingly calm, clear, and sunny', 'The windiest spot on Earth', 'Freezing blizzard snow'],
+      correctIndex: 0,
+      explanation: 'The Eye of a hurricane is a peaceful cylinder of sinking air with calm breezes and clear blue skies, surrounded by the fierce eyewall!'
+    },
+    seeAlso: [
+      { id: 'clouds-rain', title: 'Clouds & Rain', category: 'earth-elements' },
+      { id: 'lightning-thunder', title: 'Lightning & Thunder', category: 'earth-elements' }
+    ]
+  },
+  {
+    id: 'ocean-tides-coral',
+    title: 'Ocean Tides & Coral Reefs',
+    symbol: '🪸',
+    pronunciation: '(TYDZ and KOR-ul REEFS)',
+    category: 'earth-elements',
+    tagline: 'The Moon’s gravitational water dance and the vibrant underwater living rock cities.',
+    analogy: {
+      title: 'The Moon’s Ocean Squeeze and The Underwater Rainforest',
+      story: 'Twice a day, the ocean water rises high on the beach and then slips far away! Why? The Moon acts like a giant invisible magnet pulling Earth’s ocean water toward it in a gravitational bulge. Down beneath the warm waves live Coral Reefs — bustling underwater cities built by millions of tiny soft creatures that build stone houses out of limestone!',
+      emoji: '🐠'
+    },
+    howItWorks: {
+      title: 'How Tides and Corals Thrive',
+      points: [
+        'Lunar Gravity Pull: The Moon’s gravity tugs on Earth’s oceans, creating two high tides and two low tides roughly every 24 hours and 50 minutes.',
+        'Coral Polyps: Corals are not plants or rocks — they are tiny animals called polyps that secrete calcium carbonate hard skeletons.',
+        'Zooxanthellae Partnership: Tiny algae live inside coral polyps, providing food via photosynthesis in exchange for safe shelter.'
+      ]
+    },
+    funFacts: [
+      'The Bay of Fundy in Canada has the highest tides on Earth, with water rising and falling up to 53 feet (as tall as a 5-story building)!',
+      'The Great Barrier Reef in Australia is so gigantic that it can be seen by astronauts looking down from outer space orbit.',
+      'Coral reefs cover less than 1% of the ocean floor, but provide shelter and nurseries for over 25% of all marine life!'
+    ],
+    kidWords: [
+      { word: 'Polyp', emoji: '🪸', meaning: 'A tiny, soft-bodied animal that builds hard calcium carbonate coral cups.' },
+      { word: 'High Tide', emoji: '🌊', meaning: 'The state of the tide when the ocean water reaches its highest level.' },
+      { word: 'Limestone', emoji: '🪨', meaning: 'Hard sedimentary rock composed mainly of calcium carbonate from ancient shells and coral.' }
+    ],
+    didYouKnowOrigin: 'Corals reproduce in a magical annual event: on a specific moonlit night once a year, entire coral reefs release millions of glowing eggs into the sea simultaneously like an underwater snowstorm!',
+    microQuiz: {
+      question: 'What celestial neighbor’s gravity is primarily responsible for the rising and falling of ocean tides?',
+      options: ['The Moon', 'Planet Mars', 'Pluto'],
+      correctIndex: 0,
+      explanation: 'The Moon’s gravitational attraction pulls Earth’s liquid oceans into a bulge, creating high and low tides as Earth rotates!'
+    },
+    seeAlso: [
+      { id: 'world-oceans', title: 'World Oceans', category: 'countries-world' },
+      { id: 'the-moon', title: 'The Moon', category: 'solar-system' }
+    ]
+  },
+  {
+    id: 'rocks-fossils',
+    title: 'Rocks, Minerals & Dinosaur Fossils',
+    symbol: '💎',
+    pronunciation: '(ROKS, MIN-er-ulz and FOS-ulz)',
+    category: 'earth-elements',
+    tagline: 'The three types of Earth stone and the million-year-old rock casts preserving ancient dinosaur bones.',
+    analogy: {
+      title: 'Earth’s Hard-Cover History Book and Bone Time Machines',
+      story: 'Every rock you pick up in your yard is a time machine! The ground beneath your shoes is made of three great rock families: rocks baked by fiery volcanoes (Igneous), rocks pressed down from ancient river mud (Sedimentary), and rocks squeezed by deep mountain pressure (Metamorphic). Hidden inside sedimentary mud are real dinosaur fossils!',
+      emoji: '🦖'
+    },
+    howItWorks: {
+      title: 'The 3 Rock Types & Fossilization',
+      points: [
+        'Igneous Rocks (🌋): Melted magma or lava that cools into stone (like black glass obsidian or kitchen granite).',
+        'Sedimentary Rocks (🏖️): Layers of sand, mud, and shells compressed over millions of years (sandstone, limestone) — where fossils are found!',
+        'Metamorphic Rocks (💎): Pre-existing rocks transformed by searing heat and tectonic pressure deep inside Earth (limestone turns into marble!).',
+        'Fossilization: Minerals slowly replace bone cells molecule-by-molecule, turning bone into rock-hard stone casts over millions of years.'
+      ]
+    },
+    funFacts: [
+      'Diamonds are the hardest natural mineral on Earth, formed over 90 miles deep under immense heat and pressure from pure carbon!',
+      'Pumice is an igneous volcanic rock so full of trapped air gas bubbles that it actually floats on top of water like a cork!',
+      'Coprolite is real fossilized dinosaur poop — scientists study it to find out what prehistoric creatures ate for lunch!'
+    ],
+    kidWords: [
+      { word: 'Sedimentary', emoji: '🏜️', meaning: 'Rock formed from accumulated layers of sediment deposited by water or wind.' },
+      { word: 'Fossil', emoji: '🦴', meaning: 'The preserved remains or traces of ancient organisms embedded in rock.' },
+      { word: 'Mineral', emoji: '💎', meaning: 'A naturally occurring inorganic solid substance with a definite chemical formula.' }
+    ],
+    didYouKnowOrigin: 'The word "Fossil" comes from the Latin verb "fodere", which meant "to dig up" from the ground!',
+    microQuiz: {
+      question: 'Which of the three rock types is where dinosaur bones and prehistoric fossils are preserved?',
+      options: ['Sedimentary rock (pressed layers of mud and sand)', 'Igneous melted lava', 'Plastic rocks'],
+      correctIndex: 0,
+      explanation: 'Sedimentary rock layers gently bury organisms, allowing minerals over millions of years to turn bones into stone fossils!'
+    },
+    seeAlso: [
+      { id: 'tyrannosaurus-rex', title: 'T-Rex', category: 'animals-dinosaurs' },
+      { id: 'volcanoes-element', title: 'Volcanoes', category: 'earth-elements' }
+    ]
+  },
+  {
+    id: 'auroras-northern-lights',
+    title: 'Northern Lights & Auroras',
+    symbol: '✨',
+    pronunciation: '(aw-ROH-ruh and NOR-thern LYTS)',
+    category: 'earth-elements',
+    tagline: 'Dazzling ribbons of glowing emerald, violet, and ruby light dancing across the polar skies.',
+    analogy: {
+      title: 'The Sky’s Cosmic Neon Glow Stick',
+      story: 'Imagine looking up at a snowy arctic night sky and seeing giant green and purple ribbons of light waving like silk curtains in the breeze! That is the Aurora Borealis. It happens when electric particles blasted from the Sun crash into Earth’s magnetic shield, exciting atmospheric gases into glowing like a giant neon sign!',
+      emoji: '🌌'
+    },
+    howItWorks: {
+      title: 'The Science of the Sky Glow',
+      points: [
+        'Solar Wind: The Sun constantly blasts a stream of high-energy charged protons and electrons across space.',
+        'Magnetic Funnel: Earth’s magnetic field deflects most particles, but funnels some down toward the North and South magnetic poles.',
+        'Atmospheric Glow: Solar particles slam into oxygen atoms (glowing vibrant green or rare ruby red) and nitrogen molecules (glowing rich purple and blue).'
+      ]
+    },
+    funFacts: [
+      'In the Northern Hemisphere they are called Aurora Borealis (Northern Lights); in the Southern Hemisphere near Antarctica they are called Aurora Australis (Southern Lights)!',
+      'Astronauts looking down from the International Space Station can see auroras glowing like green halos right below them!',
+      'Other planets with magnetic fields and atmospheres — like Jupiter and Saturn — have spectacular aurora light shows too!'
+    ],
+    kidWords: [
+      { word: 'Aurora', emoji: '✨', meaning: 'A natural luminous atmospheric display seen in polar regions.' },
+      { word: 'Solar Wind', emoji: '💨', meaning: 'A continuous stream of charged particles released from the Sun’s corona.' },
+      { word: 'Geomagnetic', emoji: '🧲', meaning: 'Relating to the natural magnetic field of planet Earth.' }
+    ],
+    didYouKnowOrigin: 'Galileo Galilei named the phenomenon in 1619 after Aurora (the Roman goddess of dawn) and Boreas (the Greek god of the north wind)!',
+    microQuiz: {
+      question: 'What causes the vivid green and purple colors of the Northern Lights?',
+      options: ['Solar particles colliding with oxygen and nitrogen atoms in Earth’s atmosphere', 'Reflections off polar ice', 'Flashlights'],
+      correctIndex: 0,
+      explanation: 'Solar particles energize oxygen atoms to glow green and red, and nitrogen molecules to glow purple and blue!'
+    },
+    seeAlso: [
+      { id: 'the-sun', title: 'The Sun', category: 'solar-system' },
+      { id: 'planet-earth', title: 'Planet Earth', category: 'solar-system' }
+    ]
+  },
+  {
+    id: 'glaciers-icebergs',
+    title: 'Glaciers & Giant Icebergs',
+    symbol: '🧊',
+    pronunciation: '(GLAY-shurz and YS-burgz)',
+    category: 'earth-elements',
+    tagline: 'Vast rivers of ancient compressed blue ice and floating ocean towers hiding 90% below.',
+    analogy: {
+      title: 'The Slow-Moving Frozen Bulldozers and Ice Castles',
+      story: 'A glacier is not just a pile of snow — it is a colossal river of rock-hard blue ice miles long that slowly crawls down mountains like a frozen bulldozer, carving out giant U-shaped valleys! When a glacier reaches the ocean edge, gigantic chunks break off with a thunderous BOOM (calving) into floating Icebergs!',
+      emoji: '🏔️'
+    },
+    howItWorks: {
+      title: 'Inside the Ice Giants',
+      points: [
+        'Compressed Blue Ice: Centuries of heavy snowfall compress snowflakes so tightly that air bubbles are squeezed out, absorbing red light and reflecting brilliant crystal blue.',
+        'Gravity Flow: Tremendous weight makes deep ice slightly pliable, causing the glacier to creep downhill inches or feet per day.',
+        'The Tip of the Iceberg: Ice is slightly less dense than seawater, so 90% of an iceberg’s mass is hidden underwater, with only 10% visible above the waves!'
+      ]
+    },
+    funFacts: [
+      'Glaciers store about 69% of all the freshwater on the entire planet Earth!',
+      'The largest iceberg ever recorded was Iceberg B-15 in Antarctica — larger than the entire island of Jamaica!',
+      'Glacier ice is so dense that sound travels through it with eerie, beautiful acoustic cracks and pops.'
+    ],
+    kidWords: [
+      { word: 'Calving', emoji: '💥', meaning: 'The dramatic breaking off of a mass of ice from a glacier into the water.' },
+      { word: 'Meltwater', emoji: '💧', meaning: 'Fresh water formed by the melting of snow or glacier ice.' },
+      { word: 'Moraine', emoji: '🪨', meaning: 'A ridge or mound of rock and gravel left behind by a moving glacier.' }
+    ],
+    didYouKnowOrigin: 'The word "Iceberg" is a translation of the Dutch word "ijsberg", which literally means "Ice Mountain"!',
+    microQuiz: {
+      question: 'How much of an ocean iceberg is hidden beneath the water’s surface?',
+      options: ['About 90% (Only the top 10% sticks out!)', 'Only 5%', 'All of it floats completely on top'],
+      correctIndex: 0,
+      explanation: 'Because ice is only about 9% less dense than seawater, nine-tenths (90%) of an iceberg remains submerged underwater!'
+    },
+    seeAlso: [
+      { id: 'antarctica-continent', title: 'Antarctica', category: 'countries-world' },
+      { id: 'water-element', title: 'Water Cycle', category: 'earth-elements' }
+    ]
   }
 ];
