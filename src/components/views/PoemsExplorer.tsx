@@ -203,7 +203,7 @@ export const PoemsExplorer: React.FC<PoemsExplorerProps> = ({
         setIsPlayingAudio(false);
         setActiveStanzaIndex(-1);
         setReciteCompleted(true);
-        playSoundEffect('success', settings.soundEffects);
+        playSoundEffect('victory', settings.soundEffects);
       };
     }
 
@@ -676,7 +676,7 @@ export const PoemsExplorer: React.FC<PoemsExplorerProps> = ({
                   <div className="flex justify-center gap-2">
                     <button
                       onClick={() => {
-                        playSoundEffect('applause', settings.soundEffects);
+                        playSoundEffect('cheer', settings.soundEffects);
                         setReciteCompleted(true);
                       }}
                       className="px-4 py-2 bg-[#6BCB77] text-white rounded-xl font-black text-xs uppercase shadow-xs cursor-pointer hover:bg-emerald-600"

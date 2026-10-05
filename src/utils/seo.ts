@@ -2,6 +2,7 @@ import { AppRoute, formatRouteUrl } from './router';
 import { ALPHABET_DATA, DIGIT_DATA } from '../data/curriculumData';
 import { ENCYCLOPEDIA_ENTRIES, ENCYCLOPEDIA_CATEGORIES } from '../data/encyclopediaData';
 import { POEMS_DATA, POEM_CATEGORIES, getPoemById } from '../data/poemsData';
+import { STORIES_COLLECTION, STORY_CATEGORIES } from '../data/storiesData';
 
 export interface SeoMetadata {
   title: string;
@@ -595,20 +596,20 @@ export function getSeoMetadata(route: AppRoute): SeoMetadata {
     }
 
     case 'phonics-stories': {
-      const pageTitle = 'Decodable Phonics Readers & Storybooks | First Open School';
-      const pageDesc = 'Read decodable phonics storybooks with word-by-word audio narration, highlighting, and comprehension quizzes for emerging readers.';
+      const pageTitle = '110 Decodable Phonics Readers & Story World | First Open School';
+      const pageDesc = 'Read over 100 whimsical one-line decodable stories for kids with interactive comprehension quizzes, audio narration, and star awards.';
       return {
         title: pageTitle,
         description: pageDesc,
         canonicalUrl,
-        ogTitle: 'Decodable Phonics Readers for Kids',
+        ogTitle: '110 One-Line Decodable Phonics Stories for Kids',
         ogDescription: pageDesc,
         ogType: 'website',
         ogImage: DEFAULT_IMAGE,
         twitterCard: 'summary_large_image',
-        keywords: ['decodable readers', 'phonics storybooks', 'early reading books', 'read aloud books for kids'],
-        breadcrumbs: [...defaultBreadcrumbs, { name: 'Phonics Stories', url: canonicalUrl }],
-        jsonLd: [{ '@context': 'https://schema.org', '@type': 'Course', name: 'Decodable Phonics Readers', url: canonicalUrl }]
+        keywords: ['1 line stories', 'decodable readers', 'phonics storybooks', 'early reading stories', 'read aloud books for kids', 'first open school stories'],
+        breadcrumbs: [...defaultBreadcrumbs, { name: 'Story World (110 Stories)', url: canonicalUrl }],
+        jsonLd: [{ '@context': 'https://schema.org', '@type': 'Course', name: '110 Decodable Phonics Readers', url: canonicalUrl }]
       };
     }
 
@@ -1315,6 +1316,73 @@ export function renderSemanticRouteHtml(route: AppRoute): string {
         </section>
       `;
     }
+  } else if (route.tab === 'phonics-stories') {
+    mainContentHtml = `
+      <section style="background:#ffffff;border-radius:2rem;padding:2.5rem;border:4px solid #4d96ff;box-shadow:0 8px 0 #3a72c1;margin-top:1.5rem;">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;flex-wrap:wrap;">
+          <span style="font-size:2.5rem;">📖</span>
+          <div>
+            <h1 style="font-size:2.25rem;font-weight:900;color:#2d2d2d;margin:0;">
+              Story World: 110 One-Line Decodable Phonics Stories
+            </h1>
+            <div style="font-size:1rem;color:#4d96ff;font-weight:800;">
+              Single-Sentence Early Reader Stories with Comprehension Checks & Audio Narration
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size:1.1rem;line-height:1.7;color:#444;margin:1rem 0 2rem 0;">
+          Welcome to the First Open School <strong>Story World</strong>! Featuring over 100 whimsical, single-sentence stories crafted specifically for emerging readers. Each story contains rich phonics patterns, high-frequency sight words, and an instant multiple-choice reading comprehension check.
+        </p>
+
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem;">
+          ${STORY_CATEGORIES.map(c => `
+            <span style="padding:0.4rem 0.8rem;background:#f0f7ff;border:1px solid #4d96ff;border-radius:2rem;font-size:0.85rem;font-weight:800;color:#2b548f;">
+              ${c.icon} ${escapeHtmlText(c.label)} (${c.count})
+            </span>
+          `).join('')}
+        </div>
+
+        <h2 style="font-size:1.5rem;font-weight:900;color:#2d2d2d;margin:0 0 1.25rem 0;">
+          Complete Library of 110 One-Line Decodable Stories:
+        </h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));gap:1rem;">
+          ${STORIES_COLLECTION.map((s, idx) => `
+            <div style="background:#fcfbf8;border:2px solid #e5e7eb;border-radius:1rem;padding:1.25rem;display:flex;flex-direction:column;justify-content:space-between;">
+              <div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
+                  <span style="font-size:1.75rem;">${s.emoji || '📖'}</span>
+                  <span style="font-size:0.75rem;font-weight:800;color:#4d96ff;background:#eff6ff;padding:0.2rem 0.5rem;border-radius:0.5rem;">
+                    #${idx + 1} &bull; ${escapeHtmlText(s.category || 'Story')}
+                  </span>
+                </div>
+                <div style="font-size:1.05rem;font-weight:900;color:#2d2d2d;margin-bottom:0.35rem;">
+                  ${escapeHtmlText(s.title)}
+                </div>
+                <div style="font-size:0.75rem;font-weight:800;color:#059669;margin-bottom:0.75rem;">
+                  🎯 ${escapeHtmlText(s.phonicsFocus)}
+                </div>
+                <blockquote style="margin:0 0 0.75rem 0;font-size:0.95rem;color:#1e293b;line-height:1.5;font-style:italic;background:#ffffff;padding:0.75rem;border-radius:0.75rem;border:1px solid #cbd5e1;">
+                  &ldquo;${escapeHtmlText(s.story)}&rdquo;
+                </blockquote>
+              </div>
+              <div style="background:#fef3c7;padding:0.6rem;border-radius:0.5rem;font-size:0.8rem;color:#92400e;font-weight:700;">
+                ❓ Question: ${escapeHtmlText(s.question)}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+
+        <div style="background:#f0fdf4;border:2px solid #22c55e;border-radius:1.5rem;padding:1.5rem;margin-top:2.5rem;">
+          <h3 style="font-size:1.25rem;font-weight:900;color:#166534;margin:0 0 0.5rem 0;">
+            The Science of One-Line Reading Stories 🧠
+          </h3>
+          <p style="font-size:0.95rem;color:#14532d;line-height:1.6;margin:0;">
+            Early readers often experience cognitive overload when confronted with full paragraphs. By distilling stories into a single vivid sentence followed by an immediate comprehension quiz, children build phonemic confidence, exercise working memory, and experience genuine reading mastery without intimidation.
+          </p>
+        </div>
+      </section>
+    `;
   } else if (route.tab === 'alphabets') {
     if (route.letter) {
       const char = route.letter.toUpperCase();

@@ -170,12 +170,16 @@ export interface ParentSettings {
 }
 
 export interface PhonicsStory {
+  id?: string;
   title: string;
   story: string;
   phonicsFocus: string;
   question: string;
   options?: string[];
   correctOptionIndex?: number;
+  emoji?: string;
+  category?: string;
+  themeColor?: string;
 }
 
 export interface LMSExportData {

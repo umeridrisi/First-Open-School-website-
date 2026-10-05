@@ -261,7 +261,7 @@ export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings,
             </div>
             <div>
               <h4 className="font-black text-[#2D2D2D] text-base group-hover:text-[#6BCB77] transition-colors">Story World</h4>
-              <p className="text-xs text-gray-500 font-bold">Listen and read along with phonics mini-stories.</p>
+              <p className="text-xs text-gray-500 font-bold">110+ decodable 1-line stories with comprehension quizzes.</p>
             </div>
           </a>
 
