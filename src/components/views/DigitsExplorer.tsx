@@ -116,16 +116,20 @@ export const DigitsExplorer: React.FC<DigitsExplorerProps> = ({
             <span>Hear Number</span>
           </button>
 
-          <button
-            onClick={() => {
-              playSoundEffect('click', settings.soundEffects);
-              onSelectDigitForTracing(selectedDigit);
+          <a
+            href={`/tracing/${selectedDigit.value}`}
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                e.preventDefault();
+                playSoundEffect('click', settings.soundEffects);
+                onSelectDigitForTracing(selectedDigit);
+              }
             }}
-            className="flex items-center justify-center space-x-2 px-6 py-3.5 bg-yellow-400 text-slate-900 font-extrabold text-sm rounded-2xl shadow-md hover:bg-yellow-300 transition-all active:scale-95"
+            className="flex items-center justify-center space-x-2 px-6 py-3.5 bg-yellow-400 text-slate-900 font-extrabold text-sm rounded-2xl shadow-md hover:bg-yellow-300 transition-all active:scale-95 no-underline"
           >
             <PenTool className="w-5 h-5" />
             <span>Trace Digit {selectedDigit.value}</span>
-          </button>
+          </a>
         </div>
 
       </div>
@@ -174,15 +178,19 @@ export const DigitsExplorer: React.FC<DigitsExplorerProps> = ({
           const isMastered = student.progress[String(item.value)]?.mastered;
 
           return (
-            <button
+            <a
               key={item.value}
-              onClick={() => {
-                setSelectedDigit(item);
-                onDigitChange?.(item.value);
-                handlePlayDigitSound(item);
+              href={`/digits/${item.value}`}
+              onClick={(e) => {
+                if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                  e.preventDefault();
+                  setSelectedDigit(item);
+                  onDigitChange?.(item.value);
+                  handlePlayDigitSound(item);
+                }
               }}
               onMouseEnter={() => speakText(String(item.value), settings.voiceGuidance)}
-              className={`relative p-4 rounded-3xl border text-center space-y-2 transition-all transform hover:-translate-y-1 active:scale-95 ${
+              className={`relative p-4 rounded-3xl border text-center space-y-2 transition-all transform hover:-translate-y-1 active:scale-95 no-underline block ${
                 isSelected
                   ? 'bg-emerald-500 text-white border-emerald-600 shadow-lg ring-4 ring-emerald-300/40 scale-105'
                   : 'bg-white hover:bg-emerald-50/60 border-slate-200 hover:border-emerald-300 text-slate-800'
@@ -198,7 +206,7 @@ export const DigitsExplorer: React.FC<DigitsExplorerProps> = ({
               <div className={`text-[11px] font-bold line-clamp-1 ${isSelected ? 'text-emerald-100' : 'text-slate-500'}`}>
                 {item.word}
               </div>
-            </button>
+            </a>
           );
         })}
       </div>

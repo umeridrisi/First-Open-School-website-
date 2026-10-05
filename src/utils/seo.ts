@@ -1,6 +1,6 @@
 import { AppRoute, formatRouteUrl } from './router';
 import { ALPHABET_DATA, DIGIT_DATA } from '../data/curriculumData';
-import { ENCYCLOPEDIA_ENTRIES } from '../data/encyclopediaData';
+import { ENCYCLOPEDIA_ENTRIES, ENCYCLOPEDIA_CATEGORIES } from '../data/encyclopediaData';
 
 export interface SeoMetadata {
   title: string;
@@ -751,11 +751,486 @@ function escapeHtmlText(str: string): string {
 }
 
 /**
+ * Generates semantic, crawlable HTML for search engine web crawlers.
+ * Ensures Googlebot can parse full headings, definitions, analogies, facts, and internal links in Raw HTML.
+ */
+export function renderSemanticRouteHtml(route: AppRoute): string {
+  const seo = getSeoMetadata(route);
+  const baseUrl = CANONICAL_DOMAIN;
+
+  // Header Nav Links
+  const headerHtml = `
+    <header style="background:#ffffff;border-bottom:4px solid #ffd93d;padding:1rem 1.5rem;font-family:system-ui,-apple-system,sans-serif;">
+      <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <a href="/" style="font-size:1.5rem;font-weight:900;color:#4d96ff;text-decoration:none;letter-spacing:-0.5px;">FIRST OPEN SCHOOL</a>
+          <span style="background:#6bcb77;color:#fff;font-size:0.75rem;font-weight:800;padding:0.25rem 0.6rem;border-radius:9999px;">Ad-Free & Safe</span>
+        </div>
+        <nav aria-label="Main Navigation" style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;font-weight:800;font-size:0.875rem;">
+          <a href="/" style="color:#2d2d2d;text-decoration:none;padding:0.4rem 0.8rem;border-radius:0.75rem;background:#fff9f0;border:2px solid #ffd93d;">Home</a>
+          <a href="/alphabets" style="color:#2d2d2d;text-decoration:none;padding:0.4rem 0.8rem;border-radius:0.75rem;background:#fff9f0;border:2px solid #ff6b6b;">Alphabets A-Z</a>
+          <a href="/digits" style="color:#2d2d2d;text-decoration:none;padding:0.4rem 0.8rem;border-radius:0.75rem;background:#fff9f0;border:2px solid #6bcb77;">Digits 0-20</a>
+          <a href="/encyclopedia" style="color:#2d2d2d;text-decoration:none;padding:0.4rem 0.8rem;border-radius:0.75rem;background:#ffd93d;border:2px solid #2d2d2d;">Kids Encyclopedia 📚</a>
+          <a href="/tracing" style="color:#2d2d2d;text-decoration:none;padding:0.4rem 0.8rem;border-radius:0.75rem;background:#fff9f0;border:2px solid #ffd93d;">Tracing</a>
+          <a href="/phonics-stories" style="color:#2d2d2d;text-decoration:none;padding:0.4rem 0.8rem;border-radius:0.75rem;background:#fff9f0;border:2px solid #4d96ff;">Stories</a>
+          <a href="/assessment" style="color:#2d2d2d;text-decoration:none;padding:0.4rem 0.8rem;border-radius:0.75rem;background:#fff9f0;border:2px solid #ffd93d;">Quiz</a>
+          <a href="/about" style="color:#2d2d2d;text-decoration:none;padding:0.4rem 0.8rem;border-radius:0.75rem;background:#fff9f0;border:2px solid #2d2d2d;">About & Credits</a>
+        </nav>
+      </div>
+    </header>
+  `;
+
+  // Breadcrumbs
+  const breadcrumbHtml = `
+    <nav aria-label="Breadcrumb" style="max-width:1200px;margin:1rem auto 0 auto;padding:0 1.5rem;font-size:0.875rem;color:#666;font-family:system-ui,-apple-system,sans-serif;">
+      <ol style="list-style:none;padding:0;margin:0;display:flex;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+        ${seo.breadcrumbs.map((b, i) => `
+          <li>
+            ${i > 0 ? '<span style="margin-right:0.5rem;">/</span>' : ''}
+            <a href="${escapeHtmlAttr(b.url)}" style="color:#4d96ff;text-decoration:none;font-weight:700;">${escapeHtmlText(b.name)}</a>
+          </li>
+        `).join('')}
+      </ol>
+    </nav>
+  `;
+
+  // Specific Main Content
+  let mainContentHtml = '';
+
+  if (route.tab === 'encyclopedia') {
+    if (route.entryId) {
+      const entry = ENCYCLOPEDIA_ENTRIES.find(e => e.id === route.entryId);
+      if (entry) {
+        const related = ENCYCLOPEDIA_ENTRIES.filter(e => e.category === entry.category && e.id !== entry.id).slice(0, 6);
+        mainContentHtml = `
+          <article itemscope itemtype="https://schema.org/Article" style="background:#ffffff;border-radius:2rem;padding:2rem;border:4px solid #ffd93d;box-shadow:0 6px 0 #c9a92e;margin-top:1.5rem;">
+            <div style="display:inline-block;background:#ffd93d;padding:0.35rem 0.85rem;border-radius:9999px;font-weight:900;font-size:0.75rem;text-transform:uppercase;margin-bottom:1rem;">
+              <a href="/encyclopedia/category/${entry.category}" style="color:#2d2d2d;text-decoration:none;">Category: ${escapeHtmlText(entry.category)}</a>
+            </div>
+            <h1 itemprop="headline" style="font-size:2.5rem;font-weight:900;color:#2d2d2d;margin:0 0 0.5rem 0;line-height:1.2;">
+              ${entry.symbol || '🌟'} ${escapeHtmlText(entry.title)}
+            </h1>
+            <p style="font-size:1.125rem;font-weight:700;color:#4d96ff;margin:0 0 1rem 0;">
+              Phonetic Pronunciation: <span>${escapeHtmlText(entry.pronunciation)}</span>
+            </p>
+            <p itemprop="description" style="font-size:1.25rem;color:#444;line-height:1.6;margin:0 0 2rem 0;font-weight:600;">
+              ${escapeHtmlText(entry.tagline)}
+            </p>
+
+            <section style="background:#fff9f0;border-left:6px solid #ff6b6b;padding:1.5rem;border-radius:1rem;margin-bottom:2rem;">
+              <h2 style="font-size:1.35rem;font-weight:900;color:#ff6b6b;margin:0 0 0.75rem 0;">
+                Everyday Kid Analogy: ${escapeHtmlText(entry.analogy.title)}
+              </h2>
+              <p style="font-size:1.1rem;color:#333;line-height:1.6;margin:0;">
+                ${escapeHtmlText(entry.analogy.story)}
+              </p>
+            </section>
+
+            <section style="margin-bottom:2rem;">
+              <h2 style="font-size:1.35rem;font-weight:900;color:#2d2d2d;margin:0 0 1rem 0;">
+                ${escapeHtmlText(entry.howItWorks.title || 'How It Works')}
+              </h2>
+              <ul style="padding-left:1.5rem;line-height:1.8;font-size:1.05rem;color:#333;">
+                ${entry.howItWorks.points.map(pt => `<li>${escapeHtmlText(pt)}</li>`).join('')}
+              </ul>
+            </section>
+
+            <section style="background:#f0f9ff;border:2px solid #bae6fd;padding:1.5rem;border-radius:1rem;margin-bottom:2rem;">
+              <h2 style="font-size:1.35rem;font-weight:900;color:#0284c7;margin:0 0 1rem 0;">
+                Mind-Blowing Fun Facts
+              </h2>
+              <ul style="padding-left:1.5rem;line-height:1.8;font-size:1.05rem;color:#333;">
+                ${entry.funFacts.map(fact => `<li>${escapeHtmlText(fact)}</li>`).join('')}
+              </ul>
+            </section>
+
+            <section style="background:#faf5ff;border:2px solid #e9d5ff;padding:1.5rem;border-radius:1rem;margin-bottom:2rem;">
+              <h2 style="font-size:1.35rem;font-weight:900;color:#7e22ce;margin:0 0 0.75rem 0;">
+                Did You Know & Origin Story
+              </h2>
+              <p style="font-size:1.05rem;color:#333;line-height:1.6;margin:0;">
+                ${escapeHtmlText(entry.didYouKnowOrigin)}
+              </p>
+            </section>
+
+            <section style="background:#ecfdf5;border:2px solid #a7f3d0;padding:1.5rem;border-radius:1rem;margin-bottom:2rem;">
+              <h2 style="font-size:1.35rem;font-weight:900;color:#047857;margin:0 0 0.75rem 0;">
+                Quick Brain Quiz
+              </h2>
+              <p style="font-size:1.1rem;font-weight:700;color:#2d2d2d;margin:0 0 1rem 0;">
+                ${escapeHtmlText(entry.microQuiz.question)}
+              </p>
+              <ul style="list-style:none;padding:0;margin:0 0 1rem 0;">
+                ${entry.microQuiz.options.map((opt, idx) => `
+                  <li style="padding:0.5rem 1rem;background:#ffffff;border:1px solid #d1fae5;border-radius:0.5rem;margin-bottom:0.5rem;font-weight:600;">
+                    ${idx + 1}. ${escapeHtmlText(opt)}
+                  </li>
+                `).join('')}
+              </ul>
+              <p style="font-size:0.95rem;color:#065f46;font-style:italic;">
+                Answer Explanation: ${escapeHtmlText(entry.microQuiz.explanation)}
+              </p>
+            </section>
+
+            <section style="margin-top:2rem;padding-top:1.5rem;border-top:2px solid #e5e7eb;">
+              <h3 style="font-size:1.2rem;font-weight:900;color:#2d2d2d;margin:0 0 1rem 0;">
+                Related Knowledge Articles in ${escapeHtmlText(entry.category)}:
+              </h3>
+              <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+                ${related.map(r => `
+                  <a href="/encyclopedia/${r.id}" style="display:inline-block;padding:0.5rem 1rem;background:#fff9f0;border:2px solid #ffd93d;border-radius:0.75rem;color:#2d2d2d;text-decoration:none;font-weight:800;font-size:0.875rem;">
+                    ${r.symbol || '📖'} ${escapeHtmlText(r.title)} &rarr;
+                  </a>
+                `).join('')}
+              </div>
+            </section>
+          </article>
+        `;
+      }
+    } else if (route.category) {
+      const cat = ENCYCLOPEDIA_CATEGORIES.find(c => c.id === route.category);
+      const entries = ENCYCLOPEDIA_ENTRIES.filter(e => e.category === route.category);
+      mainContentHtml = `
+        <section style="background:#ffffff;border-radius:2rem;padding:2rem;border:4px solid #ffd93d;box-shadow:0 6px 0 #c9a92e;margin-top:1.5rem;">
+          <h1 style="font-size:2.25rem;font-weight:900;color:#2d2d2d;margin:0 0 0.5rem 0;">
+            ${cat ? cat.icon : '📚'} ${cat ? escapeHtmlText(cat.label) : escapeHtmlText(route.category)} - Kids Encyclopedia
+          </h1>
+          <p style="font-size:1.15rem;color:#555;line-height:1.6;margin:0 0 2rem 0;font-weight:600;">
+            ${cat ? escapeHtmlText(cat.description) : 'In-depth encyclopedia articles written in simple, clear language with relatable analogies for young learners.'}
+          </p>
+
+          <h2 style="font-size:1.4rem;font-weight:900;color:#2d2d2d;margin:0 0 1.5rem 0;">
+            All ${entries.length} Articles in this Subject
+          </h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));gap:1rem;">
+            ${entries.map(e => `
+              <div style="background:#fff9f0;border:3px solid #ffd93d;border-radius:1rem;padding:1.25rem;display:flex;flex-direction:column;justify-content:space-between;">
+                <div>
+                  <h3 style="font-size:1.2rem;font-weight:900;color:#2d2d2d;margin:0 0 0.35rem 0;">
+                    ${e.symbol || '🌟'} ${escapeHtmlText(e.title)}
+                  </h3>
+                  <p style="font-size:0.875rem;font-weight:700;color:#4d96ff;margin:0 0 0.5rem 0;">
+                    ${escapeHtmlText(e.pronunciation)}
+                  </p>
+                  <p style="font-size:0.9rem;color:#555;line-height:1.5;margin:0 0 1rem 0;">
+                    ${escapeHtmlText(e.tagline)}
+                  </p>
+                </div>
+                <a href="/encyclopedia/${e.id}" style="display:inline-block;padding:0.5rem 1rem;background:#4d96ff;color:#ffffff;text-decoration:none;font-weight:900;font-size:0.85rem;border-radius:0.75rem;text-align:center;">
+                  Read Article &rarr;
+                </a>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+      `;
+    } else {
+      mainContentHtml = `
+        <section style="background:#ffffff;border-radius:2rem;padding:2rem;border:4px solid #ffd93d;box-shadow:0 6px 0 #c9a92e;margin-top:1.5rem;">
+          <h1 style="font-size:2.5rem;font-weight:900;color:#2d2d2d;margin:0 0 0.75rem 0;">
+            Kids Encyclopedia 📚
+          </h1>
+          <p style="font-size:1.2rem;color:#444;line-height:1.6;margin:0 0 2rem 0;font-weight:600;">
+            Clear definitions, phonetic pronunciations, real-life analogies, and interactive brain quizzes. Explore all 8 educational knowledge subjects!
+          </p>
+
+          <h2 style="font-size:1.5rem;font-weight:900;color:#2d2d2d;margin:0 0 1.5rem 0;">
+            Explore Encyclopedia Categories
+          </h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));gap:1.25rem;">
+            ${ENCYCLOPEDIA_CATEGORIES.map(cat => {
+              const count = ENCYCLOPEDIA_ENTRIES.filter(e => e.category === cat.id).length;
+              return `
+                <div style="background:#ffffff;border:3px solid #2d2d2d;border-radius:1.25rem;padding:1.5rem;box-shadow:0 4px 0 #000;">
+                  <div style="font-size:2.5rem;margin-bottom:0.5rem;">${cat.icon}</div>
+                  <h3 style="font-size:1.25rem;font-weight:900;color:#2d2d2d;margin:0 0 0.5rem 0;">
+                    ${escapeHtmlText(cat.label)} (${count} articles)
+                  </h3>
+                  <p style="font-size:0.9rem;color:#666;line-height:1.5;margin:0 0 1.25rem 0;">
+                    ${escapeHtmlText(cat.description)}
+                  </p>
+                  <a href="/encyclopedia/category/${cat.id}" style="display:inline-block;padding:0.5rem 1rem;background:#ffd93d;color:#2d2d2d;text-decoration:none;font-weight:900;font-size:0.875rem;border-radius:0.75rem;border:2px solid #2d2d2d;">
+                    Browse ${escapeHtmlText(cat.label)} &rarr;
+                  </a>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </section>
+      `;
+    }
+  } else if (route.tab === 'alphabets') {
+    if (route.letter) {
+      const char = route.letter.toUpperCase();
+      const letter = ALPHABET_DATA.find(l => l.char === char) || ALPHABET_DATA[0];
+      mainContentHtml = `
+        <article style="background:#ffffff;border-radius:2rem;padding:2rem;border:4px solid #ff6b6b;box-shadow:0 6px 0 #c44e4e;margin-top:1.5rem;">
+          <h1 style="font-size:2.5rem;font-weight:900;color:#2d2d2d;margin:0 0 0.5rem 0;">
+            Letter ${char} (${char}${letter.lowercase}) - Phonics Sound & Tracing
+          </h1>
+          <p style="font-size:1.25rem;font-weight:800;color:#ff6b6b;margin:0 0 1.5rem 0;">
+            Phonics Sound: '${escapeHtmlText(letter.phonicsSound)}' | Example Word: '${escapeHtmlText(letter.exampleWord)}' ${letter.emoji}
+          </p>
+
+          <div style="background:#fff9f0;border:2px solid #ff6b6b;border-radius:1rem;padding:1.5rem;margin-bottom:2rem;">
+            <h2 style="font-size:1.3rem;font-weight:900;color:#2d2d2d;margin:0 0 0.5rem 0;">How to Practice Letter ${char}</h2>
+            <p style="font-size:1.05rem;line-height:1.6;color:#444;margin:0 0 1rem 0;">
+              Listen to the sound '${letter.phonicsSound}', repeat the word '${letter.exampleWord}', and practice tracing the uppercase and lowercase strokes.
+            </p>
+            <a href="/tracing/${char}" style="display:inline-block;padding:0.75rem 1.5rem;background:#ffd93d;color:#2d2d2d;text-decoration:none;font-weight:900;border-radius:0.75rem;border:2px solid #2d2d2d;">
+              Practice Tracing Letter ${char} Now &rarr;
+            </a>
+          </div>
+
+          <h3 style="font-size:1.2rem;font-weight:900;color:#2d2d2d;margin:0 0 1rem 0;">Explore All 26 English Alphabets:</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+            ${ALPHABET_DATA.map(l => `
+              <a href="/alphabets/${l.char.toLowerCase()}" style="display:inline-block;width:2.5rem;height:2.5rem;line-height:2.5rem;text-align:center;background:${l.char === char ? '#ff6b6b' : '#fff9f0'};color:${l.char === char ? '#ffffff' : '#2d2d2d'};border:2px solid #ff6b6b;border-radius:0.5rem;font-weight:900;text-decoration:none;">
+                ${l.char}
+              </a>
+            `).join('')}
+          </div>
+        </article>
+      `;
+    } else {
+      mainContentHtml = `
+        <section style="background:#ffffff;border-radius:2rem;padding:2rem;border:4px solid #ff6b6b;box-shadow:0 6px 0 #c44e4e;margin-top:1.5rem;">
+          <h1 style="font-size:2.5rem;font-weight:900;color:#2d2d2d;margin:0 0 0.75rem 0;">
+            Alphabets A to Z Curriculum & Phonics Sounds 🔤
+          </h1>
+          <p style="font-size:1.15rem;color:#444;line-height:1.6;margin:0 0 2rem 0;font-weight:600;">
+            Master all 26 letters of the English alphabet with synthetic phonics audio, mouth formation cues, vocabulary words, and tactile handwriting tracing.
+          </p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(140px, 1fr));gap:1rem;">
+            ${ALPHABET_DATA.map(l => `
+              <a href="/alphabets/${l.char.toLowerCase()}" style="background:#fff9f0;border:2px solid #ff6b6b;border-radius:1rem;padding:1rem;text-align:center;text-decoration:none;color:#2d2d2d;display:block;">
+                <div style="font-size:2rem;font-weight:900;color:#ff6b6b;">${l.char}${l.lowercase}</div>
+                <div style="font-size:1.5rem;margin:0.25rem 0;">${l.emoji}</div>
+                <div style="font-size:0.875rem;font-weight:800;">${escapeHtmlText(l.exampleWord)}</div>
+                <div style="font-size:0.75rem;color:#666;margin-top:0.25rem;">Sound: ${escapeHtmlText(l.phonicsSound)}</div>
+              </a>
+            `).join('')}
+          </div>
+        </section>
+      `;
+    }
+  } else if (route.tab === 'digits') {
+    if (route.digit !== undefined) {
+      const val = route.digit;
+      const digitObj = DIGIT_DATA.find(d => d.value === val) || DIGIT_DATA[0];
+      mainContentHtml = `
+        <article style="background:#ffffff;border-radius:2rem;padding:2rem;border:4px solid #6bcb77;box-shadow:0 6px 0 #4e9b56;margin-top:1.5rem;">
+          <h1 style="font-size:2.5rem;font-weight:900;color:#2d2d2d;margin:0 0 0.5rem 0;">
+            Number ${val} (${escapeHtmlText(digitObj.word)}) - Early Math & Counting
+          </h1>
+          <p style="font-size:1.25rem;font-weight:800;color:#2e7d32;margin:0 0 1.5rem 0;">
+            Visual Group: ${digitObj.visualGroupEmoji} | Math Sense: ${escapeHtmlText(digitObj.mathTip)}
+          </p>
+
+          <div style="background:#fff9f0;border:2px solid #6bcb77;border-radius:1rem;padding:1.5rem;margin-bottom:2rem;">
+            <h2 style="font-size:1.3rem;font-weight:900;color:#2d2d2d;margin:0 0 0.5rem 0;">Learning Number ${val}</h2>
+            <p style="font-size:1.05rem;line-height:1.6;color:#444;margin:0 0 1rem 0;">
+              Count the items, listen to the number word '${digitObj.word}', and practice stroke tracing on the tactile canvas.
+            </p>
+            <a href="/tracing/${val}" style="display:inline-block;padding:0.75rem 1.5rem;background:#ffd93d;color:#2d2d2d;text-decoration:none;font-weight:900;border-radius:0.75rem;border:2px solid #2d2d2d;">
+              Practice Tracing Number ${val} Now &rarr;
+            </a>
+          </div>
+
+          <h3 style="font-size:1.2rem;font-weight:900;color:#2d2d2d;margin:0 0 1rem 0;">Explore All Digits 0 to 20:</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+            ${DIGIT_DATA.map(d => `
+              <a href="/digits/${d.value}" style="display:inline-block;width:2.5rem;height:2.5rem;line-height:2.5rem;text-align:center;background:${d.value === val ? '#6bcb77' : '#fff9f0'};color:${d.value === val ? '#ffffff' : '#2d2d2d'};border:2px solid #6bcb77;border-radius:0.5rem;font-weight:900;text-decoration:none;">
+                ${d.value}
+              </a>
+            `).join('')}
+          </div>
+        </article>
+      `;
+    } else {
+      mainContentHtml = `
+        <section style="background:#ffffff;border-radius:2rem;padding:2rem;border:4px solid #6bcb77;box-shadow:0 6px 0 #4e9b56;margin-top:1.5rem;">
+          <h1 style="font-size:2.5rem;font-weight:900;color:#2d2d2d;margin:0 0 0.75rem 0;">
+            Numbers 0 to 20 & Early Math Foundations 🔢
+          </h1>
+          <p style="font-size:1.15rem;color:#444;line-height:1.6;margin:0 0 2rem 0;font-weight:600;">
+            Learn counting, visual subitizing, number bonds, and touch digit tracing from Zero to Twenty.
+          </p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(130px, 1fr));gap:1rem;">
+            ${DIGIT_DATA.map(d => `
+              <a href="/digits/${d.value}" style="background:#fff9f0;border:2px solid #6bcb77;border-radius:1rem;padding:1rem;text-align:center;text-decoration:none;color:#2d2d2d;display:block;">
+                <div style="font-size:2rem;font-weight:900;color:#6bcb77;">${d.value}</div>
+                <div style="font-size:1.25rem;margin:0.25rem 0;">${d.visualGroupEmoji}</div>
+                <div style="font-size:0.875rem;font-weight:800;">${escapeHtmlText(d.word)}</div>
+              </a>
+            `).join('')}
+          </div>
+        </section>
+      `;
+    }
+  } else if (route.tab === 'about') {
+    mainContentHtml = `
+      <article style="background:#ffffff;border-radius:2rem;padding:2rem;border:4px solid #2d2d2d;box-shadow:0 6px 0 #000;margin-top:1.5rem;">
+        <h1 style="font-size:2.5rem;font-weight:900;color:#2d2d2d;margin:0 0 1rem 0;">About First Open School</h1>
+        <p style="font-size:1.15rem;line-height:1.7;color:#333;margin:0 0 1.5rem 0;">
+          First Open School is an open educational initiative founded by <strong>Umer Idrisi</strong>, a blogger and tech entrepreneur from Pakistan, and published under <strong>Arkade Digital Limited</strong> (registered in the United Kingdom).
+        </p>
+        <p style="font-size:1.15rem;line-height:1.7;color:#333;margin:0 0 1.5rem 0;">
+          Our core mission is to democratize high-grade foundational literacy, numeracy, and scientific understanding for children aged 2 through 12+ across the world—completely free, ad-free, and accessible on any device.
+        </p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;">
+          <a href="/privacy" style="padding:0.75rem 1.5rem;background:#ffd93d;color:#2d2d2d;text-decoration:none;font-weight:900;border-radius:0.75rem;border:2px solid #2d2d2d;">Privacy Policy</a>
+          <a href="/data-safety" style="padding:0.75rem 1.5rem;background:#6bcb77;color:#fff;text-decoration:none;font-weight:900;border-radius:0.75rem;">Data Safety Pledge</a>
+          <a href="/editorial-policy" style="padding:0.75rem 1.5rem;background:#4d96ff;color:#fff;text-decoration:none;font-weight:900;border-radius:0.75rem;">Editorial Standards</a>
+        </div>
+      </article>
+    `;
+  } else if (route.tab === 'privacy' || route.tab === 'terms' || route.tab === 'data-safety' || route.tab === 'editorial-policy') {
+    mainContentHtml = `
+      <article style="background:#ffffff;border-radius:2rem;padding:2rem;border:4px solid #ffd93d;box-shadow:0 6px 0 #c9a92e;margin-top:1.5rem;">
+        <h1 style="font-size:2.25rem;font-weight:900;color:#2d2d2d;margin:0 0 1rem 0;">${escapeHtmlText(seo.title)}</h1>
+        <p style="font-size:1.15rem;line-height:1.7;color:#444;margin:0 0 1.5rem 0;">${escapeHtmlText(seo.description)}</p>
+        <div style="line-height:1.8;color:#333;font-size:1.05rem;">
+          <p>First Open School strictly enforces the Children's Online Privacy Protection Act (COPPA), GDPR-K, and FERPA regulations. We do not display third-party advertisements, do not collect biometric data, and store student learning progress locally on the parent/school device.</p>
+          <p>Created by Umer Idrisi. Published by Arkade Digital Limited (UK).</p>
+        </div>
+      </article>
+    `;
+  } else {
+    // Overview / Root Hub
+    mainContentHtml = `
+      <section style="background:#ffffff;border-radius:2rem;padding:2.5rem;border:4px solid #4d96ff;box-shadow:0 8px 0 #3a72c1;margin-top:1.5rem;">
+        <div style="display:inline-block;background:#ffd93d;padding:0.4rem 1rem;border-radius:9999px;font-weight:900;font-size:0.8rem;text-transform:uppercase;margin-bottom:1rem;">
+          Early Literacy & Science Knowledge Hub
+        </div>
+        <h1 style="font-size:2.75rem;font-weight:900;color:#4d96ff;margin:0 0 1rem 0;line-height:1.2;">
+          Welcome to First Open School 🚀
+        </h1>
+        <p style="font-size:1.25rem;color:#444;line-height:1.6;margin:0 0 2rem 0;font-weight:600;">
+          A comprehensive, ad-free educational platform for young learners. Master phonics sounds for all 26 alphabets, early numeracy from 0 to 20, guided handwriting tracing, and a rich, CDE-style Kids Encyclopedia.
+        </p>
+
+        <div style="display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem;">
+          <a href="/alphabets" style="padding:1rem 1.5rem;background:#ff6b6b;color:#ffffff;text-decoration:none;font-weight:900;border-radius:1rem;font-size:1rem;box-shadow:0 4px 0 #c44e4e;">
+            EXPLORE ALPHABETS A-Z &rarr;
+          </a>
+          <a href="/digits" style="padding:1rem 1.5rem;background:#6bcb77;color:#ffffff;text-decoration:none;font-weight:900;border-radius:1rem;font-size:1rem;box-shadow:0 4px 0 #4e9b56;">
+            COUNT DIGITS 0-20 &rarr;
+          </a>
+          <a href="/encyclopedia" style="padding:1rem 1.5rem;background:#ffd93d;color:#2d2d2d;text-decoration:none;font-weight:900;border-radius:1rem;font-size:1rem;border:2px solid #2d2d2d;box-shadow:0 4px 0 #000;">
+            KIDS ENCYCLOPEDIA 📚 &rarr;
+          </a>
+          <a href="/tracing" style="padding:1rem 1.5rem;background:#fff9f0;color:#2d2d2d;text-decoration:none;font-weight:900;border-radius:1rem;font-size:1rem;border:2px solid #ffd93d;">
+            HANDWRITING TRACING &rarr;
+          </a>
+        </div>
+
+        <h2 style="font-size:1.6rem;font-weight:900;color:#2d2d2d;margin:2rem 0 1rem 0;">
+          Kids Encyclopedia Knowledge Subjects
+        </h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));gap:1rem;">
+          ${ENCYCLOPEDIA_CATEGORIES.map(cat => `
+            <a href="/encyclopedia/category/${cat.id}" style="background:#fff9f0;border:2px solid #ffd93d;border-radius:1rem;padding:1rem;text-decoration:none;color:#2d2d2d;display:block;">
+              <div style="font-size:1.75rem;margin-bottom:0.25rem;">${cat.icon}</div>
+              <div style="font-weight:900;font-size:1.1rem;">${escapeHtmlText(cat.label)}</div>
+              <div style="font-size:0.85rem;color:#666;margin-top:0.25rem;">${escapeHtmlText(cat.description)}</div>
+            </a>
+          `).join('')}
+        </div>
+      </section>
+    `;
+  }
+
+  // Crawlable Site Directory Footer
+  const footerHtml = `
+    <footer style="margin-top:3rem;background:#ffffff;border-top:4px solid #ffd93d;padding:2.5rem 1.5rem;font-family:system-ui,-apple-system,sans-serif;color:#2d2d2d;">
+      <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:2rem;">
+        
+        <div style="background:#fff9f0;border:3px solid #ffd93d;border-radius:1.5rem;padding:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+          <div>
+            <div style="font-weight:900;font-size:1.25rem;color:#2d2d2d;">First Open School</div>
+            <p style="margin:0.25rem 0 0 0;font-size:0.875rem;color:#666;">
+              Created by <strong>Umer Idrisi</strong> (Blogger & Entrepreneur from Pakistan) | A project of <strong>Arkade Digital Limited (UK)</strong>.
+            </p>
+          </div>
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+            <a href="/about" style="padding:0.5rem 1rem;background:#2d2d2d;color:#fff;text-decoration:none;font-weight:800;font-size:0.75rem;border-radius:0.5rem;">About & Credits</a>
+            <a href="/data-safety" style="padding:0.5rem 1rem;background:#6bcb77;color:#fff;text-decoration:none;font-weight:800;font-size:0.75rem;border-radius:0.5rem;">Data Safety</a>
+            <a href="/privacy" style="padding:0.5rem 1rem;background:#ff6b6b;color:#fff;text-decoration:none;font-weight:800;font-size:0.75rem;border-radius:0.5rem;">Privacy</a>
+            <a href="/terms" style="padding:0.5rem 1rem;background:#4d96ff;color:#fff;text-decoration:none;font-weight:800;font-size:0.75rem;border-radius:0.5rem;">Terms</a>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));gap:1.5rem;font-size:0.875rem;">
+          <div>
+            <div style="font-weight:900;text-transform:uppercase;margin-bottom:0.75rem;color:#4d96ff;">Curriculum Hubs</div>
+            <ul style="list-style:none;padding:0;margin:0;line-height:2;">
+              <li><a href="/" style="color:#444;text-decoration:none;">Home Learning World</a></li>
+              <li><a href="/alphabets" style="color:#444;text-decoration:none;">Alphabets A to Z</a></li>
+              <li><a href="/digits" style="color:#444;text-decoration:none;">Digits 0 to 20</a></li>
+              <li><a href="/encyclopedia" style="color:#444;text-decoration:none;">Kids Encyclopedia 📚</a></li>
+              <li><a href="/tracing" style="color:#444;text-decoration:none;">Handwriting Tracing</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <div style="font-weight:900;text-transform:uppercase;margin-bottom:0.75rem;color:#ff6b6b;">Encyclopedia Subjects</div>
+            <ul style="list-style:none;padding:0;margin:0;line-height:2;">
+              ${ENCYCLOPEDIA_CATEGORIES.map(cat => `
+                <li><a href="/encyclopedia/category/${cat.id}" style="color:#444;text-decoration:none;">${cat.icon} ${escapeHtmlText(cat.label)}</a></li>
+              `).join('')}
+            </ul>
+          </div>
+
+          <div>
+            <div style="font-weight:900;text-transform:uppercase;margin-bottom:0.75rem;color:#6bcb77;">Interactive Games</div>
+            <ul style="list-style:none;padding:0;margin:0;line-height:2;">
+              <li><a href="/bubble-pop" style="color:#444;text-decoration:none;">Bubble Pop Phonics</a></li>
+              <li><a href="/counting-feast" style="color:#444;text-decoration:none;">Monster Feast Counting</a></li>
+              <li><a href="/card-match" style="color:#444;text-decoration:none;">Memory Match Game</a></li>
+              <li><a href="/phonics-stories" style="color:#444;text-decoration:none;">Decodable Storybooks</a></li>
+              <li><a href="/assessment" style="color:#444;text-decoration:none;">Adaptive Star Quiz</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <div style="font-weight:900;text-transform:uppercase;margin-bottom:0.75rem;color:#2d2d2d;">Search Engine Feeds</div>
+            <ul style="list-style:none;padding:0;margin:0;line-height:2;">
+              <li><a href="/sitemap.xml" style="color:#444;text-decoration:none;">Canonical XML Sitemap</a></li>
+              <li><a href="/robots.txt" style="color:#444;text-decoration:none;">Robots Directives</a></li>
+              <li><a href="/llms.txt" style="color:#444;text-decoration:none;">LLM Documentation (llms.txt)</a></li>
+              <li><a href="/editorial-policy" style="color:#444;text-decoration:none;">Pedagogical Standards</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="border-top:1px solid #e5e7eb;padding-top:1rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;font-size:0.75rem;color:#666;">
+          <div>&copy; ${new Date().getFullYear()} First Open School. All rights reserved. Self-Canonical Page: ${escapeHtmlText(seo.canonicalUrl)}</div>
+          <div>Strict COPPA, GDPR-K and FERPA Safety Compliance.</div>
+        </div>
+
+      </div>
+    </footer>
+  `;
+
+  return `
+    <div style="min-height:100vh;display:flex;flex-direction:column;background:#fcfbf8;">
+      ${headerHtml}
+      ${breadcrumbHtml}
+      <main style="max-width:1200px;margin:0 auto;padding:0 1.5rem;flex:1;width:100%;box-sizing:border-box;">
+        ${mainContentHtml}
+      </main>
+      ${footerHtml}
+    </div>
+  `;
+}
+
+/**
  * Injects route-specific SEO tags into raw HTML on the server.
  * Guarantees that Raw HTML and Rendered HTML have identical Self-Canonical URLs,
- * titles, meta descriptions, OpenGraph tags, and JSON-LD schemas.
+ * titles, meta descriptions, OpenGraph tags, JSON-LD schemas, and indexable body text.
  */
-export function injectSeoIntoHtml(html: string, route: AppRoute): string {
+export function injectSeoIntoHtml(html: string, route: AppRoute, injectBody: boolean = true): string {
   const seo = getSeoMetadata(route);
   const fullImageUrl = seo.ogImage.startsWith('http')
     ? seo.ogImage
@@ -782,7 +1257,7 @@ export function injectSeoIntoHtml(html: string, route: AppRoute): string {
     modified = modified.replace(/<title>.*?<\/title>/i, `<title>${escapeHtmlText(seo.title)}</title>`);
   }
 
-  // 2. Replace or Inject Canonical Tag
+  // 2. Replace or Inject Self-Canonical Tag
   if (/<link\s+[^>]*rel=["']canonical["'][^>]*>/i.test(modified)) {
     modified = modified.replace(
       /<link\s+[^>]*rel=["']canonical["'][^>]*>/i,
@@ -795,7 +1270,20 @@ export function injectSeoIntoHtml(html: string, route: AppRoute): string {
     );
   }
 
-  // 3. Meta Description
+  // 3. Robots Meta Tag (Always enforce index, follow)
+  if (/<meta\s+[^>]*name=["']robots["'][^>]*>/i.test(modified)) {
+    modified = modified.replace(
+      /<meta\s+[^>]*name=["']robots["'][^>]*>/i,
+      `<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />`
+    );
+  } else {
+    modified = modified.replace(
+      /<\/head>/i,
+      `  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />\n</head>`
+    );
+  }
+
+  // 4. Meta Description
   if (/<meta\s+[^>]*name=["']description["'][^>]*>/i.test(modified)) {
     modified = modified.replace(
       /<meta\s+[^>]*name=["']description["'][^>]*>/i,
@@ -803,7 +1291,7 @@ export function injectSeoIntoHtml(html: string, route: AppRoute): string {
     );
   }
 
-  // 4. OpenGraph URL
+  // 5. OpenGraph URL
   if (/<meta\s+[^>]*property=["']og:url["'][^>]*>/i.test(modified)) {
     modified = modified.replace(
       /<meta\s+[^>]*property=["']og:url["'][^>]*>/i,
@@ -811,7 +1299,7 @@ export function injectSeoIntoHtml(html: string, route: AppRoute): string {
     );
   }
 
-  // 5. OpenGraph Title
+  // 6. OpenGraph Title
   if (/<meta\s+[^>]*property=["']og:title["'][^>]*>/i.test(modified)) {
     modified = modified.replace(
       /<meta\s+[^>]*property=["']og:title["'][^>]*>/i,
@@ -819,7 +1307,7 @@ export function injectSeoIntoHtml(html: string, route: AppRoute): string {
     );
   }
 
-  // 6. OpenGraph Description
+  // 7. OpenGraph Description
   if (/<meta\s+[^>]*property=["']og:description["'][^>]*>/i.test(modified)) {
     modified = modified.replace(
       /<meta\s+[^>]*property=["']og:description["'][^>]*>/i,
@@ -827,7 +1315,7 @@ export function injectSeoIntoHtml(html: string, route: AppRoute): string {
     );
   }
 
-  // 7. OpenGraph Type
+  // 8. OpenGraph Type
   if (/<meta\s+[^>]*property=["']og:type["'][^>]*>/i.test(modified)) {
     modified = modified.replace(
       /<meta\s+[^>]*property=["']og:type["'][^>]*>/i,
@@ -835,7 +1323,7 @@ export function injectSeoIntoHtml(html: string, route: AppRoute): string {
     );
   }
 
-  // 8. OpenGraph Image
+  // 9. OpenGraph Image
   if (/<meta\s+[^>]*property=["']og:image["'][^>]*>/i.test(modified)) {
     modified = modified.replace(
       /<meta\s+[^>]*property=["']og:image["'][^>]*>/i,
@@ -843,7 +1331,7 @@ export function injectSeoIntoHtml(html: string, route: AppRoute): string {
     );
   }
 
-  // 9. Twitter Tags
+  // 10. Twitter Tags
   if (/<meta\s+[^>]*name=["']twitter:title["'][^>]*>/i.test(modified)) {
     modified = modified.replace(
       /<meta\s+[^>]*name=["']twitter:title["'][^>]*>/i,
@@ -857,7 +1345,7 @@ export function injectSeoIntoHtml(html: string, route: AppRoute): string {
     );
   }
 
-  // 10. Inject or replace JSON-LD structured data
+  // 11. Inject or replace JSON-LD structured data
   if (/<script\s+[^>]*id=["']seo-json-ld["'][^>]*>[\s\S]*?<\/script>/i.test(modified)) {
     modified = modified.replace(
       /<script\s+[^>]*id=["']seo-json-ld["'][^>]*>[\s\S]*?<\/script>/i,
@@ -868,6 +1356,17 @@ export function injectSeoIntoHtml(html: string, route: AppRoute): string {
       /<\/head>/i,
       `  <script id="seo-json-ld" type="application/ld+json">\n${jsonLdString}\n    </script>\n  </head>`
     );
+  }
+
+  // 12. Inject Crawlable Semantic Content into <div id="root">
+  if (injectBody) {
+    const semanticBody = renderSemanticRouteHtml(route);
+    if (/<div id="root">[\s\S]*?<\/div>/i.test(modified)) {
+      modified = modified.replace(
+        /<div id="root">[\s\S]*?<\/div>/i,
+        `<div id="root">\n${semanticBody}\n</div>`
+      );
+    }
   }
 
   return modified;

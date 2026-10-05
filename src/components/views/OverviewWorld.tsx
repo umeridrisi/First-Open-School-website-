@@ -1,8 +1,10 @@
 import React from 'react';
 import { StudentProfile, ActiveTab, ParentSettings, ItemProgress } from '../../types';
 import { ALPHABET_DATA, DIGIT_DATA, ALL_BADGES, AGE_TIER_INFO } from '../../data/curriculumData';
+import { ENCYCLOPEDIA_CATEGORIES, ENCYCLOPEDIA_ENTRIES } from '../../data/encyclopediaData';
 import { speakText, playSoundEffect } from '../../utils/sound';
-import { Sparkles, Trophy, Flame, Play, PenTool, CircleDot, Utensils, BookOpen, ArrowRight } from 'lucide-react';
+import { formatRouteUrl } from '../../utils/router';
+import { Sparkles, Trophy, Flame, Play, PenTool, CircleDot, Utensils, BookOpen, ArrowRight, Compass } from 'lucide-react';
 
 interface OverviewWorldProps {
   student: StudentProfile;
@@ -25,6 +27,15 @@ export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings,
     speakText(text, settings.voiceGuidance);
   };
 
+  const handleAnchorClick = (e: React.MouseEvent, tab: ActiveTab, speakMsg?: string) => {
+    if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+      e.preventDefault();
+      playSoundEffect('click', settings.soundEffects);
+      onNavigate(tab);
+      if (speakMsg) handleSpeak(speakMsg);
+    }
+  };
+
   return (
     <div className="space-y-8 pb-12">
       
@@ -45,41 +56,32 @@ export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings,
           </p>
 
           <div className="flex flex-wrap gap-3.5 pt-2">
-            <button
-              onClick={() => {
-                playSoundEffect('click', settings.soundEffects);
-                onNavigate('alphabets');
-                handleSpeak("Let's learn alphabets and phonics!");
-              }}
-              className="flex items-center space-x-2 px-6 py-3.5 bg-[#FF6B6B] text-white font-black text-base rounded-2xl border-4 border-[#FF6B6B] shadow-[0_6px_0_#C44E4E] active:translate-y-1 active:shadow-none transition-all cursor-pointer"
+            <a
+              href="/alphabets"
+              onClick={(e) => handleAnchorClick(e, 'alphabets', "Let's learn alphabets and phonics!")}
+              className="flex items-center space-x-2 px-6 py-3.5 bg-[#FF6B6B] hover:bg-[#e05353] text-white font-black text-base rounded-2xl border-4 border-[#FF6B6B] shadow-[0_6px_0_#C44E4E] active:translate-y-1 active:shadow-none transition-all cursor-pointer no-underline"
             >
               <span>EXPLORE ALPHABETS A-Z</span>
               <ArrowRight className="w-5 h-5" />
-            </button>
+            </a>
 
-            <button
-              onClick={() => {
-                playSoundEffect('click', settings.soundEffects);
-                onNavigate('digits');
-                handleSpeak("Let's count digits zero through twenty!");
-              }}
-              className="flex items-center space-x-2 px-6 py-3.5 bg-[#6BCB77] text-white font-black text-base rounded-2xl border-4 border-[#6BCB77] shadow-[0_6px_0_#4E9B56] active:translate-y-1 active:shadow-none transition-all cursor-pointer"
+            <a
+              href="/digits"
+              onClick={(e) => handleAnchorClick(e, 'digits', "Let's count digits zero through twenty!")}
+              className="flex items-center space-x-2 px-6 py-3.5 bg-[#6BCB77] hover:bg-[#5bb867] text-white font-black text-base rounded-2xl border-4 border-[#6BCB77] shadow-[0_6px_0_#4E9B56] active:translate-y-1 active:shadow-none transition-all cursor-pointer no-underline"
             >
               <span>COUNT DIGITS 0-20</span>
               <Play className="w-4 h-4 fill-white" />
-            </button>
+            </a>
 
-            <button
-              onClick={() => {
-                playSoundEffect('click', settings.soundEffects);
-                onNavigate('encyclopedia');
-                handleSpeak("Welcome to the Kids Encyclopedia!");
-              }}
-              className="flex items-center space-x-2 px-6 py-3.5 bg-[#FFD93D] text-[#2D2D2D] font-black text-base rounded-2xl border-4 border-[#2D2D2D] shadow-[0_6px_0_#000] active:translate-y-1 active:shadow-none transition-all cursor-pointer"
+            <a
+              href="/encyclopedia"
+              onClick={(e) => handleAnchorClick(e, 'encyclopedia', "Welcome to the Kids Encyclopedia!")}
+              className="flex items-center space-x-2 px-6 py-3.5 bg-[#FFD93D] hover:bg-[#f0cb28] text-[#2D2D2D] font-black text-base rounded-2xl border-4 border-[#2D2D2D] shadow-[0_6px_0_#000] active:translate-y-1 active:shadow-none transition-all cursor-pointer no-underline"
             >
               <span>KIDS ENCYCLOPEDIA 📚</span>
               <BookOpen className="w-5 h-5 text-[#2D2D2D]" />
-            </button>
+            </a>
           </div>
         </div>
 
@@ -116,29 +118,31 @@ export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings,
 
           {/* Letter Badges Preview */}
           <div className="flex items-center justify-between pt-2">
-            <div className="flex space-x-1.5">
+            <div className="flex space-x-1.5 flex-wrap gap-y-1">
               {ALPHABET_DATA.slice(0, 8).map((item) => {
                 const isMastered = student.progress[item.char]?.mastered;
                 return (
-                  <span
+                  <a
                     key={item.char}
-                    className={`w-7 h-7 rounded-xl flex items-center justify-center font-black text-xs border-2 ${
+                    href={`/alphabets/${item.char.toLowerCase()}`}
+                    className={`w-7 h-7 rounded-xl flex items-center justify-center font-black text-xs border-2 no-underline ${
                       isMastered 
                         ? 'bg-[#FF6B6B] text-white border-[#FF6B6B] shadow-xs' 
-                        : 'bg-gray-100 text-gray-400 border-gray-200'
+                        : 'bg-gray-100 text-gray-500 border-gray-200 hover:border-[#FF6B6B]'
                     }`}
                   >
                     {item.char}
-                  </span>
+                  </a>
                 );
               })}
             </div>
-            <button
-              onClick={() => onNavigate('alphabets')}
-              className="text-xs font-black text-[#FF6B6B] hover:underline uppercase tracking-tight"
+            <a
+              href="/alphabets"
+              onClick={(e) => handleAnchorClick(e, 'alphabets')}
+              className="text-xs font-black text-[#FF6B6B] hover:underline uppercase tracking-tight no-underline"
             >
               View All &rarr;
-            </button>
+            </a>
           </div>
         </div>
 
@@ -166,29 +170,31 @@ export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings,
 
           {/* Digit Badges Preview */}
           <div className="flex items-center justify-between pt-2">
-            <div className="flex space-x-1.5">
+            <div className="flex space-x-1.5 flex-wrap gap-y-1">
               {DIGIT_DATA.slice(0, 8).map((item) => {
                 const isMastered = student.progress[String(item.value)]?.mastered;
                 return (
-                  <span
+                  <a
                     key={item.value}
-                    className={`w-7 h-7 rounded-xl flex items-center justify-center font-black text-xs border-2 ${
+                    href={`/digits/${item.value}`}
+                    className={`w-7 h-7 rounded-xl flex items-center justify-center font-black text-xs border-2 no-underline ${
                       isMastered 
                         ? 'bg-[#6BCB77] text-white border-[#6BCB77] shadow-xs' 
-                        : 'bg-gray-100 text-gray-400 border-gray-200'
+                        : 'bg-gray-100 text-gray-500 border-gray-200 hover:border-[#6BCB77]'
                     }`}
                   >
                     {item.value}
-                  </span>
+                  </a>
                 );
               })}
             </div>
-            <button
-              onClick={() => onNavigate('digits')}
-              className="text-xs font-black text-[#6BCB77] hover:underline uppercase tracking-tight"
+            <a
+              href="/digits"
+              onClick={(e) => handleAnchorClick(e, 'digits')}
+              className="text-xs font-black text-[#6BCB77] hover:underline uppercase tracking-tight no-underline"
             >
               View All &rarr;
-            </button>
+            </a>
           </div>
         </div>
 
@@ -202,69 +208,61 @@ export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings,
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           
-          <button
-            onClick={() => {
-              playSoundEffect('click', settings.soundEffects);
-              onNavigate('tracing');
-            }}
-            className="p-5 rounded-[28px] bg-white border-4 border-[#FFD93D] shadow-[0_6px_0_#C9A92E] text-left space-y-3 transition-all active:translate-y-1 active:shadow-none cursor-pointer group"
+          <a
+            href="/tracing"
+            onClick={(e) => handleAnchorClick(e, 'tracing')}
+            className="p-5 rounded-[28px] bg-white border-4 border-[#FFD93D] shadow-[0_6px_0_#C9A92E] text-left space-y-3 transition-all active:translate-y-1 active:shadow-none cursor-pointer group no-underline block"
           >
             <div className="w-10 h-10 rounded-2xl bg-[#FFD93D] text-[#2D2D2D] flex items-center justify-center font-black shadow-xs">
               <PenTool className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="font-black text-[#2D2D2D] text-base">Guided Tracing</h4>
+              <h4 className="font-black text-[#2D2D2D] text-base group-hover:text-[#4D96FF] transition-colors">Guided Tracing</h4>
               <p className="text-xs text-gray-500 font-bold">Stroke tracing with real-time accuracy scoring.</p>
             </div>
-          </button>
+          </a>
 
-          <button
-            onClick={() => {
-              playSoundEffect('click', settings.soundEffects);
-              onNavigate('bubble-pop');
-            }}
-            className="p-5 rounded-[28px] bg-white border-4 border-[#4D96FF] shadow-[0_6px_0_#3A72C1] text-left space-y-3 transition-all active:translate-y-1 active:shadow-none cursor-pointer group"
+          <a
+            href="/bubble-pop"
+            onClick={(e) => handleAnchorClick(e, 'bubble-pop')}
+            className="p-5 rounded-[28px] bg-white border-4 border-[#4D96FF] shadow-[0_6px_0_#3A72C1] text-left space-y-3 transition-all active:translate-y-1 active:shadow-none cursor-pointer group no-underline block"
           >
             <div className="w-10 h-10 rounded-2xl bg-[#4D96FF] text-white flex items-center justify-center font-black shadow-xs">
               <CircleDot className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="font-black text-[#2D2D2D] text-base">Bubble Pop Phonics</h4>
+              <h4 className="font-black text-[#2D2D2D] text-base group-hover:text-[#4D96FF] transition-colors">Bubble Pop Phonics</h4>
               <p className="text-xs text-gray-500 font-bold">Pop floating bubbles matching voice prompts.</p>
             </div>
-          </button>
+          </a>
 
-          <button
-            onClick={() => {
-              playSoundEffect('click', settings.soundEffects);
-              onNavigate('counting-feast');
-            }}
-            className="p-5 rounded-[28px] bg-white border-4 border-[#FF6B6B] shadow-[0_6px_0_#C44E4E] text-left space-y-3 transition-all active:translate-y-1 active:shadow-none cursor-pointer group"
+          <a
+            href="/counting-feast"
+            onClick={(e) => handleAnchorClick(e, 'counting-feast')}
+            className="p-5 rounded-[28px] bg-white border-4 border-[#FF6B6B] shadow-[0_6px_0_#C44E4E] text-left space-y-3 transition-all active:translate-y-1 active:shadow-none cursor-pointer group no-underline block"
           >
             <div className="w-10 h-10 rounded-2xl bg-[#FF6B6B] text-white flex items-center justify-center font-black shadow-xs">
               <Utensils className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="font-black text-[#2D2D2D] text-base">Monster Feast</h4>
+              <h4 className="font-black text-[#2D2D2D] text-base group-hover:text-[#FF6B6B] transition-colors">Monster Feast</h4>
               <p className="text-xs text-gray-500 font-bold">Feed friendly monsters while counting snacks.</p>
             </div>
-          </button>
+          </a>
 
-          <button
-            onClick={() => {
-              playSoundEffect('click', settings.soundEffects);
-              onNavigate('phonics-stories');
-            }}
-            className="p-5 rounded-[28px] bg-white border-4 border-[#6BCB77] shadow-[0_6px_0_#4E9B56] text-left space-y-3 transition-all active:translate-y-1 active:shadow-none cursor-pointer group"
+          <a
+            href="/phonics-stories"
+            onClick={(e) => handleAnchorClick(e, 'phonics-stories')}
+            className="p-5 rounded-[28px] bg-white border-4 border-[#6BCB77] shadow-[0_6px_0_#4E9B56] text-left space-y-3 transition-all active:translate-y-1 active:shadow-none cursor-pointer group no-underline block"
           >
             <div className="w-10 h-10 rounded-2xl bg-[#6BCB77] text-white flex items-center justify-center font-black shadow-xs">
               <BookOpen className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="font-black text-[#2D2D2D] text-base">Story World</h4>
+              <h4 className="font-black text-[#2D2D2D] text-base group-hover:text-[#6BCB77] transition-colors">Story World</h4>
               <p className="text-xs text-gray-500 font-bold">Listen and read along with phonics mini-stories.</p>
             </div>
-          </button>
+          </a>
 
         </div>
       </div>
@@ -282,24 +280,97 @@ export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings,
             Curious about letters, numbers, planets, or why things happen? Open full encyclopedia articles with real-world analogies, mouth shapes, ancient origins, and interactive brain quizzes!
           </p>
           <div className="flex flex-wrap gap-2 pt-1">
-            <span className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-gray-300">🔤 26 Alphabets</span>
-            <span className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-gray-300">🔢 Zero & Numbers</span>
-            <span className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-gray-300">🪐 Solar System</span>
-            <span className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-gray-300">🌍 Earth & Nature</span>
-            <span className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-gray-300">🗺️ World Continents</span>
+            {ENCYCLOPEDIA_CATEGORIES.slice(0, 5).map(cat => (
+              <a
+                key={cat.id}
+                href={`/encyclopedia/category/${cat.id}`}
+                className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-gray-300 hover:border-[#4D96FF] text-[#2D2D2D] no-underline"
+              >
+                {cat.icon} {cat.label}
+              </a>
+            ))}
           </div>
         </div>
 
-        <button
-          onClick={() => {
-            playSoundEffect('click', settings.soundEffects);
-            onNavigate('encyclopedia');
-          }}
-          className="px-6 py-4 bg-[#4D96FF] hover:bg-[#3A72C1] text-white font-black text-base uppercase tracking-tight rounded-2xl border-4 border-[#2D2D2D] shadow-[0_6px_0_#000] active:translate-y-1 active:shadow-none transition-all cursor-pointer whitespace-nowrap shrink-0 flex items-center gap-2"
+        <a
+          href="/encyclopedia"
+          onClick={(e) => handleAnchorClick(e, 'encyclopedia')}
+          className="px-6 py-4 bg-[#4D96FF] hover:bg-[#3A72C1] text-white font-black text-base uppercase tracking-tight rounded-2xl border-4 border-[#2D2D2D] shadow-[0_6px_0_#000] active:translate-y-1 active:shadow-none transition-all cursor-pointer whitespace-nowrap shrink-0 flex items-center gap-2 no-underline"
         >
           <span>OPEN ENCYCLOPEDIA</span>
           <ArrowRight className="w-5 h-5" />
-        </button>
+        </a>
+      </div>
+
+      {/* Curriculum & Encyclopedia Knowledge Directory for Maximum Crawlability */}
+      <div className="bg-white rounded-[32px] p-6 sm:p-8 border-4 border-[#4D96FF] shadow-[0_8px_0_#3A72C1] space-y-6">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <Compass className="w-6 h-6 text-[#4D96FF]" />
+            <h3 className="text-xl font-black text-[#2D2D2D] tracking-tight uppercase">
+              Curriculum & Encyclopedia Directory
+            </h3>
+          </div>
+          <span className="text-xs font-extrabold text-[#4D96FF] bg-[#4D96FF]/10 px-3 py-1 rounded-full">
+            220+ Dedicated Knowledge Pages
+          </span>
+        </div>
+
+        {/* 8 Categories Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          {ENCYCLOPEDIA_CATEGORIES.map((cat) => {
+            const count = ENCYCLOPEDIA_ENTRIES.filter(e => e.category === cat.id).length;
+            return (
+              <a
+                key={cat.id}
+                href={`/encyclopedia/category/${cat.id}`}
+                className="p-4 rounded-2xl bg-[#FFF9F0] border-2 border-[#FFD93D] hover:border-[#2D2D2D] transition-all no-underline block text-[#2D2D2D] group"
+              >
+                <div className="text-3xl mb-1">{cat.icon}</div>
+                <div className="font-black text-sm group-hover:text-[#4D96FF]">{cat.label}</div>
+                <div className="text-xs text-gray-500 font-bold">{count} Articles &bull; Explore &rarr;</div>
+              </a>
+            );
+          })}
+        </div>
+
+        {/* 26 Alphabets Fast Crawl Strip */}
+        <div className="space-y-2 pt-2 border-t-2 border-gray-100">
+          <div className="text-xs font-black uppercase tracking-wider text-gray-500">
+            Alphabets A to Z Phonics Pages:
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {ALPHABET_DATA.map((l) => (
+              <a
+                key={l.char}
+                href={`/alphabets/${l.char.toLowerCase()}`}
+                className="w-8 h-8 rounded-lg bg-[#FFF9F0] hover:bg-[#FF6B6B] hover:text-white border border-[#FF6B6B]/40 font-black text-xs flex items-center justify-center text-[#2D2D2D] no-underline transition-colors"
+                title={`Letter ${l.char} Phonics`}
+              >
+                {l.char}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Digits 0-20 Fast Crawl Strip */}
+        <div className="space-y-2 pt-2 border-t-2 border-gray-100">
+          <div className="text-xs font-black uppercase tracking-wider text-gray-500">
+            Numbers 0 to 20 Counting Pages:
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {DIGIT_DATA.map((d) => (
+              <a
+                key={d.value}
+                href={`/digits/${d.value}`}
+                className="w-8 h-8 rounded-lg bg-[#FFF9F0] hover:bg-[#6BCB77] hover:text-white border border-[#6BCB77]/40 font-black text-xs flex items-center justify-center text-[#2D2D2D] no-underline transition-colors"
+                title={`Number ${d.value} Math`}
+              >
+                {d.value}
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Badges Showcase */}
@@ -336,3 +407,4 @@ export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings,
     </div>
   );
 };
+

@@ -35,65 +35,101 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ tab, settings, onNavigat
       
       {/* Top Navigation Ribbon */}
       <div className="flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-3xl border-4 border-[#FFD93D] shadow-[0_6px_0_#C9A92E]">
-        <button
-          onClick={() => handleNavClick('overview')}
-          className="flex items-center space-x-2 px-4 py-2 bg-[#FFF9F0] hover:bg-[#FFD93D] text-[#2D2D2D] font-black text-xs uppercase tracking-wider rounded-2xl border-2 border-gray-200 transition-all cursor-pointer shadow-xs active:scale-95"
+        <a
+          href="/"
+          onClick={(e) => {
+            if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+              e.preventDefault();
+              handleNavClick('overview');
+            }
+          }}
+          className="flex items-center space-x-2 px-4 py-2 bg-[#FFF9F0] hover:bg-[#FFD93D] text-[#2D2D2D] font-black text-xs uppercase tracking-wider rounded-2xl border-2 border-gray-200 transition-all cursor-pointer shadow-xs active:scale-95 no-underline"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Learning World</span>
-        </button>
+        </a>
 
         <div className="flex flex-wrap items-center gap-2">
-          <button
-            onClick={() => handleNavClick('privacy')}
-            className={`px-3 py-1.5 rounded-xl font-black text-xs uppercase transition-all cursor-pointer ${
+          <a
+            href="/privacy"
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                e.preventDefault();
+                handleNavClick('privacy');
+              }
+            }}
+            className={`px-3 py-1.5 rounded-xl font-black text-xs uppercase transition-all cursor-pointer no-underline ${
               tab === 'privacy' 
                 ? 'bg-[#FF6B6B] text-white shadow-[0_3px_0_#D94B4B]' 
                 : 'bg-gray-100 hover:bg-gray-200 text-[#2D2D2D]'
             }`}
           >
             Privacy
-          </button>
-          <button
-            onClick={() => handleNavClick('terms')}
-            className={`px-3 py-1.5 rounded-xl font-black text-xs uppercase transition-all cursor-pointer ${
+          </a>
+          <a
+            href="/terms"
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                e.preventDefault();
+                handleNavClick('terms');
+              }
+            }}
+            className={`px-3 py-1.5 rounded-xl font-black text-xs uppercase transition-all cursor-pointer no-underline ${
               tab === 'terms' 
                 ? 'bg-[#4D96FF] text-white shadow-[0_3px_0_#3A72C1]' 
                 : 'bg-gray-100 hover:bg-gray-200 text-[#2D2D2D]'
             }`}
           >
             Terms
-          </button>
-          <button
-            onClick={() => handleNavClick('data-safety')}
-            className={`px-3 py-1.5 rounded-xl font-black text-xs uppercase transition-all cursor-pointer ${
+          </a>
+          <a
+            href="/data-safety"
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                e.preventDefault();
+                handleNavClick('data-safety');
+              }
+            }}
+            className={`px-3 py-1.5 rounded-xl font-black text-xs uppercase transition-all cursor-pointer no-underline ${
               tab === 'data-safety' 
                 ? 'bg-[#6BCB77] text-white shadow-[0_3px_0_#4E9B56]' 
                 : 'bg-gray-100 hover:bg-gray-200 text-[#2D2D2D]'
             }`}
           >
             Data Safety
-          </button>
-          <button
-            onClick={() => handleNavClick('editorial-policy')}
-            className={`px-3 py-1.5 rounded-xl font-black text-xs uppercase transition-all cursor-pointer ${
+          </a>
+          <a
+            href="/editorial-policy"
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                e.preventDefault();
+                handleNavClick('editorial-policy');
+              }
+            }}
+            className={`px-3 py-1.5 rounded-xl font-black text-xs uppercase transition-all cursor-pointer no-underline ${
               tab === 'editorial-policy' 
                 ? 'bg-[#FFD93D] text-[#2D2D2D] shadow-[0_3px_0_#C9A92E]' 
                 : 'bg-gray-100 hover:bg-gray-200 text-[#2D2D2D]'
             }`}
           >
             Editorial Policy
-          </button>
-          <button
-            onClick={() => handleNavClick('about')}
-            className={`px-3 py-1.5 rounded-xl font-black text-xs uppercase transition-all cursor-pointer ${
+          </a>
+          <a
+            href="/about"
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                e.preventDefault();
+                handleNavClick('about');
+              }
+            }}
+            className={`px-3 py-1.5 rounded-xl font-black text-xs uppercase transition-all cursor-pointer no-underline ${
               tab === 'about' 
                 ? 'bg-[#2D2D2D] text-white shadow-[0_3px_0_#000]' 
                 : 'bg-gray-100 hover:bg-gray-200 text-[#2D2D2D]'
             }`}
           >
             About & Credits
-          </button>
+          </a>
         </div>
       </div>
 

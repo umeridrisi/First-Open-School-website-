@@ -23,8 +23,9 @@ import { KidsEncyclopedia } from './components/views/KidsEncyclopedia';
 import { ParentalDashboard } from './components/parent/ParentalDashboard';
 import { LegalPages } from './components/views/LegalPages';
 import { ALPHABET_DATA, DIGIT_DATA } from './data/curriculumData';
+import { ENCYCLOPEDIA_CATEGORIES } from './data/encyclopediaData';
 import { playSoundEffect } from './utils/sound';
-import { parsePath, navigateTo, ROUTE_CHANGE_EVENT, AppRoute } from './utils/router';
+import { parsePath, navigateTo, formatRouteUrl, ROUTE_CHANGE_EVENT, AppRoute } from './utils/router';
 import { applySeoMetadata, getSeoMetadata } from './utils/seo';
 
 const INITIAL_STUDENT: StudentProfile = {
@@ -429,58 +430,131 @@ export default function App() {
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
-              <button
-                onClick={() => navigateTo({ tab: 'about' })}
-                className="px-5 py-3 bg-[#2D2D2D] hover:bg-black text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-[0_4px_0_#000] active:translate-y-0.5 active:shadow-none transition-all cursor-pointer"
+              <a
+                href="/about"
+                onClick={(e) => {
+                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                    e.preventDefault();
+                    navigateTo({ tab: 'about' });
+                  }
+                }}
+                className="px-5 py-3 bg-[#2D2D2D] hover:bg-black text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-[0_4px_0_#000] active:translate-y-0.5 active:shadow-none transition-all cursor-pointer no-underline"
               >
                 About & Creator Bio
-              </button>
-              <button
-                onClick={() => navigateTo({ tab: 'data-safety' })}
-                className="px-5 py-3 bg-[#6BCB77] hover:bg-[#4E9B56] text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-[0_4px_0_#4E9B56] active:translate-y-0.5 active:shadow-none transition-all cursor-pointer"
+              </a>
+              <a
+                href="/data-safety"
+                onClick={(e) => {
+                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                    e.preventDefault();
+                    navigateTo({ tab: 'data-safety' });
+                  }
+                }}
+                className="px-5 py-3 bg-[#6BCB77] hover:bg-[#4E9B56] text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-[0_4px_0_#4E9B56] active:translate-y-0.5 active:shadow-none transition-all cursor-pointer no-underline"
               >
                 Data Safety Pledge
-              </button>
+              </a>
+            </div>
+          </div>
+
+          {/* Crawlable Knowledge Categories Strip */}
+          <div className="pt-2 border-t-2 border-gray-100 space-y-2">
+            <div className="text-xs font-black uppercase tracking-wider text-[#2D2D2D]/70">
+              Kids Encyclopedia Knowledge Subjects:
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {ENCYCLOPEDIA_CATEGORIES.map(cat => (
+                <a
+                  key={cat.id}
+                  href={`/encyclopedia/category/${cat.id}`}
+                  onClick={(e) => {
+                    if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                      e.preventDefault();
+                      navigateTo({ tab: 'encyclopedia', category: cat.id });
+                    }
+                  }}
+                  className="px-3 py-1.5 rounded-xl bg-[#FFF9F0] hover:bg-[#FFD93D] border border-gray-200 text-xs font-bold text-[#2D2D2D] no-underline transition-colors"
+                >
+                  {cat.icon} {cat.label}
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Quick Legal & Pedagogical Navigation */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t-2 border-gray-100 text-xs font-black text-[#2D2D2D]/80">
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-              <button 
-                onClick={() => navigateTo({ tab: 'privacy' })}
-                className="hover:text-[#FF6B6B] transition-colors cursor-pointer"
+              <a 
+                href="/privacy"
+                onClick={(e) => {
+                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                    e.preventDefault();
+                    navigateTo({ tab: 'privacy' });
+                  }
+                }}
+                className="hover:text-[#FF6B6B] transition-colors cursor-pointer no-underline text-[#2D2D2D]"
               >
                 Privacy Policy
-              </button>
+              </a>
               <span className="text-gray-300 hidden sm:inline">•</span>
-              <button 
-                onClick={() => navigateTo({ tab: 'terms' })}
-                className="hover:text-[#4D96FF] transition-colors cursor-pointer"
+              <a 
+                href="/terms"
+                onClick={(e) => {
+                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                    e.preventDefault();
+                    navigateTo({ tab: 'terms' });
+                  }
+                }}
+                className="hover:text-[#4D96FF] transition-colors cursor-pointer no-underline text-[#2D2D2D]"
               >
                 Terms of Service
-              </button>
+              </a>
               <span className="text-gray-300 hidden sm:inline">•</span>
-              <button 
-                onClick={() => navigateTo({ tab: 'data-safety' })}
-                className="hover:text-[#6BCB77] transition-colors cursor-pointer"
+              <a 
+                href="/data-safety"
+                onClick={(e) => {
+                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                    e.preventDefault();
+                    navigateTo({ tab: 'data-safety' });
+                  }
+                }}
+                className="hover:text-[#6BCB77] transition-colors cursor-pointer no-underline text-[#2D2D2D]"
               >
                 Children's Data Safety
-              </button>
+              </a>
               <span className="text-gray-300 hidden sm:inline">•</span>
-              <button 
-                onClick={() => navigateTo({ tab: 'editorial-policy' })}
-                className="hover:text-[#FFD93D] transition-colors cursor-pointer"
+              <a 
+                href="/editorial-policy"
+                onClick={(e) => {
+                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                    e.preventDefault();
+                    navigateTo({ tab: 'editorial-policy' });
+                  }
+                }}
+                className="hover:text-[#FFD93D] transition-colors cursor-pointer no-underline text-[#2D2D2D]"
               >
                 Editorial Policy
-              </button>
+              </a>
               <span className="text-gray-300 hidden sm:inline">•</span>
-              <button 
-                onClick={() => navigateTo({ tab: 'about' })}
-                className="hover:text-[#2D2D2D] transition-colors cursor-pointer"
+              <a 
+                href="/about"
+                onClick={(e) => {
+                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                    e.preventDefault();
+                    navigateTo({ tab: 'about' });
+                  }
+                }}
+                className="hover:text-[#2D2D2D] transition-colors cursor-pointer no-underline text-[#2D2D2D]"
               >
                 About & Credits
-              </button>
+              </a>
+              <span className="text-gray-300 hidden sm:inline">•</span>
+              <a 
+                href="/sitemap.xml"
+                className="hover:text-[#4D96FF] transition-colors no-underline text-gray-500"
+              >
+                Sitemap.xml
+              </a>
             </div>
 
             <div className="text-gray-500 font-bold text-center sm:text-right">

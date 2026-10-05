@@ -15,6 +15,12 @@ const PORT = 3000;
 
 app.use(express.json());
 
+// Enforce search engine indexing directives & preview headers on all responses
+app.use((_req, res, next) => {
+  res.setHeader("X-Robots-Tag", "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
+  next();
+});
+
 // Initialize Gemini client server-side
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY || "",
@@ -302,8 +308,11 @@ async function startServer() {
         let template = fs.readFileSync(indexHtmlPath, "utf-8");
         template = await vite.transformIndexHtml(url, template);
         const route = parsePath(req.path);
-        const html = injectSeoIntoHtml(template, route);
-        res.status(200).set({ "Content-Type": "text/html; charset=utf-8" }).send(html);
+        const html = injectSeoIntoHtml(template, route, true);
+        res.status(200).set({ 
+          "Content-Type": "text/html; charset=utf-8",
+          "X-Robots-Tag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        }).send(html);
       } catch (e: any) {
         vite.ssrFixStacktrace(e);
         next(e);
@@ -313,21 +322,45 @@ async function startServer() {
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath, { index: false }));
 
-    // Dynamic Self-Canonical & Metadata Injection for Production
+    // Static & Dynamic Self-Canonical Serving for Production
     app.get("*", (req, res, next) => {
       const url = req.originalUrl;
       if (url.startsWith("/api") || (path.extname(url) && !url.endsWith(".html"))) {
         return next();
       }
       try {
+        const cleanPath = req.path.replace(/^\/+|\/+$/g, "");
+        const subIndexHtmlPath = cleanPath ? path.join(distPath, cleanPath, "index.html") : path.join(distPath, "index.html");
+        const cleanHtmlPath = cleanPath ? path.join(distPath, `${cleanPath}.html`) : "";
+
+        // 1. Check if dedicated SSG prerendered file exists
+        if (fs.existsSync(subIndexHtmlPath)) {
+          const html = fs.readFileSync(subIndexHtmlPath, "utf-8");
+          return res.status(200).set({ 
+            "Content-Type": "text/html; charset=utf-8",
+            "X-Robots-Tag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+          }).send(html);
+        }
+        if (cleanHtmlPath && fs.existsSync(cleanHtmlPath)) {
+          const html = fs.readFileSync(cleanHtmlPath, "utf-8");
+          return res.status(200).set({ 
+            "Content-Type": "text/html; charset=utf-8",
+            "X-Robots-Tag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+          }).send(html);
+        }
+
+        // 2. Dynamic fallback
         const indexHtmlPath = path.join(distPath, "index.html");
         if (!fs.existsSync(indexHtmlPath)) {
           return next();
         }
         const template = fs.readFileSync(indexHtmlPath, "utf-8");
         const route = parsePath(req.path);
-        const html = injectSeoIntoHtml(template, route);
-        res.status(200).set({ "Content-Type": "text/html; charset=utf-8" }).send(html);
+        const html = injectSeoIntoHtml(template, route, true);
+        res.status(200).set({ 
+          "Content-Type": "text/html; charset=utf-8",
+          "X-Robots-Tag": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        }).send(html);
       } catch (err) {
         next(err);
       }

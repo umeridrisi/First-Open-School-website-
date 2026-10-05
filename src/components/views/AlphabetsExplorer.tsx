@@ -143,16 +143,20 @@ export const AlphabetsExplorer: React.FC<AlphabetsExplorerProps> = ({
             <span>Hear Sound</span>
           </button>
 
-          <button
-            onClick={() => {
-              playSoundEffect('click', settings.soundEffects);
-              onSelectLetterForTracing(selectedLetter);
+          <a
+            href={`/tracing/${selectedLetter.char}`}
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                e.preventDefault();
+                playSoundEffect('click', settings.soundEffects);
+                onSelectLetterForTracing(selectedLetter);
+              }
             }}
-            className="flex items-center justify-center space-x-2 px-6 py-3.5 bg-yellow-400 text-slate-900 font-extrabold text-sm rounded-2xl shadow-md hover:bg-yellow-300 transition-all active:scale-95"
+            className="flex items-center justify-center space-x-2 px-6 py-3.5 bg-yellow-400 text-slate-900 font-extrabold text-sm rounded-2xl shadow-md hover:bg-yellow-300 transition-all active:scale-95 no-underline"
           >
             <PenTool className="w-5 h-5" />
             <span>Trace Letter {selectedLetter.char}</span>
-          </button>
+          </a>
         </div>
 
       </div>
@@ -164,15 +168,19 @@ export const AlphabetsExplorer: React.FC<AlphabetsExplorerProps> = ({
           const isMastered = student.progress[item.char]?.mastered;
 
           return (
-            <button
+            <a
               key={item.char}
-              onClick={() => {
-                setSelectedLetter(item);
-                onLetterChange?.(item.char.toLowerCase());
-                handlePlayLetterSound(item);
+              href={`/alphabets/${item.char.toLowerCase()}`}
+              onClick={(e) => {
+                if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                  e.preventDefault();
+                  setSelectedLetter(item);
+                  onLetterChange?.(item.char.toLowerCase());
+                  handlePlayLetterSound(item);
+                }
               }}
               onMouseEnter={() => speakText(item.char, settings.voiceGuidance)}
-              className={`relative p-4 rounded-3xl border text-center space-y-2 transition-all transform hover:-translate-y-1 active:scale-95 ${
+              className={`relative p-4 rounded-3xl border text-center space-y-2 transition-all transform hover:-translate-y-1 active:scale-95 no-underline block ${
                 isSelected
                   ? 'bg-rose-500 text-white border-rose-600 shadow-lg ring-4 ring-rose-300/40 scale-105'
                   : 'bg-white hover:bg-rose-50/60 border-slate-200 hover:border-rose-300 text-slate-800'
@@ -194,7 +202,7 @@ export const AlphabetsExplorer: React.FC<AlphabetsExplorerProps> = ({
               <div className={`text-[11px] font-bold line-clamp-1 ${isSelected ? 'text-rose-100' : 'text-slate-500'}`}>
                 {item.exampleWord}
               </div>
-            </button>
+            </a>
           );
         })}
       </div>

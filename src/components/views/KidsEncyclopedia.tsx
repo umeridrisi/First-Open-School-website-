@@ -271,20 +271,24 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
             const isSelected = selectedEntryId === item.id;
             const letterChar = item.title.charAt(7); // "Letter A (Aa)" -> "A"
             return (
-              <button
+              <a
                 key={item.id}
-                onClick={() => {
-                  setSelectedCategory('alphabets');
-                  handleSelectEntry(item);
+                href={`/encyclopedia/${item.id}`}
+                onClick={(e) => {
+                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                    e.preventDefault();
+                    setSelectedCategory('alphabets');
+                    handleSelectEntry(item);
+                  }
                 }}
-                className={`w-9 h-9 sm:w-10 sm:h-10 shrink-0 rounded-xl font-black text-base flex items-center justify-center border-2 transition-all cursor-pointer ${
+                className={`w-9 h-9 sm:w-10 sm:h-10 shrink-0 rounded-xl font-black text-base flex items-center justify-center border-2 transition-all cursor-pointer no-underline ${
                   isSelected
                     ? 'bg-[#FF6B6B] text-white border-black shadow-[0_3px_0_#000] scale-105'
                     : 'bg-[#FFF9F0] text-[#2D2D2D] border-gray-200 hover:border-[#FF6B6B] hover:bg-white'
                 }`}
               >
                 {letterChar}
-              </button>
+              </a>
             );
           })}
         </div>
@@ -294,37 +298,45 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
       <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
         {/* Category Pills */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-          <button
-            onClick={() => {
-              playSoundEffect('click', settings.soundEffects);
-              setSelectedCategory('all');
-              onCategoryChange?.('all');
+          <a
+            href="/encyclopedia"
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                e.preventDefault();
+                playSoundEffect('click', settings.soundEffects);
+                setSelectedCategory('all');
+                onCategoryChange?.('all');
+              }
             }}
-            className={`px-4 py-2.5 rounded-2xl border-4 font-black text-xs uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer ${
+            className={`px-4 py-2.5 rounded-2xl border-4 font-black text-xs uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer no-underline ${
               selectedCategory === 'all'
                 ? 'bg-[#2D2D2D] text-white border-black shadow-[0_4px_0_#000]'
                 : 'bg-white text-[#2D2D2D]/70 border-gray-200 hover:border-[#FFD93D]'
             }`}
           >
             All Entries ({ENCYCLOPEDIA_ENTRIES.length})
-          </button>
+          </a>
 
           {ENCYCLOPEDIA_CATEGORIES.map(cat => {
             const isSelected = selectedCategory === cat.id;
             return (
-              <button
+              <a
                 key={cat.id}
-                onClick={() => {
-                  playSoundEffect('click', settings.soundEffects);
-                  setSelectedCategory(cat.id);
-                  onCategoryChange?.(cat.id);
-                  const firstOfCat = ENCYCLOPEDIA_ENTRIES.find(e => e.category === cat.id);
-                  if (firstOfCat) {
-                    setSelectedEntryId(firstOfCat.id);
-                    onEntryChange?.(firstOfCat.id);
+                href={`/encyclopedia/category/${cat.id}`}
+                onClick={(e) => {
+                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                    e.preventDefault();
+                    playSoundEffect('click', settings.soundEffects);
+                    setSelectedCategory(cat.id);
+                    onCategoryChange?.(cat.id);
+                    const firstOfCat = ENCYCLOPEDIA_ENTRIES.find(e => e.category === cat.id);
+                    if (firstOfCat) {
+                      setSelectedEntryId(firstOfCat.id);
+                      onEntryChange?.(firstOfCat.id);
+                    }
                   }
                 }}
-                className={`flex items-center space-x-1.5 px-4 py-2.5 rounded-2xl border-4 font-black text-xs uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer ${
+                className={`flex items-center space-x-1.5 px-4 py-2.5 rounded-2xl border-4 font-black text-xs uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer no-underline ${
                   isSelected
                     ? 'bg-white text-[#2D2D2D] border-[#FFD93D] shadow-[0_4px_0_#C9A92E]'
                     : 'bg-white text-[#2D2D2D]/70 border-gray-200 hover:border-[#FFD93D]'
@@ -332,7 +344,7 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
               >
                 <span>{cat.icon}</span>
                 <span>{cat.label}</span>
-              </button>
+              </a>
             );
           })}
         </div>
@@ -369,10 +381,16 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
               filteredEntries.map(entry => {
                 const isSelected = selectedEntryId === entry.id;
                 return (
-                  <button
+                  <a
                     key={entry.id}
-                    onClick={() => handleSelectEntry(entry)}
-                    className={`w-full text-left p-3 rounded-2xl border-2 transition-all flex items-center justify-between cursor-pointer ${
+                    href={`/encyclopedia/${entry.id}`}
+                    onClick={(e) => {
+                      if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                        e.preventDefault();
+                        handleSelectEntry(entry);
+                      }
+                    }}
+                    className={`w-full text-left p-3 rounded-2xl border-2 transition-all flex items-center justify-between cursor-pointer no-underline ${
                       isSelected
                         ? 'bg-[#FFF9F0] border-[#FF6B6B] shadow-[0_3px_0_#FF6B6B] translate-x-1'
                         : 'bg-white border-gray-100 hover:border-gray-300 hover:bg-gray-50'
@@ -388,7 +406,7 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
                       </div>
                     </div>
                     <ChevronRight className={`w-4 h-4 ${isSelected ? 'text-[#FF6B6B]' : 'text-gray-300'}`} />
-                  </button>
+                  </a>
                 );
               })
             )}
@@ -858,19 +876,23 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {currentEntry.seeAlso.map((rel, idx) => (
-                    <button
+                    <a
                       key={idx}
-                      onClick={() => {
-                        const target = ENCYCLOPEDIA_ENTRIES.find(e => e.id === rel.id);
-                        if (target) {
-                          setSelectedCategory(target.category);
-                          handleSelectEntry(target);
+                      href={`/encyclopedia/${rel.id}`}
+                      onClick={(e) => {
+                        if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                          e.preventDefault();
+                          const target = ENCYCLOPEDIA_ENTRIES.find(ent => ent.id === rel.id);
+                          if (target) {
+                            setSelectedCategory(target.category);
+                            handleSelectEntry(target);
+                          }
                         }
                       }}
-                      className="px-3.5 py-1.5 rounded-xl bg-[#FFF9F0] hover:bg-[#FFD93D] border-2 border-gray-200 hover:border-[#2D2D2D] font-black text-xs text-[#2D2D2D] transition-all cursor-pointer shadow-2xs"
+                      className="px-3.5 py-1.5 rounded-xl bg-[#FFF9F0] hover:bg-[#FFD93D] border-2 border-gray-200 hover:border-[#2D2D2D] font-black text-xs text-[#2D2D2D] transition-all cursor-pointer shadow-2xs no-underline inline-block"
                     >
                       {rel.title} →
-                    </button>
+                    </a>
                   ))}
                 </div>
               </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Sparkles, Shield, Wifi, WifiOff, Volume2, VolumeX, Award, Flame, User, Lock } from 'lucide-react';
 import { StudentProfile, ParentSettings } from '../types';
 import { speakText, playSoundEffect } from '../utils/sound';
+import { navigateTo } from '../utils/router';
 
 interface HeaderProps {
   student: StudentProfile;
@@ -41,16 +42,26 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
         
         {/* Brand & Logo */}
-        <div className="flex items-center space-x-3.5">
+        <a 
+          href="/" 
+          onClick={(e) => {
+            if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+              e.preventDefault();
+              playSoundEffect('click', settings.soundEffects);
+              navigateTo({ tab: 'overview' });
+              handleSpeech("First Open School. Learn Alphabets and Digits!");
+            }
+          }}
+          className="flex items-center space-x-3.5 no-underline group cursor-pointer"
+        >
           <div 
-            className="w-12 h-12 bg-[#FF6B6B] rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-[4px_4px_0px_#C44E4E] active:translate-y-1 active:shadow-none transition-all cursor-pointer"
-            onClick={() => handleSpeech("First Open School. Learn Alphabets and Digits!")}
+            className="w-12 h-12 bg-[#FF6B6B] rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-[4px_4px_0px_#C44E4E] group-active:translate-y-1 group-active:shadow-none transition-all"
           >
             F
           </div>
           <div>
             <div className="flex items-center space-x-2">
-              <h1 className="text-xl lg:text-2xl font-black tracking-tight text-[#4D96FF]">
+              <h1 className="text-xl lg:text-2xl font-black tracking-tight text-[#4D96FF] group-hover:text-[#3A72C1] transition-colors">
                 FIRST OPEN SCHOOL
               </h1>
               <span className="hidden sm:inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-black bg-[#6BCB77] text-white shadow-xs">
@@ -62,7 +73,7 @@ export const Header: React.FC<HeaderProps> = ({
               Interactive Early Literacy & Numeracy
             </p>
           </div>
-        </div>
+        </a>
 
         {/* Center: Student Name & Streak Counters */}
         <div className="flex items-center space-x-2 lg:space-x-4">
