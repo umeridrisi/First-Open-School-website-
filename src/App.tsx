@@ -20,10 +20,12 @@ import { CardMatchGame } from './components/games/CardMatchGame';
 import { PhonicsStoryReader } from './components/games/PhonicsStoryReader';
 import { GamifiedQuiz } from './components/games/GamifiedQuiz';
 import { KidsEncyclopedia } from './components/views/KidsEncyclopedia';
+import { PoemsExplorer } from './components/views/PoemsExplorer';
 import { ParentalDashboard } from './components/parent/ParentalDashboard';
 import { LegalPages } from './components/views/LegalPages';
 import { ALPHABET_DATA, DIGIT_DATA } from './data/curriculumData';
 import { ENCYCLOPEDIA_CATEGORIES } from './data/encyclopediaData';
+import { POEM_CATEGORIES } from './data/poemsData';
 import { playSoundEffect } from './utils/sound';
 import { parsePath, navigateTo, formatRouteUrl, ROUTE_CHANGE_EVENT, AppRoute } from './utils/router';
 import { applySeoMetadata, getSeoMetadata } from './utils/seo';
@@ -329,6 +331,17 @@ export default function App() {
           />
         )}
 
+        {currentRoute.tab === 'poems' && (
+          <PoemsExplorer
+            student={student}
+            settings={settings}
+            initialPoemId={currentRoute.poemId}
+            initialCategory={currentRoute.poemCategory}
+            onPoemChange={(id) => navigateTo({ tab: 'poems', poemId: id })}
+            onCategoryChange={(cat) => navigateTo(cat === 'all' ? { tab: 'poems' } : { tab: 'poems', poemCategory: cat })}
+          />
+        )}
+
         {currentRoute.tab === 'tracing' && (
           <TracingCanvas
             initialTarget={selectedTracingTarget}
@@ -474,6 +487,44 @@ export default function App() {
                     }
                   }}
                   className="px-3 py-1.5 rounded-xl bg-[#FFF9F0] hover:bg-[#FFD93D] border border-gray-200 text-xs font-bold text-[#2D2D2D] no-underline transition-colors"
+                >
+                  {cat.icon} {cat.label}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Poem Categories Fast Crawl Links */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <div className="text-xs font-black uppercase tracking-wider text-[#8B5CF6]">
+                Easy English Poems for Kids to Recite:
+              </div>
+              <a
+                href="/poems"
+                onClick={(e) => {
+                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                    e.preventDefault();
+                    navigateTo({ tab: 'poems' });
+                  }
+                }}
+                className="text-xs font-black text-[#8B5CF6] hover:underline"
+              >
+                View All 28 Poems &rarr;
+              </a>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {POEM_CATEGORIES.map(cat => (
+                <a
+                  key={cat.id}
+                  href={`/poems/category/${cat.id}`}
+                  onClick={(e) => {
+                    if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                      e.preventDefault();
+                      navigateTo({ tab: 'poems', poemCategory: cat.id });
+                    }
+                  }}
+                  className="px-3 py-1.5 rounded-xl bg-purple-50 hover:bg-[#8B5CF6] hover:text-white border border-purple-200 text-xs font-bold text-[#2D2D2D] no-underline transition-colors"
                 >
                   {cat.icon} {cat.label}
                 </a>

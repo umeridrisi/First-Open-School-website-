@@ -1,5 +1,6 @@
 import { ALPHABET_DATA, DIGIT_DATA } from '../data/curriculumData';
 import { ENCYCLOPEDIA_ENTRIES, ENCYCLOPEDIA_CATEGORIES } from '../data/encyclopediaData';
+import { POEMS_DATA, POEM_CATEGORIES } from '../data/poemsData';
 
 export interface SitemapEntry {
   loc: string;
@@ -23,6 +24,7 @@ export function getSiteUrls(baseUrl: string = 'https://firstopenschool.com'): Si
     { loc: `${cleanBase}/alphabets`, lastmod: today, changefreq: 'weekly', priority: 0.95 },
     { loc: `${cleanBase}/digits`, lastmod: today, changefreq: 'weekly', priority: 0.95 },
     { loc: `${cleanBase}/encyclopedia`, lastmod: today, changefreq: 'daily', priority: 0.95 },
+    { loc: `${cleanBase}/poems`, lastmod: today, changefreq: 'daily', priority: 0.95 },
     { loc: `${cleanBase}/tracing`, lastmod: today, changefreq: 'weekly', priority: 0.85 },
     
     // Interactive Games & Modules
@@ -75,6 +77,26 @@ export function getSiteUrls(baseUrl: string = 'https://firstopenschool.com'): Si
   ENCYCLOPEDIA_ENTRIES.forEach(entry => {
     urls.push({
       loc: `${cleanBase}/encyclopedia/${entry.id}`,
+      lastmod: today,
+      changefreq: 'weekly',
+      priority: 0.9
+    });
+  });
+
+  // Poem Category Hubs
+  POEM_CATEGORIES.forEach(cat => {
+    urls.push({
+      loc: `${cleanBase}/poems/category/${cat.id}`,
+      lastmod: today,
+      changefreq: 'weekly',
+      priority: 0.85
+    });
+  });
+
+  // All 28 Easy English Poems for Kids In-Depth Recital Pages
+  POEMS_DATA.forEach(poem => {
+    urls.push({
+      loc: `${cleanBase}/poems/${poem.id}`,
       lastmod: today,
       changefreq: 'weekly',
       priority: 0.9

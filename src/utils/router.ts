@@ -6,6 +6,8 @@ export interface AppRoute {
   digit?: number;
   entryId?: string;
   category?: string;
+  poemId?: string;
+  poemCategory?: string;
   tracingTarget?: string;
 }
 
@@ -44,6 +46,15 @@ export function parsePath(pathname: string = (typeof window !== 'undefined' && w
         return { tab: 'encyclopedia', entryId: second.toLowerCase() };
       }
       return { tab: 'encyclopedia' };
+
+    case 'poems':
+      if (segments[1] === 'category' && segments[2]) {
+        return { tab: 'poems', poemCategory: segments[2].toLowerCase() };
+      }
+      if (second) {
+        return { tab: 'poems', poemId: second.toLowerCase() };
+      }
+      return { tab: 'poems' };
 
     case 'tracing':
       if (second) {
@@ -111,6 +122,15 @@ export function formatRouteUrl(route: AppRoute): string {
         return `/encyclopedia/${route.entryId}`;
       }
       return '/encyclopedia';
+
+    case 'poems':
+      if (route.poemCategory) {
+        return `/poems/category/${route.poemCategory}`;
+      }
+      if (route.poemId) {
+        return `/poems/${route.poemId}`;
+      }
+      return '/poems';
 
     case 'tracing':
       return route.tracingTarget ? `/tracing/${encodeURIComponent(route.tracingTarget)}` : '/tracing';

@@ -55,6 +55,14 @@ export const SubjectNav: React.FC<SubjectNavProps> = ({ activeTab, onSelectTab, 
       voicePrompt: 'Kids Encyclopedia. Clear definitions and analogies for alphabets, numbers, and science.'
     },
     { 
+      id: 'poems', 
+      label: 'Poems & Rhymes', 
+      icon: <span className="text-xl">⭐</span>, 
+      color: 'text-[#8B5CF6]', 
+      activeBg: 'bg-white border-[#8B5CF6] shadow-[0_4px_0_#6D28D9]',
+      voicePrompt: 'Easy English Poems for Kids to Learn and Recite'
+    },
+    { 
       id: 'tracing', 
       label: 'Letter Tracing', 
       icon: <PenTool className="w-5 h-5" />, 

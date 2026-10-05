@@ -2,6 +2,7 @@ import React from 'react';
 import { StudentProfile, ActiveTab, ParentSettings, ItemProgress } from '../../types';
 import { ALPHABET_DATA, DIGIT_DATA, ALL_BADGES, AGE_TIER_INFO } from '../../data/curriculumData';
 import { ENCYCLOPEDIA_CATEGORIES, ENCYCLOPEDIA_ENTRIES } from '../../data/encyclopediaData';
+import { POEM_CATEGORIES, POEMS_DATA } from '../../data/poemsData';
 import { speakText, playSoundEffect } from '../../utils/sound';
 import { formatRouteUrl } from '../../utils/router';
 import { Sparkles, Trophy, Flame, Play, PenTool, CircleDot, Utensils, BookOpen, ArrowRight, Compass } from 'lucide-react';
@@ -302,6 +303,42 @@ export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings,
         </a>
       </div>
 
+      {/* Easy English Poems Spotlight Banner */}
+      <div className="bg-gradient-to-r from-purple-100 via-[#FFF9F0] to-indigo-100 rounded-[32px] p-6 sm:p-8 border-4 border-[#8B5CF6] shadow-[0_8px_0_#6D28D9] flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="space-y-3 max-w-xl">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#8B5CF6] text-white text-xs font-black uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
+            <span>NEW POETRY & RECITATION SECTION</span>
+          </div>
+          <h3 className="text-2xl sm:text-3xl font-black text-[#2D2D2D] tracking-tight">
+            Easy English Poems for Kids ⭐
+          </h3>
+          <p className="text-sm font-semibold text-[#2D2D2D]/80 leading-relaxed">
+            Listen to 28 timeless nursery rhymes, animal verses, lullabies, and whimsical action poems! Includes audio read-aloud, stanza highlighting, vocabulary definitions, and tips to recite with expression!
+          </p>
+          <div className="flex flex-wrap gap-2 pt-1">
+            {POEM_CATEGORIES.map(cat => (
+              <a
+                key={cat.id}
+                href={`/poems/category/${cat.id}`}
+                className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-purple-200 hover:border-[#8B5CF6] text-[#2D2D2D] no-underline"
+              >
+                {cat.icon} {cat.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <a
+          href="/poems"
+          onClick={(e) => handleAnchorClick(e, 'poems', 'Explore Easy English Poems for Kids')}
+          className="px-6 py-4 bg-[#8B5CF6] hover:bg-purple-700 text-white font-black text-base uppercase tracking-tight rounded-2xl border-4 border-[#2D2D2D] shadow-[0_6px_0_#000] active:translate-y-1 active:shadow-none transition-all cursor-pointer whitespace-nowrap shrink-0 flex items-center gap-2 no-underline"
+        >
+          <span>EXPLORE 28 POEMS</span>
+          <ArrowRight className="w-5 h-5" />
+        </a>
+      </div>
+
       {/* Curriculum & Encyclopedia Knowledge Directory for Maximum Crawlability */}
       <div className="bg-white rounded-[32px] p-6 sm:p-8 border-4 border-[#4D96FF] shadow-[0_8px_0_#3A72C1] space-y-6">
         <div className="flex items-center justify-between">
@@ -312,7 +349,7 @@ export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings,
             </h3>
           </div>
           <span className="text-xs font-extrabold text-[#4D96FF] bg-[#4D96FF]/10 px-3 py-1 rounded-full">
-            220+ Dedicated Knowledge Pages
+            250+ Dedicated Knowledge Pages
           </span>
         </div>
 
@@ -332,6 +369,56 @@ export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings,
               </a>
             );
           })}
+        </div>
+
+        {/* 6 Poem Categories Grid */}
+        <div className="space-y-2 pt-2 border-t-2 border-gray-100">
+          <div className="flex items-center justify-between">
+            <div className="text-xs font-black uppercase tracking-wider text-[#8B5CF6]">
+              Easy English Poems for Kids by Category:
+            </div>
+            <a href="/poems" className="text-xs font-black text-[#8B5CF6] hover:underline">
+              View All 28 Poems &rarr;
+            </a>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            {POEM_CATEGORIES.map((cat) => {
+              const count = POEMS_DATA.filter(p => p.category === cat.id).length;
+              return (
+                <a
+                  key={cat.id}
+                  href={`/poems/category/${cat.id}`}
+                  className="p-3 rounded-2xl bg-purple-50/60 border border-purple-200 hover:border-[#8B5CF6] transition-all no-underline block text-[#2D2D2D] group"
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-xl">{cat.icon}</span>
+                    <span className="font-black text-xs text-[#2D2D2D] group-hover:text-[#8B5CF6]">{cat.label}</span>
+                  </div>
+                  <div className="text-[11px] text-gray-500 font-bold">{count} Rhymes &bull; Recite &rarr;</div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* 28 Poems Fast Crawl Strip */}
+        <div className="space-y-2 pt-2 border-t-2 border-gray-100">
+          <div className="text-xs font-black uppercase tracking-wider text-gray-500">
+            All 28 Easy English Poems to Recite:
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {POEMS_DATA.map((p) => (
+              <a
+                key={p.id}
+                href={`/poems/${p.id}`}
+                className="px-2.5 py-1 rounded-lg bg-[#FFF9F0] hover:bg-[#8B5CF6] hover:text-white border border-purple-200 font-bold text-xs flex items-center gap-1 text-[#2D2D2D] no-underline transition-colors"
+                title={`${p.title} (${p.poet})`}
+              >
+                <span>{p.emoji}</span>
+                <span>{p.title}</span>
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* 26 Alphabets Fast Crawl Strip */}

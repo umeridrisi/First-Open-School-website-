@@ -44,6 +44,7 @@ async function prerender() {
 
       // Also create cleanUrl HTML e.g. dist/encyclopedia.html
       const cleanHtmlPath = path.join(distDir, `${cleanPath}.html`);
+      fs.mkdirSync(path.dirname(cleanHtmlPath), { recursive: true });
       fs.writeFileSync(cleanHtmlPath, renderedHtml, 'utf-8');
     }
 

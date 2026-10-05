@@ -1,6 +1,6 @@
 {
   "name": "First Open School",
-  "description": "Kids learning app for alphabets, digits, and a CDE-inspired Kids Encyclopedia featuring real-life analogies, phonics, solar system, earth science, and world geography.",
+  "description": "Kids early learning platform for alphabets, digits, easy English poems to recite, and a CDE-inspired Kids Encyclopedia featuring real-life analogies, phonics, and science.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

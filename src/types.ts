@@ -5,6 +5,7 @@ export type ActiveTab =
   | 'alphabets'
   | 'digits'
   | 'encyclopedia'
+  | 'poems'
   | 'tracing'
   | 'bubble-pop'
   | 'counting-feast'
@@ -17,6 +18,37 @@ export type ActiveTab =
   | 'data-safety'
   | 'editorial-policy'
   | 'about';
+
+export type PoemCategory = 
+  | 'classics-rhymes'
+  | 'animals-nature'
+  | 'bedtime-lullabies'
+  | 'fun-whimsical'
+  | 'good-habits'
+  | 'seasons-weather';
+
+export interface PoemVocabulary {
+  word: string;
+  meaning: string;
+  emoji: string;
+}
+
+export interface Poem {
+  id: string;
+  title: string;
+  poet: string;
+  emoji: string;
+  category: PoemCategory;
+  ageTier: 'Ages 2-4' | 'Ages 4-6' | 'Ages 6-8' | 'All Ages';
+  tagline: string;
+  themeColor: string;
+  badgeBg: string;
+  stanzas: string[][];
+  rhymeScheme: string;
+  vocabulary: PoemVocabulary[];
+  educationalTakeaway: string;
+  recitalTips: string[];
+}
 
 export type EncyclopediaCategory = 
   | 'alphabets'

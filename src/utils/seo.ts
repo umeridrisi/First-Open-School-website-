@@ -1,6 +1,7 @@
 import { AppRoute, formatRouteUrl } from './router';
 import { ALPHABET_DATA, DIGIT_DATA } from '../data/curriculumData';
 import { ENCYCLOPEDIA_ENTRIES, ENCYCLOPEDIA_CATEGORIES } from '../data/encyclopediaData';
+import { POEMS_DATA, POEM_CATEGORIES, getPoemById } from '../data/poemsData';
 
 export interface SeoMetadata {
   title: string;
@@ -342,6 +343,166 @@ export function getSeoMetadata(route: AppRoute): SeoMetadata {
             '@type': 'CollectionPage',
             name: 'First Open School Kids Encyclopedia',
             description: pageDesc,
+            url: canonicalUrl
+          }
+        ]
+      };
+    }
+
+    case 'poems': {
+      if (route.poemId) {
+        const poem = getPoemById(route.poemId);
+        if (poem) {
+          const catInfo = POEM_CATEGORIES.find(c => c.id === poem.category);
+          const pageTitle = `${poem.title} - Easy English Poem for Kids to Learn & Recite | First Open School`;
+          const pageDesc = `${poem.tagline} By ${poem.poet}. Rhythm: ${poem.rhymeScheme}. Age: ${poem.ageTier}. Complete stanzas, audio read-aloud recitation, vocabulary words, and physical recital tips for kids.`;
+
+          return {
+            title: pageTitle,
+            description: pageDesc,
+            canonicalUrl,
+            ogTitle: `${poem.title} - Easy English Recital Poem for Kids`,
+            ogDescription: pageDesc,
+            ogType: 'article',
+            ogImage: DEFAULT_IMAGE,
+            twitterCard: 'summary_large_image',
+            keywords: [
+              poem.title.toLowerCase(),
+              'easy english poems for kids',
+              'poems for kids to recite',
+              'nursery rhyme',
+              poem.poet.toLowerCase(),
+              poem.category,
+              'learn poems by heart',
+              'rhyme scheme ' + poem.rhymeScheme,
+              ...poem.vocabulary.map(v => v.word.toLowerCase())
+            ],
+            breadcrumbs: [
+              ...defaultBreadcrumbs,
+              { name: 'Poems & Rhymes', url: `${baseUrl}/poems` },
+              ...(catInfo ? [{ name: catInfo.label, url: `${baseUrl}/poems/category/${catInfo.id}` }] : []),
+              { name: poem.title, url: canonicalUrl }
+            ],
+            jsonLd: [
+              {
+                '@context': 'https://schema.org',
+                '@type': 'CreativeWork',
+                name: poem.title,
+                headline: poem.title,
+                author: {
+                  '@type': 'Person',
+                  name: poem.poet
+                },
+                description: pageDesc,
+                genre: 'Children\'s Poetry',
+                inLanguage: 'en-US',
+                mainEntityOfPage: canonicalUrl,
+                educationalLevel: poem.ageTier,
+                publisher: {
+                  '@type': 'Organization',
+                  name: DEFAULT_SITE_NAME,
+                  url: baseUrl
+                },
+                text: poem.stanzas.map(s => s.join('\n')).join('\n\n')
+              },
+              {
+                '@context': 'https://schema.org',
+                '@type': 'LearningResource',
+                name: `Learn to Recite: ${poem.title}`,
+                description: poem.tagline,
+                learningResourceType: 'Poem Recitation & Vocabulary',
+                educationalLevel: poem.ageTier,
+                url: canonicalUrl
+              }
+            ]
+          };
+        }
+      }
+
+      if (route.poemCategory) {
+        const cat = POEM_CATEGORIES.find(c => c.id === route.poemCategory);
+        const catLabel = cat ? cat.label : route.poemCategory;
+        const pageTitle = `${catLabel} - Easy English Poems for Kids to Learn & Recite | First Open School`;
+        const pageDesc = cat ? `${cat.description} Explore easy rhyming poems with line-by-line recitation audio, vocabulary, and recital tips.` : `Read and recite children\'s poems in ${catLabel}.`;
+
+        return {
+          title: pageTitle,
+          description: pageDesc,
+          canonicalUrl,
+          ogTitle: `${catLabel} - Easy English Poems for Kids`,
+          ogDescription: pageDesc,
+          ogType: 'website',
+          ogImage: DEFAULT_IMAGE,
+          twitterCard: 'summary_large_image',
+          keywords: [route.poemCategory, 'kids poems', 'nursery rhymes', 'easy english poems', 'poem recitation for children'],
+          breadcrumbs: [
+            ...defaultBreadcrumbs,
+            { name: 'Poems & Rhymes', url: `${baseUrl}/poems` },
+            { name: catLabel, url: canonicalUrl }
+          ],
+          jsonLd: [
+            {
+              '@context': 'https://schema.org',
+              '@type': 'CollectionPage',
+              name: catLabel,
+              description: pageDesc,
+              url: canonicalUrl
+            }
+          ]
+        };
+      }
+
+      const pageTitle = 'Easy English Poems for Kids to Learn and Recite | First Open School';
+      const pageDesc = 'Discover the first big set of 28 easy English poems for kids to learn and recite! Timeless classics, nursery rhymes, animal verses, and bedtime lullabies with read-aloud audio, stanza highlighting, vocabulary, and recital tips.';
+      return {
+        title: pageTitle,
+        description: pageDesc,
+        canonicalUrl,
+        ogTitle: 'Easy English Poems for Kids to Learn and Recite',
+        ogDescription: pageDesc,
+        ogType: 'website',
+        ogImage: DEFAULT_IMAGE,
+        twitterCard: 'summary_large_image',
+        keywords: [
+          'easy english poems for kids',
+          'poems for kids to recite',
+          'nursery rhymes for children',
+          'english poems to learn by heart',
+          'kindergarten poem recitation',
+          'rhyming verses for early readers',
+          'twinkle twinkle little star',
+          'humpty dumpty',
+          'mary had a little lamb',
+          'itsy bitsy spider'
+        ],
+        breadcrumbs: [
+          ...defaultBreadcrumbs,
+          { name: 'Poems & Rhymes', url: canonicalUrl }
+        ],
+        jsonLd: [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'CollectionPage',
+            name: 'Easy English Poems for Kids to Learn and Recite',
+            description: pageDesc,
+            url: canonicalUrl,
+            mainEntity: {
+              '@type': 'ItemList',
+              itemListElement: POEMS_DATA.map((p, index) => ({
+                '@type': 'ListItem',
+                position: index + 1,
+                name: p.title,
+                url: `${baseUrl}/poems/${p.id}`
+              }))
+            }
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'LearningResource',
+            name: 'English Poetry & Recitation Curriculum for Kids',
+            description: pageDesc,
+            educationalLevel: 'Pre-K to Elementary',
+            learningResourceType: 'Poetry Recitation & Rhyme Practice',
             url: canonicalUrl
           }
         ]
@@ -771,6 +932,7 @@ export function renderSemanticRouteHtml(route: AppRoute): string {
           <a href="/alphabets" style="color:#2d2d2d;text-decoration:none;padding:0.4rem 0.8rem;border-radius:0.75rem;background:#fff9f0;border:2px solid #ff6b6b;">Alphabets A-Z</a>
           <a href="/digits" style="color:#2d2d2d;text-decoration:none;padding:0.4rem 0.8rem;border-radius:0.75rem;background:#fff9f0;border:2px solid #6bcb77;">Digits 0-20</a>
           <a href="/encyclopedia" style="color:#2d2d2d;text-decoration:none;padding:0.4rem 0.8rem;border-radius:0.75rem;background:#ffd93d;border:2px solid #2d2d2d;">Kids Encyclopedia 📚</a>
+          <a href="/poems" style="color:#2d2d2d;text-decoration:none;padding:0.4rem 0.8rem;border-radius:0.75rem;background:#fff9f0;border:2px solid #8b5cf6;">Poems & Rhymes ⭐</a>
           <a href="/tracing" style="color:#2d2d2d;text-decoration:none;padding:0.4rem 0.8rem;border-radius:0.75rem;background:#fff9f0;border:2px solid #ffd93d;">Tracing</a>
           <a href="/phonics-stories" style="color:#2d2d2d;text-decoration:none;padding:0.4rem 0.8rem;border-radius:0.75rem;background:#fff9f0;border:2px solid #4d96ff;">Stories</a>
           <a href="/assessment" style="color:#2d2d2d;text-decoration:none;padding:0.4rem 0.8rem;border-radius:0.75rem;background:#fff9f0;border:2px solid #ffd93d;">Quiz</a>
@@ -955,6 +1117,200 @@ export function renderSemanticRouteHtml(route: AppRoute): string {
                 </div>
               `;
             }).join('')}
+          </div>
+        </section>
+      `;
+    }
+  } else if (route.tab === 'poems') {
+    if (route.poemId) {
+      const poem = getPoemById(route.poemId);
+      if (poem) {
+        const catInfo = POEM_CATEGORIES.find(c => c.id === poem.category);
+        const related = POEMS_DATA.filter(p => p.category === poem.category && p.id !== poem.id).slice(0, 4);
+        mainContentHtml = `
+          <article itemscope itemtype="https://schema.org/CreativeWork" style="background:#ffffff;border-radius:2rem;padding:2rem;border:4px solid #8B5CF6;box-shadow:0 6px 0 #6D28D9;margin-top:1.5rem;">
+            <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;">
+              <span style="display:inline-block;background:#EDE9FE;color:#5B21B6;border:2px solid #C4B5FD;padding:0.35rem 0.85rem;border-radius:9999px;font-weight:900;font-size:0.75rem;text-transform:uppercase;">
+                <a href="/poems/category/${poem.category}" style="color:#5B21B6;text-decoration:none;">${catInfo ? catInfo.icon + ' ' + escapeHtmlText(catInfo.label) : escapeHtmlText(poem.category)}</a>
+              </span>
+              <span style="background:#FEF3C7;color:#92400E;padding:0.35rem 0.75rem;border-radius:9999px;font-weight:800;font-size:0.75rem;">
+                Target: ${escapeHtmlText(poem.ageTier)}
+              </span>
+              <span style="background:#E0F2FE;color:#075985;padding:0.35rem 0.75rem;border-radius:9999px;font-weight:800;font-size:0.75rem;">
+                Rhyme Scheme: ${escapeHtmlText(poem.rhymeScheme)}
+              </span>
+            </div>
+
+            <h1 itemprop="headline" style="font-size:2.5rem;font-weight:900;color:#2d2d2d;margin:0 0 0.5rem 0;line-height:1.2;">
+              ${poem.emoji} ${escapeHtmlText(poem.title)}
+            </h1>
+            <p style="font-size:1.1rem;font-weight:700;color:#6D28D9;margin:0 0 1rem 0;">
+              By: <span itemprop="author">${escapeHtmlText(poem.poet)}</span>
+            </p>
+            <p itemprop="description" style="font-size:1.2rem;color:#444;line-height:1.6;margin:0 0 2rem 0;font-weight:600;">
+              ${escapeHtmlText(poem.tagline)}
+            </p>
+
+            <section style="background:#FFF9F0;border-left:8px solid #8B5CF6;border-radius:1.5rem;padding:2rem;margin-bottom:2rem;">
+              <div style="font-size:0.875rem;font-weight:900;color:#8B5CF6;text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem;">
+                Poem Verses to Learn and Recite:
+              </div>
+              <div itemprop="text" style="font-size:1.35rem;line-height:2.2;color:#1F2937;font-family:Georgia, serif;font-weight:500;">
+                ${poem.stanzas.map((stanza, sIdx) => `
+                  <div style="margin-bottom:${sIdx === poem.stanzas.length - 1 ? '0' : '1.75rem'};padding-left:0.5rem;">
+                    ${stanza.map(line => `<div style="margin-bottom:0.25rem;">${escapeHtmlText(line)}</div>`).join('')}
+                  </div>
+                `).join('')}
+              </div>
+            </section>
+
+            ${poem.vocabulary.length > 0 ? `
+              <section style="margin-bottom:2rem;">
+                <h2 style="font-size:1.35rem;font-weight:900;color:#2d2d2d;margin:0 0 1rem 0;">
+                  Vocabulary & Rhyme Discovery 📖
+                </h2>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:1rem;">
+                  ${poem.vocabulary.map(v => `
+                    <div style="background:#F3F4F6;border-radius:1rem;padding:1rem;border:2px solid #E5E7EB;">
+                      <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.25rem;">
+                        <span style="font-size:1.5rem;">${v.emoji}</span>
+                        <strong style="font-size:1.1rem;color:#2D2D2D;">${escapeHtmlText(v.word)}</strong>
+                      </div>
+                      <p style="font-size:0.875rem;color:#555;margin:0;line-height:1.4;">${escapeHtmlText(v.meaning)}</p>
+                    </div>
+                  `).join('')}
+                </div>
+              </section>
+            ` : ''}
+
+            <section style="background:#ECFDF5;border:2px solid #6EE7B7;border-radius:1.25rem;padding:1.5rem;margin-bottom:2rem;">
+              <h2 style="font-size:1.35rem;font-weight:900;color:#065F46;margin:0 0 0.75rem 0;">
+                How to Recite This Poem with Expression 🌟
+              </h2>
+              <ul style="list-style:disc;padding-left:1.5rem;margin:0 0 1rem 0;color:#047857;line-height:1.8;font-weight:600;">
+                ${poem.recitalTips.map(tip => `<li>${escapeHtmlText(tip)}</li>`).join('')}
+              </ul>
+              <div style="font-size:0.95rem;color:#065F46;font-weight:700;">
+                Learning Takeaway: <span style="font-weight:500;">${escapeHtmlText(poem.educationalTakeaway)}</span>
+              </div>
+            </section>
+
+            <section style="margin-top:2rem;padding-top:1.5rem;border-top:2px solid #E5E7EB;">
+              <h3 style="font-size:1.2rem;font-weight:900;color:#2d2d2d;margin:0 0 1rem 0;">
+                More ${catInfo ? escapeHtmlText(catInfo.label) : 'Related Poems'}:
+              </h3>
+              <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+                ${related.map(r => `
+                  <a href="/poems/${r.id}" style="display:inline-block;padding:0.6rem 1.2rem;background:#FFF9F0;border:2px solid #8B5CF6;border-radius:0.75rem;color:#2d2d2d;text-decoration:none;font-weight:800;font-size:0.875rem;">
+                    ${r.emoji} ${escapeHtmlText(r.title)} &rarr;
+                  </a>
+                `).join('')}
+                <a href="/poems" style="display:inline-block;padding:0.6rem 1.2rem;background:#8B5CF6;border:2px solid #8B5CF6;border-radius:0.75rem;color:#ffffff;text-decoration:none;font-weight:800;font-size:0.875rem;">
+                  Browse All 28 Easy English Poems &rarr;
+                </a>
+              </div>
+            </section>
+          </article>
+        `;
+      }
+    } else if (route.poemCategory) {
+      const cat = POEM_CATEGORIES.find(c => c.id === route.poemCategory);
+      const poems = POEMS_DATA.filter(p => p.category === route.poemCategory);
+      mainContentHtml = `
+        <section style="background:#ffffff;border-radius:2rem;padding:2rem;border:4px solid #8B5CF6;box-shadow:0 6px 0 #6D28D9;margin-top:1.5rem;">
+          <h1 style="font-size:2.25rem;font-weight:900;color:#2d2d2d;margin:0 0 0.5rem 0;">
+            ${cat ? cat.icon : '⭐'} ${cat ? escapeHtmlText(cat.label) : escapeHtmlText(route.poemCategory)}
+          </h1>
+          <p style="font-size:1.15rem;color:#555;line-height:1.6;margin:0 0 2rem 0;font-weight:600;">
+            ${cat ? escapeHtmlText(cat.description) : 'Easy English poems for kids to learn, practice pronunciation, and recite aloud.'}
+          </p>
+
+          <h2 style="font-size:1.4rem;font-weight:900;color:#2d2d2d;margin:0 0 1.5rem 0;">
+            All ${poems.length} Poems in this Category:
+          </h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));gap:1.25rem;">
+            ${poems.map(p => `
+              <div style="background:#FFF9F0;border:3px solid #8B5CF6;border-radius:1.25rem;padding:1.5rem;display:flex;flex-direction:column;justify-content:space-between;">
+                <div>
+                  <div style="font-size:2.5rem;margin-bottom:0.5rem;">${p.emoji}</div>
+                  <h3 style="font-size:1.25rem;font-weight:900;color:#2d2d2d;margin:0 0 0.25rem 0;">
+                    ${escapeHtmlText(p.title)}
+                  </h3>
+                  <div style="font-size:0.875rem;font-weight:700;color:#6D28D9;margin-bottom:0.75rem;">
+                    ${escapeHtmlText(p.poet)} &bull; ${escapeHtmlText(p.ageTier)}
+                  </div>
+                  <p style="font-size:0.9rem;color:#555;line-height:1.5;margin:0 0 1.25rem 0;">
+                    ${escapeHtmlText(p.tagline)}
+                  </p>
+                </div>
+                <a href="/poems/${p.id}" style="display:inline-block;padding:0.6rem 1rem;background:#8B5CF6;color:#ffffff;text-decoration:none;font-weight:900;font-size:0.875rem;border-radius:0.75rem;text-align:center;">
+                  Read & Recite Poem &rarr;
+                </a>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+      `;
+    } else {
+      mainContentHtml = `
+        <section style="background:#ffffff;border-radius:2rem;padding:2rem;border:4px solid #8B5CF6;box-shadow:0 6px 0 #6D28D9;margin-top:1.5rem;">
+          <div style="display:inline-block;background:#EDE9FE;color:#5B21B6;border:2px solid #C4B5FD;padding:0.35rem 0.85rem;border-radius:9999px;font-weight:900;font-size:0.75rem;text-transform:uppercase;margin-bottom:1rem;">
+            ✨ NEW CURRICULUM SECTION
+          </div>
+          <h1 style="font-size:2.5rem;font-weight:900;color:#2d2d2d;margin:0 0 0.75rem 0;">
+            Easy English Poems for Kids to Learn and Recite ⭐
+          </h1>
+          <p style="font-size:1.2rem;color:#444;line-height:1.6;margin:0 0 2rem 0;font-weight:600;">
+            Welcome to the first big set of 28 classic, rhythm-rich English poems and nursery rhymes! Specially curated for early learners, preschoolers, and elementary children to build phonemic rhythm, memorize timeless verses, and practice expressive speech.
+          </p>
+
+          <h2 style="font-size:1.5rem;font-weight:900;color:#2d2d2d;margin:0 0 1.25rem 0;">
+            Explore by Poem Category:
+          </h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));gap:1.25rem;margin-bottom:2.5rem;">
+            ${POEM_CATEGORIES.map(cat => {
+              const count = POEMS_DATA.filter(p => p.category === cat.id).length;
+              return `
+                <div style="background:#ffffff;border:3px solid #2d2d2d;border-radius:1.25rem;padding:1.5rem;box-shadow:0 4px 0 #000;">
+                  <div style="font-size:2.5rem;margin-bottom:0.5rem;">${cat.icon}</div>
+                  <h3 style="font-size:1.25rem;font-weight:900;color:#2d2d2d;margin:0 0 0.5rem 0;">
+                    ${escapeHtmlText(cat.label)} (${count} poems)
+                  </h3>
+                  <p style="font-size:0.9rem;color:#666;line-height:1.5;margin:0 0 1.25rem 0;">
+                    ${escapeHtmlText(cat.description)}
+                  </p>
+                  <a href="/poems/category/${cat.id}" style="display:inline-block;padding:0.5rem 1rem;background:#8B5CF6;color:#ffffff;text-decoration:none;font-weight:900;font-size:0.875rem;border-radius:0.75rem;border:2px solid #2d2d2d;">
+                    View ${escapeHtmlText(cat.label)} &rarr;
+                  </a>
+                </div>
+              `;
+            }).join('')}
+          </div>
+
+          <h2 style="font-size:1.5rem;font-weight:900;color:#2d2d2d;margin:0 0 1.25rem 0;">
+            Complete Directory of All 28 Easy English Poems:
+          </h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));gap:1rem;">
+            ${POEMS_DATA.map(p => `
+              <a href="/poems/${p.id}" style="background:#FFF9F0;border:2px solid #8B5CF6;border-radius:1rem;padding:1rem;text-decoration:none;color:#2d2d2d;display:block;transition:transform 0.2s;">
+                <div style="font-size:1.75rem;margin-bottom:0.25rem;">${p.emoji}</div>
+                <div style="font-size:1.1rem;font-weight:900;color:#2d2d2d;margin-bottom:0.25rem;">${escapeHtmlText(p.title)}</div>
+                <div style="font-size:0.75rem;font-weight:700;color:#6D28D9;margin-bottom:0.25rem;">${escapeHtmlText(p.poet)} &bull; ${escapeHtmlText(p.ageTier)}</div>
+                <div style="font-size:0.8rem;color:#666;line-height:1.4;">${escapeHtmlText(p.tagline)}</div>
+              </a>
+            `).join('')}
+          </div>
+
+          <div style="background:#FEF3C7;border:2px solid #F59E0B;border-radius:1.5rem;padding:1.5rem;margin-top:2.5rem;">
+            <h3 style="font-size:1.25rem;font-weight:900;color:#92400E;margin:0 0 0.5rem 0;">
+              Why Poetry Recitation Matters for Children 💡
+            </h3>
+            <p style="font-size:0.95rem;color:#78350F;line-height:1.6;margin:0 0 0.75rem 0;">
+              Learning and reciting simple English poems gives children phonemic cadence, expands their working vocabulary, sharpens memory retention, and fosters self-confidence in speaking clearly before others.
+            </p>
+            <div style="font-size:0.875rem;color:#92400E;font-weight:700;">
+              Tip: Read the poem aloud together first, tap out the rhythm with your hands, and encourage children to use physical gestures while reciting!
+            </div>
           </div>
         </section>
       `;
@@ -1169,7 +1525,18 @@ export function renderSemanticRouteHtml(route: AppRoute): string {
               <li><a href="/alphabets" style="color:#444;text-decoration:none;">Alphabets A to Z</a></li>
               <li><a href="/digits" style="color:#444;text-decoration:none;">Digits 0 to 20</a></li>
               <li><a href="/encyclopedia" style="color:#444;text-decoration:none;">Kids Encyclopedia 📚</a></li>
+              <li><a href="/poems" style="color:#444;text-decoration:none;">Poems & Rhymes ⭐</a></li>
               <li><a href="/tracing" style="color:#444;text-decoration:none;">Handwriting Tracing</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <div style="font-weight:900;text-transform:uppercase;margin-bottom:0.75rem;color:#8b5cf6;">Poem Categories</div>
+            <ul style="list-style:none;padding:0;margin:0;line-height:2;">
+              <li><a href="/poems" style="color:#8b5cf6;font-weight:700;text-decoration:none;">⭐ All 28 Easy Poems</a></li>
+              ${POEM_CATEGORIES.map(cat => `
+                <li><a href="/poems/category/${cat.id}" style="color:#444;text-decoration:none;">${cat.icon} ${escapeHtmlText(cat.label)}</a></li>
+              `).join('')}
             </ul>
           </div>
 
