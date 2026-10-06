@@ -248,7 +248,7 @@ export const PoemsExplorer: React.FC<PoemsExplorerProps> = ({
           <div className="space-y-2 max-w-2xl">
             <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-xs text-white text-xs font-black uppercase tracking-wider border border-white/30">
               <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
-              <span>EASY ENGLISH POEMS FOR KIDS &bull; 28 VERSES</span>
+              <span>EASY ENGLISH &amp; WORLD POEMS &bull; {POEMS_DATA.length} VERSES</span>
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
               Learn, Recite & Rhyme ⭐
@@ -303,7 +303,7 @@ export const PoemsExplorer: React.FC<PoemsExplorerProps> = ({
                 : 'bg-black/15 text-white border-white/20 hover:bg-black/25'
             }`}
           >
-            All 28 Poems
+            All {POEMS_DATA.length} Poems
           </a>
           {POEM_CATEGORIES.map((cat) => {
             const isCatActive = selectedCategory === cat.id;

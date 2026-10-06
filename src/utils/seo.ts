@@ -453,8 +453,8 @@ export function getSeoMetadata(route: AppRoute): SeoMetadata {
         };
       }
 
-      const pageTitle = 'Easy English Poems for Kids to Learn and Recite | First Open School';
-      const pageDesc = 'Discover the first big set of 28 easy English poems for kids to learn and recite! Timeless classics, nursery rhymes, animal verses, and bedtime lullabies with read-aloud audio, stanza highlighting, vocabulary, and recital tips.';
+      const pageTitle = '132 Easy English Poems & Global Rhymes for Kids | First Open School';
+      const pageDesc = 'Discover over 130 easy English poems and traditional folk rhymes from around the world for kids to learn and recite! Timeless classics, global nursery rhymes, animal verses, and bedtime lullabies with read-aloud audio, stanza highlighting, vocabulary, and recital tips.';
       return {
         title: pageTitle,
         description: pageDesc,
@@ -1207,7 +1207,7 @@ export function renderSemanticRouteHtml(route: AppRoute): string {
                   </a>
                 `).join('')}
                 <a href="/poems" style="display:inline-block;padding:0.6rem 1.2rem;background:#8B5CF6;border:2px solid #8B5CF6;border-radius:0.75rem;color:#ffffff;text-decoration:none;font-weight:800;font-size:0.875rem;">
-                  Browse All 28 Easy English Poems &rarr;
+                  Browse All ${POEMS_DATA.length} Easy English & World Poems &rarr;
                 </a>
               </div>
             </section>
@@ -1262,7 +1262,7 @@ export function renderSemanticRouteHtml(route: AppRoute): string {
             Easy English Poems for Kids to Learn and Recite ⭐
           </h1>
           <p style="font-size:1.2rem;color:#444;line-height:1.6;margin:0 0 2rem 0;font-weight:600;">
-            Welcome to the first big set of 28 classic, rhythm-rich English poems and nursery rhymes! Specially curated for early learners, preschoolers, and elementary children to build phonemic rhythm, memorize timeless verses, and practice expressive speech.
+            Welcome to the expansive collection of ${POEMS_DATA.length} classic and international English poems, folk songs, and nursery rhymes! Specially curated for early learners, preschoolers, and elementary children from all over the world to build phonemic rhythm, memorize timeless verses, and practice expressive speech.
           </p>
 
           <h2 style="font-size:1.5rem;font-weight:900;color:#2d2d2d;margin:0 0 1.25rem 0;">
@@ -1289,7 +1289,7 @@ export function renderSemanticRouteHtml(route: AppRoute): string {
           </div>
 
           <h2 style="font-size:1.5rem;font-weight:900;color:#2d2d2d;margin:0 0 1.25rem 0;">
-            Complete Directory of All 28 Easy English Poems:
+            Complete Directory of All ${POEMS_DATA.length} Easy English &amp; World Poems:
           </h2>
           <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));gap:1rem;">
             ${POEMS_DATA.map(p => `
@@ -1601,7 +1601,7 @@ export function renderSemanticRouteHtml(route: AppRoute): string {
           <div>
             <div style="font-weight:900;text-transform:uppercase;margin-bottom:0.75rem;color:#8b5cf6;">Poem Categories</div>
             <ul style="list-style:none;padding:0;margin:0;line-height:2;">
-              <li><a href="/poems" style="color:#8b5cf6;font-weight:700;text-decoration:none;">⭐ All 28 Easy Poems</a></li>
+              <li><a href="/poems" style="color:#8b5cf6;font-weight:700;text-decoration:none;">⭐ All ${POEMS_DATA.length} Easy &amp; World Poems</a></li>
               ${POEM_CATEGORIES.map(cat => `
                 <li><a href="/poems/category/${cat.id}" style="color:#444;text-decoration:none;">${cat.icon} ${escapeHtmlText(cat.label)}</a></li>
               `).join('')}

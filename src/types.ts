@@ -25,7 +25,8 @@ export type PoemCategory =
   | 'bedtime-lullabies'
   | 'fun-whimsical'
   | 'good-habits'
-  | 'seasons-weather';
+  | 'seasons-weather'
+  | 'world-rhymes';
 
 export interface PoemVocabulary {
   word: string;
