@@ -1,6 +1,7 @@
 import { ALPHABET_DATA, DIGIT_DATA } from '../data/curriculumData';
 import { ENCYCLOPEDIA_ENTRIES, ENCYCLOPEDIA_CATEGORIES } from '../data/encyclopediaData';
 import { POEMS_DATA, POEM_CATEGORIES } from '../data/poemsData';
+import { DRAWING_TEMPLATES, DRAWING_CATEGORIES } from '../data/drawingsData';
 
 export interface SitemapEntry {
   loc: string;
@@ -28,6 +29,7 @@ export function getSiteUrls(baseUrl: string = 'https://firstopenschool.com'): Si
     { loc: `${cleanBase}/tracing`, lastmod: today, changefreq: 'weekly', priority: 0.85 },
     
     // Interactive Games & Modules
+    { loc: `${cleanBase}/drawings`, lastmod: today, changefreq: 'weekly', priority: 0.9 },
     { loc: `${cleanBase}/bubble-pop`, lastmod: today, changefreq: 'monthly', priority: 0.8 },
     { loc: `${cleanBase}/counting-feast`, lastmod: today, changefreq: 'monthly', priority: 0.8 },
     { loc: `${cleanBase}/card-match`, lastmod: today, changefreq: 'monthly', priority: 0.8 },
@@ -93,13 +95,33 @@ export function getSiteUrls(baseUrl: string = 'https://firstopenschool.com'): Si
     });
   });
 
-  // All 28 Easy English Poems for Kids In-Depth Recital Pages
+  // All Easy English & Pakistani Poems In-Depth Recital Pages
   POEMS_DATA.forEach(poem => {
     urls.push({
       loc: `${cleanBase}/poems/${poem.id}`,
       lastmod: today,
       changefreq: 'weekly',
       priority: 0.9
+    });
+  });
+
+  // All Drawings & Coloring Categories
+  DRAWING_CATEGORIES.forEach(cat => {
+    urls.push({
+      loc: `${cleanBase}/drawings/category/${cat.id}`,
+      lastmod: today,
+      changefreq: 'weekly',
+      priority: 0.85
+    });
+  });
+
+  // All Drawing & Coloring Printable Templates Deep Pages
+  DRAWING_TEMPLATES.forEach(tmpl => {
+    urls.push({
+      loc: `${cleanBase}/drawings/${tmpl.id}`,
+      lastmod: today,
+      changefreq: 'weekly',
+      priority: 0.85
     });
   });
 

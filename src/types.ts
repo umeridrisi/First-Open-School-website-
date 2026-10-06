@@ -6,6 +6,7 @@ export type ActiveTab =
   | 'digits'
   | 'encyclopedia'
   | 'poems'
+  | 'drawings'
   | 'tracing'
   | 'bubble-pop'
   | 'counting-feast'
@@ -18,6 +19,28 @@ export type ActiveTab =
   | 'data-safety'
   | 'editorial-policy'
   | 'about';
+
+export type DrawingCategory = 
+  | 'animals'
+  | 'vehicles-space'
+  | 'nature-flowers'
+  | 'fantasy-fairytale'
+  | 'alphabet-art'
+  | 'cultural-pakistan';
+
+export interface DrawingTemplate {
+  id: string;
+  title: string;
+  category: DrawingCategory;
+  emoji: string;
+  difficulty: 'Easy' | 'Medium' | 'Creative';
+  ageRecommendation: 'Ages 2-4' | 'Ages 4-6' | 'Ages 6-8' | 'All Ages';
+  description: string;
+  learningPrompt: string;
+  suggestedColors: { name: string; hex: string }[];
+  funFact: string;
+  svgOutline: string; // Inner SVG vector paths for a 500x500 viewBox
+}
 
 export type PoemCategory = 
   | 'classics-rhymes'

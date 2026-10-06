@@ -9,6 +9,8 @@ export interface AppRoute {
   poemId?: string;
   poemCategory?: string;
   tracingTarget?: string;
+  drawingTemplateId?: string;
+  drawingCategory?: string;
 }
 
 /**
@@ -55,6 +57,15 @@ export function parsePath(pathname: string = (typeof window !== 'undefined' && w
         return { tab: 'poems', poemId: second.toLowerCase() };
       }
       return { tab: 'poems' };
+
+    case 'drawings':
+      if (segments[1] === 'category' && segments[2]) {
+        return { tab: 'drawings', drawingCategory: segments[2].toLowerCase() };
+      }
+      if (second) {
+        return { tab: 'drawings', drawingTemplateId: second.toLowerCase() };
+      }
+      return { tab: 'drawings' };
 
     case 'tracing':
       if (second) {
@@ -131,6 +142,15 @@ export function formatRouteUrl(route: AppRoute): string {
         return `/poems/${route.poemId}`;
       }
       return '/poems';
+
+    case 'drawings':
+      if (route.drawingCategory) {
+        return `/drawings/category/${route.drawingCategory}`;
+      }
+      if (route.drawingTemplateId) {
+        return `/drawings/${route.drawingTemplateId}`;
+      }
+      return '/drawings';
 
     case 'tracing':
       return route.tracingTarget ? `/tracing/${encodeURIComponent(route.tracingTarget)}` : '/tracing';

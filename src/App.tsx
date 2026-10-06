@@ -21,6 +21,7 @@ import { PhonicsStoryReader } from './components/games/PhonicsStoryReader';
 import { GamifiedQuiz } from './components/games/GamifiedQuiz';
 import { KidsEncyclopedia } from './components/views/KidsEncyclopedia';
 import { PoemsExplorer } from './components/views/PoemsExplorer';
+import { DrawingsStudio } from './components/views/DrawingsStudio';
 import { ParentalDashboard } from './components/parent/ParentalDashboard';
 import { LegalPages } from './components/views/LegalPages';
 import { ALPHABET_DATA, DIGIT_DATA } from './data/curriculumData';
@@ -339,6 +340,16 @@ export default function App() {
             initialCategory={currentRoute.poemCategory}
             onPoemChange={(id) => navigateTo({ tab: 'poems', poemId: id })}
             onCategoryChange={(cat) => navigateTo(cat === 'all' ? { tab: 'poems' } : { tab: 'poems', poemCategory: cat })}
+          />
+        )}
+
+        {currentRoute.tab === 'drawings' && (
+          <DrawingsStudio
+            student={student}
+            settings={settings}
+            initialTemplateId={currentRoute.drawingTemplateId}
+            initialCategory={currentRoute.drawingCategory}
+            onAwardStars={handleAwardStars}
           />
         )}
 

@@ -11,7 +11,8 @@ import {
   Trophy, 
   BookOpenCheck,
   BookOpen,
-  Grid
+  Grid,
+  Palette
 } from 'lucide-react';
 
 interface SubjectNavProps {
@@ -60,7 +61,15 @@ export const SubjectNav: React.FC<SubjectNavProps> = ({ activeTab, onSelectTab, 
       icon: <span className="text-xl">⭐</span>, 
       color: 'text-[#8B5CF6]', 
       activeBg: 'bg-white border-[#8B5CF6] shadow-[0_4px_0_#6D28D9]',
-      voicePrompt: 'Easy English Poems for Kids to Learn and Recite'
+      voicePrompt: 'Easy English and Pakistani Poems for Kids to Learn and Recite'
+    },
+    { 
+      id: 'drawings', 
+      label: 'Drawings & Art', 
+      icon: <Palette className="w-5 h-5 text-[#FF6B6B]" />, 
+      color: 'text-[#FF6B6B]', 
+      activeBg: 'bg-white border-[#FF6B6B] shadow-[0_4px_0_#C44E4E]',
+      voicePrompt: 'Drawings and Coloring Studio. Paint online and print coloring sheets.'
     },
     { 
       id: 'tracing', 

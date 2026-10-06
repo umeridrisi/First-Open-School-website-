@@ -5,7 +5,7 @@ import { ENCYCLOPEDIA_CATEGORIES, ENCYCLOPEDIA_ENTRIES } from '../../data/encycl
 import { POEM_CATEGORIES, POEMS_DATA } from '../../data/poemsData';
 import { speakText, playSoundEffect } from '../../utils/sound';
 import { formatRouteUrl } from '../../utils/router';
-import { Sparkles, Trophy, Flame, Play, PenTool, CircleDot, Utensils, BookOpen, ArrowRight, Compass } from 'lucide-react';
+import { Sparkles, Trophy, Flame, Play, PenTool, CircleDot, Utensils, BookOpen, ArrowRight, Compass, Palette } from 'lucide-react';
 
 interface OverviewWorldProps {
   student: StudentProfile;
@@ -262,6 +262,29 @@ export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings,
             <div>
               <h4 className="font-black text-[#2D2D2D] text-base group-hover:text-[#6BCB77] transition-colors">Story World</h4>
               <p className="text-xs text-gray-500 font-bold">110+ decodable 1-line stories with comprehension quizzes.</p>
+            </div>
+          </a>
+
+          <a
+            href="/drawings"
+            onClick={(e) => handleAnchorClick(e, 'drawings', "Welcome to the Drawings and Art Studio!")}
+            className="p-5 rounded-[28px] bg-white border-4 border-[#FF6B6B] shadow-[0_6px_0_#C44E4E] text-left space-y-3 transition-all active:translate-y-1 active:shadow-none cursor-pointer group no-underline block sm:col-span-2 lg:col-span-4"
+          >
+            <div className="flex items-center justify-between">
+              <div className="w-10 h-10 rounded-2xl bg-[#FF6B6B] text-white flex items-center justify-center font-black shadow-xs">
+                <Palette className="w-5 h-5" />
+              </div>
+              <span className="text-xs font-black uppercase bg-rose-100 text-rose-700 px-3 py-1 rounded-full border border-rose-200">
+                🎨 ONLINE &bull; OFFLINE PRINTABLES
+              </span>
+            </div>
+            <div>
+              <h4 className="font-black text-[#2D2D2D] text-lg group-hover:text-[#FF6B6B] transition-colors">
+                Drawings, Coloring &amp; Parent Printables Studio
+              </h4>
+              <p className="text-xs text-gray-600 font-semibold">
+                Paint on the digital canvas with wax crayon, magic rainbow pen, and sparkle stamps, or print clean offline coloring sheets for home tabletop art!
+              </p>
             </div>
           </a>
 

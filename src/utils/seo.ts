@@ -3,6 +3,7 @@ import { ALPHABET_DATA, DIGIT_DATA } from '../data/curriculumData';
 import { ENCYCLOPEDIA_ENTRIES, ENCYCLOPEDIA_CATEGORIES } from '../data/encyclopediaData';
 import { POEMS_DATA, POEM_CATEGORIES, getPoemById } from '../data/poemsData';
 import { STORIES_COLLECTION, STORY_CATEGORIES } from '../data/storiesData';
+import { DRAWING_TEMPLATES, DRAWING_CATEGORIES, getDrawingTemplateById } from '../data/drawingsData';
 
 export interface SeoMetadata {
   title: string;
@@ -508,6 +509,115 @@ export function getSeoMetadata(route: AppRoute): SeoMetadata {
             description: pageDesc,
             educationalLevel: 'Pre-K to Elementary',
             learningResourceType: 'Poetry Recitation & Rhyme Practice',
+            url: canonicalUrl
+          }
+        ]
+      };
+    }
+
+    case 'drawings': {
+      if (route.drawingTemplateId) {
+        const tmpl = getDrawingTemplateById(route.drawingTemplateId);
+        if (tmpl) {
+          const pageTitle = `${tmpl.title} - Online Coloring & Printable Activity Sheet | First Open School`;
+          const pageDesc = `${tmpl.description} Free printable coloring sheet and interactive digital canvas for kids. Featuring parent learning prompt: "${tmpl.learningPrompt}" and fun facts.`;
+          return {
+            title: pageTitle,
+            description: pageDesc,
+            canonicalUrl,
+            ogTitle: `${tmpl.title} - Printable Coloring Page & Drawing Studio`,
+            ogDescription: pageDesc,
+            ogType: 'article',
+            ogImage: DEFAULT_IMAGE,
+            twitterCard: 'summary_large_image',
+            keywords: [
+              tmpl.title.toLowerCase(),
+              `${tmpl.category} coloring page`,
+              'printable drawing for kids',
+              'offline coloring sheets for parents',
+              'draw online for free'
+            ],
+            breadcrumbs: [
+              ...defaultBreadcrumbs,
+              { name: 'Drawings & Art', url: `${baseUrl}/drawings` },
+              { name: tmpl.title, url: canonicalUrl }
+            ],
+            jsonLd: [
+              {
+                '@context': 'https://schema.org',
+                '@type': 'CreativeWork',
+                name: tmpl.title,
+                description: pageDesc,
+                learningResourceType: 'Coloring Sheet & Drawing Activity',
+                url: canonicalUrl
+              }
+            ]
+          };
+        }
+      }
+
+      if (route.drawingCategory) {
+        const cat = DRAWING_CATEGORIES.find(c => c.id === route.drawingCategory);
+        if (cat) {
+          const pageTitle = `${cat.label} Coloring Pages & Drawings for Kids | First Open School`;
+          const pageDesc = `Browse free printable ${cat.label.toLowerCase()} coloring sheets and interactive online painting activities for children and parents. ${cat.description}`;
+          return {
+            title: pageTitle,
+            description: pageDesc,
+            canonicalUrl,
+            ogTitle: `${cat.label} Drawings & Coloring Pages`,
+            ogDescription: pageDesc,
+            ogType: 'website',
+            ogImage: DEFAULT_IMAGE,
+            twitterCard: 'summary_large_image',
+            keywords: [`${cat.label.toLowerCase()} coloring`, 'printable drawing sheets', 'kids coloring activities'],
+            breadcrumbs: [
+              ...defaultBreadcrumbs,
+              { name: 'Drawings & Art', url: `${baseUrl}/drawings` },
+              { name: cat.label, url: canonicalUrl }
+            ],
+            jsonLd: [
+              {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: `${cat.label} Drawings & Coloring Pages`,
+                description: pageDesc,
+                url: canonicalUrl
+              }
+            ]
+          };
+        }
+      }
+
+      const pageTitle = 'Kids Drawings & Coloring Studio (Paint Online & Offline Printables) | First Open School';
+      const pageDesc = 'Creative interactive drawing canvas and free printable coloring activity sheets for kids and parents. 30+ outlined templates of animals, space rockets, nature, and Pakistani heritage with crayon, brush, and rainbow pen tools.';
+      return {
+        title: pageTitle,
+        description: pageDesc,
+        canonicalUrl,
+        ogTitle: 'Kids Drawings & Coloring Studio - Online & Offline Printables',
+        ogDescription: pageDesc,
+        ogType: 'website',
+        ogImage: DEFAULT_IMAGE,
+        twitterCard: 'summary_large_image',
+        keywords: [
+          'kids drawing online',
+          'free printable coloring sheets',
+          'online coloring for children',
+          'drawing canvas for kindergarten',
+          'offline paper drawings for parents',
+          'learn to paint online and offline'
+        ],
+        breadcrumbs: [
+          ...defaultBreadcrumbs,
+          { name: 'Drawings & Art', url: canonicalUrl }
+        ],
+        jsonLd: [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'CollectionPage',
+            name: 'Kids Drawings & Coloring Studio',
+            description: pageDesc,
             url: canonicalUrl
           }
         ]
@@ -1316,6 +1426,120 @@ export function renderSemanticRouteHtml(route: AppRoute): string {
             <div style="font-size:0.875rem;color:#92400E;font-weight:700;">
               Tip: Read the poem aloud together first, tap out the rhythm with your hands, and encourage children to use physical gestures while reciting!
             </div>
+          </div>
+        </section>
+      `;
+    }
+  } else if (route.tab === 'drawings') {
+    if (route.drawingTemplateId) {
+      const tmpl = getDrawingTemplateById(route.drawingTemplateId);
+      if (tmpl) {
+        mainContentHtml = `
+          <article style="background:#ffffff;border-radius:2rem;padding:2.5rem;border:4px solid #FF6B6B;box-shadow:0 8px 0 #C44E4E;margin-top:1.5rem;">
+            <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;flex-wrap:wrap;">
+              <span style="font-size:2.5rem;">${tmpl.emoji}</span>
+              <div>
+                <h1 style="font-size:2.25rem;font-weight:900;color:#2d2d2d;margin:0;">
+                  ${escapeHtmlText(tmpl.title)}
+                </h1>
+                <div style="font-size:0.875rem;font-weight:800;color:#FF6B6B;">
+                  ${escapeHtmlText(tmpl.category.toUpperCase())} &bull; ${escapeHtmlText(tmpl.difficulty)} &bull; ${escapeHtmlText(tmpl.ageRecommendation)}
+                </div>
+              </div>
+            </div>
+
+            <p style="font-size:1.1rem;line-height:1.6;color:#444;margin:1rem 0;">
+              ${escapeHtmlText(tmpl.description)}
+            </p>
+
+            <div style="background:#FFF9F0;border:2px solid #FFD93D;border-radius:1.25rem;padding:1.5rem;margin:1.5rem 0;">
+              <h2 style="font-size:1.1rem;font-weight:900;color:#B45309;margin:0 0 0.5rem 0;">
+                Parent &amp; Educator Learning Guide
+              </h2>
+              <p style="font-size:0.95rem;color:#2D2D2D;line-height:1.6;margin:0 0 0.75rem 0;">
+                ${escapeHtmlText(tmpl.learningPrompt)}
+              </p>
+              <div style="font-size:0.85rem;color:#666;">
+                <strong>Fun Fact:</strong> ${escapeHtmlText(tmpl.funFact)}
+              </div>
+            </div>
+
+            <div style="margin:2rem 0;text-align:center;">
+              <h3 style="font-size:1.1rem;font-weight:900;color:#2d2d2d;margin-bottom:1rem;">
+                Free Printable Coloring Page Preview:
+              </h3>
+              <div style="max-width:400px;margin:0 auto;border:3px dashed #cbd5e1;border-radius:1.5rem;padding:1.5rem;background:#fafafa;">
+                <svg viewBox="0 0 500 500" style="width:100%;height:auto;">
+                  ${tmpl.svgOutline}
+                </svg>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:2rem;">
+              <a href="/drawings" style="display:inline-block;padding:0.75rem 1.5rem;background:#FF6B6B;color:#ffffff;text-decoration:none;font-weight:900;border-radius:1rem;border:2px solid #2d2d2d;">
+                Color Online in Studio &rarr;
+              </a>
+              <a href="/drawings" style="display:inline-block;padding:0.75rem 1.5rem;background:#4D96FF;color:#ffffff;text-decoration:none;font-weight:900;border-radius:1rem;border:2px solid #2d2d2d;">
+                Browse All Printable Coloring Sheets
+              </a>
+            </div>
+          </article>
+        `;
+      }
+    } else {
+      mainContentHtml = `
+        <section style="background:#ffffff;border-radius:2rem;padding:2.5rem;border:4px solid #FF6B6B;box-shadow:0 8px 0 #C44E4E;margin-top:1.5rem;">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;flex-wrap:wrap;">
+            <span style="font-size:2.5rem;">🎨</span>
+            <div>
+              <h1 style="font-size:2.25rem;font-weight:900;color:#2d2d2d;margin:0;">
+                Drawings &amp; Coloring Studio: Paint Online &amp; Print Offline
+              </h1>
+              <div style="font-size:1rem;color:#FF6B6B;font-weight:800;">
+                Interactive Kids Drawing Canvas &amp; Free Printable Coloring Worksheets for Parents
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size:1.1rem;line-height:1.7;color:#444;margin:1rem 0 2rem 0;">
+            Welcome to the First Open School <strong>Drawings &amp; Art Studio</strong>! Children can paint on a giant digital canvas with crayon, watercolor brush, and magic rainbow pen, or parents can print out high-contrast outline coloring sheets for traditional paper drawing and tabletop painting.
+          </p>
+
+          <h2 style="font-size:1.5rem;font-weight:900;color:#2d2d2d;margin:0 0 1.25rem 0;">
+            Explore Printable Coloring Sheets by Theme:
+          </h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));gap:1.25rem;margin-bottom:2.5rem;">
+            ${DRAWING_CATEGORIES.map(cat => {
+              const count = DRAWING_TEMPLATES.filter(t => t.category === cat.id).length;
+              return `
+                <div style="background:#ffffff;border:3px solid #2d2d2d;border-radius:1.25rem;padding:1.5rem;box-shadow:0 4px 0 #000;">
+                  <div style="font-size:2.5rem;margin-bottom:0.5rem;">${cat.icon}</div>
+                  <h3 style="font-size:1.25rem;font-weight:900;color:#2d2d2d;margin:0 0 0.5rem 0;">
+                    ${escapeHtmlText(cat.label)} (${count})
+                  </h3>
+                  <p style="font-size:0.9rem;color:#666;line-height:1.5;margin:0 0 1.25rem 0;">
+                    ${escapeHtmlText(cat.description)}
+                  </p>
+                  <a href="/drawings/category/${cat.id}" style="display:inline-block;padding:0.5rem 1rem;background:#FF6B6B;color:#ffffff;text-decoration:none;font-weight:900;font-size:0.875rem;border-radius:0.75rem;border:2px solid #2d2d2d;">
+                    View ${escapeHtmlText(cat.label)} &rarr;
+                  </a>
+                </div>
+              `;
+            }).join('')}
+          </div>
+
+          <h2 style="font-size:1.5rem;font-weight:900;color:#2d2d2d;margin:0 0 1.25rem 0;">
+            Complete Library of ${DRAWING_TEMPLATES.length} Printable Coloring Worksheets:
+          </h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));gap:1rem;">
+            ${DRAWING_TEMPLATES.map(t => `
+              <a href="/drawings/${t.id}" style="background:#FFF9F0;border:2px solid #FF6B6B;border-radius:1rem;padding:1.25rem;text-decoration:none;color:#2d2d2d;display:block;">
+                <div style="font-size:2rem;margin-bottom:0.25rem;">${t.emoji}</div>
+                <div style="font-size:1.1rem;font-weight:900;color:#2d2d2d;margin-bottom:0.25rem;">${escapeHtmlText(t.title)}</div>
+                <div style="font-size:0.75rem;font-weight:700;color:#FF6B6B;margin-bottom:0.25rem;">${escapeHtmlText(t.category.toUpperCase())} &bull; ${escapeHtmlText(t.difficulty)}</div>
+                <div style="font-size:0.8rem;color:#666;line-height:1.4;">${escapeHtmlText(t.description)}</div>
+              </a>
+            `).join('')}
           </div>
         </section>
       `;
