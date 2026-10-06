@@ -6,6 +6,7 @@ import { BEDTIME_LULLABIES_POEMS } from './poems/bedtimeLullabies';
 import { FUN_PLAYFUL_POEMS } from './poems/funPlayful';
 import { GOOD_HABITS_POEMS } from './poems/goodHabits';
 import { SEASONS_WEATHER_POEMS } from './poems/seasonsWeather';
+import { PAKISTANI_RHYMES_POEMS } from './poems/pakistaniRhymes';
 
 export interface PoemCategoryInfo {
   id: PoemCategory;
@@ -24,6 +25,14 @@ export const POEM_CATEGORIES: PoemCategoryInfo[] = [
     description: 'Timeless traditional rhymes with strong rhythm, steady cadence, and memorable phrases.',
     badgeColor: '#4D96FF',
     badgeBg: 'bg-blue-100 text-blue-800 border-blue-300'
+  },
+  {
+    id: 'pakistani-rhymes',
+    label: 'Pakistani Poems & Rhymes',
+    icon: '🇵🇰',
+    description: 'Beloved classic Urdu rhymes, moral poems by Allama Iqbal, counting games, and cultural verses from Pakistan.',
+    badgeColor: '#10B981',
+    badgeBg: 'bg-emerald-100 text-emerald-800 border-emerald-300'
   },
   {
     id: 'world-rhymes',
@@ -77,6 +86,7 @@ export const POEM_CATEGORIES: PoemCategoryInfo[] = [
 
 export const POEMS_DATA: Poem[] = [
   ...CLASSIC_POEMS,
+  ...PAKISTANI_RHYMES_POEMS,
   ...WORLD_RHYMES_POEMS,
   ...ANIMALS_NATURE_POEMS,
   ...BEDTIME_LULLABIES_POEMS,

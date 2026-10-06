@@ -453,8 +453,8 @@ export function getSeoMetadata(route: AppRoute): SeoMetadata {
         };
       }
 
-      const pageTitle = '132 Easy English Poems & Global Rhymes for Kids | First Open School';
-      const pageDesc = 'Discover over 130 easy English poems and traditional folk rhymes from around the world for kids to learn and recite! Timeless classics, global nursery rhymes, animal verses, and bedtime lullabies with read-aloud audio, stanza highlighting, vocabulary, and recital tips.';
+      const pageTitle = '144 Easy English & Pakistani Poems for Kids to Recite | First Open School';
+      const pageDesc = 'Discover over 140 easy English and Pakistani poems and nursery rhymes for kids to learn and recite! Timeless classics, Allama Iqbal verses, Urdu folk rhymes, global folk songs, and bedtime lullabies with read-aloud audio, stanza highlighting, vocabulary, and recital tips.';
       return {
         title: pageTitle,
         description: pageDesc,
@@ -466,6 +466,10 @@ export function getSeoMetadata(route: AppRoute): SeoMetadata {
         twitterCard: 'summary_large_image',
         keywords: [
           'easy english poems for kids',
+          'pakistani poems for kids',
+          'urdu rhymes for children',
+          'allama iqbal poems for kids',
+          'lab pe aati hai dua recite',
           'poems for kids to recite',
           'nursery rhymes for children',
           'english poems to learn by heart',

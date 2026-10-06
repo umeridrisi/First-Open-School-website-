@@ -26,7 +26,8 @@ export type PoemCategory =
   | 'fun-whimsical'
   | 'good-habits'
   | 'seasons-weather'
-  | 'world-rhymes';
+  | 'world-rhymes'
+  | 'pakistani-rhymes';
 
 export interface PoemVocabulary {
   word: string;
