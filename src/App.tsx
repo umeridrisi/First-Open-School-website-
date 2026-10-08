@@ -26,7 +26,8 @@ import { ParentalDashboard } from './components/parent/ParentalDashboard';
 import { LegalPages } from './components/views/LegalPages';
 import { ALPHABET_DATA, DIGIT_DATA } from './data/curriculumData';
 import { ENCYCLOPEDIA_CATEGORIES } from './data/encyclopediaData';
-import { POEM_CATEGORIES } from './data/poemsData';
+import { POEM_CATEGORIES, POEMS_DATA } from './data/poemsData';
+import { DRAWING_CATEGORIES } from './data/drawingsData';
 import { playSoundEffect } from './utils/sound';
 import { parsePath, navigateTo, formatRouteUrl, ROUTE_CHANGE_EVENT, AppRoute } from './utils/router';
 import { applySeoMetadata, getSeoMetadata } from './utils/seo';
@@ -505,11 +506,49 @@ export default function App() {
             </div>
           </div>
 
+          {/* Drawings & Printables Fast Crawl Links */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <div className="text-xs font-black uppercase tracking-wider text-[#FF6B6B]">
+                🎨 Creative Drawings &amp; Printable Coloring Sheets:
+              </div>
+              <a
+                href="/drawings"
+                onClick={(e) => {
+                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                    e.preventDefault();
+                    navigateTo({ tab: 'drawings' });
+                  }
+                }}
+                className="text-xs font-black text-[#FF6B6B] hover:underline"
+              >
+                Open Art &amp; Printables Studio &rarr;
+              </a>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {DRAWING_CATEGORIES.map(cat => (
+                <a
+                  key={cat.id}
+                  href={`/drawings/category/${cat.id}`}
+                  onClick={(e) => {
+                    if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                      e.preventDefault();
+                      navigateTo({ tab: 'drawings', drawingCategory: cat.id });
+                    }
+                  }}
+                  className="px-3 py-1.5 rounded-xl bg-rose-50 hover:bg-[#FF6B6B] hover:text-white border border-rose-200 text-xs font-bold text-[#2D2D2D] no-underline transition-colors"
+                >
+                  {cat.icon} {cat.label}
+                </a>
+              ))}
+            </div>
+          </div>
+
           {/* Poem Categories Fast Crawl Links */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <div className="text-xs font-black uppercase tracking-wider text-[#8B5CF6]">
-                Easy English Poems for Kids to Recite:
+                Easy English &amp; Pakistani Poems for Kids to Recite:
               </div>
               <a
                 href="/poems"
@@ -521,7 +560,7 @@ export default function App() {
                 }}
                 className="text-xs font-black text-[#8B5CF6] hover:underline"
               >
-                View All 28 Poems &rarr;
+                View All {POEMS_DATA.length} Poems &amp; Rhymes &rarr;
               </a>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -608,7 +647,7 @@ export default function App() {
                 }}
                 className="hover:text-[#2D2D2D] transition-colors cursor-pointer no-underline text-[#2D2D2D]"
               >
-                About & Credits
+                About &amp; Credits
               </a>
               <span className="text-gray-300 hidden sm:inline">•</span>
               <a 
@@ -616,6 +655,21 @@ export default function App() {
                 className="hover:text-[#4D96FF] transition-colors no-underline text-gray-500"
               >
                 Sitemap.xml
+              </a>
+              <span className="text-gray-300 hidden sm:inline">•</span>
+              <a 
+                href="/robots.txt"
+                className="hover:text-[#4D96FF] transition-colors no-underline text-gray-500"
+              >
+                Robots.txt
+              </a>
+              <span className="text-gray-300 hidden sm:inline">•</span>
+              <a 
+                href="/llms.txt"
+                className="hover:text-[#4D96FF] transition-colors no-underline text-[#4D96FF] font-bold"
+                title="Structured Curriculum & Documentation for AI & LLM Systems"
+              >
+                🤖 llms.txt
               </a>
             </div>
 

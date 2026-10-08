@@ -1,7 +1,9 @@
 # First Open School - Complete Educational Documentation & Knowledge Base (llms-full.txt)
 
-> Full curriculum index, alphabet phonics reference, numeracy specifications, and CDE-style Kids Encyclopedia for AI assistants, search engines, and automated crawlers.
+> Full curriculum index, alphabet phonics reference, numeracy specifications, 144+ poems & rhymes, drawings & offline printables studio, and CDE-style Kids Encyclopedia for AI assistants, search engines, and automated crawlers.
 > Canonical Website: https://firstopenschool.com
+> Creator: Umer Idrisi (Blogger & Entrepreneur from Pakistan)
+> Parent Organization: Arkade Digital Limited (United Kingdom)
 
 ---
 
@@ -12,23 +14,25 @@ First Open School uses structured multisensory early-learning methods combining:
 2. **Subitizing & Early Numeracy**: Training visual recognition of small sets (1-5) without counting one-by-one, progressing to numbers 0-20 with base-10 grouping and zero concept.
 3. **Tactile Motor Tracing**: Vector stroke waypoints with numbered step-by-step paths for upper/lowercase letters and digits.
 4. **CDE Encyclopedic Clarity**: Inspired by Computer Language Company architecture — plain English definitions, relatable metaphors, phonetic guides, physical anatomy diagrams, ancient origins, and interactive brain checks.
+5. **Rhythmic & Cultural Poetry**: Building phonemic cadence, vocabulary, and expressive speech through 144+ classic, global, and Pakistani children's poems.
+6. **Tactile & Digital Artistry**: Interactive drawing studio plus 30+ printable coloring sheets bridging screen time and offline tabletop motor development.
 
 ---
 
 ## 2. Age-Tier Curriculum Progression
 
 - **Pre-K & Toddlers (Ages 2-4)**:
-  - Focus: Letter shape recognition, audio phonics sounds, visual numbers 1-5, large touch targets.
-  - Recommended Modules: Home World, Alphabets A-Z, Bubble Pop audio recall.
+  - Focus: Letter shape recognition, audio phonics sounds, visual numbers 1-5, nursery rhymes, large touch targets, fingerplay drawing.
+  - Recommended Modules: Home World, Alphabets A-Z, Digits 0-5, Bubble Pop, Drawings Studio.
 - **Kindergarten & Early K-1 (Ages 5-6)**:
-  - Focus: Upper/lowercase pairing, letter stroke tracing, subitizing numbers 1-10, Monster Feast food counting.
-  - Recommended Modules: Letter Tracing, Digits 0-20, Monster Feast, Memory Match.
+  - Focus: Upper/lowercase pairing, letter stroke tracing, subitizing numbers 1-10, Monster Feast food counting, bedtime poems.
+  - Recommended Modules: Letter Tracing, Digits 0-20, Monster Feast, Memory Match, Poems Explorer.
 - **Grade 1-2 Foundations (Ages 7-8)**:
-  - Focus: Numbers 10-20, decodable phonics storybooks, speed quizzes, CDE Kids Encyclopedia.
-  - Recommended Modules: Phonics Readers, Adaptive Assessment, Kids Encyclopedia.
+  - Focus: Numbers 10-20, decodable phonics storybooks, speed quizzes, CDE Kids Encyclopedia, offline coloring worksheets.
+  - Recommended Modules: Phonics Readers, Adaptive Assessment, Kids Encyclopedia, Drawings & Printables.
 - **K-12 Elementary Mastery (Ages 9-12+)**:
-  - Focus: Ancient word origins, scientific principles, planetary astronomy, geometry, parental analytics.
-  - Recommended Modules: Kids Encyclopedia deep dive, AI Coach insights.
+  - Focus: Ancient word origins, scientific principles, planetary astronomy, geometry, parental analytics, Allama Iqbal moral poetry.
+  - Recommended Modules: Kids Encyclopedia deep dive, Pakistani Poetry, AI Coach insights.
 
 ---
 
@@ -80,17 +84,53 @@ First Open School uses structured multisensory early-learning methods combining:
 
 ---
 
-## 5. Kids Encyclopedia Knowledge Clusters
+## 5. 144+ Easy Poems & Rhymes Curriculum (8 Collections)
 
-- **Alphabets**: 26 entries (`/encyclopedia/letter-a` to `/encyclopedia/letter-z`).
-- **Numbers & Math**: Zero, One, Two, Ten, One Hundred, Infinity (`/encyclopedia/number-zero`, etc.).
-- **Solar System**: The Sun, Planet Earth, The Moon, Mars, Jupiter, Saturn (`/encyclopedia/sun`, `/encyclopedia/planet-earth`, etc.).
-- **Earth & Nature**: Water (H2O), Air & Atmosphere, Trees & Photosynthesis, Rainbows (`/encyclopedia/water-element`, etc.).
-- **World Geography**: 7 Continents, World Oceans, Japan, Egypt, Brazil, Antarctica (`/encyclopedia/continents`, `/encyclopedia/japan`, etc.).
+First Open School hosts a world-class nursery rhyme and children's poetry curriculum:
+1. **Pakistani Poems & Rhymes (12 Verses)**:
+   - *Lab Pe Aati Hai Dua* (Allama Iqbal, 1902)
+   - *Pahar Aur Gulehri* (Allama Iqbal, 1904)
+   - *Titli Udi, Bus Par Chadi* (Traditional nursery rhyme)
+   - *Nani Teri Morni* (Grandmother's peacock)
+   - *Akkar Bakkar Bambe Bo* (Counting to 100)
+   - *Aik Tha Titar, Aik Batair* (The partridge and quail)
+   - *Jugnu* (The Firefly's Flying Lamp by Allama Iqbal)
+   - *Aao Bacho Sair Karayein* (Tour of Pakistan)
+   - *Kis Ne Banayi Dunya?* (Hamd for children)
+   - *Guriya Meri Pyari Hai* (My sweet doll)
+   - *Bulbul Ka Bacha* (The little nightingale)
+   - *Chham Chham Barsa Paani* (Monsoon raindrops)
+2. **Rhymes Around the World (34 Verses)**:
+   - Folk verses from the Caribbean (*Tingalayo*, *Day-O*), West Africa (*Funga Alafia*), Congo (*Olélé Moliba Makasi*), Morocco (*A Ram Sam Sam*), France (*Frère Jacques*, *Sur le Pont d'Avignon*), Germany (*Alle Vögel sind schon da*), Japan (*Sakura Sakura*, *Teru Teru Bōzu*), Korea (*Arirang*, *San Toki*), Latin America (*Los Pollitos Dicen*, *De Colores*, *Cucú Cantaba la Rana*), and Australia (*Kookaburra Sits in the Old Gum Tree*, *Waltzing Matilda*).
+3. **Classics & Nursery Rhymes (22 Verses)**:
+   - *Twinkle Twinkle*, *Baa Baa Black Sheep*, *Humpty Dumpty*, *Row Row Row Your Boat*, *Hickory Dickory Dock*, *Old King Cole*, *Sing a Song of Sixpence*, etc.
+4. **Animals & Nature (20 Verses)**:
+   - Robert Louis Stevenson (*The Friendly Cow*, *The Wind*), Christina Rossetti (*The Caterpillar*), Edward Lear (*The Owl and the Pussy-cat*), William Blake (*The Lamb*).
+5. **Bedtime & Lullabies (16 Verses)**:
+   - *Rock-a-bye Baby*, *Golden Slumbers*, *Hush Little Baby*, *Wynken Blynken and Nod*, *Brahms's Lullaby*, *Suo Gân*.
+6. **Fun & Playful Verses (20 Verses)**:
+   - *Five Little Monkeys*, *Teddy Bear Turn Around*, *Pease Porridge Hot*, *Pop Goes the Weasel*, *This Little Piggy*.
+7. **Manners & Good Habits (10 Verses)**:
+   - *Brush Your Teeth*, *Magic Words*, *Wash Your Hands*, *Tidying Up*, *Sharing Is Caring*.
+8. **Seasons & Weather (10 Verses)**:
+   - *Rain Rain Go Away*, *Good Morning Golden Sun*, *Autumn Leaves Falling*, *Five Little Snowmen*, *The Fog*.
 
 ---
 
-## 6. Site Permalinks & Canonical Structure
+## 6. Drawings, Coloring & Offline Printables Studio
+
+- **Interactive Canvas Studio**: High-DPI touch drawing with Paintbrush, Wax Crayon, Magic Rainbow Pen, Eraser, and Stamps (⭐, ❤️, 🌸, 🦋, 👑, 🚀, 🐾).
+- **30+ Printable Coloring Sheets**: High-contrast, clean vector lineart formatted for standard home printing (A4 / 8.5x11):
+  - Animals (*Lion Cub, Happy Elephant, Hop Bunny, Monarch Butterfly, Baby T-Rex*)
+  - Vehicles & Space (*Cosmic Rocket, Steam Train, Ocean Sailboat*)
+  - Nature & Garden (*Radiant Sun & Rainbow, Giant Sunflower*)
+  - Fairytale & Whimsy (*Royal Castle, Cuddly Teddy Bear*)
+  - Alphabet & Numbers Art (*Letter A & Apple, Number 1 & Sun*)
+  - Pakistani Cultural Heritage (*Crescent Moon & Star, Minar-e-Pakistan, Peacock Mor, Sweet Mango Tree*)
+
+---
+
+## 7. Site Permalinks & Canonical Directory
 
 - `/` : Primary Home World
 - `/alphabets` : Alphabets Curriculum
@@ -100,6 +140,12 @@ First Open School uses structured multisensory early-learning methods combining:
 - `/encyclopedia` : Encyclopedia Hub
 - `/encyclopedia/category/:category` : Category Index (e.g. `/encyclopedia/category/solar-system`)
 - `/encyclopedia/:entryId` : In-Depth Article (e.g. `/encyclopedia/sun`, `/encyclopedia/letter-a`)
+- `/poems` : 144+ Easy Poems & Rhymes Hub
+- `/poems/category/:category` : Poetry Category Index (e.g. `/poems/category/pakistani-rhymes`, `/poems/category/world-rhymes`)
+- `/poems/:poemId` : In-Depth Recital Page (e.g. `/poems/lab-pe-aati-hai-dua-iqbal`, `/poems/twinkle-twinkle-little-star`)
+- `/drawings` : Drawings & Coloring Studio Hub
+- `/drawings/category/:category` : Coloring Sheets by Theme (e.g. `/drawings/category/animals`)
+- `/drawings/:templateId` : Specific Coloring Template (e.g. `/drawings/cosmic-rocket`, `/drawings/lion-cub`)
 - `/tracing` : Tracing Canvas
 - `/tracing/:target` : Targeted Tracing (e.g. `/tracing/A`, `/tracing/5`)
 - `/bubble-pop` : Phonics Bubble Pop Game
@@ -109,5 +155,6 @@ First Open School uses structured multisensory early-learning methods combining:
 - `/assessment` : Gamified Assessment Quiz
 - `/parental-dashboard` : Analytics & AI Pedagogical Coach
 
-XML Sitemap available at `/sitemap.xml`.
+XML Sitemap available at `/sitemap.xml` (Over 400+ indexed educational URLs).
 Robots file available at `/robots.txt`.
+Standard LLM Context file available at `/llms.txt`.

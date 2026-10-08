@@ -14,6 +14,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+app.use(express.static(path.join(process.cwd(), "public")));
 
 // Enforce search engine indexing directives & preview headers on all responses
 app.use((_req, res, next) => {
@@ -285,6 +286,33 @@ app.get("/llms-full.txt", (_req, res) => {
     res.type("text/plain; charset=utf-8").sendFile(filePath);
   } else {
     res.status(404).send("llms-full.txt not found");
+  }
+});
+
+app.get("/favicon.svg", (_req, res) => {
+  const filePath = path.join(process.cwd(), "public", "favicon.svg");
+  if (fs.existsSync(filePath)) {
+    res.type("image/svg+xml").sendFile(filePath);
+  } else {
+    res.status(404).send("favicon.svg not found");
+  }
+});
+
+app.get("/favicon.ico", (_req, res) => {
+  const filePath = path.join(process.cwd(), "public", "favicon.svg");
+  if (fs.existsSync(filePath)) {
+    res.type("image/svg+xml").sendFile(filePath);
+  } else {
+    res.status(404).send("favicon not found");
+  }
+});
+
+app.get("/site.webmanifest", (_req, res) => {
+  const filePath = path.join(process.cwd(), "public", "site.webmanifest");
+  if (fs.existsSync(filePath)) {
+    res.type("application/manifest+json").sendFile(filePath);
+  } else {
+    res.status(404).send("site.webmanifest not found");
   }
 });
 

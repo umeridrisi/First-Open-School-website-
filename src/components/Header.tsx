@@ -55,9 +55,13 @@ export const Header: React.FC<HeaderProps> = ({
           className="flex items-center space-x-3.5 no-underline group cursor-pointer"
         >
           <div 
-            className="w-12 h-12 bg-[#FF6B6B] rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-[4px_4px_0px_#C44E4E] group-active:translate-y-1 group-active:shadow-none transition-all"
+            className="w-12 h-12 rounded-xl flex items-center justify-center shadow-[4px_4px_0px_#C44E4E] group-active:translate-y-1 group-active:shadow-none transition-all overflow-hidden bg-gradient-to-br from-[#FFD93D] to-[#FF6B6B] p-1"
           >
-            F
+            <img 
+              src="/favicon.svg" 
+              alt="First Open School Logo" 
+              className="w-full h-full object-contain filter drop-shadow-xs" 
+            />
           </div>
           <div>
             <div className="flex items-center space-x-2">

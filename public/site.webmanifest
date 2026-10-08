@@ -1,0 +1,18 @@
+{
+  "name": "First Open School",
+  "short_name": "Open School",
+  "description": "Free, open, and ad-free early childhood education platform for alphabets, phonics, numbers, easy poems, encyclopedia, and drawing printables.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFF9F0",
+  "theme_color": "#FFD93D",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "kids", "books"]
+}

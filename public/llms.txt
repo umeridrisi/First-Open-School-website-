@@ -1,25 +1,36 @@
 # First Open School
 
-> Open Early Childhood Literacy, Numeracy & Kids Encyclopedia Platform.
+> Open Early Childhood Literacy, Numeracy, Poetry & Kids Encyclopedia Platform.
+> Created by Umer Idrisi (Blogger & Entrepreneur from Pakistan) | A Project of Arkade Digital Limited (UK).
 > Inspired by the Computer Language Company (CDE) clarity, evidence-based phonemic instruction, subitizing, and tactile handwriting motor mechanics.
 
-First Open School is an interactive, multi-tiered educational curriculum built for learners ages 2 through 12+ (Pre-K, Kindergarten, Grades 1-2, and Elementary Foundations).
+First Open School is a 100% free, ad-free, interactive educational platform designed for early learners, preschoolers, elementary students, and parents worldwide (Ages 2 to 12+).
 
-## Core Capabilities & Modules
+## Core Learning Modules & Interactive Hubs
 
-- [Home Hub](https://firstopenschool.com/): Main interactive world with age-tier switching (Pre-K to Elementary), live milestone badges, star tracker, and daily streaks.
-- [Alphabets A-Z](https://firstopenschool.com/alphabets): All 26 uppercase and lowercase letters with phonetic sound pronunciation, mouth shape formation mechanics, and vocabulary associations.
-- [Digits 0-20](https://firstopenschool.com/digits): Number sense curriculum focusing on subitizing dot patterns, visual grouping, audio counting, number bonds, and tactile numeral tracing.
-- [Kids Encyclopedia](https://firstopenschool.com/encyclopedia): Modeled on Computer Language Company encyclopedic principles. Features plain-English definitions, phonetic guides, vivid everyday analogies (e.g. Letter A as a camping tent), visual anatomy breakdowns, ancient origins, hands-on kitchen experiments, speedy tongue twisters, and interactive micro-quizzes.
-- [Letter & Digit Tracing](https://firstopenschool.com/tracing): Multi-touch HTML5 canvas with directional stroke guidance, fine-motor path detection, and instant stroke accuracy calculation.
-- [Bubble Pop Game](https://firstopenschool.com/bubble-pop): Audio-visual letter and sound recall game.
-- [Monster Counting Feast](https://firstopenschool.com/counting-feast): Gamified subitizing and quantity association activity.
-- [Phonics Memory Match](https://firstopenschool.com/card-match): Card matching game pairing letters with phonics vocabulary images.
-- [Decodable Phonics Readers](https://firstopenschool.com/phonics-stories): Multi-page illustrated early readers with word-by-word audio highlighting and reading comprehension questions.
-- [Adaptive Assessment Quiz](https://firstopenschool.com/assessment): Gamified quiz engine testing letter sounds, numbers, and patterns with graduation milestone rewards.
-- [Parent & Educator Dashboard](https://firstopenschool.com/parental-dashboard): Learning analytics, time-on-task, phonics accuracy metrics, AI Pedagogical Coach powered by Gemini, and printable completion certificates.
+- [Home Learning World](https://firstopenschool.com/): Interactive hub with age-tier switching (Pre-K to Elementary), live milestone badges, star tracker, and daily learning streaks.
+- [Alphabets A-Z](https://firstopenschool.com/alphabets): Complete 26-letter phonics curriculum with uppercase/lowercase recognition, audio phonics sounds, mouth shape formation guides, and vocabulary associations.
+- [Digits 0-20](https://firstopenschool.com/digits): Early numeracy and subitizing curriculum focusing on dot patterns, ten-frames, visual grouping, audio counting, number bonds, and numeral formation.
+- [Kids Encyclopedia](https://firstopenschool.com/encyclopedia): Modeled on Computer Language Company (CDE) principles. Features plain-English definitions, phonetic guides, memorable everyday analogies, visual breakdowns, ancient historical origins, hands-on kitchen experiments, and micro-quizzes across 8 knowledge domains.
+- [144+ Easy Poems & Rhymes](https://firstopenschool.com/poems): Expansive poetry and nursery rhyme collection with read-aloud audio narration, rhythmic cadence highlighting, vocabulary definitions with emojis, and physical recital tips for kids.
+  - [Pakistani Poems & Rhymes](https://firstopenschool.com/poems/category/pakistani-rhymes): Traditional Urdu nursery rhymes, Allama Iqbal moral fables (*Lab Pe Aati Hai Dua*, *Pahar Aur Gulehri*, *Jugnu*), and counting games with bilingual English translations.
+  - [Rhymes Around the World](https://firstopenschool.com/poems/category/world-rhymes): Global folk verses and clapping songs from the Caribbean, Africa, Europe, Asia, Latin America, and Celtic traditions.
+  - [Classics & Nursery Rhymes](https://firstopenschool.com/poems/category/classics-rhymes): Timeless English nursery rhymes and early childhood ballads.
+  - [Animals & Nature](https://firstopenschool.com/poems/category/animals-nature): Verses celebrating birds, cows, caterpillars, and wildlife.
+  - [Bedtime & Lullabies](https://firstopenschool.com/poems/category/bedtime-lullabies): Soothing bedtime poems for evening calm and dreaming.
+  - [Fun & Playful Verses](https://firstopenschool.com/poems/category/fun-whimsical): Bouncy counting, fingerplay, and clapping games.
+  - [Manners & Good Habits](https://firstopenschool.com/poems/category/good-habits): Verses teaching tooth brushing, hand washing, and sharing.
+  - [Seasons & Weather](https://firstopenschool.com/poems/category/seasons-weather): Verses celebrating rain, rainbows, autumn leaves, and sunshine.
+- [Drawings & Offline Printables Studio](https://firstopenschool.com/drawings): Creative digital art canvas (wax crayon, paintbrush, rainbow pen, stickers, eraser) plus 30+ printable coloring activity sheets for parents to download and print for tabletop art.
+- [Handwriting Tracing](https://firstopenschool.com/tracing): Multi-touch HTML5 canvas with directional stroke guidance, fine-motor path detection, and instant stroke accuracy calculation for letters and digits.
+- [Bubble Pop Phonics Game](https://firstopenschool.com/bubble-pop): Fast-paced audio-visual letter and sound recall game.
+- [Monster Counting Feast](https://firstopenschool.com/counting-feast): Gamified subitizing and snack-counting number sense game.
+- [Phonics Memory Match](https://firstopenschool.com/card-match): Memory card matching game pairing letters with phonics vocabulary images.
+- [Decodable Phonics Stories](https://firstopenschool.com/phonics-stories): 110+ single-sentence decodable stories with word-by-word audio highlighting and reading comprehension questions.
+- [Star Assessment Quiz](https://firstopenschool.com/assessment): Gamified quiz engine testing letter sounds, numbers, and patterns with graduation milestone rewards.
+- [Parent & Educator Dashboard](https://firstopenschool.com/parental-dashboard): Learning analytics, time-on-task, phonics accuracy metrics, AI Pedagogical Coach, and printable completion certificates.
 
-## Encyclopedia Topics & 8 Knowledge Clusters (80+ In-Depth Articles)
+## Encyclopedia Knowledge Clusters (80+ In-Depth Articles)
 
 1. **Alphabets A-Z (26 letters)**: Aa through Zz with analogies, mouth mechanics, phonetic symbols, ancient Phoenician/Greek origins, tongue twisters, and hands-on tactile craft projects.
 2. **Numbers & Math Sense**: Zero (0), One (1), Two (2), Ten (10), One Hundred (100), Fractions & Halves, Geometry & Shapes, and Infinity (∞).
@@ -30,13 +41,19 @@ First Open School is an interactive, multi-tiered educational curriculum built f
 7. **How Things Work & Engineering**: How Airplanes Fly (Lift/Bernoulli), How the Internet Works (Packets/Wi-Fi), How Clocks Tell Time (Gears/Quartz), Wheels & Gears, Electricity & Circuits, and How Cameras Work.
 8. **World Geography & Continents**: The 7 Continents, World Oceans, The Great Wall of China, Mount Everest, Japan, Egypt, Brazil, and Antarctica.
 
-## AI & Developer Endpoints
+## AI & Developer API Endpoints
 
 - `POST /api/encyclopedia-ask`: Accepts `{ query: string, topic: string }` and returns a CDE-style structured encyclopedia entry with everyday analogies, mouth mechanics, origins, and micro-quizzes.
 - `POST /api/ai-parent-coach`: Accepts student mastery percentages and returns developmental early childhood insights.
+- `GET /api/health`: Health status endpoint returning platform uptime, version, and environment.
 
-## Full Documentation
+## Creator Attribution & Organization
 
-For the complete uncompressed catalog, vocabulary datasets, and deep curriculum mapping, see:
-- [llms-full.txt](https://firstopenschool.com/llms-full.txt)
-- [XML Sitemap](https://firstopenschool.com/sitemap.xml)
+- **Founder & Creator**: Umer Idrisi (Blogger and entrepreneur from Pakistan).
+- **Parent Organization**: Arkade Digital Limited (Registered in the United Kingdom).
+- **Mission**: Providing 100% free, ad-free, accessible, high-quality foundational literacy and numeracy to every child regardless of geographic or socioeconomic barriers.
+
+## Full Documentation & Sitemaps
+
+- [llms-full.txt](https://firstopenschool.com/llms-full.txt): Complete uncompressed catalog with exhaustive curriculum datasets and schema mappings.
+- [XML Sitemap](https://firstopenschool.com/sitemap.xml): Over 400+ indexed static educational URLs.
