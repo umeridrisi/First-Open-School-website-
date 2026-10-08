@@ -8,7 +8,6 @@ import {
   DigitData 
 } from './types';
 import { Header } from './components/Header';
-import { TierSelector } from './components/TierSelector';
 import { SubjectNav } from './components/SubjectNav';
 import { OverviewWorld } from './components/views/OverviewWorld';
 import { AlphabetsExplorer } from './components/views/AlphabetsExplorer';
@@ -269,13 +268,6 @@ export default function App() {
         onToggleSound={handleToggleSound}
         onUpdateStudentName={handleUpdateStudentName}
         isOffline={isOffline}
-      />
-
-      {/* Curriculum Age Tier Switcher */}
-      <TierSelector
-        currentTier={student.ageTier}
-        onSelectTier={handleUpdateTier}
-        settings={settings}
       />
 
       {/* Navigation Bar */}

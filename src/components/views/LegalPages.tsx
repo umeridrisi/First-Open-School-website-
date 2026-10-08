@@ -184,11 +184,11 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ tab, settings, onNavigat
           <section className="space-y-4">
             <h2 className="text-xl font-black text-[#2D2D2D] tracking-tight flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-[#6BCB77]" />
-              <span>3. AI Queries & Audio Speech Synthesis</span>
+              <span>3. 100% Client-Side Audio & Pedagogical Analytics</span>
             </h2>
             <p className="text-sm text-[#2D2D2D]/85 leading-relaxed font-medium">
               • <strong>Audio & Speech:</strong> Speech pronunciation and phonics audio use the standard, built-in browser Web Speech Synthesis API. No voice audio is recorded, transmitted, or stored on remote servers.<br />
-              • <strong>AI Assistant (Gemini):</strong> When parents or students use the "Ask the Encyclopedia" or "AI Parent Coach" features, requests are processed statelessly without attaching any student names, IDs, IP histories, or private profiles.
+              • <strong>100% Client-Side Processing:</strong> All developmental insights, parental coaching recommendations, and encyclopedia searches are calculated entirely inside the user's web browser without transmitting any student profiles, names, or learning metrics to external AI servers.
             </p>
           </section>
 
@@ -302,7 +302,7 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ tab, settings, onNavigat
               <div className="text-2xl">🔒</div>
               <h3 className="font-black text-base text-emerald-950">Parental PIN Gate</h3>
               <p className="text-xs text-emerald-900/80 font-medium">
-                The settings, audio pacing toggles, profile resets, and AI Coach analysis are locked behind a parental math challenge and PIN code.
+                The settings, audio pacing toggles, profile resets, and developmental learning insights are locked behind a parental math challenge and PIN code.
               </p>
             </div>
 

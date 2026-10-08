@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StudentProfile, ParentSettings, LMSExportData, ItemProgress } from '../../types';
 import { downloadCertificatePDF } from '../../utils/certificateGenerator';
 import { speakText, playSoundEffect } from '../../utils/sound';
+import { generateLocalPedagogicalInsights, PedagogicalInsightResult } from '../../utils/pedagogicalInsights';
 import { 
   ShieldCheck, 
   Lock, 
@@ -36,9 +37,10 @@ export const ParentalDashboard: React.FC<ParentalDashboardProps> = ({
   const [isUnlocked, setIsUnlocked] = useState<boolean>(false);
   const [pinError, setPinError] = useState<boolean>(false);
 
-  // AI Coach state
-  const [aiAnalysis, setAiAnalysis] = useState<any>(null);
-  const [isLoadingAi, setIsLoadingAi] = useState<boolean>(false);
+  // Developmental Insights state (100% Client-Side)
+  const [developmentalInsights, setDevelopmentalInsights] = useState<PedagogicalInsightResult>(() =>
+    generateLocalPedagogicalInsights(student)
+  );
 
   // Unlock check
   const handleUnlock = (e: React.FormEvent) => {
@@ -54,44 +56,11 @@ export const ParentalDashboard: React.FC<ParentalDashboardProps> = ({
     }
   };
 
-  // Fetch AI Parent Coach analysis
-  const fetchAiCoach = async () => {
-    setIsLoadingAi(true);
-    const progressValues = (Object.values(student.progress || {}) as ItemProgress[]);
-    try {
-      const res = await fetch('/api/ai-parent-coach', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          studentName: student.name,
-          ageTier: student.ageTier,
-          alphabetMastery: Math.round((progressValues.filter(p => p.type === 'letter' && p.mastered).length / 26) * 100),
-          digitMastery: Math.round((progressValues.filter(p => p.type === 'digit' && p.mastered).length / 21) * 100),
-          tracingAccuracy: 88,
-          streak: student.streakDays,
-          weakSpots: ["Letter Sounds Q and Z", "Subitizing numbers 15-20"]
-        })
-      });
-
-      const json = await res.json();
-      if (json.success && json.data) {
-        setAiAnalysis(json.data);
-      }
-    } catch (err) {
-      console.warn("AI Parent Coach error:", err);
-      setAiAnalysis({
-        summary: "The learner shows strong engagement in multi-sensory tracing and sound matching.",
-        pedagogicalInsight: "Phonemic awareness is advancing consistently. Spaced repetition will solidify number bonds.",
-        recommendedActivities: [
-          "5 minutes daily letter tracing with voice guidance.",
-          "Play Monster Counting Feast to build subitizing for double-digit numbers.",
-          "Read an AI Phonics Story before bedtime!"
-        ],
-        encouragingNote: "Fantastic dedication! You are building a lifelong foundation for literacy and math!"
-      });
-    } finally {
-      setIsLoadingAi(false);
-    }
+  // Refresh developmental insights locally
+  const handleRefreshInsights = () => {
+    playSoundEffect('click', settings.soundEffects);
+    const insights = generateLocalPedagogicalInsights(student);
+    setDevelopmentalInsights(insights);
   };
 
   // Export LMS Data
@@ -260,7 +229,7 @@ export const ParentalDashboard: React.FC<ParentalDashboardProps> = ({
 
       </div>
 
-      {/* AI Parent & Teacher Coach (Gemini Integration) */}
+      {/* Developmental Pedagogical Parent Coach (100% Client-Side) */}
       <div className="bg-white rounded-[32px] p-6 sm:p-8 border-4 border-[#4D96FF] shadow-[0_8px_0_#3A72C1] space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3.5">
@@ -268,35 +237,34 @@ export const ParentalDashboard: React.FC<ParentalDashboardProps> = ({
               <Brain className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="font-black text-lg text-[#2D2D2D]">AI PEDAGOGICAL PARENT COACH</h3>
+              <h3 className="font-black text-lg text-[#2D2D2D]">DEVELOPMENTAL LEARNING INSIGHTS</h3>
               <p className="text-xs text-gray-500 font-bold">
-                Generates evidence-based educational insights powered by Gemini AI.
+                Evidence-based pedagogical coaching computed 100% locally in your browser.
               </p>
             </div>
           </div>
 
           <button
-            onClick={fetchAiCoach}
-            disabled={isLoadingAi}
-            className="flex items-center space-x-2 px-5 py-3 bg-[#FFD93D] text-[#2D2D2D] font-black text-xs rounded-2xl border-2 border-[#FFD93D] shadow-[0_4px_0_#C9A92E] active:translate-y-1 active:shadow-none transition-all disabled:opacity-50 cursor-pointer"
+            onClick={handleRefreshInsights}
+            className="flex items-center space-x-2 px-5 py-3 bg-[#FFD93D] text-[#2D2D2D] font-black text-xs rounded-2xl border-2 border-[#FFD93D] shadow-[0_4px_0_#C9A92E] active:translate-y-1 active:shadow-none transition-all cursor-pointer"
           >
-            <Wand2 className="w-4 h-4" />
-            <span>{isLoadingAi ? "ANALYZING..." : "GENERATE INSIGHTS"}</span>
+            <Sparkles className="w-4 h-4" />
+            <span>REFRESH INSIGHTS</span>
           </button>
         </div>
 
-        {aiAnalysis && (
+        {developmentalInsights && (
           <div className="p-6 bg-[#FFF9F0] rounded-2xl border-2 border-[#FFD93D] space-y-4 text-[#2D2D2D]">
             <div className="space-y-1">
-              <h4 className="font-black text-sm text-[#4D96FF] uppercase">Summary & Analysis</h4>
-              <p className="text-xs font-bold leading-relaxed">{aiAnalysis.summary}</p>
-              <p className="text-xs font-bold text-gray-600 italic">{aiAnalysis.pedagogicalInsight}</p>
+              <h4 className="font-black text-sm text-[#4D96FF] uppercase">Progress Summary & Analysis</h4>
+              <p className="text-xs font-bold leading-relaxed">{developmentalInsights.summary}</p>
+              <p className="text-xs font-bold text-gray-600 italic">{developmentalInsights.pedagogicalInsight}</p>
             </div>
 
             <div className="space-y-2">
-              <h4 className="font-black text-xs text-[#6BCB77] uppercase tracking-wider">Recommended Fun Activities</h4>
+              <h4 className="font-black text-xs text-[#6BCB77] uppercase tracking-wider">Recommended Home Activities</h4>
               <ul className="space-y-1.5">
-                {aiAnalysis.recommendedActivities?.map((act: string, idx: number) => (
+                {developmentalInsights.recommendedActivities?.map((act: string, idx: number) => (
                   <li key={idx} className="text-xs font-bold flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-[#6BCB77] shrink-0" />
                     <span>{act}</span>
@@ -304,6 +272,13 @@ export const ParentalDashboard: React.FC<ParentalDashboardProps> = ({
                 ))}
               </ul>
             </div>
+
+            {developmentalInsights.encouragingNote && (
+              <div className="pt-2 border-t border-amber-200/60">
+                <span className="text-[11px] font-black text-[#FF6B6B] uppercase">Celebratory Note:</span>
+                <p className="text-xs font-extrabold text-[#2D2D2D] mt-0.5">🌟 &ldquo;{developmentalInsights.encouragingNote}&rdquo;</p>
+              </div>
+            )}
           </div>
         )}
       </div>

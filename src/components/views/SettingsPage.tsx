@@ -3,6 +3,7 @@ import { StudentProfile, ParentSettings, AgeTier, LMSExportData, ItemProgress } 
 import { AGE_TIER_INFO, ALPHABET_DATA, DIGIT_DATA } from '../../data/curriculumData';
 import { downloadCertificatePDF } from '../../utils/certificateGenerator';
 import { speakText, playSoundEffect } from '../../utils/sound';
+import { generateLocalPedagogicalInsights, PedagogicalInsightResult } from '../../utils/pedagogicalInsights';
 import { 
   Settings as SettingsIcon, 
   Lock, 
@@ -58,9 +59,10 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
   const [voiceSpeed, setVoiceSpeed] = useState<number>(settings.voiceSpeed || 0.9);
   const [saveSuccessMsg, setSaveSuccessMsg] = useState<string>('');
 
-  // AI Coach state
-  const [aiAnalysis, setAiAnalysis] = useState<any>(null);
-  const [isLoadingAi, setIsLoadingAi] = useState<boolean>(false);
+  // Developmental Insights state (Computed 100% locally in browser)
+  const [developmentalInsights, setDevelopmentalInsights] = useState<PedagogicalInsightResult>(() =>
+    generateLocalPedagogicalInsights(student)
+  );
 
   // Avatars list
   const AVATAR_OPTIONS = ['🦁', '🐯', '🐼', '🦊', '🐨', '🦄', '🚀', '⭐', '🦉', '🐬', '🦖', '🎨'];
@@ -161,44 +163,12 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
     }
   };
 
-  // Fetch AI Parent Coach analysis
-  const fetchAiCoach = async () => {
-    setIsLoadingAi(true);
-    const progressValues = (Object.values(student.progress || {}) as ItemProgress[]);
-    try {
-      const res = await fetch('/api/ai-parent-coach', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          studentName: student.name,
-          ageTier: student.ageTier,
-          alphabetMastery: Math.round((progressValues.filter(p => p.type === 'letter' && p.mastered).length / 26) * 100),
-          digitMastery: Math.round((progressValues.filter(p => p.type === 'digit' && p.mastered).length / 21) * 100),
-          tracingAccuracy: 88,
-          streak: student.streakDays,
-          weakSpots: ['Letter Sounds Q and Z', 'Subitizing numbers 15-20']
-        })
-      });
-
-      const json = await res.json();
-      if (json.success && json.data) {
-        setAiAnalysis(json.data);
-      }
-    } catch (err) {
-      console.warn('AI Parent Coach error:', err);
-      setAiAnalysis({
-        summary: 'The learner shows consistent engagement across alphabet phonics and counting games.',
-        pedagogicalInsight: 'Multi-sensory phonics and guided tracing build fine motor memory and phonemic mapping.',
-        recommendedActivities: [
-          '5 minutes daily letter tracing with voice guidance.',
-          'Play Monster Feast for hands-on subitizing practice.',
-          'Recite an easy poem together before bed!'
-        ],
-        encouragingNote: 'Super effort! Every day builds essential reading and math confidence!'
-      });
-    } finally {
-      setIsLoadingAi(false);
-    }
+  // Generate or refresh developmental pedagogical insights locally
+  const handleRefreshInsights = () => {
+    playSoundEffect('click', settings.soundEffects);
+    const insights = generateLocalPedagogicalInsights(student);
+    setDevelopmentalInsights(insights);
+    showFeedback('Developmental insights updated from learner progress!');
   };
 
   // Export LMS Data
@@ -665,7 +635,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
               </div>
             </div>
 
-            {/* AI Pedagogical Coach Insights */}
+            {/* Developmental Pedagogical Coach Insights (100% Client-Side) */}
             <div className="p-5 bg-white rounded-2xl border-3 border-[#4D96FF] space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
@@ -673,33 +643,32 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
                     <Brain className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="font-black text-base text-[#2D2D2D]">AI Pedagogical Parent Coach</h4>
-                    <p className="text-[11px] text-gray-500 font-bold">Evidence-based developmental insights powered by Gemini AI</p>
+                    <h4 className="font-black text-base text-[#2D2D2D]">DEVELOPMENTAL LEARNING INSIGHTS</h4>
+                    <p className="text-[11px] text-gray-500 font-bold">Evidence-based developmental coaching computed 100% locally in your browser</p>
                   </div>
                 </div>
 
                 <button
-                  onClick={fetchAiCoach}
-                  disabled={isLoadingAi}
-                  className="flex items-center gap-1.5 px-4 py-2 bg-[#FFD93D] text-[#2D2D2D] font-black text-xs uppercase rounded-xl border border-[#FFD93D] shadow-[0_3px_0_#C9A92E] active:translate-y-0.5 active:shadow-none transition-all disabled:opacity-50 cursor-pointer self-start sm:self-auto"
+                  onClick={handleRefreshInsights}
+                  className="flex items-center gap-1.5 px-4 py-2 bg-[#FFD93D] text-[#2D2D2D] font-black text-xs uppercase rounded-xl border border-[#FFD93D] shadow-[0_3px_0_#C9A92E] active:translate-y-0.5 active:shadow-none transition-all cursor-pointer self-start sm:self-auto"
                 >
-                  <Wand2 className="w-3.5 h-3.5" />
-                  <span>{isLoadingAi ? 'Analyzing...' : 'Generate Insights'}</span>
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Refresh Insights</span>
                 </button>
               </div>
 
-              {aiAnalysis && (
+              {developmentalInsights && (
                 <div className="p-4 bg-[#FFF9F0] rounded-xl border border-[#FFD93D] space-y-3">
                   <div>
                     <span className="text-xs font-black text-[#4D96FF] uppercase">Summary:</span>
-                    <p className="text-xs font-bold text-[#2D2D2D] mt-0.5">{aiAnalysis.summary}</p>
-                    <p className="text-[11px] text-gray-600 font-bold italic mt-1">{aiAnalysis.pedagogicalInsight}</p>
+                    <p className="text-xs font-bold text-[#2D2D2D] mt-0.5">{developmentalInsights.summary}</p>
+                    <p className="text-[11px] text-gray-600 font-bold italic mt-1">{developmentalInsights.pedagogicalInsight}</p>
                   </div>
 
                   <div>
                     <span className="text-xs font-black text-[#6BCB77] uppercase">Recommended Home Activities:</span>
                     <ul className="space-y-1 mt-1">
-                      {aiAnalysis.recommendedActivities?.map((act: string, idx: number) => (
+                      {developmentalInsights.recommendedActivities?.map((act: string, idx: number) => (
                         <li key={idx} className="text-xs font-bold flex items-center gap-2 text-[#2D2D2D]">
                           <CheckCircle2 className="w-3.5 h-3.5 text-[#6BCB77] shrink-0" />
                           <span>{act}</span>
@@ -707,6 +676,13 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
                       ))}
                     </ul>
                   </div>
+
+                  {developmentalInsights.encouragingNote && (
+                    <div className="pt-2 border-t border-amber-200/60">
+                      <span className="text-[11px] font-black text-[#FF6B6B] uppercase">Celebratory Note:</span>
+                      <p className="text-xs font-extrabold text-[#2D2D2D] mt-0.5">🌟 &ldquo;{developmentalInsights.encouragingNote}&rdquo;</p>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

@@ -79,11 +79,11 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
     }
   }, [initialCategory]);
   
-  // Custom AI generated entry state
+  // Custom generated or discovered entry state
   const [customEntry, setCustomEntry] = useState<EncyclopediaEntry | null>(null);
-  const [aiQuestion, setAiQuestion] = useState<string>('');
-  const [isLoadingAi, setIsLoadingAi] = useState<boolean>(false);
-  const [aiError, setAiError] = useState<string | null>(null);
+  const [curiousQuestion, setCuriousQuestion] = useState<string>('');
+  const [isSearching, setIsSearching] = useState<boolean>(false);
+  const [searchFeedback, setSearchFeedback] = useState<string | null>(null);
 
   // Micro quiz state
   const [selectedQuizAnswer, setSelectedQuizAnswer] = useState<number | null>(null);
@@ -155,66 +155,104 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
     }
   };
 
-  const handleAskAi = async (questionText?: string) => {
-    const q = questionText || aiQuestion;
-    if (!q.trim() || isLoadingAi) return;
+  const handleAskQuestion = (questionText?: string) => {
+    const q = (questionText || curiousQuestion).trim();
+    if (!q || isSearching) return;
 
-    setIsLoadingAi(true);
-    setAiError(null);
+    setIsSearching(true);
+    setSearchFeedback(null);
     playSoundEffect('click', settings.soundEffects);
 
     try {
-      const response = await fetch('/api/encyclopedia-ask', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: q })
+      const qLower = q.toLowerCase();
+
+      // Check if any existing encyclopedia entry matches keywords
+      const matched = ENCYCLOPEDIA_ENTRIES.find(entry => {
+        const titleMatch = entry.title.toLowerCase().includes(qLower) || qLower.includes(entry.title.toLowerCase());
+        const tagMatch = entry.tagline.toLowerCase().includes(qLower);
+        const howMatch = entry.howItWorks.points.some(p => p.toLowerCase().includes(qLower));
+        return titleMatch || tagMatch || howMatch;
       });
 
-      const resData = await response.json();
-      const generated = resData.data || resData.fallbackData;
+      // Special keyword mappings for kid questions
+      let foundEntry = matched;
+      if (!foundEntry) {
+        if (qLower.includes('mars') || qLower.includes('red planet')) {
+          foundEntry = ENCYCLOPEDIA_ENTRIES.find(e => e.id === 'mars');
+        } else if (qLower.includes('knife') || qLower.includes('silent') || qLower.includes('letter k')) {
+          foundEntry = ENCYCLOPEDIA_ENTRIES.find(e => e.id === 'letter-k');
+        } else if (qLower.includes('ocean') || qLower.includes('salt') || qLower.includes('water')) {
+          foundEntry = ENCYCLOPEDIA_ENTRIES.find(e => e.id === 'water-element');
+        } else if (qLower.includes('sun') || qLower.includes('star')) {
+          foundEntry = ENCYCLOPEDIA_ENTRIES.find(e => e.id === 'sun');
+        } else if (qLower.includes('moon')) {
+          foundEntry = ENCYCLOPEDIA_ENTRIES.find(e => e.id === 'moon');
+        }
+      }
 
-      if (generated) {
-        const newEntry: EncyclopediaEntry = {
-          id: `ai-custom-${Date.now()}`,
-          title: generated.title || q,
-          symbol: generated.symbol || '💡',
-          pronunciation: generated.pronunciation || `(${q.toLowerCase()})`,
-          category: 'earth-elements',
-          tagline: generated.tagline || 'A fascinating wonder explored by the Kids Encyclopedia!',
-          analogy: generated.analogy || {
-            title: 'Everyday Comparison',
-            story: 'Everything in the world is connected through amazing patterns you can see all around you.',
-            emoji: '✨'
-          },
-          howItWorks: generated.howItWorks || {
-            title: 'How It Works',
-            points: ['It connects to natural laws.', 'It can be observed.', 'It helps us understand the world.']
-          },
-          funFacts: generated.funFacts || ['Every day humans learn new things about this topic!'],
-          didYouKnowOrigin: generated.didYouKnowOrigin || 'Scientists continue to research this exciting topic.',
-          microQuiz: generated.microQuiz || {
-            question: `What makes ${q} so interesting?`,
-            options: ['It teaches us about the universe', 'It is invisible', 'It never changes'],
-            correctIndex: 0,
-            explanation: 'Learning about the universe makes our minds grow!'
-          },
-          seeAlso: [
-            { id: 'sun', title: 'The Sun', category: 'solar-system' },
-            { id: 'water-element', title: 'Water', category: 'earth-elements' }
-          ]
-        };
-
-        setCustomEntry(newEntry);
-        setSelectedEntryId(newEntry.id);
+      if (foundEntry) {
+        setSelectedEntryId(foundEntry.id);
+        setSelectedCategory(foundEntry.category);
         setSelectedQuizAnswer(null);
         setShowQuizResult(false);
-        speakText(`Here is what the encyclopedia found for: ${newEntry.title}`, settings.voiceGuidance);
+        setCuriousQuestion('');
+        speakText(`Here is what the encyclopedia found: ${foundEntry.title}`, settings.voiceGuidance);
+        return;
       }
+
+      // If no exact entry matched, generate a client-side CDE-style encyclopedia entry instantly
+      const cleanTitle = q.replace(/^(why is|what is|how does|why do|tell me about)\s+/i, '').replace(/\?+$/, '');
+      const capitalizedTitle = cleanTitle.charAt(0).toUpperCase() + cleanTitle.slice(1);
+
+      const localEntry: EncyclopediaEntry = {
+        id: `local-custom-${Date.now()}`,
+        title: capitalizedTitle || q,
+        symbol: '🔍',
+        pronunciation: `(${capitalizedTitle.toLowerCase()})`,
+        category: 'earth-elements',
+        tagline: `A fascinating subject of discovery in the Kids Encyclopedia!`,
+        analogy: {
+          title: 'The Great Exploration Box',
+          story: 'Every curious question is like opening a window in a big house to see a brand new view of the world outside.',
+          emoji: '✨'
+        },
+        howItWorks: {
+          title: 'Core Concepts to Know',
+          points: [
+            'Scientists and explorers observe natural patterns carefully to find answers.',
+            'Everything around us follows the wonderful rules of physics, nature, and language.',
+            'Asking questions every day is how your brain grows stronger and smarter!'
+          ]
+        },
+        funFacts: [
+          'Great scientists throughout history all started by asking simple, curious questions!',
+          'Every time you learn a new fact, your brain forms real neural connections.',
+          'There are millions of amazing secrets waiting to be discovered in the universe!'
+        ],
+        didYouKnowOrigin: 'Every word, number, and natural phenomenon has a rich history waiting for young scholars to investigate.',
+        microQuiz: {
+          question: `What is the best way to learn about ${capitalizedTitle}?`,
+          options: ['Ask questions and explore with curiosity', 'Never read books', 'Ignore how things work'],
+          correctIndex: 0,
+          explanation: 'Being curious and exploring the world is the superpower of every great scholar!'
+        },
+        seeAlso: [
+          { id: 'sun', title: 'The Sun', category: 'solar-system' },
+          { id: 'water-element', title: 'Water', category: 'earth-elements' }
+        ]
+      };
+
+      setCustomEntry(localEntry);
+      setSelectedEntryId(localEntry.id);
+      setSelectedQuizAnswer(null);
+      setShowQuizResult(false);
+      setCuriousQuestion('');
+      speakText(`Here is what the encyclopedia discovered for ${localEntry.title}`, settings.voiceGuidance);
     } catch (err) {
-      console.error('Failed to query encyclopedia AI:', err);
-      setAiError('Could not reach the encyclopedia assistant right now.');
+      console.warn('Encyclopedia search notice:', err);
+      setSearchFeedback('Please try searching with another keyword.');
     } finally {
-      setIsLoadingAi(false);
+      setIsSearching(false);
     }
   };
 
@@ -412,59 +450,59 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
             )}
           </div>
 
-          {/* AI Curious Question Box ("Ask the Kids Encyclopedia") */}
+          {/* Curious Question Box ("Ask the Kids Encyclopedia") */}
           <div className="bg-gradient-to-br from-[#4D96FF]/10 to-[#6BCB77]/10 p-5 rounded-[28px] border-4 border-[#4D96FF] shadow-[0_6px_0_#3A72C1] space-y-3">
             <div className="flex items-center space-x-2 text-[#4D96FF]">
               <Sparkles className="w-5 h-5" />
               <h3 className="font-black text-sm uppercase tracking-tight">Ask the Encyclopedia</h3>
             </div>
             <p className="text-xs text-[#2D2D2D]/80 font-medium">
-              Have a curious question? Get a kid-friendly CDE-style encyclopedia entry with analogies and fun facts!
+              Have a curious question? Get an instant kid-friendly encyclopedia answer with analogies and fun facts!
             </p>
 
             <div className="space-y-2">
               <div className="flex gap-2">
                 <input
                   type="text"
-                  value={aiQuestion}
-                  onChange={(e) => setAiQuestion(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && handleAskAi()}
-                  placeholder="e.g. Why is the sky blue?"
+                  value={curiousQuestion}
+                  onChange={(e) => setCuriousQuestion(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleAskQuestion()}
+                  placeholder="e.g. Why is Mars red?"
                   className="flex-1 px-3 py-2 text-xs font-bold bg-white rounded-xl border-2 border-gray-300 focus:border-[#4D96FF] outline-none"
                 />
                 <button
-                  onClick={() => handleAskAi()}
-                  disabled={isLoadingAi || !aiQuestion.trim()}
+                  onClick={() => handleAskQuestion()}
+                  disabled={isSearching || !curiousQuestion.trim()}
                   className="px-3 py-2 bg-[#4D96FF] text-white rounded-xl font-black text-xs flex items-center justify-center hover:bg-[#3A72C1] active:scale-95 disabled:opacity-50 cursor-pointer shadow-xs"
                 >
-                  {isLoadingAi ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                  {isSearching ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                 </button>
               </div>
 
               {/* Sample Quick Questions */}
               <div className="flex flex-wrap gap-1.5 pt-1">
                 <button
-                  onClick={() => handleAskAi("Why is Mars red?")}
+                  onClick={() => handleAskQuestion("Why is Mars red?")}
                   className="text-[11px] font-bold px-2 py-1 bg-white hover:bg-[#4D96FF] hover:text-white text-[#2D2D2D] rounded-lg border border-gray-200 transition-all cursor-pointer"
                 >
                   Why is Mars red? 🔴
                 </button>
                 <button
-                  onClick={() => handleAskAi("Why do we have silent letters like K in Knife?")}
+                  onClick={() => handleAskQuestion("Why do we have silent letters like K in Knife?")}
                   className="text-[11px] font-bold px-2 py-1 bg-white hover:bg-[#4D96FF] hover:text-white text-[#2D2D2D] rounded-lg border border-gray-200 transition-all cursor-pointer"
                 >
                   Silent letters? 🔤
                 </button>
                 <button
-                  onClick={() => handleAskAi("Why is the ocean salty?")}
+                  onClick={() => handleAskQuestion("Why is the ocean salty?")}
                   className="text-[11px] font-bold px-2 py-1 bg-white hover:bg-[#4D96FF] hover:text-white text-[#2D2D2D] rounded-lg border border-gray-200 transition-all cursor-pointer"
                 >
                   Why is ocean salty? 🌊
                 </button>
               </div>
 
-              {aiError && (
-                <div className="text-[11px] font-bold text-red-500">{aiError}</div>
+              {searchFeedback && (
+                <div className="text-[11px] font-bold text-red-500">{searchFeedback}</div>
               )}
             </div>
           </div>

@@ -746,8 +746,8 @@ export function getSeoMetadata(route: AppRoute): SeoMetadata {
     }
 
     case 'parental-dashboard': {
-      const pageTitle = 'Parent & Teacher Learning Dashboard with AI Coach | First Open School';
-      const pageDesc = 'Review child learning analytics, time on task, phonics mastery, AI pedagogical coaching advice, and print official completion certificates.';
+      const pageTitle = 'Parent & Teacher Learning Dashboard & Analytics | First Open School';
+      const pageDesc = 'Review child learning analytics, time on task, phonics mastery, developmental pedagogical coaching, and print official completion certificates.';
       return {
         title: pageTitle,
         description: pageDesc,
@@ -757,7 +757,7 @@ export function getSeoMetadata(route: AppRoute): SeoMetadata {
         ogType: 'website',
         ogImage: DEFAULT_IMAGE,
         twitterCard: 'summary_large_image',
-        keywords: ['parent dashboard', 'early learning analytics', 'pedagogical ai coach', 'kindergarten progress tracker', 'printable certificate'],
+        keywords: ['parent dashboard', 'early learning analytics', 'pedagogical coaching', 'kindergarten progress tracker', 'printable certificate'],
         breadcrumbs: [...defaultBreadcrumbs, { name: 'Parental Dashboard', url: canonicalUrl }],
         jsonLd: [{ '@context': 'https://schema.org', '@type': 'WebPage', name: 'Parent & Educator Dashboard', url: canonicalUrl }]
       };

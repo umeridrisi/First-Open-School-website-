@@ -3,6 +3,7 @@ import { Sparkles, Shield, Wifi, WifiOff, Volume2, VolumeX, Award, Flame, User, 
 import { StudentProfile, ParentSettings } from '../types';
 import { speakText, playSoundEffect } from '../utils/sound';
 import { navigateTo } from '../utils/router';
+import { AGE_TIER_INFO } from '../data/curriculumData';
 
 interface HeaderProps {
   student: StudentProfile;
@@ -178,17 +179,20 @@ export const Header: React.FC<HeaderProps> = ({
             {settings.soundEffects ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
           </button>
 
-          {/* Settings Gear Button */}
+          {/* Settings Gear Button with Active Curriculum Tier Label */}
           <button
             onClick={() => {
               playSoundEffect('click', settings.soundEffects);
               onOpenSettings();
             }}
-            className="p-2.5 rounded-2xl border-2 bg-[#FFF9F0] hover:bg-[#FFD93D] text-[#2D2D2D] border-[#2D2D2D] shadow-[0_4px_0_#000] active:translate-y-1 active:shadow-none transition-all cursor-pointer group"
-            title="Settings: Curriculum, Student Profile, Parental Controls"
+            className="flex items-center space-x-1.5 px-3 py-2 rounded-2xl border-2 bg-[#FFF9F0] hover:bg-[#FFD93D] text-[#2D2D2D] border-[#2D2D2D] shadow-[0_4px_0_#000] active:translate-y-1 active:shadow-none transition-all cursor-pointer group"
+            title={`Settings: Curriculum Tier (${AGE_TIER_INFO[student.ageTier]?.gradeLabel || 'Level'}), Profile & Controls`}
             aria-label="Settings"
           >
             <SettingsGear className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300" />
+            <span className="hidden sm:inline text-xs font-black uppercase tracking-wider">
+              {AGE_TIER_INFO[student.ageTier]?.gradeLabel || 'Settings'}
+            </span>
           </button>
 
           {/* Parental Dashboard Button */}
