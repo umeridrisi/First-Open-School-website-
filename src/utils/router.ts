@@ -1,4 +1,4 @@
-import { ActiveTab } from '../types';
+import { ActiveTab, CodingSubTab, AgeTier } from '../types';
 
 export interface AppRoute {
   tab: ActiveTab;
@@ -11,6 +11,10 @@ export interface AppRoute {
   tracingTarget?: string;
   drawingTemplateId?: string;
   drawingCategory?: string;
+  codingSubTab?: CodingSubTab;
+  codingTier?: AgeTier;
+  missionId?: string;
+  conceptId?: string;
 }
 
 /**
@@ -48,6 +52,27 @@ export function parsePath(pathname: string = (typeof window !== 'undefined' && w
         return { tab: 'encyclopedia', entryId: second.toLowerCase() };
       }
       return { tab: 'encyclopedia' };
+
+    case 'coding':
+      if (second === 'sandbox') {
+        return { tab: 'coding', codingSubTab: 'sandbox' };
+      }
+      if (second === 'turtle') {
+        return { tab: 'coding', codingSubTab: 'turtle' };
+      }
+      if (second === 'concepts') {
+        return { tab: 'coding', codingSubTab: 'concepts', conceptId: segments[2]?.toLowerCase() };
+      }
+      if (second === 'tier' && segments[2]) {
+        return { tab: 'coding', codingSubTab: 'quests', codingTier: segments[2].toLowerCase() as AgeTier };
+      }
+      if (second === 'mission' && segments[2]) {
+        return { tab: 'coding', codingSubTab: 'quests', missionId: segments[2].toLowerCase() };
+      }
+      if (second) {
+        return { tab: 'coding', codingSubTab: 'quests', missionId: second.toLowerCase() };
+      }
+      return { tab: 'coding', codingSubTab: 'quests' };
 
     case 'poems':
       if (segments[1] === 'category' && segments[2]) {
@@ -136,6 +161,24 @@ export function formatRouteUrl(route: AppRoute): string {
         return `/encyclopedia/${route.entryId}`;
       }
       return '/encyclopedia';
+
+    case 'coding':
+      if (route.codingSubTab === 'sandbox') {
+        return '/coding/sandbox';
+      }
+      if (route.codingSubTab === 'turtle') {
+        return '/coding/turtle';
+      }
+      if (route.codingSubTab === 'concepts') {
+        return route.conceptId ? `/coding/concepts/${route.conceptId}` : '/coding/concepts';
+      }
+      if (route.missionId) {
+        return `/coding/mission/${route.missionId}`;
+      }
+      if (route.codingTier) {
+        return `/coding/tier/${route.codingTier}`;
+      }
+      return '/coding';
 
     case 'poems':
       if (route.poemCategory) {

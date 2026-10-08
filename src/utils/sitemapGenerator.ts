@@ -25,6 +25,10 @@ export function getSiteUrls(baseUrl: string = 'https://firstopenschool.com'): Si
     { loc: `${cleanBase}/alphabets`, lastmod: today, changefreq: 'weekly', priority: 0.95 },
     { loc: `${cleanBase}/digits`, lastmod: today, changefreq: 'weekly', priority: 0.95 },
     { loc: `${cleanBase}/encyclopedia`, lastmod: today, changefreq: 'daily', priority: 0.95 },
+    { loc: `${cleanBase}/coding`, lastmod: today, changefreq: 'daily', priority: 0.95 },
+    { loc: `${cleanBase}/coding/sandbox`, lastmod: today, changefreq: 'weekly', priority: 0.85 },
+    { loc: `${cleanBase}/coding/turtle`, lastmod: today, changefreq: 'weekly', priority: 0.85 },
+    { loc: `${cleanBase}/coding/concepts`, lastmod: today, changefreq: 'weekly', priority: 0.85 },
     { loc: `${cleanBase}/poems`, lastmod: today, changefreq: 'daily', priority: 0.95 },
     { loc: `${cleanBase}/tracing`, lastmod: today, changefreq: 'weekly', priority: 0.85 },
     

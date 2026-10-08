@@ -5,6 +5,7 @@ export type ActiveTab =
   | 'alphabets'
   | 'digits'
   | 'encyclopedia'
+  | 'coding'
   | 'poems'
   | 'drawings'
   | 'tracing'
@@ -214,4 +215,73 @@ export interface LMSExportData {
   students: StudentProfile[];
   classCode: string;
   version: string;
+}
+
+export type CodingSubTab = 'quests' | 'sandbox' | 'turtle' | 'concepts';
+
+export type CodingMascot = 'robot' | 'bunny' | 'kitty' | 'turtle' | 'rocket';
+
+export type CodingCommandType = 
+  | 'forward' 
+  | 'backward' 
+  | 'turn-left' 
+  | 'turn-right' 
+  | 'jump' 
+  | 'collect' 
+  | 'repeat-2' 
+  | 'repeat-3' 
+  | 'repeat-4'
+  | 'if-water'
+  | 'if-key'
+  | 'func-leap';
+
+export interface CodingBlock {
+  id: string;
+  type: CodingCommandType;
+  label: string;
+  emoji: string;
+  color: string;
+  description: string;
+  codeSnippet: string;
+  nestedCommands?: CodingCommandType[];
+}
+
+export type GridTileType = 'empty' | 'wall' | 'water' | 'puddle' | 'gate' | 'start' | 'goal' | 'star' | 'carrot' | 'gem' | 'key';
+
+export interface CodingMission {
+  id: string;
+  tier: AgeTier;
+  title: string;
+  levelNumber: number;
+  difficulty: 'Starter' | 'Explorer' | 'Champion';
+  concept: string;
+  story: string;
+  mascot: CodingMascot;
+  gridSize: { rows: number; cols: number };
+  start: { x: number; y: number; dir: 'up' | 'down' | 'left' | 'right' };
+  goal: { x: number; y: number };
+  collectibles?: { x: number; y: number; type: 'star' | 'carrot' | 'gem' | 'key' }[];
+  obstacles?: { x: number; y: number; type: 'wall' | 'water' | 'puddle' | 'gate' }[];
+  availableCommands: CodingCommandType[];
+  maxCommands?: number;
+  hint: string;
+  pedagogicalNote: string;
+  solutionHint?: CodingCommandType[];
+}
+
+export interface CsConcept {
+  id: string;
+  title: string;
+  emoji: string;
+  tagline: string;
+  kidAnalogy: string;
+  realWorldExample: string;
+  codeExample: string;
+  funFact: string;
+  interactiveChallenge: {
+    question: string;
+    options: string[];
+    correctIndex: number;
+    explanation: string;
+  };
 }

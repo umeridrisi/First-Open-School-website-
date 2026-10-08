@@ -5,7 +5,7 @@ import { ENCYCLOPEDIA_CATEGORIES, ENCYCLOPEDIA_ENTRIES } from '../../data/encycl
 import { POEM_CATEGORIES, POEMS_DATA } from '../../data/poemsData';
 import { speakText, playSoundEffect } from '../../utils/sound';
 import { formatRouteUrl } from '../../utils/router';
-import { Sparkles, Trophy, Flame, Play, PenTool, CircleDot, Utensils, BookOpen, ArrowRight, Compass, Palette } from 'lucide-react';
+import { Sparkles, Trophy, Flame, Play, PenTool, CircleDot, Utensils, BookOpen, ArrowRight, Compass, Palette, Code2 } from 'lucide-react';
 
 interface OverviewWorldProps {
   student: StudentProfile;
@@ -82,6 +82,15 @@ export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings,
             >
               <span>KIDS ENCYCLOPEDIA 📚</span>
               <BookOpen className="w-5 h-5 text-[#2D2D2D]" />
+            </a>
+
+            <a
+              href="/coding"
+              onClick={(e) => handleAnchorClick(e, 'coding', "Welcome to the Learn Coding Studio!")}
+              className="flex items-center space-x-2 px-6 py-3.5 bg-[#4D96FF] hover:bg-[#3A72C1] text-white font-black text-base rounded-2xl border-4 border-[#2D2D2D] shadow-[0_6px_0_#000] active:translate-y-1 active:shadow-none transition-all cursor-pointer no-underline"
+            >
+              <span>LEARN CODING 💻</span>
+              <Code2 className="w-5 h-5 text-white" />
             </a>
           </div>
         </div>
@@ -268,27 +277,105 @@ export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings,
           <a
             href="/drawings"
             onClick={(e) => handleAnchorClick(e, 'drawings', "Welcome to the Drawings and Art Studio!")}
-            className="p-5 rounded-[28px] bg-white border-4 border-[#FF6B6B] shadow-[0_6px_0_#C44E4E] text-left space-y-3 transition-all active:translate-y-1 active:shadow-none cursor-pointer group no-underline block sm:col-span-2 lg:col-span-4"
+            className="p-5 rounded-[28px] bg-white border-4 border-[#FF6B6B] shadow-[0_6px_0_#C44E4E] text-left space-y-3 transition-all active:translate-y-1 active:shadow-none cursor-pointer group no-underline block sm:col-span-2 lg:col-span-2"
           >
             <div className="flex items-center justify-between">
               <div className="w-10 h-10 rounded-2xl bg-[#FF6B6B] text-white flex items-center justify-center font-black shadow-xs">
                 <Palette className="w-5 h-5" />
               </div>
-              <span className="text-xs font-black uppercase bg-rose-100 text-rose-700 px-3 py-1 rounded-full border border-rose-200">
-                🎨 ONLINE &bull; OFFLINE PRINTABLES
+              <span className="text-[10px] font-black uppercase bg-rose-100 text-rose-700 px-2.5 py-0.5 rounded-full border border-rose-200">
+                🎨 COLORING &amp; ART
               </span>
             </div>
             <div>
-              <h4 className="font-black text-[#2D2D2D] text-lg group-hover:text-[#FF6B6B] transition-colors">
-                Drawings, Coloring &amp; Parent Printables Studio
+              <h4 className="font-black text-[#2D2D2D] text-base group-hover:text-[#FF6B6B] transition-colors">
+                Drawings Studio
               </h4>
               <p className="text-xs text-gray-600 font-semibold">
-                Paint on the digital canvas with wax crayon, magic rainbow pen, and sparkle stamps, or print clean offline coloring sheets for home tabletop art!
+                Digital paint canvas &amp; printable coloring sheets.
+              </p>
+            </div>
+          </a>
+
+          <a
+            href="/coding"
+            onClick={(e) => handleAnchorClick(e, 'coding', "Welcome to the Learn Coding Studio!")}
+            className="p-5 rounded-[28px] bg-white border-4 border-[#4D96FF] shadow-[0_6px_0_#3A72C1] text-left space-y-3 transition-all active:translate-y-1 active:shadow-none cursor-pointer group no-underline block sm:col-span-2 lg:col-span-2"
+          >
+            <div className="flex items-center justify-between">
+              <div className="w-10 h-10 rounded-2xl bg-[#4D96FF] text-white flex items-center justify-center font-black shadow-xs">
+                <Code2 className="w-5 h-5" />
+              </div>
+              <span className="text-[10px] font-black uppercase bg-sky-100 text-sky-700 px-2.5 py-0.5 rounded-full border border-sky-200">
+                💻 NEW CODING MODULE
+              </span>
+            </div>
+            <div>
+              <h4 className="font-black text-[#2D2D2D] text-base group-hover:text-[#4D96FF] transition-colors">
+                Learn Coding Studio
+              </h4>
+              <p className="text-xs text-gray-600 font-semibold">
+                Visual block algorithms, loops, turtle geometry &amp; 24 quests.
               </p>
             </div>
           </a>
 
         </div>
+      </div>
+
+      {/* Learn Coding Spotlight Banner */}
+      <div className="bg-gradient-to-r from-sky-100 via-[#FFF9F0] to-emerald-100 rounded-[32px] p-6 sm:p-8 border-4 border-[#4D96FF] shadow-[0_8px_0_#3A72C1] flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="space-y-3 max-w-xl">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#4D96FF] text-white text-xs font-black uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
+            <span>NEW COMPUTATIONAL THINKING MODULE</span>
+          </div>
+          <h3 className="text-2xl sm:text-3xl font-black text-[#2D2D2D] tracking-tight">
+            Learn Coding for Kids 💻
+          </h3>
+          <p className="text-sm font-semibold text-[#2D2D2D]/80 leading-relaxed">
+            Master the superpowers of technology! 24 scaffolded missions across Pre-K (arrow sequences), Kindergarten (repeat loops), Grade 1-2 (conditions &amp; keys), and K-12 Elementary (real JavaScript syntax &amp; turtle graphics).
+          </p>
+          <div className="flex flex-wrap gap-2 pt-1">
+            <a
+              href="/coding/tier/pre-k"
+              onClick={(e) => handleAnchorClick(e, 'coding', 'Explore Pre-K Coding')}
+              className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-sky-200 hover:border-[#4D96FF] text-[#2D2D2D] no-underline"
+            >
+              🐰 Pre-K (Ages 2-4)
+            </a>
+            <a
+              href="/coding/tier/kindergarten"
+              onClick={(e) => handleAnchorClick(e, 'coding', 'Explore Kindergarten Coding')}
+              className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-sky-200 hover:border-[#4D96FF] text-[#2D2D2D] no-underline"
+            >
+              🔁 Kindergarten Loops
+            </a>
+            <a
+              href="/coding/tier/grade-1-2"
+              onClick={(e) => handleAnchorClick(e, 'coding', 'Explore Grade 1 and 2 Coding')}
+              className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-sky-200 hover:border-[#4D96FF] text-[#2D2D2D] no-underline"
+            >
+              🔑 Grade 1-2 Conditions
+            </a>
+            <a
+              href="/coding/turtle"
+              onClick={(e) => handleAnchorClick(e, 'coding', 'Explore Turtle Drawing Studio')}
+              className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-amber-200 hover:border-[#FF9F45] text-[#2D2D2D] no-underline"
+            >
+              🐢 Turtle Drawing Studio
+            </a>
+          </div>
+        </div>
+
+        <a
+          href="/coding"
+          onClick={(e) => handleAnchorClick(e, 'coding', 'Welcome to Learn Coding!')}
+          className="px-6 py-4 bg-[#4D96FF] hover:bg-[#3A72C1] text-white font-black text-base uppercase tracking-tight rounded-2xl border-4 border-[#2D2D2D] shadow-[0_6px_0_#000] active:translate-y-1 active:shadow-none transition-all cursor-pointer whitespace-nowrap shrink-0 flex items-center gap-2 no-underline"
+        >
+          <span>START CODING</span>
+          <ArrowRight className="w-5 h-5" />
+        </a>
       </div>
 
       {/* Encyclopedia Spotlight Banner */}

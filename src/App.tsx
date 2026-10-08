@@ -19,6 +19,7 @@ import { CardMatchGame } from './components/games/CardMatchGame';
 import { PhonicsStoryReader } from './components/games/PhonicsStoryReader';
 import { GamifiedQuiz } from './components/games/GamifiedQuiz';
 import { KidsEncyclopedia } from './components/views/KidsEncyclopedia';
+import { CodingStudio } from './components/views/CodingStudio';
 import { PoemsExplorer } from './components/views/PoemsExplorer';
 import { DrawingsStudio } from './components/views/DrawingsStudio';
 import { ParentalDashboard } from './components/parent/ParentalDashboard';
@@ -324,6 +325,19 @@ export default function App() {
                 handleSelectLetterForTracing(letter);
               }
             }}
+          />
+        )}
+
+        {currentRoute.tab === 'coding' && (
+          <CodingStudio
+            student={student}
+            settings={settings}
+            initialSubTab={currentRoute.codingSubTab}
+            initialTier={currentRoute.codingTier}
+            initialMissionId={currentRoute.missionId}
+            initialConceptId={currentRoute.conceptId}
+            onAwardStars={handleAwardStars}
+            onNavigateSubTab={(sub) => navigateTo({ tab: 'coding', codingSubTab: sub })}
           />
         )}
 

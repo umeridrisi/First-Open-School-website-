@@ -12,7 +12,8 @@ import {
   BookOpenCheck,
   BookOpen,
   Grid,
-  Palette
+  Palette,
+  Code2
 } from 'lucide-react';
 
 interface SubjectNavProps {
@@ -54,6 +55,14 @@ export const SubjectNav: React.FC<SubjectNavProps> = ({ activeTab, onSelectTab, 
       color: 'text-[#2D2D2D]', 
       activeBg: 'bg-white border-[#FFD93D] shadow-[0_4px_0_#C9A92E]',
       voicePrompt: 'Kids Encyclopedia. Clear definitions and analogies for alphabets, numbers, and science.'
+    },
+    { 
+      id: 'coding', 
+      label: 'Learn Coding', 
+      icon: <Code2 className="w-5 h-5 text-[#4D96FF]" />, 
+      color: 'text-[#4D96FF]', 
+      activeBg: 'bg-white border-[#4D96FF] shadow-[0_4px_0_#3A72C1]',
+      voicePrompt: 'Learn Coding Studio. Block programming, loops, algorithms, and turtle drawing.'
     },
     { 
       id: 'poems', 

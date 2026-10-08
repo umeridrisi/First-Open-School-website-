@@ -351,6 +351,40 @@ export function getSeoMetadata(route: AppRoute): SeoMetadata {
       };
     }
 
+    case 'coding': {
+      const pageTitle = 'Learn Coding for Kids - Block Programming, Algorithms & Turtle Studio | First Open School';
+      const pageDesc = 'Highly interactive coding module for kids of all curriculum levels (Ages 2-12+). Learn sequential algorithms, loops, conditionals, debugging, and turtle pixel art with fun animated missions.';
+      return {
+        title: pageTitle,
+        description: pageDesc,
+        canonicalUrl,
+        ogTitle: 'Learn Coding for Kids - Interactive Block & Code Studio',
+        ogDescription: pageDesc,
+        ogType: 'website',
+        ogImage: DEFAULT_IMAGE,
+        twitterCard: 'summary_large_image',
+        keywords: ['coding for kids', 'learn programming for children', 'block coding game', 'turtle graphics for kids', 'computational thinking', 'kid-friendly algorithms'],
+        breadcrumbs: [
+          ...defaultBreadcrumbs,
+          { name: 'Learn Coding', url: canonicalUrl }
+        ],
+        jsonLd: [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Course',
+            name: 'Interactive Coding & Computational Thinking for Kids',
+            description: pageDesc,
+            educationalLevel: 'Pre-K to Elementary (Ages 2-12+)',
+            provider: {
+              '@type': 'Organization',
+              name: DEFAULT_SITE_NAME,
+              sameAs: baseUrl
+            }
+          }
+        ]
+      };
+    }
+
     case 'poems': {
       if (route.poemId) {
         const poem = getPoemById(route.poemId);
