@@ -23,6 +23,7 @@ import { KidsEncyclopedia } from './components/views/KidsEncyclopedia';
 import { PoemsExplorer } from './components/views/PoemsExplorer';
 import { DrawingsStudio } from './components/views/DrawingsStudio';
 import { ParentalDashboard } from './components/parent/ParentalDashboard';
+import { SettingsPage } from './components/views/SettingsPage';
 import { LegalPages } from './components/views/LegalPages';
 import { ALPHABET_DATA, DIGIT_DATA } from './data/curriculumData';
 import { ENCYCLOPEDIA_CATEGORIES } from './data/encyclopediaData';
@@ -264,6 +265,7 @@ export default function App() {
         student={student}
         settings={settings}
         onToggleParentDashboard={() => setShowParentModal(true)}
+        onOpenSettings={() => navigateTo({ tab: 'settings' })}
         onToggleSound={handleToggleSound}
         onUpdateStudentName={handleUpdateStudentName}
         isOffline={isOffline}
@@ -401,6 +403,16 @@ export default function App() {
             settings={settings}
             onAwardStars={handleAwardStars}
             onSaveQuizResult={handleSaveQuizResult}
+          />
+        )}
+
+        {currentRoute.tab === 'settings' && (
+          <SettingsPage
+            student={student}
+            settings={settings}
+            onUpdateStudent={setStudent}
+            onUpdateSettings={setSettings}
+            onNavigateHome={() => navigateTo({ tab: 'overview' })}
           />
         )}
 
@@ -648,6 +660,19 @@ export default function App() {
                 className="hover:text-[#2D2D2D] transition-colors cursor-pointer no-underline text-[#2D2D2D]"
               >
                 About &amp; Credits
+              </a>
+              <span className="text-gray-300 hidden sm:inline">•</span>
+              <a 
+                href="/settings"
+                onClick={(e) => {
+                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                    e.preventDefault();
+                    navigateTo({ tab: 'settings' });
+                  }
+                }}
+                className="hover:text-[#4D96FF] transition-colors cursor-pointer no-underline text-[#2D2D2D]"
+              >
+                Settings &amp; Controls
               </a>
               <span className="text-gray-300 hidden sm:inline">•</span>
               <a 

@@ -763,6 +763,24 @@ export function getSeoMetadata(route: AppRoute): SeoMetadata {
       };
     }
 
+    case 'settings': {
+      const pageTitle = 'Settings & Learning Controls (Curriculum, Profile, Voice & Parental Controls) | First Open School';
+      const pageDesc = 'Configure student profile name and avatar, curriculum tier selection, voice guidance speed, sound effects, and parental gate security.';
+      return {
+        title: pageTitle,
+        description: pageDesc,
+        canonicalUrl,
+        ogTitle: 'Settings & Learning Controls - First Open School',
+        ogDescription: pageDesc,
+        ogType: 'website',
+        ogImage: DEFAULT_IMAGE,
+        twitterCard: 'summary_large_image',
+        keywords: ['school settings', 'curriculum tier selection', 'student profile', 'parental controls', 'voice guidance'],
+        breadcrumbs: [...defaultBreadcrumbs, { name: 'Settings', url: canonicalUrl }],
+        jsonLd: [{ '@context': 'https://schema.org', '@type': 'WebPage', name: 'Settings & Learning Controls', url: canonicalUrl }]
+      };
+    }
+
     case 'privacy': {
       const pageTitle = 'Privacy Policy & COPPA Children Safety Pledge | First Open School';
       const pageDesc = 'Our strict COPPA, GDPR-K, and FERPA privacy policy. 100% ad-free, zero tracking, and local-only data storage for child learners.';
@@ -1720,6 +1738,26 @@ export function renderSemanticRouteHtml(route: AppRoute): string {
         </section>
       `;
     }
+  } else if (route.tab === 'settings') {
+    mainContentHtml = `
+      <section style="background:#ffffff;border-radius:2rem;padding:2.5rem;border:4px solid #2d2d2d;box-shadow:0 8px 0 #000;margin-top:1.5rem;">
+        <h1 style="font-size:2.5rem;font-weight:900;color:#2d2d2d;margin:0 0 1rem 0;">Settings & Learning Controls</h1>
+        <p style="font-size:1.15rem;line-height:1.7;color:#444;margin:0 0 1.5rem 0;">
+          Customize student profiles, curriculum tier levels (Pre-K to Grade 1-2 & K12 Foundations), adjust voice guidance speed, toggle sound effects, and unlock parental dashboard analytics.
+        </p>
+        <div style="background:#fff9f0;border:2px solid #ffd93d;border-radius:1rem;padding:1.5rem;margin:1.5rem 0;">
+          <h2 style="font-size:1.25rem;font-weight:900;color:#2d2d2d;margin:0 0 0.5rem 0;">Quick Learning Options</h2>
+          <ul style="list-style:disc;padding-left:1.5rem;margin:0;line-height:1.8;font-weight:600;color:#333;">
+            <li>Curriculum Selection: Pre-K (Ages 2-4), Kindergarten (Ages 4-6), Grade 1-2 (Ages 6-8), and K12 Foundations (Ages 8-12+).</li>
+            <li>Student Profile: Personalize student name and choice of 12 friendly mascot avatars.</li>
+            <li>Parental Gate: 4-digit security PIN protection for school administration and LMS exports.</li>
+          </ul>
+        </div>
+        <a href="/" style="display:inline-block;padding:0.75rem 1.5rem;background:#4d96ff;color:#ffffff;text-decoration:none;font-weight:900;border-radius:0.75rem;">
+          Return to Learning World &rarr;
+        </a>
+      </section>
+    `;
   } else if (route.tab === 'about') {
     mainContentHtml = `
       <article style="background:#ffffff;border-radius:2rem;padding:2rem;border:4px solid #2d2d2d;box-shadow:0 6px 0 #000;margin-top:1.5rem;">

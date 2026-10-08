@@ -35,7 +35,8 @@ export function getSiteUrls(baseUrl: string = 'https://firstopenschool.com'): Si
     { loc: `${cleanBase}/card-match`, lastmod: today, changefreq: 'monthly', priority: 0.8 },
     { loc: `${cleanBase}/phonics-stories`, lastmod: today, changefreq: 'weekly', priority: 0.85 },
     { loc: `${cleanBase}/assessment`, lastmod: today, changefreq: 'weekly', priority: 0.8 },
-    { loc: `${cleanBase}/parental-dashboard`, lastmod: today, changefreq: 'monthly', priority: 0.75 },
+    {loc: `${cleanBase}/parental-dashboard`, lastmod: today, changefreq: 'monthly', priority: 0.75 },
+    { loc: `${cleanBase}/settings`, lastmod: today, changefreq: 'monthly', priority: 0.8 },
 
     // Trust, Safety, Editorial & About Pages
     { loc: `${cleanBase}/privacy`, lastmod: today, changefreq: 'monthly', priority: 0.7 },

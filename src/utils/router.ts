@@ -91,6 +91,9 @@ export function parsePath(pathname: string = (typeof window !== 'undefined' && w
     case 'parental-dashboard':
       return { tab: 'parental-dashboard' };
 
+    case 'settings':
+      return { tab: 'settings' };
+
     case 'privacy':
       return { tab: 'privacy' };
 
@@ -172,6 +175,9 @@ export function formatRouteUrl(route: AppRoute): string {
 
     case 'parental-dashboard':
       return '/parental-dashboard';
+
+    case 'settings':
+      return '/settings';
 
     case 'privacy':
       return '/privacy';

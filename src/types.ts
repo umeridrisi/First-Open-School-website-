@@ -14,6 +14,7 @@ export type ActiveTab =
   | 'assessment'
   | 'phonics-stories'
   | 'parental-dashboard'
+  | 'settings'
   | 'privacy'
   | 'terms'
   | 'data-safety'

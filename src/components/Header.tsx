@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Shield, Wifi, WifiOff, Volume2, VolumeX, Award, Flame, User, Lock } from 'lucide-react';
+import { Sparkles, Shield, Wifi, WifiOff, Volume2, VolumeX, Award, Flame, User, Lock, Settings as SettingsGear } from 'lucide-react';
 import { StudentProfile, ParentSettings } from '../types';
 import { speakText, playSoundEffect } from '../utils/sound';
 import { navigateTo } from '../utils/router';
@@ -8,6 +8,7 @@ interface HeaderProps {
   student: StudentProfile;
   settings: ParentSettings;
   onToggleParentDashboard: () => void;
+  onOpenSettings: () => void;
   onToggleSound: () => void;
   onUpdateStudentName: (name: string) => void;
   isOffline: boolean;
@@ -17,6 +18,7 @@ export const Header: React.FC<HeaderProps> = ({
   student,
   settings,
   onToggleParentDashboard,
+  onOpenSettings,
   onToggleSound,
   onUpdateStudentName,
   isOffline
@@ -176,13 +178,27 @@ export const Header: React.FC<HeaderProps> = ({
             {settings.soundEffects ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
           </button>
 
+          {/* Settings Gear Button */}
+          <button
+            onClick={() => {
+              playSoundEffect('click', settings.soundEffects);
+              onOpenSettings();
+            }}
+            className="p-2.5 rounded-2xl border-2 bg-[#FFF9F0] hover:bg-[#FFD93D] text-[#2D2D2D] border-[#2D2D2D] shadow-[0_4px_0_#000] active:translate-y-1 active:shadow-none transition-all cursor-pointer group"
+            title="Settings: Curriculum, Student Profile, Parental Controls"
+            aria-label="Settings"
+          >
+            <SettingsGear className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300" />
+          </button>
+
           {/* Parental Dashboard Button */}
           <button
             onClick={() => {
               playSoundEffect('click', settings.soundEffects);
               onToggleParentDashboard();
             }}
-            className="flex items-center space-x-2 px-4 py-2 bg-[#2D2D2D] hover:bg-black text-white font-extrabold text-xs uppercase tracking-tight rounded-2xl shadow-[0_4px_0_#000] active:translate-y-1 active:shadow-none transition-all cursor-pointer"
+            className="flex items-center space-x-2 px-3.5 sm:px-4 py-2 bg-[#2D2D2D] hover:bg-black text-white font-extrabold text-xs uppercase tracking-tight rounded-2xl shadow-[0_4px_0_#000] active:translate-y-1 active:shadow-none transition-all cursor-pointer"
+            title="Parental Dashboard & Verification"
           >
             <Lock className="w-4 h-4 text-[#FFD93D]" />
             <span className="hidden sm:inline">Parental Mode</span>
