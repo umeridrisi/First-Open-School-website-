@@ -1,61 +1,88 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
   <defs>
+    <!-- Vibrant First Open School Sunshine Gradient -->
     <linearGradient id="fos-bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#FFD93D" />
-      <stop offset="100%" stop-color="#FF6B6B" />
+      <stop offset="42%" stop-color="#FF6B6B" />
+      <stop offset="100%" stop-color="#E83A59" />
     </linearGradient>
-    <linearGradient id="page-left" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF" />
-      <stop offset="100%" stop-color="#F1F5F9" />
-    </linearGradient>
-    <linearGradient id="page-right" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF" />
-      <stop offset="100%" stop-color="#E2E8F0" />
-    </linearGradient>
+
+    <!-- Golden Achievement & Learning Star Gradient -->
     <linearGradient id="star-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFE066" />
+      <stop offset="0%" stop-color="#FFF58A" />
       <stop offset="100%" stop-color="#F59E0B" />
     </linearGradient>
-    <filter id="soft-shadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#000000" flood-opacity="0.18" />
-    </filter>
+
+    <!-- Smooth Gloss Glare -->
+    <linearGradient id="glass-glare" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.38" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+    </linearGradient>
   </defs>
 
-  <!-- Friendly Rounded App Icon Tile -->
+  <!-- Friendly Squircle App Icon Tile -->
   <rect width="512" height="512" rx="128" fill="url(#fos-bg)" />
-  <rect x="16" y="16" width="480" height="480" rx="112" stroke="#FFFFFF" stroke-width="12" stroke-opacity="0.4" fill="none" />
 
-  <!-- The Open Learning Book -->
-  <g filter="url(#soft-shadow)">
-    <!-- Book Cover Base Shadow -->
-    <path d="M96 350 C160 330 220 340 256 365 C292 340 352 330 416 350 L416 376 C352 356 292 366 256 392 C220 366 160 356 96 376 Z" fill="#2D2D2D" opacity="0.3" />
+  <!-- Subtle Inset Rim -->
+  <rect x="16" y="16" width="480" height="480" rx="112" stroke="#FFFFFF" stroke-width="12" stroke-opacity="0.32" fill="none" />
+  <path d="M16 128 C16 64 64 16 128 16 L384 16 C448 16 496 64 496 128 L496 160 C360 215 152 215 16 160 Z" fill="url(#glass-glare)" opacity="0.32" />
 
-    <!-- Left Book Page -->
-    <path d="M106 180 C160 160 215 170 250 195 L250 360 C215 335 160 325 106 345 Z" fill="url(#page-left)" stroke="#2D2D2D" stroke-width="12" stroke-linejoin="round" />
-    <!-- Left Lines / Phonics Stripes -->
-    <line x1="140" y1="230" x2="220" y2="215" stroke="#FF6B6B" stroke-width="10" stroke-linecap="round" />
-    <line x1="140" y1="265" x2="215" y2="250" stroke="#4D96FF" stroke-width="10" stroke-linecap="round" />
-    <line x1="140" y1="300" x2="210" y2="285" stroke="#6BCB77" stroke-width="10" stroke-linecap="round" />
-
-    <!-- Right Book Page -->
-    <path d="M406 180 C352 160 297 170 262 195 L262 360 C297 335 352 325 406 345 Z" fill="url(#page-right)" stroke="#2D2D2D" stroke-width="12" stroke-linejoin="round" />
-    <!-- Right Lines / ABC Text -->
-    <text x="300" y="255" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="44" fill="#8B5CF6">Aa</text>
-    <text x="300" y="315" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="38" fill="#F59E0B">123</text>
-
-    <!-- Book Spine Center Bead -->
-    <path d="M256 190 L256 370" stroke="#2D2D2D" stroke-width="14" stroke-linecap="round" />
+  <!-- 3D Pop Shadow Layer (Neo-brutalist tactile look matching the app UI) -->
+  <g transform="translate(0, 16)" opacity="0.55">
+    <path d="M 124 406
+             C 124 422, 136 434, 152 434
+             L 196 434
+             C 212 434, 224 422, 224 406
+             L 224 336
+             L 326 336
+             C 342 336, 354 324, 354 308
+             L 354 272
+             C 354 256, 342 244, 326 244
+             L 224 244
+             L 224 204
+             L 374 204
+             C 390 204, 402 192, 402 176
+             L 402 140
+             C 402 124, 390 112, 374 112
+             L 152 112
+             C 136 112, 124 124, 124 140
+             Z" fill="#991B32" />
   </g>
 
-  <!-- Soaring Graduation / Discovery Star Over the Book -->
-  <g filter="url(#soft-shadow)">
-    <polygon points="256,60 278,118 340,122 292,162 308,222 256,188 204,222 220,162 172,122 234,118" fill="url(#star-gold)" stroke="#2D2D2D" stroke-width="10" stroke-linejoin="round" />
-    <!-- Sparkle Accent -->
-    <circle cx="240" cy="125" r="8" fill="#FFFFFF" opacity="0.9" />
+  <!-- Ultra-Bold Crisp White Hero Letter "F" -->
+  <path d="M 124 406
+           C 124 422, 136 434, 152 434
+           L 196 434
+           C 212 434, 224 422, 224 406
+           L 224 336
+           L 326 336
+           C 342 336, 354 324, 354 308
+           L 354 272
+           C 354 256, 342 244, 326 244
+           L 224 244
+           L 224 204
+           L 374 204
+           C 390 204, 402 192, 402 176
+           L 402 140
+           C 402 124, 390 112, 374 112
+           L 152 112
+           C 136 112, 124 124, 124 140
+           Z" fill="#FFFFFF" />
+
+  <!-- Playful Warm Sunrise Accent on the Upper Bar -->
+  <path d="M 236 112 L 358 112 C 370 112 378 120 378 130 L 378 134 C 342 148 272 148 236 134 Z" fill="#FFD93D" opacity="0.95" />
+
+  <!-- Soaring Golden Learning & Achievement Star -->
+  <g transform="translate(392, 96)">
+    <polygon points="0,-42 12,-12 44,-12 18,8 28,38 0,20 -28,38 -18,8 -44,-12 -12,-12"
+             fill="url(#star-gold)"
+             stroke="#B45309"
+             stroke-width="4"
+             stroke-linejoin="round" />
+    <circle cx="-4" cy="-12" r="6" fill="#FFFFFF" opacity="0.9" />
   </g>
 
-  <!-- Playful Paint Dab Dots -->
-  <circle cx="96" cy="116" r="14" fill="#4D96FF" stroke="#FFFFFF" stroke-width="4" />
-  <circle cx="416" cy="116" r="16" fill="#10B981" stroke="#FFFFFF" stroke-width="4" />
-  <circle cx="436" cy="410" r="12" fill="#8B5CF6" stroke="#FFFFFF" stroke-width="3" />
+  <!-- Playful Education Sparkles -->
+  <circle cx="104" cy="104" r="12" fill="#FFFFFF" opacity="0.8" />
+  <circle cx="400" cy="408" r="14" fill="#FFE066" opacity="0.75" />
 </svg>
