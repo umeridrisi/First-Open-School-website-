@@ -93,10 +93,10 @@ export const CURRICULUM_TIER_DETAILS: Record<AgeTier, CurriculumTierDetail> = {
         subjectId: 'coding',
         title: 'Learn Coding Studio',
         emoji: '💻',
-        focusTitle: 'Directional Arrows & Simple Sequences',
-        scopeSummary: 'Mascot adventures with large visual buttons (Forward, Turn Right, Jump) to gather juicy carrots and golden stars.',
-        recommendedHighlights: ['Mission 1: Bunny Hop to Carrot', 'Mission 2: Straight Line Sprint', 'Mission 5: Water Leap'],
-        parentExplanation: 'Kids don\'t need to read code syntax to think algorithmically. Sequencing directional commands teaches cause-and-effect and spatial reasoning.',
+        focusTitle: 'Directional Arrows & Scratch Block Logic',
+        scopeSummary: 'Visual puzzle blocks and mascot adventures with directional buttons (Forward, Turn, Jump) to gather treats with zero typing errors.',
+        recommendedHighlights: ['Mission 1: Bunny Hop to Carrot', 'Scratch Puzzle Blocks', 'Visual Sequencing Logic'],
+        parentExplanation: 'Kids don\'t need to read syntax to think algorithmically. Sequencing puzzle commands teaches cause-and-effect and spatial reasoning.',
         linkTab: 'coding'
       },
       encyclopedia: {
@@ -225,10 +225,10 @@ export const CURRICULUM_TIER_DETAILS: Record<AgeTier, CurriculumTierDetail> = {
         subjectId: 'coding',
         title: 'Learn Coding Studio',
         emoji: '💻',
-        focusTitle: 'Repeat Loops & Obstacle Avoidance',
-        scopeSummary: 'Program Cyber-Cat and Robo-Bot through 6 missions using Repeat 2x and Repeat 3x blocks around stone walls and puddles.',
-        recommendedHighlights: ['Mission 7: Cat Loop Patrol', 'Mission 9: Bridge Across Water', 'Mission 11: Spiral Maze'],
-        parentExplanation: 'Loops introduce pattern recognition and efficiency—teaching children how to achieve complex goals with fewer instructions.',
+        focusTitle: 'Repeat Loops, Blocks & Intro to HTML Tags',
+        scopeSummary: 'Program Cyber-Cat and Robo-Bot through loops and obstacles, plus discover how websites use HTML building blocks like <h1> and <button>.',
+        recommendedHighlights: ['Mission 7: Cat Loop Patrol', 'Intro to HTML Building Tags', 'Scratch Dance Party'],
+        parentExplanation: 'Loops introduce pattern recognition and efficiency, while introductory HTML tags give kids early confidence in building real digital pages.',
         linkTab: 'coding'
       },
       encyclopedia: {
@@ -357,10 +357,10 @@ export const CURRICULUM_TIER_DETAILS: Record<AgeTier, CurriculumTierDetail> = {
         subjectId: 'coding',
         title: 'Learn Coding Studio',
         emoji: '💻',
-        focusTitle: 'Conditionals, Subroutines & Key Vaults',
-        scopeSummary: 'Guide Sheldon the Turtle and Nova the Rocket through 6 missions requiring keys, gates, leap jumps, and subroutines.',
-        recommendedHighlights: ['Mission 13: Turtle Gem Collector', 'Mission 15: Dungeon Key Vault', 'Mission 17: Double Key Maze'],
-        parentExplanation: 'Conditional thinking ("If I have the key, unlock the gate") teaches boolean logic and multi-step problem solving.',
+        focusTitle: 'Conditionals, HTML, CSS & JavaScript Interactivity',
+        scopeSummary: 'Missions requiring keys, gates, and leap jumps, alongside creative web coding: HTML skeleton structures, CSS neon styles, and JavaScript button clicks.',
+        recommendedHighlights: ['Mission 15: Dungeon Key Vault', 'HTML & CSS Live Sandbox', 'JavaScript Cookie Clicker'],
+        parentExplanation: 'Conditional thinking ("If I have key, unlock gate") blends seamlessly into web logic (HTML tags, CSS colors, JavaScript click reactions).',
         linkTab: 'coding'
       },
       encyclopedia: {
@@ -489,10 +489,10 @@ export const CURRICULUM_TIER_DETAILS: Record<AgeTier, CurriculumTierDetail> = {
         subjectId: 'coding',
         title: 'Learn Coding Studio',
         emoji: '💻',
-        focusTitle: 'Real Code View, Turtle Geometry & Algorithms',
-        scopeSummary: '6 advanced missions with loops, subroutines, interactive CS concepts (Bugs, Variables, Conditionals), and Turtle Art.',
-        recommendedHighlights: ['Mission 19: Algorithm Shortest Path', 'Mission 21: Star Drawer (Turn 144°)', 'Blocks vs Real Code View'],
-        parentExplanation: 'Students see visual blocks translate live into real JavaScript and Python syntax while learning geometric angle calculations.',
+        focusTitle: 'Languages Studio: Python, C++, C#, JS & SQL',
+        scopeSummary: 'Comprehensive multi-language studio featuring Python AI scripts, C++ supersonic game engine physics, C# Unity 3D game logic, SQL databases, and the Rosetta Stone translator.',
+        recommendedHighlights: ['Python AI & Space Explorer', 'C++ Supersonic Engine Sim', 'C# Unity Game Controller', 'Coding Rosetta Stone'],
+        parentExplanation: 'Students experience how the same core algorithms power different real-world industries: game development in C++/C#, artificial intelligence in Python, and databases in SQL.',
         linkTab: 'coding'
       },
       encyclopedia: {

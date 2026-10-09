@@ -20,6 +20,7 @@ import {
   MascotInfo 
 } from '../../data/codingData';
 import { AGE_TIER_INFO } from '../../data/curriculumData';
+import { CodingLanguagesStudio } from './CodingLanguagesStudio';
 import { speakText, playSoundEffect } from '../../utils/sound';
 import { 
   Play, 
@@ -654,6 +655,18 @@ export const CodingStudio: React.FC<CodingStudioProps> = ({
             </button>
 
             <button
+              onClick={() => handleSubTabChange('languages')}
+              className={`px-4 py-2.5 rounded-xl font-black text-xs uppercase tracking-tight transition-all flex items-center space-x-2 cursor-pointer ${
+                activeSubTab === 'languages'
+                  ? 'bg-[#F97316] text-white shadow-sm'
+                  : 'text-gray-600 hover:text-[#2D2D2D]'
+              }`}
+            >
+              <Code2 className="w-4 h-4" />
+              <span>Languages Studio (HTML, CSS, JS, C++, C#)</span>
+            </button>
+
+            <button
               onClick={() => handleSubTabChange('sandbox')}
               className={`px-4 py-2.5 rounded-xl font-black text-xs uppercase tracking-tight transition-all flex items-center space-x-2 cursor-pointer ${
                 activeSubTab === 'sandbox'
@@ -691,6 +704,17 @@ export const CodingStudio: React.FC<CodingStudioProps> = ({
           </div>
         </div>
       </div>
+
+      {/* ========================================================= */}
+      {/* SUB-TAB 0: CODING LANGUAGES STUDIO (HTML, CSS, JS, etc.)   */}
+      {/* ========================================================= */}
+      {activeSubTab === 'languages' && (
+        <CodingLanguagesStudio
+          student={student}
+          settings={settings}
+          onAwardStars={onAwardStars}
+        />
+      )}
 
       {/* ========================================================= */}
       {/* SUB-TAB 1: QUESTS & MISSIONS                              */}

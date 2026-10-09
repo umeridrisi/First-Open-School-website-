@@ -218,7 +218,71 @@ export interface LMSExportData {
   version: string;
 }
 
-export type CodingSubTab = 'quests' | 'sandbox' | 'turtle' | 'concepts';
+export type CodingSubTab = 'quests' | 'languages' | 'sandbox' | 'turtle' | 'concepts';
+
+export type CodingLanguageId = 'html' | 'css' | 'javascript' | 'python' | 'cpp' | 'csharp' | 'sql' | 'scratch';
+
+export interface CodingLanguageBigIdea {
+  term: string;
+  meaning: string;
+  kidExample: string;
+}
+
+export interface CodingLanguageTemplate {
+  id: string;
+  name: string;
+  description: string;
+  code: string;
+  cssCode?: string;
+  expectedOutputPreview?: string;
+}
+
+export interface CodingLanguageChallenge {
+  id: string;
+  title: string;
+  prompt: string;
+  starterCode: string;
+  starterCssCode?: string;
+  hint: string;
+  solutionCode: string;
+  solutionCssCode?: string;
+  checkExplanation: string;
+  requiredKeywords: string[];
+}
+
+export interface CodingLanguageDetail {
+  id: CodingLanguageId;
+  name: string;
+  shortName: string;
+  tagline: string;
+  icon: string;
+  badgeBg: string;
+  borderAccent: string;
+  primaryColor: string;
+  tierRecommended: AgeTier[];
+  recommendedAgeLabel: string;
+  difficultyLabel: 'First Steps (Visual)' | 'Beginner Friendly' | 'Elementary Starter' | 'Junior Developer' | 'Advanced Game Engine';
+  kidAnalogy: {
+    title: string;
+    explanation: string;
+    emoji: string;
+  };
+  whyKidsLoveIt: string;
+  whatItBuilds: string[];
+  famousThingsBuiltWithIt: string[];
+  bigIdeas: CodingLanguageBigIdea[];
+  starterCode: string;
+  starterCssCode?: string;
+  interactiveTemplates: CodingLanguageTemplate[];
+  curriculumParentNote: string;
+  quickQuiz: {
+    question: string;
+    options: string[];
+    correctIndex: number;
+    explanation: string;
+  };
+  handsOnChallenge: CodingLanguageChallenge;
+}
 
 export type CodingMascot = 'robot' | 'bunny' | 'kitty' | 'turtle' | 'rocket';
 

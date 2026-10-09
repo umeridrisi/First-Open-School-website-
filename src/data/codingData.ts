@@ -1,4 +1,5 @@
 import { AgeTier, CodingMission, CodingBlock, CodingMascot, CsConcept } from '../types';
+export * from './languagesData';
 
 export interface MascotInfo {
   id: CodingMascot;

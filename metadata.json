@@ -1,6 +1,6 @@
 {
   "name": "First Open School",
-  "description": "Kids early learning platform for alphabets, digits, easy English poems to recite, and a CDE-inspired Kids Encyclopedia featuring real-life analogies, phonics, and science.",
+  "description": "Open early learning curriculum for kids: Phonics, Digits, Poems, Encyclopedia, and Learn Coding Studio with HTML, CSS, JavaScript, Python, C++, C#, and Scratch.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
