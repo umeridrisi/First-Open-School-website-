@@ -10,6 +10,7 @@ import {
 import { Header } from './components/Header';
 import { SubjectNav } from './components/SubjectNav';
 import { OverviewWorld } from './components/views/OverviewWorld';
+import { CurriculumExplorer } from './components/views/CurriculumExplorer';
 import { AlphabetsExplorer } from './components/views/AlphabetsExplorer';
 import { DigitsExplorer } from './components/views/DigitsExplorer';
 import { TracingCanvas } from './components/games/TracingCanvas';
@@ -257,6 +258,13 @@ export default function App() {
     }));
   };
 
+  const handleUpdateStudentTier = (tier: AgeTier) => {
+    setStudent(prev => ({
+      ...prev,
+      ageTier: tier
+    }));
+  };
+
   return (
     <div className="min-h-screen bg-[#FFF9F0] font-sans text-[#2D2D2D] flex flex-col">
       
@@ -286,6 +294,16 @@ export default function App() {
             student={student}
             settings={settings}
             onNavigate={(tab) => navigateTo({ tab })}
+          />
+        )}
+
+        {currentRoute.tab === 'curriculum' && (
+          <CurriculumExplorer
+            student={student}
+            settings={settings}
+            initialTier={currentRoute.curriculumTier}
+            onUpdateStudentTier={handleUpdateStudentTier}
+            onNavigateTab={(tab) => navigateTo({ tab })}
           />
         )}
 

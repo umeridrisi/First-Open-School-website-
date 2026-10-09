@@ -1,11 +1,11 @@
 import React from 'react';
 import { StudentProfile, ActiveTab, ParentSettings, ItemProgress } from '../../types';
-import { ALPHABET_DATA, DIGIT_DATA, ALL_BADGES, AGE_TIER_INFO } from '../../data/curriculumData';
+import { ALPHABET_DATA, DIGIT_DATA, ALL_BADGES, AGE_TIER_INFO, CURRICULUM_TIER_DETAILS } from '../../data/curriculumData';
 import { ENCYCLOPEDIA_CATEGORIES, ENCYCLOPEDIA_ENTRIES } from '../../data/encyclopediaData';
 import { POEM_CATEGORIES, POEMS_DATA } from '../../data/poemsData';
 import { speakText, playSoundEffect } from '../../utils/sound';
 import { formatRouteUrl } from '../../utils/router';
-import { Sparkles, Trophy, Flame, Play, PenTool, CircleDot, Utensils, BookOpen, ArrowRight, Compass, Palette, Code2 } from 'lucide-react';
+import { Sparkles, Trophy, Flame, Play, PenTool, CircleDot, Utensils, BookOpen, ArrowRight, Compass, Palette, Code2, GraduationCap } from 'lucide-react';
 
 interface OverviewWorldProps {
   student: StudentProfile;
@@ -92,12 +92,78 @@ export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings,
               <span>LEARN CODING 💻</span>
               <Code2 className="w-5 h-5 text-white" />
             </a>
+
+            <a
+              href="/curriculum"
+              onClick={(e) => handleAnchorClick(e, 'curriculum', "Curriculum Guide and Parent Learning Framework")}
+              className="flex items-center space-x-2 px-6 py-3.5 bg-[#8B5CF6] hover:bg-purple-700 text-white font-black text-base rounded-2xl border-4 border-[#2D2D2D] shadow-[0_6px_0_#000] active:translate-y-1 active:shadow-none transition-all cursor-pointer no-underline"
+            >
+              <span>CURRICULUMS &amp; GUIDE 🧭</span>
+              <GraduationCap className="w-5 h-5 text-white" />
+            </a>
           </div>
         </div>
 
         {/* Floating Mascot */}
         <div className="absolute right-6 bottom-4 opacity-40 sm:opacity-100 transform translate-x-4 translate-y-4 sm:translate-y-0 text-8xl sm:text-9xl select-none">
           🦁
+        </div>
+      </div>
+
+      {/* CURRICULUM LEARNING PATHWAY SHOWCASE CARD */}
+      <div className="bg-gradient-to-r from-amber-50 via-white to-sky-50 rounded-[32px] p-6 sm:p-8 border-4 border-[#2D2D2D] shadow-[0_8px_0_#000] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+        <div className="space-y-3 max-w-2xl">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full bg-[#FFD93D] text-[#2D2D2D] border border-gray-300">
+              OPTIMIZED CURRICULUM FOR {student.name.toUpperCase()}
+            </span>
+            <span className="text-xs font-black px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
+              100% Open Access to All
+            </span>
+          </div>
+
+          <h3 className="text-2xl sm:text-3xl font-black text-[#2D2D2D] tracking-tight flex items-center gap-2">
+            <span>{tierInfo.name}</span>
+            <span className="text-[#4D96FF] font-black text-lg sm:text-xl">({tierInfo.gradeLabel})</span>
+          </h3>
+
+          <p className="text-sm font-semibold text-gray-700 leading-relaxed">
+            {tierInfo.description}
+          </p>
+
+          <div className="flex flex-wrap gap-2 pt-1">
+            {tierInfo.focusSkills.map((skill, i) => (
+              <span key={i} className="text-xs font-black bg-white px-3 py-1 rounded-xl border border-gray-200 text-[#2D2D2D] shadow-xs">
+                ⭐ {skill}
+              </span>
+            ))}
+          </div>
+
+          <p className="text-xs text-gray-500 font-medium italic pt-1">
+            💡 <strong>Parent Note:</strong> Selecting a curriculum highlights recommended milestones for your child&apos;s age, but all 26 letters, numbers, poems, and coding quests remain open for unrestricted exploration!
+          </p>
+        </div>
+
+        <div className="flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0 w-full sm:w-auto">
+          <a
+            href="/curriculum"
+            onClick={(e) => handleAnchorClick(e, 'curriculum')}
+            className="px-6 py-4 bg-[#8B5CF6] hover:bg-purple-700 text-white font-black text-sm uppercase tracking-wider rounded-2xl border-3 border-[#2D2D2D] shadow-[0_4px_0_#000] active:translate-y-1 active:shadow-none transition-all cursor-pointer flex items-center justify-center gap-2 no-underline"
+          >
+            <GraduationCap className="w-5 h-5" />
+            <span>Curriculum Guide &amp; Roadmap</span>
+          </a>
+
+          <div className="flex items-center justify-center gap-2 text-xs font-extrabold text-gray-500">
+            <span>Change tier anytime in</span>
+            <a
+              href="/settings"
+              onClick={(e) => handleAnchorClick(e, 'settings')}
+              className="text-[#4D96FF] underline hover:text-[#3A72C1]"
+            >
+              Settings ⚙️
+            </a>
+          </div>
         </div>
       </div>
 

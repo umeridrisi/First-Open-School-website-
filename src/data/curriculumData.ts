@@ -1,4 +1,4 @@
-import { LetterData, DigitData, Badge, AgeTier } from '../types';
+import { LetterData, DigitData, Badge, AgeTier, CurriculumTierDetail } from '../types';
 
 export const AGE_TIER_INFO: Record<AgeTier, {
   name: string;
@@ -44,6 +44,536 @@ export const AGE_TIER_INFO: Record<AgeTier, {
     focusSkills: ['Advanced Phonics & Spelling', 'Number Bonds & Sequences', 'Milestone Certificate Mastery'],
     color: 'from-purple-400 to-indigo-600',
     badgeBg: 'bg-purple-100 text-purple-800 border-purple-300'
+  }
+};
+
+export const CURRICULUM_TIER_DETAILS: Record<AgeTier, CurriculumTierDetail> = {
+  'pre-k': {
+    tier: 'pre-k',
+    name: 'Little Explorers',
+    ageRange: 'Ages 2-4',
+    gradeLabel: 'Pre-K & Toddlers',
+    tagline: 'Sensory-first phonics, tactile visual counting (1-5), and intuitive directional play.',
+    description: 'Engineered for earliest developmental milestones. Focuses on auditory discrimination of letter phonics, subitizing small sets visually, big touch-target hand tracing, and gross directional navigation with cute mascots.',
+    mascotEmoji: '🐣',
+    color: 'from-amber-400 to-orange-500',
+    badgeBg: 'bg-amber-100 text-amber-800 border-amber-300',
+    borderAccent: '#FF9F45',
+    cognitiveStage: 'Sensory-Motor & Early Pre-Operational',
+    pedagogicalPhilosophy: 'Montessori sensory-based tactile exposure paired with high-frequency phonemic repetition. Avoids cognitive overload by pairing one sound to one vivid visual mascot.',
+    dailyRecommendationMinutes: 10,
+    coreMilestones: [
+      'Identifies and vocalizes 5 primary vowels (A, E, I, O, U) and first consonants',
+      'Visual subitizing: instantly recognizes groups of 1 to 5 objects without counting',
+      'Understands spatial arrows: Forward, Turn, and Jump in coding quests',
+      'Develops fine motor grip habits with oversized finger-stroke tracing'
+    ],
+    subjects: {
+      alphabets: {
+        subjectId: 'alphabets',
+        title: 'Alphabets & Phonics',
+        emoji: '🔤',
+        focusTitle: 'Primary Vowels & Visual Letter Shapes',
+        scopeSummary: 'Letters A through E, O, and friendly consonants with instant clear voiced pronunciations and animal cues.',
+        recommendedHighlights: ['Letter A (Apple)', 'Letter B (Bear)', 'Letter C (Cat)', 'Letter O (Owl)'],
+        parentExplanation: 'Toddlers learn best when they can touch a high-contrast letter and immediately hear both its letter name and its natural phonemic sound (e.g., Ah for Apple).',
+        linkTab: 'alphabets'
+      },
+      digits: {
+        subjectId: 'digits',
+        title: 'Digits & Counting',
+        emoji: '🔢',
+        focusTitle: 'Visual Subitizing (0 - 5)',
+        scopeSummary: 'Immediate visual recognition of quantities 1 to 5 using apples, balloons, and stars with one-tap tactile feedback.',
+        recommendedHighlights: ['Number 1 (One Sun)', 'Number 2 (Two Eyes)', 'Number 3 (Tricycle)', 'Number 5 (Hand Fingers)'],
+        parentExplanation: 'Subitizing allows toddlers to perceive small numbers instantly without counting individual items 1-by-1, building the core foundation for future addition.',
+        linkTab: 'digits'
+      },
+      coding: {
+        subjectId: 'coding',
+        title: 'Learn Coding Studio',
+        emoji: '💻',
+        focusTitle: 'Directional Arrows & Simple Sequences',
+        scopeSummary: 'Mascot adventures with large visual buttons (Forward, Turn Right, Jump) to gather juicy carrots and golden stars.',
+        recommendedHighlights: ['Mission 1: Bunny Hop to Carrot', 'Mission 2: Straight Line Sprint', 'Mission 5: Water Leap'],
+        parentExplanation: 'Kids don\'t need to read code syntax to think algorithmically. Sequencing directional commands teaches cause-and-effect and spatial reasoning.',
+        linkTab: 'coding'
+      },
+      encyclopedia: {
+        subjectId: 'encyclopedia',
+        title: 'Kids Encyclopedia',
+        emoji: '📚',
+        focusTitle: 'Animals, Daily Objects & Colors',
+        scopeSummary: 'Bite-sized animal profiles, colors of the rainbow, and friendly farm wonders with full text-to-speech reading.',
+        recommendedHighlights: ['Animals & Wildlife', 'Letter Origins', 'Nature Wonders'],
+        parentExplanation: 'Fosters curiosity and conversational vocabulary before formal schooling through colorful photos and sound.',
+        linkTab: 'encyclopedia'
+      },
+      poems: {
+        subjectId: 'poems',
+        title: 'Poems & Rhymes',
+        emoji: '⭐',
+        focusTitle: 'Nursery Classics & Action Rhymes',
+        scopeSummary: 'Twinkle Twinkle Little Star, Baa Baa Black Sheep, and Humpty Dumpty with rhyming word highlights.',
+        recommendedHighlights: ['Twinkle Twinkle Little Star', 'Baa Baa Black Sheep', 'Hickory Dickory Dock'],
+        parentExplanation: 'Rhythm and rhyme training helps infant neural pathways tune into the musical cadences of English phonemes.',
+        linkTab: 'poems'
+      },
+      drawings: {
+        subjectId: 'drawings',
+        title: 'Drawings & Art Studio',
+        emoji: '🎨',
+        focusTitle: 'Primary Shapes & Friendly Faces',
+        scopeSummary: 'Oversized coloring outlines with bright primary colors and instant fill/brush sensory tools.',
+        recommendedHighlights: ['Happy Sun', 'Smiling Apple', 'Friendly Puppy'],
+        parentExplanation: 'Freehand scribbling and color tapping builds finger muscle control and visual-spatial confidence.',
+        linkTab: 'drawings'
+      },
+      games: {
+        subjectId: 'games',
+        title: 'Interactive Games',
+        emoji: '🎮',
+        focusTitle: 'Bubble Pop & Monster Feast 1-5',
+        scopeSummary: 'Pop floating alphabet bubbles and feed friendly monsters up to 5 snacks with instant joyful audio celebration.',
+        recommendedHighlights: ['Bubble Pop (Vowels)', 'Monster Feast (1 to 5)', 'Large Letter Tracing'],
+        parentExplanation: 'Play-based reinforcement creates positive emotional associations with letters and numbers without test anxiety.',
+        linkTab: 'bubble-pop'
+      }
+    },
+    parentGuideTips: [
+      'Encourage your toddler to repeat letter sounds out loud ("Ah-Ah-Apple") after the app speaks them.',
+      'Keep sessions between 5 to 12 minutes to nurture focus without sensory fatigue.',
+      'Use the freeform Drawing Studio alongside letter tracing to let them experiment with colors.',
+      'Remember all higher tiers remain open: feel free to preview Kindergarten counting whenever your child is curious!'
+    ],
+    upcomingRoadmap: [
+      {
+        id: 'road_prek_1',
+        title: 'Baby Animal Phonics Soundboard',
+        emoji: '🐾',
+        status: 'Next Release',
+        badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+        description: 'Interactive soundboard with real animal sounds linked to their starting alphabet letters for sensory pairing.',
+        targetSkills: ['Auditory Discrimination', 'Letter-Sound Association'],
+        cognitiveBenefit: 'Accelerates auditory cortex tuning to distinct phoneme variations.'
+      },
+      {
+        id: 'road_prek_2',
+        title: 'Tactile Finger-Stroke Tracing Canvas',
+        emoji: '👆',
+        status: 'In Development',
+        badgeColor: 'bg-sky-100 text-sky-800 border-sky-300',
+        description: 'Smoother capacitive touch tracing paths with glowing star particle trails that follow little fingers.',
+        targetSkills: ['Pincer Grasp Habituation', 'Visual Tracking'],
+        cognitiveBenefit: 'Reinforces motor memory loops for letter formation.'
+      },
+      {
+        id: 'road_prek_3',
+        title: 'Color & Shape Sorting Bakery',
+        emoji: '🧁',
+        status: 'Planned Upgrade',
+        badgeColor: 'bg-amber-100 text-amber-800 border-amber-300',
+        description: 'Sort cute cupcakes by geometric frosting shapes (circles, squares, triangles) and vibrant icing colors.',
+        targetSkills: ['Attribute Categorization', 'Early Geometry'],
+        cognitiveBenefit: 'Establishes pre-math classification heuristics.'
+      }
+    ]
+  },
+
+  'kindergarten': {
+    tier: 'kindergarten',
+    name: 'Kindy Champions',
+    ageRange: 'Ages 5-6',
+    gradeLabel: 'Kindergarten & Early K-1',
+    tagline: 'Phonics blending, 1-to-1 correspondence (0-10), loops in coding, and guided handwriting.',
+    description: 'Optimized for Kindergarten core milestones. Bridges visual recognition into active phonics blending, counting up to 10 with one-to-one correspondence, basic loops in coding, and guided stroke-by-stroke tracing.',
+    mascotEmoji: '🦁',
+    color: 'from-sky-400 to-blue-600',
+    badgeBg: 'bg-sky-100 text-sky-800 border-sky-300',
+    borderAccent: '#4D96FF',
+    cognitiveStage: 'Concrete Symbolic & Early Operational',
+    pedagogicalPhilosophy: 'Systematic synthetic phonics (Science of Reading framework) combined with concrete manipulatives in math and algorithmic block repeat loops.',
+    dailyRecommendationMinutes: 15,
+    coreMilestones: [
+      'Mastery of all 26 uppercase & lowercase letters and initial consonant sounds',
+      'One-to-one counting correspondence up to 10 with "more than / less than" concepts',
+      'Algorithmic loops: repeats code sequences (2x, 3x) to avoid repetitive instructions',
+      'Follows multi-point tracing paths with guided directional stroke accuracy'
+    ],
+    subjects: {
+      alphabets: {
+        subjectId: 'alphabets',
+        title: 'Alphabets & Phonics',
+        emoji: '🔤',
+        focusTitle: 'Full Alphabet, Consonants & Tracing Paths',
+        scopeSummary: 'All 26 letters with uppercase and lowercase toggle, mouth formation guidance, and guided stroke tracing paths.',
+        recommendedHighlights: ['All 26 Letters A-Z', 'Vowel vs Consonant Groups', 'Guided Finger Tracing'],
+        parentExplanation: 'Children learn to distinguish uppercase and lowercase forms while cementing fine-motor letter formation habits.',
+        linkTab: 'alphabets'
+      },
+      digits: {
+        subjectId: 'digits',
+        title: 'Digits & Counting',
+        emoji: '🔢',
+        focusTitle: 'Numbers 0 through 10 & Counting Feasts',
+        scopeSummary: 'Complete number recognition for 0 to 10 with visual quantity groups (e.g. 7 rainbow colors, 8 octopus tentacles).',
+        recommendedHighlights: ['Numbers 0 to 10', 'Number Concept of Zero', 'Monster Counting Feast'],
+        parentExplanation: 'Solidifies understanding that the final counted number represents the total quantity of the collection (cardinality principle).',
+        linkTab: 'digits'
+      },
+      coding: {
+        subjectId: 'coding',
+        title: 'Learn Coding Studio',
+        emoji: '💻',
+        focusTitle: 'Repeat Loops & Obstacle Avoidance',
+        scopeSummary: 'Program Cyber-Cat and Robo-Bot through 6 missions using Repeat 2x and Repeat 3x blocks around stone walls and puddles.',
+        recommendedHighlights: ['Mission 7: Cat Loop Patrol', 'Mission 9: Bridge Across Water', 'Mission 11: Spiral Maze'],
+        parentExplanation: 'Loops introduce pattern recognition and efficiency—teaching children how to achieve complex goals with fewer instructions.',
+        linkTab: 'coding'
+      },
+      encyclopedia: {
+        subjectId: 'encyclopedia',
+        title: 'Kids Encyclopedia',
+        emoji: '📚',
+        focusTitle: 'Dinosaurs, Space Planets & Habitats',
+        scopeSummary: 'Fascinating entries on T-Rex, the Solar System, oceans, and plants with kid-friendly questions and fun facts.',
+        recommendedHighlights: ['Planets & Space', 'Dinosaurs & Fossils', 'Ocean Creatures'],
+        parentExplanation: 'Builds early schema in STEM fields by answering "why" questions with accurate science explained in simple words.',
+        linkTab: 'encyclopedia'
+      },
+      poems: {
+        subjectId: 'poems',
+        title: 'Poems & Rhymes',
+        emoji: '⭐',
+        focusTitle: 'Animal Poems & Story Verses',
+        scopeSummary: 'Mary Had a Little Lamb, The Itsy Bitsy Spider, and fun whimsical rhymes with audio recital cadence.',
+        recommendedHighlights: ['The Itsy Bitsy Spider', 'Mary Had a Little Lamb', 'Little Bo Peep'],
+        parentExplanation: 'Memorizing and reciting rhythmic lines develops working memory capacity and expressive speaking.',
+        linkTab: 'poems'
+      },
+      drawings: {
+        subjectId: 'drawings',
+        title: 'Drawings & Art Studio',
+        emoji: '🎨',
+        focusTitle: 'Animal Outlines & Symmetry',
+        scopeSummary: 'Guided animal outlines (Lion, Butterfly, Rocket) with sticker stamps and custom brush widths.',
+        recommendedHighlights: ['Playful Lion', 'Monarch Butterfly', 'Space Rocket'],
+        parentExplanation: 'Refines hand-eye coordination and spatial judgment within defined vector borders.',
+        linkTab: 'drawings'
+      },
+      games: {
+        subjectId: 'games',
+        title: 'Interactive Games',
+        emoji: '🎮',
+        focusTitle: 'Card Memory Match & Phonics Stories',
+        scopeSummary: 'Memory card matching with audio feedback and short decodable phonics stories with interactive word tap.',
+        recommendedHighlights: ['Card Match (Literacy & Math)', 'Phonics Story Reader', 'Star Assessment Quiz'],
+        parentExplanation: 'Reinforces recall retrieval strength through self-paced game loops that reward persistence with collectible stars.',
+        linkTab: 'card-match'
+      }
+    },
+    parentGuideTips: [
+      'Have your child try the guided letter tracing in "Both (Aa)" mode to see capital and lowercase connections.',
+      'Celebrate when they find code shortcuts using "Repeat 2x" in the Coding Studio quests.',
+      'Use the Phonics Stories module at bedtime for shared reading and word spotting.',
+      'Check the Parental Dashboard weekly to see which letters have been practiced most frequently.'
+    ],
+    upcomingRoadmap: [
+      {
+        id: 'road_k_1',
+        title: 'CVC Phonics Word Blender',
+        emoji: '🔤',
+        status: 'Next Release',
+        badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+        description: 'Drag 3 phoneme cubes (Consonant + Vowel + Consonant like C-A-T) to build and hear sounding-out blending.',
+        targetSkills: ['Phoneme Blending', 'Orthographic Mapping'],
+        cognitiveBenefit: 'Translates individual letter sounds into real fluent word decoding.'
+      },
+      {
+        id: 'road_k_2',
+        title: 'Monster Feast 10-Frame Addition',
+        emoji: '🍱',
+        status: 'In Development',
+        badgeColor: 'bg-sky-100 text-sky-800 border-sky-300',
+        description: 'Interactive 10-frame visual grid where children feed two different snack colors to see 4 + 6 = 10 visually.',
+        targetSkills: ['Number Bonds to 10', 'Early Addition Operations'],
+        cognitiveBenefit: 'Anchors mental arithmetic in visual Singapore-math ten-frame models.'
+      },
+      {
+        id: 'road_k_3',
+        title: 'Robo-Pet Maze Maker Sandbox',
+        emoji: '🤖',
+        status: 'Planned Upgrade',
+        badgeColor: 'bg-amber-100 text-amber-800 border-amber-300',
+        description: 'Kids design their own customized maze walls, place treats, and program cute pets to navigate their creations.',
+        targetSkills: ['Spatial Design', 'Algorithmic Problem Formulation'],
+        cognitiveBenefit: 'Transitions learners from consumers of puzzles into creators and problem authors.'
+      }
+    ]
+  },
+
+  'grade-1-2': {
+    tier: 'grade-1-2',
+    name: 'Junior Scholars',
+    ageRange: 'Ages 7-8',
+    gradeLabel: 'Grade 1-2 Foundations',
+    tagline: 'Sight words, teen numbers (10-20), conditional coding logic, and science explorations.',
+    description: 'Designed for early elementary scholars. Deepens reading fluency, word family building, numbers up to 20 with number bonds, conditional logic (if-has-key then unlock) in coding, and turtle geometry.',
+    mascotEmoji: '🦉',
+    color: 'from-emerald-400 to-teal-600',
+    badgeBg: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+    borderAccent: '#6BCB77',
+    cognitiveStage: 'Concrete Operational & Logical Systems',
+    pedagogicalPhilosophy: 'Cognitive schema expansion: moving from concrete objects to relational logic, basic algebra bonds, and multi-step computational algorithms.',
+    dailyRecommendationMinutes: 20,
+    coreMilestones: [
+      'Fluent decoding of high-frequency words and reading comprehension of multi-stanza poems',
+      'Numbers 10 through 20 mastery, place-value intuition, and basic number bond pairs',
+      'Conditional branching logic in coding: understands rules and sequential subroutines',
+      'Solves multi-step challenges independently and explains deductive reasoning'
+    ],
+    subjects: {
+      alphabets: {
+        subjectId: 'alphabets',
+        title: 'Alphabets & Phonics',
+        emoji: '🔤',
+        focusTitle: 'Sight Words, Digraphs & Word Families',
+        scopeSummary: 'Advanced phonics sounds (Kuh/Sss, Kwuh, X-ray), spelling patterns, and upper/lowercase handwriting fluency.',
+        recommendedHighlights: ['Digraph Phonics Sounds', 'Phonics Story Reader', 'Spelling Patterns'],
+        parentExplanation: 'Helps students master irregular English phonemes and build rapid sight-word recognition essential for 1st-2nd grade reading.',
+        linkTab: 'alphabets'
+      },
+      digits: {
+        subjectId: 'digits',
+        title: 'Digits & Counting',
+        emoji: '🔢',
+        focusTitle: 'Numbers 11 through 20 & Number Bonds',
+        scopeSummary: 'Teen numbers (Eleven to Twenty), base-10 decomposition (10 + 4 = 14), and missing sequence pattern quizzes.',
+        recommendedHighlights: ['Numbers 11 to 20', 'Teen Number Decomposition', 'Counting Feast Speed Run'],
+        parentExplanation: 'Understanding teen numbers as "a group of ten plus some ones" is the bedrock of place value and multi-digit addition.',
+        linkTab: 'digits'
+      },
+      coding: {
+        subjectId: 'coding',
+        title: 'Learn Coding Studio',
+        emoji: '💻',
+        focusTitle: 'Conditionals, Subroutines & Key Vaults',
+        scopeSummary: 'Guide Sheldon the Turtle and Nova the Rocket through 6 missions requiring keys, gates, leap jumps, and subroutines.',
+        recommendedHighlights: ['Mission 13: Turtle Gem Collector', 'Mission 15: Dungeon Key Vault', 'Mission 17: Double Key Maze'],
+        parentExplanation: 'Conditional thinking ("If I have the key, unlock the gate") teaches boolean logic and multi-step problem solving.',
+        linkTab: 'coding'
+      },
+      encyclopedia: {
+        subjectId: 'encyclopedia',
+        title: 'Kids Encyclopedia',
+        emoji: '📚',
+        focusTitle: 'Inventions, Deep Ocean & Earth Systems',
+        scopeSummary: 'In-depth science topics on electricity, renewable energy, ocean trenches, ancient castles, and inventions.',
+        recommendedHighlights: ['Inventions & Machines', 'Deep Ocean Science', 'Earth & Weather'],
+        parentExplanation: 'Encourages non-fiction informational reading comprehension aligned with elementary science standards.',
+        linkTab: 'encyclopedia'
+      },
+      poems: {
+        subjectId: 'poems',
+        title: 'Poems & Rhymes',
+        emoji: '⭐',
+        focusTitle: 'Nature Lyrics & Narrative Verses',
+        scopeSummary: 'Nature lyrics (The Wind, Rain on the Green Grass, Autumn Leaves) with rich vocabulary definitions and rhythm meters.',
+        recommendedHighlights: ['The Wind (Robert Louis Stevenson)', 'Autumn Leaves', 'Stopping by Woods'],
+        parentExplanation: 'Exposes young readers to figurative language, metaphor, and evocative imagery to enhance creative writing skills.',
+        linkTab: 'poems'
+      },
+      drawings: {
+        subjectId: 'drawings',
+        title: 'Drawings & Art Studio',
+        emoji: '🎨',
+        focusTitle: 'Detailed Scenes & Cultural Art',
+        scopeSummary: 'Complex vector templates including historical monuments, vehicles, fairy tales, and multi-color palettes.',
+        recommendedHighlights: ['Castle Fortress', 'Deep Ocean Submarine', 'Cultural Truck Art'],
+        parentExplanation: 'Enhances patience and spatial detail planning through layered artwork and fine precision coloring.',
+        linkTab: 'drawings'
+      },
+      games: {
+        subjectId: 'games',
+        title: 'Interactive Games',
+        emoji: '🎮',
+        focusTitle: 'Speed Quizzes & Milestone Assessments',
+        scopeSummary: 'Timed gamified quizzes covering spelling, math mental arithmetic, and science trivia with instant scoring and badges.',
+        recommendedHighlights: ['Gamified Assessment Quiz', 'Phonics Story Comprehension', 'Mastery Certificates'],
+        parentExplanation: 'Tests retention in a low-stress, game-like environment while generating objective progress data for parents.',
+        linkTab: 'assessment'
+      }
+    },
+    parentGuideTips: [
+      'Encourage your child to explain their coding solutions out loud before pressing "Run Program".',
+      'Look at the math tips on digits 11-20 to discuss how 12 equals a full dozen or 14 equals two full weeks.',
+      'Download and print the official Certificate of Mastery PDF when they complete their milestones.',
+      'Allow them to freely explore the Turtle Drawing Studio to see how math angles create stars and spirals.'
+    ],
+    upcomingRoadmap: [
+      {
+        id: 'road_j_1',
+        title: 'Interactive Story Writer Studio',
+        emoji: '📖',
+        status: 'Next Release',
+        badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+        description: 'Choose characters, settings, and plot twists with drag-and-drop story grammar blocks to publish illustrated mini-books.',
+        targetSkills: ['Narrative Construction', 'Writing Mechanics', 'Reading Fluency'],
+        cognitiveBenefit: 'Connects passive reading into active creative authorship and literacy synthesis.'
+      },
+      {
+        id: 'road_j_2',
+        title: 'Fraction Pizza & Pie Bakery',
+        emoji: '🍕',
+        status: 'In Development',
+        badgeColor: 'bg-sky-100 text-sky-800 border-sky-300',
+        description: 'Slice visual pizzas into halves, thirds, fourths, and eighths to fulfill hungry monster customer orders.',
+        targetSkills: ['Equal Sharing', 'Fraction Denominators', 'Part-Whole Concepts'],
+        cognitiveBenefit: 'Prevents future fraction anxiety through intuitive proportional visual models.'
+      },
+      {
+        id: 'road_j_3',
+        title: 'Block-to-Python Logic Bridge',
+        emoji: '🐍',
+        status: 'Planned Upgrade',
+        badgeColor: 'bg-amber-100 text-amber-800 border-amber-300',
+        description: 'Toggle between visual drag-and-drop coding blocks and real clean Python code syntax side-by-side.',
+        targetSkills: ['Text Syntax Comprehension', 'Computational Fluency'],
+        cognitiveBenefit: 'Smoothly scaffolds young coders from visual blocks into real-world software engineering.'
+      }
+    ]
+  },
+
+  'k12-foundations': {
+    tier: 'k12-foundations',
+    name: 'Senior Foundations',
+    ageRange: 'Ages 9-12+',
+    gradeLabel: 'K-12 Elementary Mastery',
+    tagline: 'Advanced spelling, arithmetic logic, turtle geometry, and real JavaScript/Python code bridges.',
+    description: 'Advanced curriculum for upper elementary and foundational K-12 learners. Features real code syntax translation, nested loops and geometric algorithms in the Turtle Canvas, comprehensive science inquiries, and analytics.',
+    mascotEmoji: '🚀',
+    color: 'from-purple-400 to-indigo-600',
+    badgeBg: 'bg-purple-100 text-purple-800 border-purple-300',
+    borderAccent: '#8B5CF6',
+    cognitiveStage: 'Formal Operational & Algorithmic Synthesis',
+    pedagogicalPhilosophy: 'Constructivist computational learning: empowering students to model mathematical patterns, investigate science etymology, and bridge block coding into real text scripts.',
+    dailyRecommendationMinutes: 25,
+    coreMilestones: [
+      'Mastery of advanced spelling, Greek/Latin roots, and complex comprehension across encyclopedic domains',
+      'Mental arithmetic pattern recognition, number bond algebra, and coordinate plane spatial thinking',
+      'Translates algorithmic block logic into real JavaScript / Python syntax and calculates angle turns',
+      'Designs autonomous procedures using loops, nested loops, and modular subroutines'
+    ],
+    subjects: {
+      alphabets: {
+        subjectId: 'alphabets',
+        title: 'Alphabets & Phonics',
+        emoji: '🔤',
+        focusTitle: 'Etymology, Roots & Advanced Phonics',
+        scopeSummary: 'Full alphabet analysis including historical letter origins (Phoenician/Greek roots), silent letters, and power vocabulary.',
+        recommendedHighlights: ['Letter Etymology & Origins', 'Mouth Shape Mechanics', 'All 26 High-Level Articles'],
+        parentExplanation: 'Connects linguistic history with vocabulary development, preparing students for advanced middle-school reading comprehension.',
+        linkTab: 'alphabets'
+      },
+      digits: {
+        subjectId: 'digits',
+        title: 'Digits & Counting',
+        emoji: '🔢',
+        focusTitle: 'Number Theory, Patterns & Multiples',
+        scopeSummary: 'Number theory tips across 0-20 (even/odd, multiples, prime hints, quarter hours, dozens) with mental math quizzes.',
+        recommendedHighlights: ['Even and Odd Analysis', 'Place Value Concepts', 'Comprehensive Math Quizzes'],
+        parentExplanation: 'Builds algebraic thinking and number sense flexibility needed for pre-algebra and word problems.',
+        linkTab: 'digits'
+      },
+      coding: {
+        subjectId: 'coding',
+        title: 'Learn Coding Studio',
+        emoji: '💻',
+        focusTitle: 'Real Code View, Turtle Geometry & Algorithms',
+        scopeSummary: '6 advanced missions with loops, subroutines, interactive CS concepts (Bugs, Variables, Conditionals), and Turtle Art.',
+        recommendedHighlights: ['Mission 19: Algorithm Shortest Path', 'Mission 21: Star Drawer (Turn 144°)', 'Blocks vs Real Code View'],
+        parentExplanation: 'Students see visual blocks translate live into real JavaScript and Python syntax while learning geometric angle calculations.',
+        linkTab: 'coding'
+      },
+      encyclopedia: {
+        subjectId: 'encyclopedia',
+        title: 'Kids Encyclopedia',
+        emoji: '📚',
+        focusTitle: 'World History, Physics & Astronomy',
+        scopeSummary: 'Over 250 deep knowledge articles covering astronomy, world history, biological classifications, and scientific discoveries.',
+        recommendedHighlights: ['Solar System & Galaxies', 'Physics Wonders', 'World Civilizations'],
+        parentExplanation: 'Stimulates independent research habits and critical evaluation of scientific and historical evidence.',
+        linkTab: 'encyclopedia'
+      },
+      poems: {
+        subjectId: 'poems',
+        title: 'Poems & Rhymes',
+        emoji: '⭐',
+        focusTitle: 'Classic Verses & Poetic Structures',
+        scopeSummary: 'Classic literature poems with vocabulary breakdowns, rhyme scheme analysis, and expressive interpretation guidelines.',
+        recommendedHighlights: ['Classics & Master Verses', 'Poetic Devices & Meter', 'Vocabulary Master Definitions'],
+        parentExplanation: 'Deepens understanding of mood, tone, rhythm, and literary devices in celebrated English verse.',
+        linkTab: 'poems'
+      },
+      drawings: {
+        subjectId: 'drawings',
+        title: 'Drawings & Art Studio',
+        emoji: '🎨',
+        focusTitle: 'Freehand Canvas & Perspective Design',
+        scopeSummary: 'Full creative art studio featuring freehand pens, vector templates, opacity layers, custom palette picker, and export.',
+        recommendedHighlights: ['Freeform Canvas Studio', 'Architectural Perspective', 'Digital Art Export'],
+        parentExplanation: 'Unlocks unrestrained digital artistic expression while reinforcing geometry, composition, and visual design skills.',
+        linkTab: 'drawings'
+      },
+      games: {
+        subjectId: 'games',
+        title: 'Interactive Games',
+        emoji: '🎮',
+        focusTitle: 'Comprehensive Assessments & LMS Export',
+        scopeSummary: 'Standardized difficulty assessments, detailed developmental analytics, and one-click JSON LMS export for parents and tutors.',
+        recommendedHighlights: ['100% Comprehensive Quiz', 'Local Developmental Analytics', 'One-Click LMS Roster Export'],
+        parentExplanation: 'Provides clear diagnostic data on mastered vs developing skills to guide personalized home instruction.',
+        linkTab: 'assessment'
+      }
+    },
+    parentGuideTips: [
+      'Encourage your child to use the "Blocks vs Real Code" toggle in the Coding Studio to see how JavaScript works.',
+      'Challenge them to create geometric rosettes and polygons using the Turtle Drawing Studio repeat loops.',
+      'Use the Local Developmental Insights tool in Settings to identify strengths across literacy and numeracy.',
+      'Remember that all curriculum levels remain open: reviewing foundational concepts is always accessible and encouraged!'
+    ],
+    upcomingRoadmap: [
+      {
+        id: 'road_k12_1',
+        title: 'Live JavaScript & Python Code Runner',
+        emoji: '💻',
+        status: 'Next Release',
+        badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+        description: 'An in-browser code editor where older kids can type text code to draw shapes, build calculators, and solve logic puzzles.',
+        targetSkills: ['Text Syntax', 'Debugging', 'Algorithmic Problem Solving'],
+        cognitiveBenefit: 'Empowers students with genuine software programming skills recognized in real-world computer science.'
+      },
+      {
+        id: 'road_k12_2',
+        title: 'Young Scientist Virtual Simulation Lab',
+        emoji: '🔬',
+        status: 'In Development',
+        badgeColor: 'bg-sky-100 text-sky-800 border-sky-300',
+        description: 'Interactive browser physics & chemistry simulations (gravity sliders, pendulum swings, light prism bending).',
+        targetSkills: ['Empirical Investigation', 'Scientific Method', 'Variables & Constants'],
+        cognitiveBenefit: 'Develops intuitive physics understanding through interactive parameter manipulation.'
+      },
+      {
+        id: 'road_k12_3',
+        title: 'Typing Hero Keyboard Speed Quest',
+        emoji: '⌨️',
+        status: 'Planned Upgrade',
+        badgeColor: 'bg-amber-100 text-amber-800 border-amber-300',
+        description: 'Gamified touch-typing trainer with home-row finger placement mechanics, accuracy meters, and speed races.',
+        targetSkills: ['Touch Typing Fluency', 'Ergonomic Keyboard Habits'],
+        cognitiveBenefit: 'Removes the mechanical keyboard bottleneck so children can write and code at the speed of thought.'
+      }
+    ]
   }
 };
 

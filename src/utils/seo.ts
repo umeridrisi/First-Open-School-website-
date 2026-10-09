@@ -99,6 +99,53 @@ export function getSeoMetadata(route: AppRoute): SeoMetadata {
       };
     }
 
+    case 'curriculum': {
+      const tierKey = route.curriculumTier;
+      const tierNames: Record<string, string> = {
+        'pre-k': 'Little Explorers (Pre-K & Toddlers, Ages 2–4)',
+        'kindergarten': 'Kindy Champions (Kindergarten, Ages 5–6)',
+        'grade-1-2': 'Junior Scholars (Grades 1–2, Ages 7–8)',
+        'k12-foundations': 'Senior Foundations (K-12 Mastery, Ages 9–12+)'
+      };
+      const tierTitle = tierKey && tierNames[tierKey] ? tierNames[tierKey] : 'Early Literacy, Numeracy & Coding';
+      const pageTitle = tierKey 
+        ? `${tierTitle} Curriculum Guide & Learning Outcomes | First Open School`
+        : 'Open Early Education Curriculums & Parent Guide | First Open School';
+      const pageDesc = 'Discover First Open School\'s research-backed open curriculum framework. 100% accessible to every child across Pre-K, Kindergarten, Grades 1-2, and Elementary Mastery with roadmap of upcoming modules and upgrades.';
+      
+      return {
+        title: pageTitle,
+        description: pageDesc,
+        canonicalUrl,
+        ogTitle: pageTitle,
+        ogDescription: pageDesc,
+        ogType: 'website',
+        ogImage: DEFAULT_IMAGE,
+        twitterCard: 'summary_large_image',
+        keywords: ['curriculum guide', 'preschool curriculum', 'kindergarten curriculum', 'grade 1-2 math and phonics', 'kids coding curriculum', 'open education', 'parent learning guide'],
+        breadcrumbs: [
+          ...defaultBreadcrumbs,
+          { name: 'Curriculum Framework', url: `${baseUrl}/curriculum` },
+          ...(tierKey ? [{ name: tierTitle, url: canonicalUrl }] : [])
+        ],
+        jsonLd: [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Course',
+            name: `First Open School ${tierTitle} Curriculum`,
+            description: pageDesc,
+            provider: {
+              '@type': 'EducationalOrganization',
+              name: DEFAULT_SITE_NAME,
+              url: baseUrl
+            },
+            educationalLevel: tierKey || 'Early Childhood & Elementary',
+            isAccessibleForFree: true
+          }
+        ]
+      };
+    }
+
     case 'alphabets': {
       if (route.letter) {
         const char = route.letter.toUpperCase();

@@ -28,9 +28,12 @@ import {
   BookOpen, 
   Eye, 
   Heart,
-  Award
+  Award,
+  GraduationCap,
+  HelpCircle
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { CURRICULUM_TIER_DETAILS } from '../../data/curriculumData';
 
 interface DrawingsStudioProps {
   student: StudentProfile;
@@ -80,6 +83,10 @@ export const DrawingsStudio: React.FC<DrawingsStudioProps> = ({
   initialCategory,
   onAwardStars
 }) => {
+  const [showParentNote, setShowParentNote] = useState<boolean>(false);
+  const tierDetail = CURRICULUM_TIER_DETAILS[student.ageTier] || CURRICULUM_TIER_DETAILS['kindergarten'];
+  const artCurriculum = tierDetail.subjects.drawings;
+
   // Main Studio Mode: 'canvas' (Drawing Studio) or 'printables' (Worksheet Library)
   const [activeView, setActiveView] = useState<'canvas' | 'printables'>(
     initialTemplateId ? 'canvas' : 'canvas'
@@ -409,6 +416,56 @@ export const DrawingsStudio: React.FC<DrawingsStudioProps> = ({
   return (
     <div className="space-y-6 pb-12">
       
+      {/* CURRICULUM ALIGNMENT HEADER BANNER */}
+      <div className="bg-gradient-to-r from-rose-50 via-white to-amber-50 rounded-[28px] p-5 sm:p-6 border-3 border-[#2D2D2D] shadow-[0_5px_0_#000] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div className="space-y-1.5 max-w-2xl">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#FF6B6B] text-white text-xs font-black uppercase tracking-wider">
+              <GraduationCap className="w-3.5 h-3.5" />
+              <span>Curriculum Tier: {tierDetail.gradeLabel}</span>
+            </span>
+            <span className="text-xs font-bold text-gray-500">
+              100% Open Access &bull; Full Blank Canvas &amp; {DRAWING_TEMPLATES.length}+ Free Templates
+            </span>
+          </div>
+
+          <h3 className="text-xl sm:text-2xl font-black text-[#2D2D2D] tracking-tight">
+            Creative Expression &amp; Motor Focus: {artCurriculum.focusTitle} 🎨
+          </h3>
+
+          <p className="text-xs sm:text-sm font-semibold text-gray-700 leading-relaxed">
+            {artCurriculum.scopeSummary}
+          </p>
+
+          {showParentNote && (
+            <div className="mt-2 p-3 bg-white rounded-xl border-2 border-rose-200 text-xs text-rose-950 font-medium leading-relaxed animate-in fade-in">
+              <strong className="block font-black text-rose-900 mb-1">Parent Explanation:</strong>
+              {artCurriculum.parentExplanation}
+            </div>
+          )}
+        </div>
+
+        <div className="flex flex-col sm:flex-row md:flex-col gap-2 shrink-0">
+          <button
+            onClick={() => {
+              setShowParentNote(!showParentNote);
+              playSoundEffect('click', settings.soundEffects);
+            }}
+            className="px-4 py-2 bg-white hover:bg-rose-50 text-rose-900 font-black text-xs uppercase tracking-wider rounded-xl border-2 border-rose-300 shadow-xs cursor-pointer flex items-center justify-center gap-1.5"
+          >
+            <HelpCircle className="w-4 h-4" />
+            <span>{showParentNote ? 'Hide Parent Guide' : 'Why This Fits My Kid'}</span>
+          </button>
+
+          <a
+            href="/curriculum"
+            className="px-4 py-2 bg-[#FFD93D] hover:bg-yellow-400 text-[#2D2D2D] font-black text-xs uppercase tracking-wider rounded-xl border-2 border-[#2D2D2D] shadow-[0_3px_0_#000] active:translate-y-0.5 active:shadow-none transition-all flex items-center justify-center gap-1.5 no-underline"
+          >
+            <span>Full Curriculum Guide &rarr;</span>
+          </a>
+        </div>
+      </div>
+
       {/* Top Banner & Header */}
       <div className="bg-gradient-to-r from-[#FF6B6B] via-[#FF8E53] to-[#FFD93D] rounded-3xl p-6 sm:p-8 border-4 border-[#2D2D2D] shadow-[0_8px_0_#000] text-white">
         <div className="flex flex-wrap items-center justify-between gap-4">

@@ -2,6 +2,7 @@ export type AgeTier = 'pre-k' | 'kindergarten' | 'grade-1-2' | 'k12-foundations'
 
 export type ActiveTab = 
   | 'overview'
+  | 'curriculum'
   | 'alphabets'
   | 'digits'
   | 'encyclopedia'
@@ -284,4 +285,46 @@ export interface CsConcept {
     correctIndex: number;
     explanation: string;
   };
+}
+
+export interface UpcomingRoadmapModule {
+  id: string;
+  title: string;
+  emoji: string;
+  status: 'In Development' | 'Next Release' | 'Planned Upgrade' | 'In Research';
+  badgeColor: string;
+  description: string;
+  targetSkills: string[];
+  cognitiveBenefit: string;
+}
+
+export interface SubjectCurriculumBreakdown {
+  subjectId: string;
+  title: string;
+  emoji: string;
+  focusTitle: string;
+  scopeSummary: string;
+  recommendedHighlights: string[];
+  parentExplanation: string;
+  linkTab: ActiveTab;
+}
+
+export interface CurriculumTierDetail {
+  tier: AgeTier;
+  name: string;
+  ageRange: string;
+  gradeLabel: string;
+  tagline: string;
+  description: string;
+  mascotEmoji: string;
+  color: string;
+  badgeBg: string;
+  borderAccent: string;
+  cognitiveStage: string;
+  pedagogicalPhilosophy: string;
+  dailyRecommendationMinutes: number;
+  coreMilestones: string[];
+  subjects: Record<string, SubjectCurriculumBreakdown>;
+  parentGuideTips: string[];
+  upcomingRoadmap: UpcomingRoadmapModule[];
 }

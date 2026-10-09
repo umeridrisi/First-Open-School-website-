@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Shield, Wifi, WifiOff, Volume2, VolumeX, Award, Flame, User, Lock, Settings as SettingsGear } from 'lucide-react';
+import { Sparkles, Shield, Wifi, WifiOff, Volume2, VolumeX, Award, Flame, User, Lock, Settings as SettingsGear, GraduationCap } from 'lucide-react';
 import { StudentProfile, ParentSettings } from '../types';
 import { speakText, playSoundEffect } from '../utils/sound';
 import { navigateTo } from '../utils/router';
@@ -178,6 +178,26 @@ export const Header: React.FC<HeaderProps> = ({
           >
             {settings.soundEffects ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
           </button>
+
+          {/* Curriculum Guide Link */}
+          <a
+            href="/curriculum"
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                e.preventDefault();
+                playSoundEffect('click', settings.soundEffects);
+                navigateTo({ tab: 'curriculum' });
+                handleSpeech("Curriculum Explorer and Learning Guide");
+              }
+            }}
+            className="flex items-center space-x-1.5 px-3 py-2 rounded-2xl border-2 bg-[#FFF9F0] hover:bg-[#FFD93D] text-[#2D2D2D] border-[#2D2D2D] shadow-[0_4px_0_#000] active:translate-y-1 active:shadow-none transition-all cursor-pointer group no-underline"
+            title="Explore Curriculums, Grade Pathways & Platform Upgrades Roadmap"
+          >
+            <GraduationCap className="w-5 h-5 text-[#4D96FF] group-hover:scale-110 transition-transform" />
+            <span className="hidden md:inline text-xs font-black uppercase tracking-wider">
+              Curriculum
+            </span>
+          </a>
 
           {/* Settings Gear Button with Active Curriculum Tier Label */}
           <button

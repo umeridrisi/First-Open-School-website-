@@ -2,6 +2,7 @@ import { ActiveTab, CodingSubTab, AgeTier } from '../types';
 
 export interface AppRoute {
   tab: ActiveTab;
+  curriculumTier?: AgeTier;
   letter?: string;
   digit?: number;
   entryId?: string;
@@ -31,6 +32,12 @@ export function parsePath(pathname: string = (typeof window !== 'undefined' && w
   const second = segments[1];
 
   switch (first) {
+    case 'curriculum':
+      if (second) {
+        return { tab: 'curriculum', curriculumTier: second.toLowerCase() as AgeTier };
+      }
+      return { tab: 'curriculum' };
+
     case 'alphabets':
       if (second) {
         return { tab: 'alphabets', letter: second.toUpperCase() };
@@ -146,6 +153,9 @@ export function formatRouteUrl(route: AppRoute): string {
   switch (route.tab) {
     case 'overview':
       return '/';
+
+    case 'curriculum':
+      return route.curriculumTier ? `/curriculum/${route.curriculumTier}` : '/curriculum';
 
     case 'alphabets':
       return route.letter ? `/alphabets/${route.letter.toLowerCase()}` : '/alphabets';

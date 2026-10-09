@@ -13,7 +13,8 @@ import {
   BookOpen,
   Grid,
   Palette,
-  Code2
+  Code2,
+  GraduationCap
 } from 'lucide-react';
 
 interface SubjectNavProps {
@@ -31,6 +32,14 @@ export const SubjectNav: React.FC<SubjectNavProps> = ({ activeTab, onSelectTab, 
       color: 'text-[#4D96FF]', 
       activeBg: 'bg-white border-[#4D96FF] shadow-[0_4px_0_#3A72C1]',
       voicePrompt: 'Home Learning World'
+    },
+    { 
+      id: 'curriculum', 
+      label: 'Curriculums', 
+      icon: <GraduationCap className="w-5 h-5 text-[#8B5CF6]" />, 
+      color: 'text-[#8B5CF6]', 
+      activeBg: 'bg-white border-[#8B5CF6] shadow-[0_4px_0_#6D28D9]',
+      voicePrompt: 'Curriculum Guide & Parent Learning Pathways'
     },
     { 
       id: 'alphabets', 

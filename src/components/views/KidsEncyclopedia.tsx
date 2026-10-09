@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { EncyclopediaEntry, EncyclopediaCategory, StudentProfile, ParentSettings } from '../../types';
 import { ENCYCLOPEDIA_ENTRIES, ENCYCLOPEDIA_CATEGORIES } from '../../data/encyclopediaData';
+import { CURRICULUM_TIER_DETAILS } from '../../data/curriculumData';
 import { speakText, playSoundEffect } from '../../utils/sound';
 import { 
   BookOpen, 
@@ -18,7 +19,8 @@ import {
   Compass,
   Send,
   Loader2,
-  Share2
+  Share2,
+  GraduationCap
 } from 'lucide-react';
 
 interface KidsEncyclopediaProps {
@@ -32,7 +34,7 @@ interface KidsEncyclopediaProps {
 }
 
 export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
-  student: _student,
+  student,
   settings,
   initialEntryId,
   initialCategory,
@@ -40,6 +42,9 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
   onCategoryChange,
   onNavigateToTracing
 }) => {
+  const [showParentNote, setShowParentNote] = useState<boolean>(false);
+  const tierDetail = CURRICULUM_TIER_DETAILS[student.ageTier] || CURRICULUM_TIER_DETAILS['kindergarten'];
+  const encCurriculum = tierDetail.subjects.encyclopedia;
   const [selectedCategory, setSelectedCategory] = useState<EncyclopediaCategory | 'all'>(() => {
     if (initialCategory) {
       const isValid = ENCYCLOPEDIA_CATEGORIES.some(c => c.id === initialCategory);
@@ -256,6 +261,13 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
     }
   };
 
+  const isCategoryRecommended = (catId: string) => {
+    if (student.ageTier === 'pre-k') return catId === 'alphabets' || catId === 'digits';
+    if (student.ageTier === 'kindergarten') return catId === 'alphabets' || catId === 'digits' || catId === 'earth-elements';
+    if (student.ageTier === 'grade-1-2') return catId === 'solar-system' || catId === 'earth-elements' || catId === 'world-landmarks';
+    return catId === 'technology' || catId === 'world-landmarks' || catId === 'solar-system';
+  };
+
   const handlePrint = () => {
     playSoundEffect('click', settings.soundEffects);
     window.print();
@@ -264,6 +276,56 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
   return (
     <div className="space-y-8 pb-16">
       
+      {/* CURRICULUM ALIGNMENT HEADER BANNER */}
+      <div className="bg-gradient-to-r from-amber-50 via-white to-orange-50 rounded-[28px] p-5 sm:p-6 border-3 border-[#2D2D2D] shadow-[0_5px_0_#000] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div className="space-y-1.5 max-w-2xl">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#FFD93D] text-[#2D2D2D] text-xs font-black uppercase tracking-wider border border-[#2D2D2D]/20">
+              <GraduationCap className="w-3.5 h-3.5" />
+              <span>Curriculum Tier: {tierDetail.gradeLabel}</span>
+            </span>
+            <span className="text-xs font-bold text-gray-500">
+              100% Open Access &bull; All Subjects &amp; Science Topics Available
+            </span>
+          </div>
+
+          <h3 className="text-xl sm:text-2xl font-black text-[#2D2D2D] tracking-tight">
+            Knowledge &amp; Science Focus: {encCurriculum.focusTitle} 🌍
+          </h3>
+
+          <p className="text-xs sm:text-sm font-semibold text-gray-700 leading-relaxed">
+            {encCurriculum.scopeSummary}
+          </p>
+
+          {showParentNote && (
+            <div className="mt-2 p-3 bg-white rounded-xl border-2 border-amber-200 text-xs text-amber-950 font-medium leading-relaxed animate-in fade-in">
+              <strong className="block font-black text-amber-900 mb-1">Parent Explanation:</strong>
+              {encCurriculum.parentExplanation}
+            </div>
+          )}
+        </div>
+
+        <div className="flex flex-col sm:flex-row md:flex-col gap-2 shrink-0">
+          <button
+            onClick={() => {
+              setShowParentNote(!showParentNote);
+              playSoundEffect('click', settings.soundEffects);
+            }}
+            className="px-4 py-2 bg-white hover:bg-amber-50 text-amber-900 font-black text-xs uppercase tracking-wider rounded-xl border-2 border-amber-300 shadow-xs cursor-pointer flex items-center justify-center gap-1.5"
+          >
+            <HelpCircle className="w-4 h-4" />
+            <span>{showParentNote ? 'Hide Parent Guide' : 'Why This Fits My Kid'}</span>
+          </button>
+
+          <a
+            href="/curriculum"
+            className="px-4 py-2 bg-[#FFD93D] hover:bg-yellow-400 text-[#2D2D2D] font-black text-xs uppercase tracking-wider rounded-xl border-2 border-[#2D2D2D] shadow-[0_3px_0_#000] active:translate-y-0.5 active:shadow-none transition-all flex items-center justify-center gap-1.5 no-underline"
+          >
+            <span>Full Curriculum Guide &rarr;</span>
+          </a>
+        </div>
+      </div>
+
       {/* Header Banner - Inspired by CDE Encyclopedic Authority */}
       <div className="bg-white rounded-[32px] p-6 sm:p-8 border-4 border-[#FFD93D] shadow-[0_8px_0_#C9A92E] relative overflow-hidden">
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
@@ -357,6 +419,7 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
 
           {ENCYCLOPEDIA_CATEGORIES.map(cat => {
             const isSelected = selectedCategory === cat.id;
+            const isRec = isCategoryRecommended(cat.id);
             return (
               <a
                 key={cat.id}
@@ -377,11 +440,18 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
                 className={`flex items-center space-x-1.5 px-4 py-2.5 rounded-2xl border-4 font-black text-xs uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer no-underline ${
                   isSelected
                     ? 'bg-white text-[#2D2D2D] border-[#FFD93D] shadow-[0_4px_0_#C9A92E]'
+                    : isRec
+                    ? 'bg-amber-50/70 text-[#2D2D2D] border-amber-200 hover:border-[#FFD93D]'
                     : 'bg-white text-[#2D2D2D]/70 border-gray-200 hover:border-[#FFD93D]'
                 }`}
               >
                 <span>{cat.icon}</span>
                 <span>{cat.label}</span>
+                {isRec && (
+                  <span className="text-[10px] font-black px-1.5 py-0.5 rounded-full bg-amber-200 text-amber-900 ml-0.5">
+                    ⭐
+                  </span>
+                )}
               </a>
             );
           })}

@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { Poem, PoemCategory, StudentProfile, ParentSettings } from '../../types';
 import { POEMS_DATA, POEM_CATEGORIES, getPoemById } from '../../data/poemsData';
+import { CURRICULUM_TIER_DETAILS } from '../../data/curriculumData';
 import { speakText, playSoundEffect } from '../../utils/sound';
 import {
   Sparkles,
@@ -20,7 +21,9 @@ import {
   ArrowRight,
   Filter,
   Play,
-  Square
+  Square,
+  GraduationCap,
+  HelpCircle
 } from 'lucide-react';
 
 interface PoemsExplorerProps {
@@ -33,13 +36,16 @@ interface PoemsExplorerProps {
 }
 
 export const PoemsExplorer: React.FC<PoemsExplorerProps> = ({
-  student: _student,
+  student,
   settings,
   initialPoemId,
   initialCategory,
   onPoemChange,
   onCategoryChange
 }) => {
+  const [showParentNote, setShowParentNote] = useState<boolean>(false);
+  const tierDetail = CURRICULUM_TIER_DETAILS[student.ageTier] || CURRICULUM_TIER_DETAILS['kindergarten'];
+  const poemsCurriculum = tierDetail.subjects.poems;
   // Selected category filter
   const [selectedCategory, setSelectedCategory] = useState<PoemCategory | 'all'>(() => {
     if (initialCategory) {
@@ -109,7 +115,20 @@ export const PoemsExplorer: React.FC<PoemsExplorerProps> = ({
   const filteredPoems = useMemo(() => {
     return POEMS_DATA.filter(poem => {
       const matchesCategory = selectedCategory === 'all' || poem.category === selectedCategory;
-      const matchesAge = ageFilter === 'all' || poem.ageTier === ageFilter || poem.ageTier === 'All Ages';
+      
+      const isRecommended = () => {
+        if (!poem.ageTier || poem.ageTier === 'All Ages') return true;
+        if (student.ageTier === 'pre-k') return poem.ageTier.includes('2-4') || poem.ageTier.includes('2–4');
+        if (student.ageTier === 'kindergarten') return poem.ageTier.includes('4-6') || poem.ageTier.includes('3-5');
+        return true;
+      };
+
+      const matchesAge = 
+        ageFilter === 'all'
+          ? true
+          : ageFilter === 'tier-rec'
+          ? isRecommended()
+          : poem.ageTier === ageFilter || poem.ageTier === 'All Ages';
 
       if (!searchQuery.trim()) {
         return matchesCategory && matchesAge;
@@ -242,6 +261,56 @@ export const PoemsExplorer: React.FC<PoemsExplorerProps> = ({
   return (
     <div className="space-y-8 pb-16">
       
+      {/* CURRICULUM ALIGNMENT HEADER BANNER */}
+      <div className="bg-gradient-to-r from-purple-50 via-white to-pink-50 rounded-[28px] p-5 sm:p-6 border-3 border-[#2D2D2D] shadow-[0_5px_0_#000] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div className="space-y-1.5 max-w-2xl">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#8B5CF6] text-white text-xs font-black uppercase tracking-wider">
+              <GraduationCap className="w-3.5 h-3.5" />
+              <span>Curriculum Tier: {tierDetail.gradeLabel}</span>
+            </span>
+            <span className="text-xs font-bold text-gray-500">
+              100% Open Access &bull; All {POEMS_DATA.length} Rhymes &amp; Verses Available
+            </span>
+          </div>
+
+          <h3 className="text-xl sm:text-2xl font-black text-[#2D2D2D] tracking-tight">
+            Poetry &amp; Speech Focus: {poemsCurriculum.focusTitle} 🎵
+          </h3>
+
+          <p className="text-xs sm:text-sm font-semibold text-gray-700 leading-relaxed">
+            {poemsCurriculum.scopeSummary}
+          </p>
+
+          {showParentNote && (
+            <div className="mt-2 p-3 bg-white rounded-xl border-2 border-purple-200 text-xs text-purple-950 font-medium leading-relaxed animate-in fade-in">
+              <strong className="block font-black text-purple-900 mb-1">Parent Explanation:</strong>
+              {poemsCurriculum.parentExplanation}
+            </div>
+          )}
+        </div>
+
+        <div className="flex flex-col sm:flex-row md:flex-col gap-2 shrink-0">
+          <button
+            onClick={() => {
+              setShowParentNote(!showParentNote);
+              playSoundEffect('click', settings.soundEffects);
+            }}
+            className="px-4 py-2 bg-white hover:bg-purple-50 text-purple-900 font-black text-xs uppercase tracking-wider rounded-xl border-2 border-purple-300 shadow-xs cursor-pointer flex items-center justify-center gap-1.5"
+          >
+            <HelpCircle className="w-4 h-4" />
+            <span>{showParentNote ? 'Hide Parent Guide' : 'Why This Fits My Kid'}</span>
+          </button>
+
+          <a
+            href="/curriculum"
+            className="px-4 py-2 bg-[#FFD93D] hover:bg-yellow-400 text-[#2D2D2D] font-black text-xs uppercase tracking-wider rounded-xl border-2 border-[#2D2D2D] shadow-[0_3px_0_#000] active:translate-y-0.5 active:shadow-none transition-all flex items-center justify-center gap-1.5 no-underline"
+          >
+            <span>Full Curriculum Guide &rarr;</span>
+          </a>
+        </div>
+      </div>
+
       {/* Top Banner / Hero */}
       <div className="bg-gradient-to-r from-[#8B5CF6] via-[#A78BFA] to-[#C4B5FD] rounded-[36px] p-6 sm:p-10 border-4 border-[#2D2D2D] shadow-[0_8px_0_#000] text-white space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-4">
@@ -349,11 +418,12 @@ export const PoemsExplorer: React.FC<PoemsExplorerProps> = ({
             </div>
 
             {/* Age Tier Selector */}
-            <div className="flex items-center justify-between text-xs font-black">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 text-xs font-black">
               <span className="text-gray-500 uppercase">Age Level:</span>
-              <div className="flex gap-1.5">
+              <div className="flex flex-wrap gap-1.5">
                 {[
-                  { id: 'all', label: 'All Ages' },
+                  { id: 'all', label: 'All Ages (Open)' },
+                  { id: 'tier-rec', label: `⭐ For ${tierDetail.name}` },
                   { id: 'Ages 2-4', label: '2-4 yrs' },
                   { id: 'Ages 4-6', label: '4-6 yrs' }
                 ].map(tier => (

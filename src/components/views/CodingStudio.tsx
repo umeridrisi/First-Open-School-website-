@@ -43,7 +43,8 @@ import {
   Download,
   Share2,
   RefreshCw,
-  Compass
+  Compass,
+  GraduationCap
 } from 'lucide-react';
 
 interface CodingStudioProps {
@@ -701,7 +702,16 @@ export const CodingStudio: React.FC<CodingStudioProps> = ({
           <div className="bg-white rounded-[28px] p-5 border-4 border-gray-200 shadow-xs space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Select Curriculum Tier:</span>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Select Curriculum Tier:</span>
+                  <a
+                    href={`/curriculum/${selectedTier}`}
+                    className="text-xs font-black text-[#4D96FF] hover:underline flex items-center gap-1 no-underline"
+                  >
+                    <GraduationCap className="w-3.5 h-3.5" />
+                    <span>View Tier Curriculum &rarr;</span>
+                  </a>
+                </div>
                 <div className="flex flex-wrap gap-2 pt-1.5">
                   {(Object.keys(AGE_TIER_INFO) as AgeTier[]).map(tierKey => {
                     const info = AGE_TIER_INFO[tierKey];

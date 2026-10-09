@@ -22,6 +22,11 @@ export function getSiteUrls(baseUrl: string = 'https://firstopenschool.com'): Si
     { loc: `${cleanBase}/`, lastmod: today, changefreq: 'daily', priority: 1.0 },
 
     // Primary Curriculum Hubs
+    { loc: `${cleanBase}/curriculum`, lastmod: today, changefreq: 'weekly', priority: 0.98 },
+    { loc: `${cleanBase}/curriculum/pre-k`, lastmod: today, changefreq: 'weekly', priority: 0.9 },
+    { loc: `${cleanBase}/curriculum/kindergarten`, lastmod: today, changefreq: 'weekly', priority: 0.9 },
+    { loc: `${cleanBase}/curriculum/grade-1-2`, lastmod: today, changefreq: 'weekly', priority: 0.9 },
+    { loc: `${cleanBase}/curriculum/k12-foundations`, lastmod: today, changefreq: 'weekly', priority: 0.9 },
     { loc: `${cleanBase}/alphabets`, lastmod: today, changefreq: 'weekly', priority: 0.95 },
     { loc: `${cleanBase}/digits`, lastmod: today, changefreq: 'weekly', priority: 0.95 },
     { loc: `${cleanBase}/encyclopedia`, lastmod: today, changefreq: 'daily', priority: 0.95 },

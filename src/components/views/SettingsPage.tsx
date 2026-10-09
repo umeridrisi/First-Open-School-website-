@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StudentProfile, ParentSettings, AgeTier, LMSExportData, ItemProgress } from '../../types';
-import { AGE_TIER_INFO, ALPHABET_DATA, DIGIT_DATA } from '../../data/curriculumData';
+import { AGE_TIER_INFO, ALPHABET_DATA, DIGIT_DATA, CURRICULUM_TIER_DETAILS } from '../../data/curriculumData';
 import { downloadCertificatePDF } from '../../utils/certificateGenerator';
 import { speakText, playSoundEffect } from '../../utils/sound';
 import { generateLocalPedagogicalInsights, PedagogicalInsightResult } from '../../utils/pedagogicalInsights';
@@ -298,6 +298,79 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
             );
           })}
         </div>
+
+        {/* Selected Tier Parent Explainer & Deep-Dive Link */}
+        {(() => {
+          const detail = CURRICULUM_TIER_DETAILS[student.ageTier];
+          if (!detail) return null;
+          return (
+            <div className="mt-4 p-5 bg-[#FFF9F0] rounded-2xl border-2 border-[#FFD93D] space-y-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">🧭</span>
+                  <div>
+                    <h3 className="text-sm font-black text-[#2D2D2D] uppercase tracking-wide">
+                      {detail.gradeLabel} Learning Blueprint &bull; {detail.tagline}
+                    </h3>
+                    <p className="text-xs text-gray-600 font-semibold">
+                      Cognitive Stage: {detail.cognitiveStage} &bull; Daily Target: {detail.dailyTargetMinutes}
+                    </p>
+                  </div>
+                </div>
+
+                <a
+                  href={`/curriculum/${student.ageTier}`}
+                  className="px-4 py-2 bg-[#FFD93D] hover:bg-yellow-400 text-[#2D2D2D] font-black text-xs uppercase tracking-wider rounded-xl border-2 border-[#2D2D2D] shadow-[0_3px_0_#000] active:translate-y-0.5 active:shadow-none transition-all flex items-center justify-center gap-1.5 self-start sm:self-auto no-underline whitespace-nowrap"
+                >
+                  <GraduationCap className="w-4 h-4" />
+                  <span>Curriculum Guide &amp; Upgrades &rarr;</span>
+                </a>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 pt-1 text-xs">
+                <div className="p-2.5 bg-white rounded-xl border border-amber-200">
+                  <div className="font-black text-[#4D96FF] flex items-center gap-1 mb-0.5">
+                    <span>🔤</span> Literacy
+                  </div>
+                  <div className="font-bold text-gray-700 text-[11px] leading-snug">
+                    {detail.subjects.alphabets.focusTitle}
+                  </div>
+                </div>
+
+                <div className="p-2.5 bg-white rounded-xl border border-amber-200">
+                  <div className="font-black text-[#6BCB77] flex items-center gap-1 mb-0.5">
+                    <span>🔢</span> Math
+                  </div>
+                  <div className="font-bold text-gray-700 text-[11px] leading-snug">
+                    {detail.subjects.digits.focusTitle}
+                  </div>
+                </div>
+
+                <div className="p-2.5 bg-white rounded-xl border border-amber-200">
+                  <div className="font-black text-purple-600 flex items-center gap-1 mb-0.5">
+                    <span>💻</span> Coding
+                  </div>
+                  <div className="font-bold text-gray-700 text-[11px] leading-snug">
+                    {detail.subjects.coding.focusTitle}
+                  </div>
+                </div>
+
+                <div className="p-2.5 bg-white rounded-xl border border-amber-200">
+                  <div className="font-black text-orange-600 flex items-center gap-1 mb-0.5">
+                    <span>🌍</span> Science
+                  </div>
+                  <div className="font-bold text-gray-700 text-[11px] leading-snug">
+                    {detail.subjects.encyclopedia.focusTitle}
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-xs text-amber-950 font-medium bg-amber-100/60 p-2.5 rounded-xl border border-amber-200/80 leading-relaxed">
+                <strong className="font-black">Open Platform Architecture:</strong> Although {detail.name} provides targeted milestones for this tier, all {26} alphabet letters, {21} numbers, coding studios, games, poems, and encyclopedias remain 100% open for free exploration anytime.
+              </p>
+            </div>
+          );
+        })()}
       </section>
 
       {/* Section 2: Student Profile (Name & Avatar) */}
