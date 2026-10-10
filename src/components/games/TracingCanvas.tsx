@@ -18,17 +18,58 @@ export const TracingCanvas: React.FC<TracingCanvasProps> = ({
   settings,
   onSaveProgress
 }) => {
-  const [targetType, setTargetType] = useState<'letter' | 'digit'>(
-    initialTarget && 'value' in initialTarget ? 'digit' : 'letter'
-  );
+  const [targetType, setTargetType] = useState<'letter' | 'digit'>(() => {
+    if (initialTarget) {
+      return 'value' in initialTarget ? 'digit' : 'letter';
+    }
+    try {
+      const savedType = localStorage.getItem(`first_open_last_tracing_type_${student.id}`);
+      if (savedType === 'digit' || savedType === 'letter') return savedType;
+    } catch {}
+    return 'letter';
+  });
   
-  const [selectedLetter, setSelectedLetter] = useState<LetterData>(
-    initialTarget && 'char' in initialTarget ? initialTarget : ALPHABET_DATA[0]
-  );
+  const [selectedLetter, setSelectedLetter] = useState<LetterData>(() => {
+    if (initialTarget && 'char' in initialTarget) return initialTarget;
+    try {
+      const savedTarget = localStorage.getItem(`first_open_last_tracing_letter_${student.id}`);
+      if (savedTarget) {
+        const found = ALPHABET_DATA.find(a => a.char === savedTarget);
+        if (found) return found;
+      }
+    } catch {}
+    // Pick first unmastered letter
+    const unmastered = ALPHABET_DATA.find(a => !student.progress[a.char]?.mastered);
+    return unmastered || ALPHABET_DATA[0];
+  });
 
-  const [selectedDigit, setSelectedDigit] = useState<DigitData>(
-    initialTarget && 'value' in initialTarget ? initialTarget : DIGIT_DATA[1]
-  );
+  const [selectedDigit, setSelectedDigit] = useState<DigitData>(() => {
+    if (initialTarget && 'value' in initialTarget) return initialTarget;
+    try {
+      const savedTarget = localStorage.getItem(`first_open_last_tracing_digit_${student.id}`);
+      if (savedTarget !== null) {
+        const val = parseInt(savedTarget, 10);
+        const found = DIGIT_DATA.find(d => d.value === val);
+        if (found) return found;
+      }
+    } catch {}
+    // Pick first unmastered digit based on curriculum
+    const startIdx = (student.ageTier === 'grade-1-2' || student.ageTier === 'k12-foundations') ? 11 : 1;
+    const unmastered = DIGIT_DATA.slice(startIdx).find(d => !student.progress[String(d.value)]?.mastered);
+    return unmastered || DIGIT_DATA[startIdx] || DIGIT_DATA[1];
+  });
+
+  // Persist tracing selections
+  useEffect(() => {
+    try {
+      localStorage.setItem(`first_open_last_tracing_type_${student.id}`, targetType);
+      if (targetType === 'letter') {
+        localStorage.setItem(`first_open_last_tracing_letter_${student.id}`, selectedLetter.char);
+      } else {
+        localStorage.setItem(`first_open_last_tracing_digit_${student.id}`, String(selectedDigit.value));
+      }
+    } catch {}
+  }, [targetType, selectedLetter, selectedDigit, student.id]);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);

@@ -26,11 +26,28 @@ export const AlphabetsExplorer: React.FC<AlphabetsExplorerProps> = ({
       const found = ALPHABET_DATA.find(a => a.char.toUpperCase() === initialLetterChar.toUpperCase());
       if (found) return found;
     }
+    try {
+      const saved = localStorage.getItem(`first_open_last_letter_${student.id}`);
+      if (saved) {
+        const found = ALPHABET_DATA.find(a => a.char === saved);
+        if (found) return found;
+      }
+    } catch {}
+    // Resume at next unmastered letter based on progress
+    const unmastered = ALPHABET_DATA.find(a => !student.progress[a.char]?.mastered);
+    if (unmastered) return unmastered;
     return ALPHABET_DATA[0];
   });
   const [showCase, setShowCase] = useState<'uppercase' | 'lowercase' | 'both'>('both');
   const [letterFilter, setLetterFilter] = useState<'all' | 'tier-recommended' | 'vowels' | 'consonants'>('all');
   const [showParentNote, setShowParentNote] = useState<boolean>(false);
+
+  // Persist last viewed letter
+  useEffect(() => {
+    try {
+      localStorage.setItem(`first_open_last_letter_${student.id}`, selectedLetter.char);
+    } catch {}
+  }, [selectedLetter, student.id]);
 
   const tierDetail = CURRICULUM_TIER_DETAILS[student.ageTier] || CURRICULUM_TIER_DETAILS['kindergarten'];
   const alphabetCurriculum = tierDetail.subjects.alphabets;

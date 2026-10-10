@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StudentProfile, ParentSettings } from '../../types';
-import { ALPHABET_DATA } from '../../data/curriculumData';
+import { ALPHABET_DATA, DIGIT_DATA } from '../../data/curriculumData';
 import { speakText, playSoundEffect } from '../../utils/sound';
 import confetti from 'canvas-confetti';
 import { Grid2X2, RefreshCw, Trophy, Sparkles } from 'lucide-react';
@@ -13,45 +13,70 @@ interface CardMatchGameProps {
 
 interface Card {
   id: number;
-  letter: string;
-  type: 'letter' | 'word';
-  content: string; // 'A' or 'Apple 🍎'
+  key: string;
+  type: 'symbol' | 'visual';
+  content: string; // 'A' or 'Apple 🍎' or '5' or 'Five 🍎🍎🍎'
   isFlipped: boolean;
   isMatched: boolean;
 }
 
 export const CardMatchGame: React.FC<CardMatchGameProps> = ({ student, settings, onAwardStars }) => {
+  const [matchMode, setMatchMode] = useState<'letters' | 'digits'>(
+    student.ageTier === 'grade-1-2' ? 'digits' : 'letters'
+  );
   const [cards, setCards] = useState<Card[]>([]);
   const [flippedCards, setFlippedCards] = useState<Card[]>([]);
   const [moves, setMoves] = useState<number>(0);
   const [matchesCount, setMatchesCount] = useState<number>(0);
 
-  const initGame = () => {
-    // Pick 4 random letters
-    const shuffledPool = [...ALPHABET_DATA].sort(() => Math.random() - 0.5).slice(0, 4);
-
+  const initGame = (mode: 'letters' | 'digits' = matchMode) => {
     const generatedCards: Card[] = [];
-    shuffledPool.forEach((item, idx) => {
-      // Letter card
-      generatedCards.push({
-        id: idx * 2,
-        letter: item.char,
-        type: 'letter',
-        content: item.char,
-        isFlipped: false,
-        isMatched: false,
-      });
 
-      // Word card
-      generatedCards.push({
-        id: idx * 2 + 1,
-        letter: item.char,
-        type: 'word',
-        content: `${item.exampleWord} ${item.emoji}`,
-        isFlipped: false,
-        isMatched: false,
+    if (mode === 'letters') {
+      const shuffledPool = [...ALPHABET_DATA].sort(() => Math.random() - 0.5).slice(0, 4);
+      shuffledPool.forEach((item, idx) => {
+        generatedCards.push({
+          id: idx * 2,
+          key: item.char,
+          type: 'symbol',
+          content: item.char,
+          isFlipped: false,
+          isMatched: false,
+        });
+        generatedCards.push({
+          id: idx * 2 + 1,
+          key: item.char,
+          type: 'visual',
+          content: `${item.exampleWord} ${item.emoji}`,
+          isFlipped: false,
+          isMatched: false,
+        });
       });
-    });
+      speakText("Flip cards to match letters with their phonics word pictures!", settings.voiceGuidance);
+    } else {
+      // Pick 4 digits based on curriculum
+      const pool = student.ageTier === 'grade-1-2' ? DIGIT_DATA.slice(10, 20) : DIGIT_DATA.slice(1, 10);
+      const shuffledPool = [...pool].sort(() => Math.random() - 0.5).slice(0, 4);
+      shuffledPool.forEach((item, idx) => {
+        generatedCards.push({
+          id: idx * 2,
+          key: String(item.value),
+          type: 'symbol',
+          content: String(item.value),
+          isFlipped: false,
+          isMatched: false,
+        });
+        generatedCards.push({
+          id: idx * 2 + 1,
+          key: String(item.value),
+          type: 'visual',
+          content: `${item.word} ${item.visualGroupEmoji}`,
+          isFlipped: false,
+          isMatched: false,
+        });
+      });
+      speakText("Flip cards to match numbers with their counting pictures!", settings.voiceGuidance);
+    }
 
     // Shuffle cards
     generatedCards.sort(() => Math.random() - 0.5);
@@ -60,13 +85,11 @@ export const CardMatchGame: React.FC<CardMatchGameProps> = ({ student, settings,
     setFlippedCards([]);
     setMoves(0);
     setMatchesCount(0);
-
-    speakText("Flip cards to match letters with their phonics word pictures!", settings.voiceGuidance);
   };
 
   useEffect(() => {
-    initGame();
-  }, []);
+    initGame(matchMode);
+  }, [matchMode]);
 
   const handleCardClick = (card: Card) => {
     if (card.isFlipped || card.isMatched || flippedCards.length >= 2) return;

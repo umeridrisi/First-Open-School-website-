@@ -61,6 +61,9 @@ export function parsePath(pathname: string = (typeof window !== 'undefined' && w
       return { tab: 'encyclopedia' };
 
     case 'coding':
+      if (second === 'languages') {
+        return { tab: 'coding', codingSubTab: 'languages' };
+      }
       if (second === 'sandbox') {
         return { tab: 'coding', codingSubTab: 'sandbox' };
       }
@@ -173,6 +176,9 @@ export function formatRouteUrl(route: AppRoute): string {
       return '/encyclopedia';
 
     case 'coding':
+      if (route.codingSubTab === 'languages') {
+        return '/coding/languages';
+      }
       if (route.codingSubTab === 'sandbox') {
         return '/coding/sandbox';
       }
@@ -261,12 +267,10 @@ export const ROUTE_CHANGE_EVENT = 'first_open_school_route_change';
 export function navigateTo(route: AppRoute | string, replace: boolean = false) {
   const targetUrl = typeof route === 'string' ? route : formatRouteUrl(route);
   
-  if (window.location.pathname !== targetUrl) {
-    if (replace) {
-      window.history.replaceState({ url: targetUrl }, '', targetUrl);
-    } else {
-      window.history.pushState({ url: targetUrl }, '', targetUrl);
-    }
-    window.dispatchEvent(new CustomEvent(ROUTE_CHANGE_EVENT, { detail: { url: targetUrl } }));
+  if (replace) {
+    window.history.replaceState({ url: targetUrl }, '', targetUrl);
+  } else {
+    window.history.pushState({ url: targetUrl }, '', targetUrl);
   }
+  window.dispatchEvent(new CustomEvent(ROUTE_CHANGE_EVENT, { detail: { url: targetUrl } }));
 }

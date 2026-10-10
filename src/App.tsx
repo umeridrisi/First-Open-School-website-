@@ -122,14 +122,31 @@ export default function App() {
       }
     };
 
+    const handleGlobalLinkClick = (e: MouseEvent) => {
+      const anchor = (e.target as HTMLElement)?.closest('a');
+      if (!anchor) return;
+      const href = anchor.getAttribute('href');
+      if (!href) return;
+      
+      // Only intercept local relative routes
+      if (href.startsWith('/') && !href.startsWith('//') && !anchor.hasAttribute('download') && anchor.getAttribute('target') !== '_blank') {
+        if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+          e.preventDefault();
+          navigateTo(href);
+        }
+      }
+    };
+
+    document.addEventListener('click', handleGlobalLinkClick);
     window.addEventListener('popstate', handleLocationChange);
     window.addEventListener(ROUTE_CHANGE_EVENT, handleLocationChange);
 
     return () => {
+      document.removeEventListener('click', handleGlobalLinkClick);
       window.removeEventListener('popstate', handleLocationChange);
       window.removeEventListener(ROUTE_CHANGE_EVENT, handleLocationChange);
     };
-  }, [currentRoute]);
+  }, []);
 
   // Save state to localStorage
   useEffect(() => {
@@ -293,7 +310,7 @@ export default function App() {
           <OverviewWorld
             student={student}
             settings={settings}
-            onNavigate={(tab) => navigateTo({ tab })}
+            onNavigate={(tab, params) => navigateTo(typeof params === 'object' ? { tab, ...params } : { tab })}
           />
         )}
 
@@ -303,7 +320,7 @@ export default function App() {
             settings={settings}
             initialTier={currentRoute.curriculumTier}
             onUpdateStudentTier={handleUpdateStudentTier}
-            onNavigateTab={(tab) => navigateTo({ tab })}
+            onNavigateTab={(tab, params) => navigateTo(typeof params === 'object' ? { tab, ...params } : { tab })}
           />
         )}
 

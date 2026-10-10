@@ -351,17 +351,6 @@ export interface CsConcept {
   };
 }
 
-export interface UpcomingRoadmapModule {
-  id: string;
-  title: string;
-  emoji: string;
-  status: 'In Development' | 'Next Release' | 'Planned Upgrade' | 'In Research';
-  badgeColor: string;
-  description: string;
-  targetSkills: string[];
-  cognitiveBenefit: string;
-}
-
 export interface SubjectCurriculumBreakdown {
   subjectId: string;
   title: string;
@@ -390,5 +379,4 @@ export interface CurriculumTierDetail {
   coreMilestones: string[];
   subjects: Record<string, SubjectCurriculumBreakdown>;
   parentGuideTips: string[];
-  upcomingRoadmap: UpcomingRoadmapModule[];
 }

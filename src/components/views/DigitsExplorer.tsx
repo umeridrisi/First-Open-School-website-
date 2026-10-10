@@ -26,11 +26,30 @@ export const DigitsExplorer: React.FC<DigitsExplorerProps> = ({
       const found = DIGIT_DATA.find(d => d.value === initialDigitValue);
       if (found) return found;
     }
-    return DIGIT_DATA[1]; // Default to 1
+    try {
+      const saved = localStorage.getItem(`first_open_last_digit_${student.id}`);
+      if (saved !== null) {
+        const val = parseInt(saved, 10);
+        const found = DIGIT_DATA.find(d => d.value === val);
+        if (found) return found;
+      }
+    } catch {}
+    // Curriculum milestone start: Grade 1-2 focuses on teen numbers 11-20
+    const startIndex = (student.ageTier === 'grade-1-2' || student.ageTier === 'k12-foundations') ? 11 : 1;
+    const unmastered = DIGIT_DATA.slice(startIndex).find(d => !student.progress[String(d.value)]?.mastered);
+    if (unmastered) return unmastered;
+    return DIGIT_DATA[startIndex] || DIGIT_DATA[1];
   });
   const [tappedCount, setTappedCount] = useState<number>(0);
   const [digitFilter, setDigitFilter] = useState<'all' | 'tier-recommended' | 'first-ten' | 'teens'>('all');
   const [showParentNote, setShowParentNote] = useState<boolean>(false);
+
+  // Persist last viewed digit
+  useEffect(() => {
+    try {
+      localStorage.setItem(`first_open_last_digit_${student.id}`, String(selectedDigit.value));
+    } catch {}
+  }, [selectedDigit, student.id]);
 
   const tierDetail = CURRICULUM_TIER_DETAILS[student.ageTier] || CURRICULUM_TIER_DETAILS['kindergarten'];
   const mathCurriculum = tierDetail.subjects.digits;

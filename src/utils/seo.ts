@@ -111,7 +111,7 @@ export function getSeoMetadata(route: AppRoute): SeoMetadata {
       const pageTitle = tierKey 
         ? `${tierTitle} Curriculum Guide & Learning Outcomes | First Open School`
         : 'Open Early Education Curriculums & Parent Guide | First Open School';
-      const pageDesc = 'Discover First Open School\'s research-backed open curriculum framework. 100% accessible to every child across Pre-K, Kindergarten, Grades 1-2, and Elementary Mastery with roadmap of upcoming modules and upgrades.';
+      const pageDesc = 'Discover First Open School\'s research-backed open curriculum framework. 100% accessible to every child across Pre-K, Kindergarten, Grades 1-2, and Elementary Mastery with dedicated active learning studios.';
       
       return {
         title: pageTitle,

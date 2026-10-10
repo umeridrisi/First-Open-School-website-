@@ -145,38 +145,6 @@ export const CURRICULUM_TIER_DETAILS: Record<AgeTier, CurriculumTierDetail> = {
       'Keep sessions between 5 to 12 minutes to nurture focus without sensory fatigue.',
       'Use the freeform Drawing Studio alongside letter tracing to let them experiment with colors.',
       'Remember all higher tiers remain open: feel free to preview Kindergarten counting whenever your child is curious!'
-    ],
-    upcomingRoadmap: [
-      {
-        id: 'road_prek_1',
-        title: 'Baby Animal Phonics Soundboard',
-        emoji: '🐾',
-        status: 'Next Release',
-        badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
-        description: 'Interactive soundboard with real animal sounds linked to their starting alphabet letters for sensory pairing.',
-        targetSkills: ['Auditory Discrimination', 'Letter-Sound Association'],
-        cognitiveBenefit: 'Accelerates auditory cortex tuning to distinct phoneme variations.'
-      },
-      {
-        id: 'road_prek_2',
-        title: 'Tactile Finger-Stroke Tracing Canvas',
-        emoji: '👆',
-        status: 'In Development',
-        badgeColor: 'bg-sky-100 text-sky-800 border-sky-300',
-        description: 'Smoother capacitive touch tracing paths with glowing star particle trails that follow little fingers.',
-        targetSkills: ['Pincer Grasp Habituation', 'Visual Tracking'],
-        cognitiveBenefit: 'Reinforces motor memory loops for letter formation.'
-      },
-      {
-        id: 'road_prek_3',
-        title: 'Color & Shape Sorting Bakery',
-        emoji: '🧁',
-        status: 'Planned Upgrade',
-        badgeColor: 'bg-amber-100 text-amber-800 border-amber-300',
-        description: 'Sort cute cupcakes by geometric frosting shapes (circles, squares, triangles) and vibrant icing colors.',
-        targetSkills: ['Attribute Categorization', 'Early Geometry'],
-        cognitiveBenefit: 'Establishes pre-math classification heuristics.'
-      }
     ]
   },
 
@@ -277,38 +245,6 @@ export const CURRICULUM_TIER_DETAILS: Record<AgeTier, CurriculumTierDetail> = {
       'Celebrate when they find code shortcuts using "Repeat 2x" in the Coding Studio quests.',
       'Use the Phonics Stories module at bedtime for shared reading and word spotting.',
       'Check the Parental Dashboard weekly to see which letters have been practiced most frequently.'
-    ],
-    upcomingRoadmap: [
-      {
-        id: 'road_k_1',
-        title: 'CVC Phonics Word Blender',
-        emoji: '🔤',
-        status: 'Next Release',
-        badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
-        description: 'Drag 3 phoneme cubes (Consonant + Vowel + Consonant like C-A-T) to build and hear sounding-out blending.',
-        targetSkills: ['Phoneme Blending', 'Orthographic Mapping'],
-        cognitiveBenefit: 'Translates individual letter sounds into real fluent word decoding.'
-      },
-      {
-        id: 'road_k_2',
-        title: 'Monster Feast 10-Frame Addition',
-        emoji: '🍱',
-        status: 'In Development',
-        badgeColor: 'bg-sky-100 text-sky-800 border-sky-300',
-        description: 'Interactive 10-frame visual grid where children feed two different snack colors to see 4 + 6 = 10 visually.',
-        targetSkills: ['Number Bonds to 10', 'Early Addition Operations'],
-        cognitiveBenefit: 'Anchors mental arithmetic in visual Singapore-math ten-frame models.'
-      },
-      {
-        id: 'road_k_3',
-        title: 'Robo-Pet Maze Maker Sandbox',
-        emoji: '🤖',
-        status: 'Planned Upgrade',
-        badgeColor: 'bg-amber-100 text-amber-800 border-amber-300',
-        description: 'Kids design their own customized maze walls, place treats, and program cute pets to navigate their creations.',
-        targetSkills: ['Spatial Design', 'Algorithmic Problem Formulation'],
-        cognitiveBenefit: 'Transitions learners from consumers of puzzles into creators and problem authors.'
-      }
     ]
   },
 
@@ -409,38 +345,6 @@ export const CURRICULUM_TIER_DETAILS: Record<AgeTier, CurriculumTierDetail> = {
       'Look at the math tips on digits 11-20 to discuss how 12 equals a full dozen or 14 equals two full weeks.',
       'Download and print the official Certificate of Mastery PDF when they complete their milestones.',
       'Allow them to freely explore the Turtle Drawing Studio to see how math angles create stars and spirals.'
-    ],
-    upcomingRoadmap: [
-      {
-        id: 'road_j_1',
-        title: 'Interactive Story Writer Studio',
-        emoji: '📖',
-        status: 'Next Release',
-        badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
-        description: 'Choose characters, settings, and plot twists with drag-and-drop story grammar blocks to publish illustrated mini-books.',
-        targetSkills: ['Narrative Construction', 'Writing Mechanics', 'Reading Fluency'],
-        cognitiveBenefit: 'Connects passive reading into active creative authorship and literacy synthesis.'
-      },
-      {
-        id: 'road_j_2',
-        title: 'Fraction Pizza & Pie Bakery',
-        emoji: '🍕',
-        status: 'In Development',
-        badgeColor: 'bg-sky-100 text-sky-800 border-sky-300',
-        description: 'Slice visual pizzas into halves, thirds, fourths, and eighths to fulfill hungry monster customer orders.',
-        targetSkills: ['Equal Sharing', 'Fraction Denominators', 'Part-Whole Concepts'],
-        cognitiveBenefit: 'Prevents future fraction anxiety through intuitive proportional visual models.'
-      },
-      {
-        id: 'road_j_3',
-        title: 'Block-to-Python Logic Bridge',
-        emoji: '🐍',
-        status: 'Planned Upgrade',
-        badgeColor: 'bg-amber-100 text-amber-800 border-amber-300',
-        description: 'Toggle between visual drag-and-drop coding blocks and real clean Python code syntax side-by-side.',
-        targetSkills: ['Text Syntax Comprehension', 'Computational Fluency'],
-        cognitiveBenefit: 'Smoothly scaffolds young coders from visual blocks into real-world software engineering.'
-      }
     ]
   },
 
@@ -541,38 +445,6 @@ export const CURRICULUM_TIER_DETAILS: Record<AgeTier, CurriculumTierDetail> = {
       'Challenge them to create geometric rosettes and polygons using the Turtle Drawing Studio repeat loops.',
       'Use the Local Developmental Insights tool in Settings to identify strengths across literacy and numeracy.',
       'Remember that all curriculum levels remain open: reviewing foundational concepts is always accessible and encouraged!'
-    ],
-    upcomingRoadmap: [
-      {
-        id: 'road_k12_1',
-        title: 'Live JavaScript & Python Code Runner',
-        emoji: '💻',
-        status: 'Next Release',
-        badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
-        description: 'An in-browser code editor where older kids can type text code to draw shapes, build calculators, and solve logic puzzles.',
-        targetSkills: ['Text Syntax', 'Debugging', 'Algorithmic Problem Solving'],
-        cognitiveBenefit: 'Empowers students with genuine software programming skills recognized in real-world computer science.'
-      },
-      {
-        id: 'road_k12_2',
-        title: 'Young Scientist Virtual Simulation Lab',
-        emoji: '🔬',
-        status: 'In Development',
-        badgeColor: 'bg-sky-100 text-sky-800 border-sky-300',
-        description: 'Interactive browser physics & chemistry simulations (gravity sliders, pendulum swings, light prism bending).',
-        targetSkills: ['Empirical Investigation', 'Scientific Method', 'Variables & Constants'],
-        cognitiveBenefit: 'Develops intuitive physics understanding through interactive parameter manipulation.'
-      },
-      {
-        id: 'road_k12_3',
-        title: 'Typing Hero Keyboard Speed Quest',
-        emoji: '⌨️',
-        status: 'Planned Upgrade',
-        badgeColor: 'bg-amber-100 text-amber-800 border-amber-300',
-        description: 'Gamified touch-typing trainer with home-row finger placement mechanics, accuracy meters, and speed races.',
-        targetSkills: ['Touch Typing Fluency', 'Ergonomic Keyboard Habits'],
-        cognitiveBenefit: 'Removes the mechanical keyboard bottleneck so children can write and code at the speed of thought.'
-      }
     ]
   }
 };

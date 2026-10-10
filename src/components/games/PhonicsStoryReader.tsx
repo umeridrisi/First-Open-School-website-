@@ -29,14 +29,34 @@ export const PhonicsStoryReader: React.FC<PhonicsStoryReaderProps> = ({
   settings, 
   onAwardStars 
 }) => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [currentStoryId, setCurrentStoryId] = useState<string>(STORIES_COLLECTION[0].id || 'story-001');
+  const [selectedCategory, setSelectedCategory] = useState<string>(() => {
+    try {
+      const saved = localStorage.getItem(`first_open_last_story_cat_${student.id}`);
+      if (saved) return saved;
+    } catch {}
+    return 'all';
+  });
+  const [currentStoryId, setCurrentStoryId] = useState<string>(() => {
+    try {
+      const saved = localStorage.getItem(`first_open_last_story_id_${student.id}`);
+      if (saved && STORIES_COLLECTION.some(s => s.id === saved)) return saved;
+    } catch {}
+    return STORIES_COLLECTION[0].id || 'story-001';
+  });
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [sessionCompletedCount, setSessionCompletedCount] = useState<number>(0);
   const [sessionStarsEarned, setSessionStarsEarned] = useState<number>(0);
   const loadingTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Persist story progress
+  useEffect(() => {
+    try {
+      localStorage.setItem(`first_open_last_story_cat_${student.id}`, selectedCategory);
+      localStorage.setItem(`first_open_last_story_id_${student.id}`, currentStoryId);
+    } catch {}
+  }, [selectedCategory, currentStoryId, student.id]);
 
   // Available stories filtered by category
   const filteredStories = useMemo(() => {

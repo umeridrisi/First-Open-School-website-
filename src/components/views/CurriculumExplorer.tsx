@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AgeTier, StudentProfile, ParentSettings, SubjectCurriculumBreakdown } from '../../types';
-import { CURRICULUM_TIER_DETAILS, AGE_TIER_INFO } from '../../data/curriculumData';
+import { CURRICULUM_TIER_DETAILS, AGE_TIER_INFO, ALPHABET_DATA } from '../../data/curriculumData';
 import { speakText, playSoundEffect } from '../../utils/sound';
 import { navigateTo } from '../../utils/router';
 import { 
@@ -78,6 +78,114 @@ export const CurriculumExplorer: React.FC<CurriculumExplorerProps> = ({
   };
 
   const TIERS: AgeTier[] = ['pre-k', 'kindergarten', 'grade-1-2', 'k12-foundations'];
+
+  const handleOpenSubject = (subj: SubjectCurriculumBreakdown) => {
+    playSoundEffect('click', settings.soundEffects);
+    
+    if (subj.subjectId === 'alphabets') {
+      try {
+        const saved = localStorage.getItem(`first_open_last_letter_${student.id}`);
+        if (saved) {
+          onNavigateTab('alphabets', { letter: saved });
+          return;
+        }
+      } catch {}
+      const unmastered = ALPHABET_DATA.find(a => !student.progress[a.char]?.mastered);
+      onNavigateTab('alphabets', { letter: unmastered?.char || 'A' });
+      return;
+    }
+
+    if (subj.subjectId === 'digits') {
+      try {
+        const saved = localStorage.getItem(`first_open_last_digit_${student.id}`);
+        if (saved !== null) {
+          onNavigateTab('digits', { digit: parseInt(saved, 10) });
+          return;
+        }
+      } catch {}
+      const digitMap: Record<AgeTier, number> = {
+        'pre-k': 1,
+        'kindergarten': 5,
+        'grade-1-2': 11,
+        'k12-foundations': 15
+      };
+      onNavigateTab('digits', { digit: digitMap[tierDetail.tier] || 1 });
+      return;
+    }
+
+    if (subj.subjectId === 'coding') {
+      try {
+        const savedSub = localStorage.getItem(`first_open_coding_subtab_${student.id}`);
+        const savedMission = localStorage.getItem(`first_open_last_coding_mission_${student.id}`);
+        onNavigateTab('coding', { 
+          codingTier: tierDetail.tier,
+          codingSubTab: savedSub || (tierDetail.tier === 'k12-foundations' ? 'languages' : 'quests'),
+          missionId: savedMission || undefined
+        });
+        return;
+      } catch {}
+      onNavigateTab('coding', { codingTier: tierDetail.tier });
+      return;
+    }
+
+    if (subj.subjectId === 'encyclopedia') {
+      try {
+        const savedEntry = localStorage.getItem(`first_open_encyclopedia_entry_${student.id}`);
+        const savedCat = localStorage.getItem(`first_open_encyclopedia_cat_${student.id}`);
+        if (savedEntry && savedCat) {
+          onNavigateTab('encyclopedia', { category: savedCat, entryId: savedEntry });
+          return;
+        }
+      } catch {}
+      const catMap: Record<AgeTier, { cat: string; entry: string }> = {
+        'pre-k': { cat: 'animals-dinosaurs', entry: 'blue-whale' },
+        'kindergarten': { cat: 'solar-system', entry: 'earth' },
+        'grade-1-2': { cat: 'earth-elements', entry: 'volcano' },
+        'k12-foundations': { cat: 'technology', entry: 'computer' }
+      };
+      const def = catMap[tierDetail.tier] || catMap['kindergarten'];
+      onNavigateTab('encyclopedia', { category: def.cat, entryId: def.entry });
+      return;
+    }
+
+    if (subj.subjectId === 'poems') {
+      try {
+        const savedPoem = localStorage.getItem(`first_open_last_poem_${student.id}`);
+        if (savedPoem) {
+          onNavigateTab('poems', { poemId: savedPoem });
+          return;
+        }
+      } catch {}
+      const poemMap: Record<AgeTier, string> = {
+        'pre-k': 'twinkle-twinkle-little-star',
+        'kindergarten': 'mary-had-a-little-lamb',
+        'grade-1-2': 'the-wind',
+        'k12-foundations': 'stopping-by-woods'
+      };
+      onNavigateTab('poems', { poemId: poemMap[tierDetail.tier] });
+      return;
+    }
+
+    if (subj.subjectId === 'drawings') {
+      try {
+        const savedDrawing = localStorage.getItem(`first_open_last_drawing_${student.id}`);
+        if (savedDrawing) {
+          onNavigateTab('drawings', { drawingTemplateId: savedDrawing });
+          return;
+        }
+      } catch {}
+      const drawCat: Record<AgeTier, string> = {
+        'pre-k': 'animals',
+        'kindergarten': 'animals',
+        'grade-1-2': 'vehicles-space',
+        'k12-foundations': 'vehicles-space'
+      };
+      onNavigateTab('drawings', { drawingCategory: drawCat[tierDetail.tier] });
+      return;
+    }
+
+    onNavigateTab(subj.linkTab);
+  };
 
   const subjectEntries: SubjectCurriculumBreakdown[] = Object.values(tierDetail.subjects) as SubjectCurriculumBreakdown[];
   const filteredSubjects = activeSubjectTab === 'all' 
@@ -426,10 +534,7 @@ export const CurriculumExplorer: React.FC<CurriculumExplorerProps> = ({
 
                 {/* Direct Action Button to Subject */}
                 <button
-                  onClick={() => {
-                    playSoundEffect('click', settings.soundEffects);
-                    onNavigateTab(subj.linkTab);
-                  }}
+                  onClick={() => handleOpenSubject(subj)}
                   className="w-full py-2.5 bg-[#FFF9F0] hover:bg-[#FFD93D] text-[#2D2D2D] font-black text-xs uppercase tracking-tight rounded-xl border-2 border-[#2D2D2D] shadow-[0_3px_0_#000] active:translate-y-0.5 active:shadow-none transition-all flex items-center justify-center gap-1.5 cursor-pointer"
                 >
                   <span>Open {subj.title}</span>
@@ -460,93 +565,175 @@ export const CurriculumExplorer: React.FC<CurriculumExplorerProps> = ({
           </div>
         </div>
 
-        {/* FUTURE ROADMAP: UPCOMING MODULES & PLATFORM UPGRADES */}
+        {/* ACTIVE HANDS-ON LEARNING STUDIOS (DEDICATED FOR THIS TIER) */}
         <div className="space-y-4 pt-4 border-t-3 border-gray-100">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
-              <div className="inline-flex items-center space-x-1.5 px-3 py-0.5 rounded-full bg-purple-100 text-purple-900 text-xs font-black uppercase tracking-wider mb-1">
-                <Rocket className="w-3.5 h-3.5" />
-                <span>UPCOMING UPGRADES &bull; ONGOING INNOVATION</span>
+              <div className="inline-flex items-center space-x-1.5 px-3 py-0.5 rounded-full bg-emerald-100 text-emerald-900 text-xs font-black uppercase tracking-wider mb-1">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                <span>ACTIVE LEARNING STUDIOS &bull; AVAILABLE NOW</span>
               </div>
               <h3 className="text-xl font-black text-[#2D2D2D] tracking-tight">
-                Upcoming Modules Roadmap for {tierDetail.name}
+                Featured Learning Studios for {tierDetail.name}
               </h3>
             </div>
             <span className="text-xs font-bold text-gray-500">
-              Continuously expanded based on child learning analytics
+              100% Free &bull; Open Access &bull; Ad-Free Learning
             </span>
           </div>
 
           <p className="text-xs sm:text-sm text-gray-600 font-medium">
-            We are actively designing new hands-on modules and platform upgrades to enrich this curriculum level. Here is what is in progress for this tier:
+            Explore the dedicated, fully developed interactive studios tailored for this curriculum stage:
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {tierDetail.upcomingRoadmap.map((road) => (
-              <div
-                key={road.id}
-                className="bg-white rounded-[24px] p-5 border-3 border-purple-300 shadow-[0_4px_0_#9333EA] space-y-3 flex flex-col justify-between"
-              >
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-3xl">{road.emoji}</span>
-                    <span className={`text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${road.badgeColor}`}>
-                      {road.status}
-                    </span>
-                  </div>
-                  <h4 className="font-black text-base text-[#2D2D2D]">
-                    {road.title}
-                  </h4>
-                  <p className="text-xs text-gray-600 font-semibold leading-relaxed">
-                    {road.description}
-                  </p>
-                </div>
-
-                <div className="pt-2 border-t border-purple-100 space-y-1">
-                  <span className="text-[10px] font-black uppercase text-purple-600 tracking-wider">
-                    Cognitive Benefit:
+            {/* Studio 1 */}
+            <div className="bg-white rounded-[24px] p-5 border-3 border-sky-300 shadow-[0_4px_0_#0284C7] space-y-3 flex flex-col justify-between">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-3xl">
+                    {tierDetail.tier === 'pre-k' ? '🐾' : tierDetail.tier === 'kindergarten' ? '🔤' : tierDetail.tier === 'grade-1-2' ? '📖' : '🌐'}
                   </span>
-                  <p className="text-[11px] text-gray-700 font-medium">
-                    {road.cognitiveBenefit}
-                  </p>
-                  <div className="flex flex-wrap gap-1 pt-1">
-                    {road.targetSkills.map((sk, i) => (
-                      <span key={i} className="text-[10px] font-bold bg-purple-50 text-purple-800 px-1.5 py-0.5 rounded border border-purple-200">
-                        {sk}
-                      </span>
-                    ))}
-                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-sky-100 text-sky-800 border border-sky-300">
+                    Active Studio
+                  </span>
                 </div>
+                <h4 className="font-black text-base text-[#2D2D2D]">
+                  {tierDetail.tier === 'pre-k' && 'Phonics Sounds & Audio Soundboard'}
+                  {tierDetail.tier === 'kindergarten' && 'Story World (110+ Phonics Stories)'}
+                  {tierDetail.tier === 'grade-1-2' && 'Poetry & Recital Studio'}
+                  {tierDetail.tier === 'k12-foundations' && 'Multi-Language Coding Academy'}
+                </h4>
+                <p className="text-xs text-gray-600 font-semibold leading-relaxed">
+                  {tierDetail.tier === 'pre-k' && 'High-contrast tactile letter cards with real-time audio phonemes and friendly animal cues.'}
+                  {tierDetail.tier === 'kindergarten' && '110+ decodable one-line stories with interactive word-by-word pronunciation.'}
+                  {tierDetail.tier === 'grade-1-2' && 'Stanza-by-stanza audio recitals, rhyme scheme analysis, and expressive vocabulary.'}
+                  {tierDetail.tier === 'k12-foundations' && 'Live in-browser playgrounds for HTML, CSS, JavaScript, Python, C++, C#, SQL, and Scratch.'}
+                </p>
               </div>
-            ))}
+
+              <button
+                onClick={() => {
+                  playSoundEffect('click', settings.soundEffects);
+                  if (tierDetail.tier === 'pre-k') {
+                    const saved = localStorage.getItem(`first_open_last_letter_${student.id}`);
+                    const unmastered = ALPHABET_DATA.find(a => !student.progress[a.char]?.mastered);
+                    onNavigateTab('alphabets', { letter: saved || unmastered?.char || 'A' });
+                  }
+                  else if (tierDetail.tier === 'kindergarten') onNavigateTab('phonics-stories');
+                  else if (tierDetail.tier === 'grade-1-2') {
+                    const saved = localStorage.getItem(`first_open_last_poem_${student.id}`);
+                    onNavigateTab('poems', { poemId: saved || 'the-wind' });
+                  }
+                  else onNavigateTab('coding', { codingTier: 'k12-foundations', codingSubTab: 'languages' });
+                }}
+                className="w-full py-2.5 bg-sky-500 hover:bg-sky-600 text-white font-black text-xs uppercase tracking-tight rounded-xl border-2 border-[#2D2D2D] shadow-[0_3px_0_#000] active:translate-y-0.5 active:shadow-none transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+              >
+                <span>Launch Studio &rarr;</span>
+              </button>
+            </div>
+
+            {/* Studio 2 */}
+            <div className="bg-white rounded-[24px] p-5 border-3 border-emerald-300 shadow-[0_4px_0_#059669] space-y-3 flex flex-col justify-between">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-3xl">
+                    {tierDetail.tier === 'pre-k' ? '👆' : tierDetail.tier === 'kindergarten' ? '🍱' : tierDetail.tier === 'grade-1-2' ? '💻' : '📚'}
+                  </span>
+                  <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
+                    Active Studio
+                  </span>
+                </div>
+                <h4 className="font-black text-base text-[#2D2D2D]">
+                  {tierDetail.tier === 'pre-k' && 'Guided Tracing Canvas'}
+                  {tierDetail.tier === 'kindergarten' && 'Monster Feast Counting Math'}
+                  {tierDetail.tier === 'grade-1-2' && 'Learn Coding Studio (Conditionals)'}
+                  {tierDetail.tier === 'k12-foundations' && 'Encyclopedic Science Inquiries'}
+                </h4>
+                <p className="text-xs text-gray-600 font-semibold leading-relaxed">
+                  {tierDetail.tier === 'pre-k' && 'Smooth finger-stroke paths with directional guide points and accuracy celebration.'}
+                  {tierDetail.tier === 'kindergarten' && 'Interactive monster feeding connecting numeral quantities to tangible visual groups.'}
+                  {tierDetail.tier === 'grade-1-2' && 'Key-vault puzzle mazes, conditionals, and web HTML/CSS building tags.'}
+                  {tierDetail.tier === 'k12-foundations' && 'Over 250 deep knowledge articles covering technology, astronomy, and nature.'}
+                </p>
+              </div>
+
+              <button
+                onClick={() => {
+                  playSoundEffect('click', settings.soundEffects);
+                  if (tierDetail.tier === 'pre-k') {
+                    const saved = localStorage.getItem(`first_open_last_tracing_letter_${student.id}`);
+                    onNavigateTab('tracing', { tracingTarget: saved || 'A' });
+                  }
+                  else if (tierDetail.tier === 'kindergarten') onNavigateTab('counting-feast');
+                  else if (tierDetail.tier === 'grade-1-2') onNavigateTab('coding', { codingTier: 'grade-1-2' });
+                  else onNavigateTab('encyclopedia', { category: 'technology', entryId: 'computer' });
+                }}
+                className="w-full py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-black text-xs uppercase tracking-tight rounded-xl border-2 border-[#2D2D2D] shadow-[0_3px_0_#000] active:translate-y-0.5 active:shadow-none transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+              >
+                <span>Launch Studio &rarr;</span>
+              </button>
+            </div>
+
+            {/* Studio 3 */}
+            <div className="bg-white rounded-[24px] p-5 border-3 border-amber-300 shadow-[0_4px_0_#D97706] space-y-3 flex flex-col justify-between">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-3xl">
+                    {tierDetail.tier === 'pre-k' ? '🧁' : tierDetail.tier === 'kindergarten' ? '🤖' : tierDetail.tier === 'grade-1-2' ? '🏆' : '🎨'}
+                  </span>
+                  <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300">
+                    Active Studio
+                  </span>
+                </div>
+                <h4 className="font-black text-base text-[#2D2D2D]">
+                  {tierDetail.tier === 'pre-k' && 'Bubble Pop & Sensory Games'}
+                  {tierDetail.tier === 'kindergarten' && 'Coding Studio (Repeat Loops)'}
+                  {tierDetail.tier === 'grade-1-2' && 'Star Assessment Quizzes'}
+                  {tierDetail.tier === 'k12-foundations' && 'Vector Drawing & Art Studio'}
+                </h4>
+                <p className="text-xs text-gray-600 font-semibold leading-relaxed">
+                  {tierDetail.tier === 'pre-k' && 'Joyful bubble popping matching spoken letters and numbers with instant feedback.'}
+                  {tierDetail.tier === 'kindergarten' && 'Pattern-based repeat blocks guiding cyber-pets through garden mazes.'}
+                  {tierDetail.tier === 'grade-1-2' && 'Gamified speed assessments testing vocabulary, math, and reading retention.'}
+                  {tierDetail.tier === 'k12-foundations' && 'Creative freehand canvas, perspective vector outlines, and printable sheets.'}
+                </p>
+              </div>
+
+              <button
+                onClick={() => {
+                  playSoundEffect('click', settings.soundEffects);
+                  if (tierDetail.tier === 'pre-k') onNavigateTab('bubble-pop');
+                  else if (tierDetail.tier === 'kindergarten') onNavigateTab('coding', { codingTier: 'kindergarten' });
+                  else if (tierDetail.tier === 'grade-1-2') onNavigateTab('assessment');
+                  else onNavigateTab('drawings');
+                }}
+                className="w-full py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-black text-xs uppercase tracking-tight rounded-xl border-2 border-[#2D2D2D] shadow-[0_3px_0_#000] active:translate-y-0.5 active:shadow-none transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+              >
+                <span>Launch Studio &rarr;</span>
+              </button>
+            </div>
           </div>
 
-          {/* Parent Feedback & Suggestion Box */}
-          <div className="bg-gradient-to-r from-purple-50 to-indigo-50 p-5 rounded-[24px] border-2 border-purple-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+          {/* Reassuring Educator Support Banner */}
+          <div className="bg-gradient-to-r from-emerald-50 to-teal-50 p-5 rounded-[24px] border-2 border-emerald-200 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="space-y-1 text-center sm:text-left">
-              <h5 className="font-black text-sm text-[#2D2D2D]">
-                Have an idea for a learning game or subject module?
+              <h5 className="font-black text-sm text-[#2D2D2D] flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                <span>Open Early Learning Framework</span>
               </h5>
               <p className="text-xs text-gray-600 font-medium">
-                Our educational platform is built for students, teachers, and parents. Let us know what features your child needs next!
+                All 26 alphabet letters, 21 digit modules, coding studio levels, and encyclopedic entries are open for child exploration at any time.
               </p>
-              {suggestionSuccess && (
-                <div className="text-xs font-black text-emerald-700 bg-emerald-100 px-3 py-1.5 rounded-xl border border-emerald-300 inline-flex items-center gap-1.5 animate-in fade-in mt-1">
-                  <Check className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Thank you! Your suggestion has been added to our development roadmap!</span>
-                </div>
-              )}
             </div>
             <button
               onClick={() => {
-                playSoundEffect('star', settings.soundEffects);
-                setSuggestionSuccess(true);
-                speakText("Thank you! Your module request has been submitted to the platform development team.", settings.voiceGuidance);
-                setTimeout(() => setSuggestionSuccess(false), 5000);
+                playSoundEffect('click', settings.soundEffects);
+                onNavigateTab('overview');
               }}
-              className="px-5 py-2.5 bg-[#8B5CF6] hover:bg-purple-700 text-white font-black text-xs uppercase tracking-wider rounded-xl border-2 border-[#2D2D2D] shadow-[0_3px_0_#000] active:translate-y-0.5 active:shadow-none transition-all cursor-pointer whitespace-nowrap shrink-0"
+              className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs uppercase tracking-wider rounded-xl border-2 border-[#2D2D2D] shadow-[0_3px_0_#000] active:translate-y-0.5 active:shadow-none transition-all cursor-pointer whitespace-nowrap shrink-0"
             >
-              {suggestionSuccess ? 'Request Received ✓' : 'Request Module Upgrade'}
+              Explore Home World &rarr;
             </button>
           </div>
 

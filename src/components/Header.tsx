@@ -191,7 +191,7 @@ export const Header: React.FC<HeaderProps> = ({
               }
             }}
             className="flex items-center space-x-1.5 px-3 py-2 rounded-2xl border-2 bg-[#FFF9F0] hover:bg-[#FFD93D] text-[#2D2D2D] border-[#2D2D2D] shadow-[0_4px_0_#000] active:translate-y-1 active:shadow-none transition-all cursor-pointer group no-underline"
-            title="Explore Curriculums, Grade Pathways & Platform Upgrades Roadmap"
+            title="Explore Curriculums, Grade Pathways & Learning Stages"
           >
             <GraduationCap className="w-5 h-5 text-[#4D96FF] group-hover:scale-110 transition-transform" />
             <span className="hidden md:inline text-xs font-black uppercase tracking-wider">

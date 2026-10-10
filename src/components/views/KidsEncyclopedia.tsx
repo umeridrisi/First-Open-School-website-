@@ -45,12 +45,23 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
   const [showParentNote, setShowParentNote] = useState<boolean>(false);
   const tierDetail = CURRICULUM_TIER_DETAILS[student.ageTier] || CURRICULUM_TIER_DETAILS['kindergarten'];
   const encCurriculum = tierDetail.subjects.encyclopedia;
+
+  // Selected Category filter with curriculum-aware defaults
   const [selectedCategory, setSelectedCategory] = useState<EncyclopediaCategory | 'all'>(() => {
     if (initialCategory) {
       const isValid = ENCYCLOPEDIA_CATEGORIES.some(c => c.id === initialCategory);
       if (isValid) return initialCategory as EncyclopediaCategory;
     }
-    return 'alphabets';
+    try {
+      const saved = localStorage.getItem(`first_open_encyclopedia_cat_${student.id}`);
+      if (saved && (saved === 'all' || ENCYCLOPEDIA_CATEGORIES.some(c => c.id === saved))) {
+        return saved as any;
+      }
+    } catch {}
+    if (student.ageTier === 'kindergarten') return 'solar-system';
+    if (student.ageTier === 'grade-1-2') return 'earth-elements';
+    if (student.ageTier === 'k12-foundations') return 'technology';
+    return 'animals-dinosaurs';
   });
 
   const [selectedEntryId, setSelectedEntryId] = useState<string>(() => {
@@ -58,11 +69,30 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
       const found = ENCYCLOPEDIA_ENTRIES.find(e => e.id === initialEntryId);
       if (found) return found.id;
     }
-    return 'letter-a';
+    try {
+      const saved = localStorage.getItem(`first_open_encyclopedia_entry_${student.id}`);
+      if (saved) {
+        const found = ENCYCLOPEDIA_ENTRIES.find(e => e.id === saved);
+        if (found) return found.id;
+      }
+    } catch {}
+    // Pick curriculum-recommended science entry based on age tier
+    if (student.ageTier === 'kindergarten') return 'earth';
+    if (student.ageTier === 'grade-1-2') return 'volcano';
+    if (student.ageTier === 'k12-foundations') return 'computer';
+    return 'blue-whale';
   });
 
   const [searchQuery, setSearchQuery] = useState<string>('');
   
+  // Persist selections
+  useEffect(() => {
+    try {
+      localStorage.setItem(`first_open_encyclopedia_cat_${student.id}`, selectedCategory);
+      localStorage.setItem(`first_open_encyclopedia_entry_${student.id}`, selectedEntryId);
+    } catch {}
+  }, [selectedCategory, selectedEntryId, student.id]);
+
   // Sync with initialEntryId
   useEffect(() => {
     if (initialEntryId) {
@@ -357,42 +387,44 @@ export const KidsEncyclopedia: React.FC<KidsEncyclopediaProps> = ({
         </div>
       </div>
 
-      {/* A-Z Quick Jump Ribbon for Fast Letter Discovery */}
-      <div className="bg-white p-4 rounded-[24px] border-4 border-[#4D96FF] shadow-[0_6px_0_#3A72C1] space-y-2">
-        <div className="flex items-center justify-between px-2">
-          <span className="text-xs font-black uppercase tracking-wider text-[#4D96FF] flex items-center gap-1.5">
-            <Compass className="w-4 h-4" />
-            <span>Alphabet A to Z Quick Jump</span>
-          </span>
-          <span className="text-xs text-gray-500 font-bold hidden sm:inline">Click any letter to open its encyclopedia article</span>
+      {/* A-Z Quick Jump Ribbon - only when viewing Alphabets category */}
+      {(selectedCategory === 'alphabets' || currentEntry.category === 'alphabets') && (
+        <div className="bg-white p-4 rounded-[24px] border-4 border-[#FF6B6B] shadow-[0_6px_0_#C44E4E] space-y-2 animate-in fade-in">
+          <div className="flex items-center justify-between px-2">
+            <span className="text-xs font-black uppercase tracking-wider text-[#FF6B6B] flex items-center gap-1.5">
+              <Compass className="w-4 h-4" />
+              <span>Alphabet A to Z Quick Jump</span>
+            </span>
+            <span className="text-xs text-gray-500 font-bold hidden sm:inline">Click any letter to open its encyclopedia article</span>
+          </div>
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+            {alphabetLetters.map((item) => {
+              const isSelected = selectedEntryId === item.id;
+              const letterChar = item.title.charAt(7); // "Letter A (Aa)" -> "A"
+              return (
+                <a
+                  key={item.id}
+                  href={`/encyclopedia/${item.id}`}
+                  onClick={(e) => {
+                    if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                      e.preventDefault();
+                      setSelectedCategory('alphabets');
+                      handleSelectEntry(item);
+                    }
+                  }}
+                  className={`w-9 h-9 sm:w-10 sm:h-10 shrink-0 rounded-xl font-black text-base flex items-center justify-center border-2 transition-all cursor-pointer no-underline ${
+                    isSelected
+                      ? 'bg-[#FF6B6B] text-white border-black shadow-[0_3px_0_#000] scale-105'
+                      : 'bg-[#FFF9F0] text-[#2D2D2D] border-gray-200 hover:border-[#FF6B6B] hover:bg-white'
+                  }`}
+                >
+                  {letterChar}
+                </a>
+              );
+            })}
+          </div>
         </div>
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
-          {alphabetLetters.map((item) => {
-            const isSelected = selectedEntryId === item.id;
-            const letterChar = item.title.charAt(7); // "Letter A (Aa)" -> "A"
-            return (
-              <a
-                key={item.id}
-                href={`/encyclopedia/${item.id}`}
-                onClick={(e) => {
-                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
-                    e.preventDefault();
-                    setSelectedCategory('alphabets');
-                    handleSelectEntry(item);
-                  }
-                }}
-                className={`w-9 h-9 sm:w-10 sm:h-10 shrink-0 rounded-xl font-black text-base flex items-center justify-center border-2 transition-all cursor-pointer no-underline ${
-                  isSelected
-                    ? 'bg-[#FF6B6B] text-white border-black shadow-[0_3px_0_#000] scale-105'
-                    : 'bg-[#FFF9F0] text-[#2D2D2D] border-gray-200 hover:border-[#FF6B6B] hover:bg-white'
-                }`}
-              >
-                {letterChar}
-              </a>
-            );
-          })}
-        </div>
-      </div>
+      )}
 
       {/* Category Tabs & Search Bar */}
       <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">

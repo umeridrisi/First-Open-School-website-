@@ -61,8 +61,25 @@ export const PoemsExplorer: React.FC<PoemsExplorerProps> = ({
       const found = getPoemById(initialPoemId);
       if (found) return found.id;
     }
+    try {
+      const saved = localStorage.getItem(`first_open_last_poem_${student.id}`);
+      if (saved) {
+        const found = getPoemById(saved);
+        if (found) return found.id;
+      }
+    } catch {}
+    if (student.ageTier === 'grade-1-2') return 'the-wind';
+    if (student.ageTier === 'k12-foundations') return 'stopping-by-woods';
+    if (student.ageTier === 'kindergarten') return 'mary-had-a-little-lamb';
     return 'twinkle-twinkle-little-star';
   });
+
+  // Persist last viewed poem
+  useEffect(() => {
+    try {
+      localStorage.setItem(`first_open_last_poem_${student.id}`, selectedPoemId);
+    } catch {}
+  }, [selectedPoemId, student.id]);
 
   // Search filter
   const [searchQuery, setSearchQuery] = useState<string>('');

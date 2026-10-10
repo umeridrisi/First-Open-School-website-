@@ -10,7 +10,7 @@ import { Sparkles, Trophy, Flame, Play, PenTool, CircleDot, Utensils, BookOpen, 
 interface OverviewWorldProps {
   student: StudentProfile;
   settings: ParentSettings;
-  onNavigate: (tab: ActiveTab) => void;
+  onNavigate: (tab: ActiveTab, params?: any) => void;
 }
 
 export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings, onNavigate }) => {
@@ -28,11 +28,11 @@ export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings,
     speakText(text, settings.voiceGuidance);
   };
 
-  const handleAnchorClick = (e: React.MouseEvent, tab: ActiveTab, speakMsg?: string) => {
+  const handleAnchorClick = (e: React.MouseEvent, tab: ActiveTab, speakMsg?: string, params?: any) => {
     if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
       e.preventDefault();
       playSoundEffect('click', settings.soundEffects);
-      onNavigate(tab);
+      onNavigate(tab, params);
       if (speakMsg) handleSpeak(speakMsg);
     }
   };
@@ -151,7 +151,7 @@ export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings,
             className="px-6 py-4 bg-[#8B5CF6] hover:bg-purple-700 text-white font-black text-sm uppercase tracking-wider rounded-2xl border-3 border-[#2D2D2D] shadow-[0_4px_0_#000] active:translate-y-1 active:shadow-none transition-all cursor-pointer flex items-center justify-center gap-2 no-underline"
           >
             <GraduationCap className="w-5 h-5" />
-            <span>Curriculum Guide &amp; Roadmap</span>
+            <span>Curriculum &amp; Learning Guide</span>
           </a>
 
           <div className="flex items-center justify-center gap-2 text-xs font-extrabold text-gray-500">
@@ -405,28 +405,35 @@ export const OverviewWorld: React.FC<OverviewWorldProps> = ({ student, settings,
           <div className="flex flex-wrap gap-2 pt-1">
             <a
               href="/coding/tier/pre-k"
-              onClick={(e) => handleAnchorClick(e, 'coding', 'Explore Pre-K Coding')}
+              onClick={(e) => handleAnchorClick(e, 'coding', 'Explore Pre-K Coding', { codingTier: 'pre-k', codingSubTab: 'quests' })}
               className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-sky-200 hover:border-[#4D96FF] text-[#2D2D2D] no-underline"
             >
               🐰 Pre-K (Ages 2-4)
             </a>
             <a
               href="/coding/tier/kindergarten"
-              onClick={(e) => handleAnchorClick(e, 'coding', 'Explore Kindergarten Coding')}
+              onClick={(e) => handleAnchorClick(e, 'coding', 'Explore Kindergarten Coding', { codingTier: 'kindergarten', codingSubTab: 'quests' })}
               className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-sky-200 hover:border-[#4D96FF] text-[#2D2D2D] no-underline"
             >
               🔁 Kindergarten Loops
             </a>
             <a
               href="/coding/tier/grade-1-2"
-              onClick={(e) => handleAnchorClick(e, 'coding', 'Explore Grade 1 and 2 Coding')}
+              onClick={(e) => handleAnchorClick(e, 'coding', 'Explore Grade 1 and 2 Coding', { codingTier: 'grade-1-2', codingSubTab: 'quests' })}
               className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-sky-200 hover:border-[#4D96FF] text-[#2D2D2D] no-underline"
             >
               🔑 Grade 1-2 Conditions
             </a>
             <a
+              href="/coding/languages"
+              onClick={(e) => handleAnchorClick(e, 'coding', 'Explore Coding Languages', { codingSubTab: 'languages' })}
+              className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-orange-200 hover:border-[#F97316] text-[#2D2D2D] no-underline"
+            >
+              💻 Languages (HTML, CSS, JS, C++, C#)
+            </a>
+            <a
               href="/coding/turtle"
-              onClick={(e) => handleAnchorClick(e, 'coding', 'Explore Turtle Drawing Studio')}
+              onClick={(e) => handleAnchorClick(e, 'coding', 'Explore Turtle Drawing Studio', { codingSubTab: 'turtle' })}
               className="text-xs font-black bg-white px-2.5 py-1 rounded-xl border border-amber-200 hover:border-[#FF9F45] text-[#2D2D2D] no-underline"
             >
               🐢 Turtle Drawing Studio

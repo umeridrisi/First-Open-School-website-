@@ -70,18 +70,46 @@ export const CodingStudio: React.FC<CodingStudioProps> = ({
   onNavigateSubTab
 }) => {
   // Navigation & Filter states
-  const [activeSubTab, setActiveSubTab] = useState<CodingSubTab>(initialSubTab);
   const [selectedTier, setSelectedTier] = useState<AgeTier>(initialTier || student.ageTier || 'pre-k');
-  
-  // Selected Mission state
   const missionsForTier = CODING_MISSIONS.filter(m => m.tier === selectedTier);
+
+  const [activeSubTab, setActiveSubTab] = useState<CodingSubTab>(() => {
+    if (initialSubTab && initialSubTab !== 'quests') return initialSubTab;
+    try {
+      const savedSubTab = localStorage.getItem(`first_open_coding_subtab_${student.id}`);
+      if (savedSubTab && ['quests', 'languages', 'sandbox', 'turtle', 'concepts'].includes(savedSubTab)) {
+        return savedSubTab as CodingSubTab;
+      }
+    } catch {}
+    if ((initialTier || student.ageTier) === 'k12-foundations') return 'languages';
+    return initialSubTab || 'quests';
+  });
+  
+  // Selected Mission state (resume where left off)
   const [currentMission, setCurrentMission] = useState<CodingMission>(() => {
     if (initialMissionId) {
       const found = CODING_MISSIONS.find(m => m.id === initialMissionId);
       if (found) return found;
     }
-    return missionsForTier[0] || CODING_MISSIONS[0];
+    try {
+      const savedMission = localStorage.getItem(`first_open_last_coding_mission_${student.id}`);
+      if (savedMission) {
+        const found = CODING_MISSIONS.find(m => m.id === savedMission && m.tier === selectedTier);
+        if (found) return found;
+      }
+    } catch {}
+    // First incomplete mission for this curriculum tier
+    const uncompleted = missionsForTier.find(m => !student.completedMissions?.includes(m.id));
+    return uncompleted || missionsForTier[0] || CODING_MISSIONS[0];
   });
+
+  // Persist coding preferences
+  useEffect(() => {
+    try {
+      localStorage.setItem(`first_open_coding_subtab_${student.id}`, activeSubTab);
+      localStorage.setItem(`first_open_last_coding_mission_${student.id}`, currentMission.id);
+    } catch {}
+  }, [activeSubTab, currentMission.id, student.id]);
 
   // Selected Mascot
   const [selectedMascotId, setSelectedMascotId] = useState<CodingMascot>(currentMission.mascot || 'robot');
@@ -148,6 +176,20 @@ export const CodingStudio: React.FC<CodingStudioProps> = ({
       setCurrentMission(list[0]);
     }
   }, [selectedTier]);
+
+  // Sync initialSubTab from route navigation
+  useEffect(() => {
+    if (initialSubTab && initialSubTab !== activeSubTab) {
+      setActiveSubTab(initialSubTab);
+    }
+  }, [initialSubTab]);
+
+  // Sync initialTier from route navigation
+  useEffect(() => {
+    if (initialTier && initialTier !== selectedTier) {
+      setSelectedTier(initialTier);
+    }
+  }, [initialTier]);
 
   const resetMissionState = (mission: CodingMission) => {
     setIsRunning(false);

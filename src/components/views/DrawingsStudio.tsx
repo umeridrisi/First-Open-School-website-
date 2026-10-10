@@ -97,8 +97,28 @@ export const DrawingsStudio: React.FC<DrawingsStudioProps> = ({
     if (initialTemplateId) {
       return getDrawingTemplateById(initialTemplateId) || null;
     }
+    try {
+      const saved = localStorage.getItem(`first_open_last_drawing_${student.id}`);
+      if (saved) {
+        const found = getDrawingTemplateById(saved);
+        if (found) return found;
+      }
+    } catch {}
+    if (student.ageTier === 'grade-1-2' || student.ageTier === 'k12-foundations') {
+      const found = DRAWING_TEMPLATES.find(t => t.id === 'space-rocket' || t.category === 'vehicles-space');
+      if (found) return found;
+    }
     return DRAWING_TEMPLATES[0]; // Default to first template
   });
+
+  // Persist last viewed drawing template
+  useEffect(() => {
+    if (selectedTemplate) {
+      try {
+        localStorage.setItem(`first_open_last_drawing_${student.id}`, selectedTemplate.id);
+      } catch {}
+    }
+  }, [selectedTemplate, student.id]);
 
   // Filter Category for Printables Library
   const [selectedCategory, setSelectedCategory] = useState<DrawingCategory | 'all'>(

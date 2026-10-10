@@ -91,11 +91,11 @@ export const SubjectNav: React.FC<SubjectNavProps> = ({ activeTab, onSelectTab, 
     },
     { 
       id: 'tracing', 
-      label: 'Letter Tracing', 
+      label: 'Tracing Studio', 
       icon: <PenTool className="w-5 h-5" />, 
       color: 'text-[#FFD93D]', 
       activeBg: 'bg-white border-[#FFD93D] shadow-[0_4px_0_#C9A92E]',
-      voicePrompt: 'Practice Letter and Digit Tracing'
+      voicePrompt: 'Tracing Studio. Practice Letter and Digit Tracing'
     },
     { 
       id: 'bubble-pop', 
