@@ -126,6 +126,12 @@ export const CLASSIC_POEMS: Poem[] = [
         "Humpty Dumpty had a great fall.",
         "All the king's horses and all the king's men",
         "Couldn't put Humpty together again."
+      ],
+      [
+        "Humpty Dumpty counted to ten,",
+        "Humpty Dumpty got up again.",
+        "He gathered his friends and he mended his shell,",
+        "And now Humpty Dumpty is happy and well!"
       ]
     ],
     "rhymeScheme": "AABB",
@@ -139,13 +145,18 @@ export const CLASSIC_POEMS: Poem[] = [
         "word": "Together",
         "meaning": "Joined or assembled back into a single piece",
         "emoji": "🧩"
+      },
+      {
+        "word": "Mended",
+        "meaning": "Fixed and repaired with loving care",
+        "emoji": "🩹"
       }
     ],
-    "educationalTakeaway": "Teaches cause-and-effect reasoning, balance, physical consequence, and strong trochaic meter.",
+    "educationalTakeaway": "Teaches cause-and-effect reasoning, resilience, balance, and strong trochaic meter.",
     "recitalTips": [
       "Sit tall and proud on the word 'wall'.",
       "Clap your hands down on your knees dramatically on 'great fall!'.",
-      "Shake your head side to side with wide eyes for 'together again'."
+      "Dust off your hands and smile brightly when Humpty gets up again!"
     ]
   },
   {
@@ -164,6 +175,24 @@ export const CLASSIC_POEMS: Poem[] = [
         "Gently down the stream,",
         "Merrily, merrily, merrily, merrily,",
         "Life is but a dream."
+      ],
+      [
+        "Row, row, row your boat,",
+        "Gently down the brook,",
+        "If you catch a little fish,",
+        "Please let it off the hook!"
+      ],
+      [
+        "Row, row, row your boat,",
+        "Gently down the river,",
+        "If you see a polar bear,",
+        "Don't forget to shiver!"
+      ],
+      [
+        "Row, row, row your boat,",
+        "Gently to the shore,",
+        "If you see a lion there,",
+        "Don't forget to roar!"
       ]
     ],
     "rhymeScheme": "ABCB",
@@ -182,13 +211,18 @@ export const CLASSIC_POEMS: Poem[] = [
         "word": "Merrily",
         "meaning": "Happily, with full cheerful joy",
         "emoji": "😄"
+      },
+      {
+        "word": "Brook",
+        "meaning": "A tiny natural bubbling stream of fresh water",
+        "emoji": "💧"
       }
     ],
     "educationalTakeaway": "Builds rhythmic motor synchronization (rowing gestures), introduces alliteration, and teaches calming emotional regulation.",
     "recitalTips": [
       "Sit facing a partner or hold your hands in front and pull back like rowing oars.",
       "Speed up slightly on 'merrily, merrily' with a big smile.",
-      "Float your hands down softly on 'dream'."
+      "Give a funny playful shiver on 'polar bear' and a loud roar on 'lion'!"
     ]
   },
   {
@@ -207,6 +241,27 @@ export const CLASSIC_POEMS: Poem[] = [
         "The mouse ran up the clock.",
         "The clock struck one,",
         "The mouse ran down,",
+        "Hickory, dickory, dock."
+      ],
+      [
+        "Hickory, dickory, dock,",
+        "The mouse ran up the clock.",
+        "The clock struck two,",
+        "And down he flew,",
+        "Hickory, dickory, dock."
+      ],
+      [
+        "Hickory, dickory, dock,",
+        "The mouse ran up the clock.",
+        "The clock struck three,",
+        "The mouse went 'Wee!',",
+        "Hickory, dickory, dock."
+      ],
+      [
+        "Hickory, dickory, dock,",
+        "The mouse ran up the clock.",
+        "The clock struck four,",
+        "He said, 'No more!',",
         "Hickory, dickory, dock."
       ]
     ],
@@ -237,7 +292,7 @@ export const CLASSIC_POEMS: Poem[] = [
     "emoji": "👟",
     "category": "classics-rhymes",
     "ageTier": "Ages 2-4",
-    "tagline": "A dynamic kinetic counting rhyme from one all the way to ten.",
+    "tagline": "A dynamic kinetic counting rhyme from one all the way to twenty.",
     "themeColor": "#8B5CF6",
     "badgeBg": "bg-purple-100 text-purple-800 border-purple-300",
     "stanzas": [
@@ -247,6 +302,13 @@ export const CLASSIC_POEMS: Poem[] = [
         "Five, six, pick up sticks;",
         "Seven, eight, lay them straight;",
         "Nine, ten, a big fat hen!"
+      ],
+      [
+        "Eleven, twelve, dig and delve;",
+        "Thirteen, fourteen, maids a-courting;",
+        "Fifteen, sixteen, maids in the kitchen;",
+        "Seventeen, eighteen, maids in waiting;",
+        "Nineteen, twenty, my plate is empty!"
       ]
     ],
     "rhymeScheme": "AABBCC",
@@ -265,13 +327,18 @@ export const CLASSIC_POEMS: Poem[] = [
         "word": "Hen",
         "meaning": "An adult female chicken that lays eggs",
         "emoji": "🐔"
+      },
+      {
+        "word": "Delve",
+        "meaning": "To dig into the earth or garden soil with a spade",
+        "emoji": "🌱"
       }
     ],
-    "educationalTakeaway": "Reinforces sequential number order from 1 to 10 paired with gross-motor actions and phonological end-rhymes.",
+    "educationalTakeaway": "Reinforces sequential number order from 1 to 20 paired with gross-motor actions and phonological end-rhymes.",
     "recitalTips": [
       "Bend down and touch your shoe on 'buckle my shoe'.",
       "Make a door-closing push on 'shut the door'.",
-      "Flap bent elbows like chicken wings and cluck proudly on 'big fat hen!'."
+      "Pretend to dig with a shovel on 'dig and delve', and pat your tummy on 'my plate is empty!'."
     ]
   },
   {
@@ -296,6 +363,18 @@ export const CLASSIC_POEMS: Poem[] = [
         "Which was against the rule;",
         "It made the children laugh and play,",
         "To see a lamb at school."
+      ],
+      [
+        "And so the teacher turned it out,",
+        "But still it lingered near;",
+        "And waited patiently about,",
+        "Till Mary did appear."
+      ],
+      [
+        "\"Why does the lamb love Mary so?\"",
+        "The eager children cry;",
+        "\"Why, Mary loves the lamb, you know,\"",
+        "The teacher did reply."
       ]
     ],
     "rhymeScheme": "ABCB",
@@ -309,13 +388,23 @@ export const CLASSIC_POEMS: Poem[] = [
         "word": "Rule",
         "meaning": "A guide or instruction telling people what is allowed",
         "emoji": "📜"
+      },
+      {
+        "word": "Lingered",
+        "meaning": "Stayed in a place happily without rushing away",
+        "emoji": "⏳"
+      },
+      {
+        "word": "Patiently",
+        "meaning": "Waiting calmly and peacefully with a happy heart",
+        "emoji": "🕊️"
       }
     ],
-    "educationalTakeaway": "Promotes animal companionship, empathy, and introduces simple schoolhouse storytelling in clear meter.",
+    "educationalTakeaway": "Promotes animal companionship, kindness, empathy, and introduces simple schoolhouse storytelling in clear meter.",
     "recitalTips": [
       "Skip in place lightly like Mary walking happily to school.",
       "Giggle softly behind your hand when describing the laughing children.",
-      "Pet an imaginary lamb gently on the head."
+      "Pet an imaginary lamb gently on the head and hug yourself on 'Mary loves the lamb'."
     ]
   },
   {
@@ -340,6 +429,12 @@ export const CLASSIC_POEMS: Poem[] = [
         "As fast as he could caper,",
         "To old Dame Dob, who patched his knob",
         "With vinegar and brown paper."
+      ],
+      [
+        "Then Jill came in, and she did grin,",
+        "To see Jack's paper plaster;",
+        "Dame Dob was glad, and praised the lad,",
+        "And they laughed away their disaster!"
       ]
     ],
     "rhymeScheme": "AABBC",
@@ -390,6 +485,14 @@ export const CLASSIC_POEMS: Poem[] = [
         "There came a big spider,",
         "Who sat down beside her,",
         "And frightened Miss Muffet away."
+      ],
+      [
+        "Little Miss Muffet",
+        "Returned to her tuffet,",
+        "To finish her bowl in the sun;",
+        "The spider bowed low",
+        "And said, \"Hello!\"",
+        "And they shared in the springtime fun!"
       ]
     ],
     "rhymeScheme": "AABCCB",
@@ -414,7 +517,7 @@ export const CLASSIC_POEMS: Poem[] = [
     "recitalTips": [
       "Pretend to hold a bowl and spoon, eating peacefully.",
       "Creep eight wiggling fingers slowly toward yourself like a spider.",
-      "Jump up with wide eyes and pretend to run away on 'frightened Miss Muffet away!'."
+      "Jump up with wide eyes on 'frightened Miss Muffet away', then wave 'hello' with a friendly smile!"
     ]
   },
   {
@@ -435,6 +538,14 @@ export const CLASSIC_POEMS: Poem[] = [
         "The little dog laughed",
         "To see such sport,",
         "And the dish ran away with the spoon."
+      ],
+      [
+        "Hey diddle diddle,",
+        "They danced in the middle,",
+        "The sheep began humming a tune;",
+        "The stars twinkled bright",
+        "Through the magical night,",
+        "While they sailed in a golden balloon!"
       ]
     ],
     "rhymeScheme": "AABBA",
@@ -473,6 +584,12 @@ export const CLASSIC_POEMS: Poem[] = [
         "Here is my handle, here is my spout.",
         "When I get all steamed up, hear me shout,",
         "Tip me over and pour me out!"
+      ],
+      [
+        "I'm a clever teapot, yes it's true,",
+        "Here is an example of what I can do;",
+        "I can turn my handle into a spout,",
+        "Just tip me over and pour me out!"
       ]
     ],
     "rhymeScheme": "AAAA",
@@ -497,7 +614,7 @@ export const CLASSIC_POEMS: Poem[] = [
     "recitalTips": [
       "Place one hand on your hip for the handle.",
       "Bend your other arm outward with your wrist curved up for the spout.",
-      "Bend to the side gracefully on 'Tip me over and pour me out!'."
+      "In the second verse, swap your arms around to show your clever handle and spout!"
     ]
   },
   {
@@ -516,6 +633,12 @@ export const CLASSIC_POEMS: Poem[] = [
         "One named Peter, one named Paul.",
         "Fly away, Peter! Fly away, Paul!",
         "Come back, Peter! Come back, Paul!"
+      ],
+      [
+        "Two little dicky birds flying in the sky,",
+        "One flying low and one flying high.",
+        "Fly away, low bird! Fly away, high bird!",
+        "Come back, low bird! Come back, high bird!"
       ]
     ],
     "rhymeScheme": "AABB",
@@ -609,6 +732,24 @@ export const CLASSIC_POEMS: Poem[] = [
         "The birds began to sing;",
         "Wasn't that a dainty dish,",
         "To set before the king?"
+      ],
+      [
+        "The king was in his counting house,",
+        "Counting out his money;",
+        "The queen was in the parlour,",
+        "Eating bread and honey."
+      ],
+      [
+        "The maid was in the garden,",
+        "Hanging out the clothes,",
+        "When down came a blackbird",
+        "And pecked off her nose!"
+      ],
+      [
+        "They sent for the king's doctor,",
+        "Who sewed it on again;",
+        "And all the little blackbirds",
+        "Sang sweetly in the rain!"
       ]
     ],
     "rhymeScheme": "ABCB",
@@ -652,6 +793,12 @@ export const CLASSIC_POEMS: Poem[] = [
         "Bake me a cake as fast as you can;",
         "Pat it and prick it, and mark it with B,",
         "And put it in the oven for baby and me."
+      ],
+      [
+        "Roll it and pat it and stir it in a bowl,",
+        "Bake a sweet pastry for every merry soul;",
+        "Golden and warm with a honey glaze on top,",
+        "Hurry, little baker, before the bubbles pop!"
       ]
     ],
     "rhymeScheme": "AABB",
@@ -701,6 +848,18 @@ export const CLASSIC_POEMS: Poem[] = [
         "Show me first your penny;",
         "Says Simple Simon to the pieman,",
         "Indeed I have not any."
+      ],
+      [
+        "Simple Simon went a-fishing,",
+        "For to catch a whale;",
+        "All the water he had got,",
+        "Was in his mother's pail."
+      ],
+      [
+        "Simple Simon went to look",
+        "If plums grew on a thistle;",
+        "He pricked his fingers very much,",
+        "Which made poor Simon whistle!"
       ]
     ],
     "rhymeScheme": "ABCB",
@@ -744,6 +903,12 @@ export const CLASSIC_POEMS: Poem[] = [
         "Get it done by half past two;",
         "Stitch it up and stitch it down,",
         "Then I'll walk about the town."
+      ],
+      [
+        "Cobbler, cobbler, buckle tight,",
+        "Make it ready by tonight;",
+        "Polish it with shining cream,",
+        "Make it look like in a dream!"
       ]
     ],
     "rhymeScheme": "AABB",
@@ -837,6 +1002,18 @@ export const CLASSIC_POEMS: Poem[] = [
         "Say the bells of Old Bailey;",
         "When I grow rich,",
         "Say the bells of Shoreditch."
+      ],
+      [
+        "Pray when will that be?",
+        "Say the bells of Stepney;",
+        "I do not know,",
+        "Says the great bell of Bow."
+      ],
+      [
+        "Here comes a candle to light you to bed,",
+        "And here comes a chopper to chop off your head!",
+        "Chip, chop, chip, chop,",
+        "The very last head!"
       ]
     ],
     "rhymeScheme": "AABB",
@@ -881,6 +1058,18 @@ export const CLASSIC_POEMS: Poem[] = [
         "Set them to work,",
         "Some to the plow, dilly, dilly,",
         "Some to the fork."
+      ],
+      [
+        "Some to make hay, dilly, dilly,",
+        "Some to cut corn,",
+        "While you and I, dilly, dilly,",
+        "Keep ourselves warm."
+      ],
+      [
+        "Lavender's green, dilly, dilly,",
+        "Lavender's blue,",
+        "If you love me, dilly, dilly,",
+        "I will love you!"
       ]
     ],
     "rhymeScheme": "ABCB",

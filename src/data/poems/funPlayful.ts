@@ -213,6 +213,12 @@ export const FUN_PLAYFUL_POEMS: Poem[] = [
         "Like a teddy bear;",
         "One step, two step,",
         "Tickle you under there!"
+      ],
+      [
+        "Round and round the haystack,",
+        "Like a little mouse;",
+        "One step, two step,",
+        "In his little house!"
       ]
     ],
     "rhymeScheme": "ABCB",
@@ -253,6 +259,14 @@ export const FUN_PLAYFUL_POEMS: Poem[] = [
         "This little piggy had none;",
         "And this little piggy cried, 'Wee, wee, wee!'",
         "All the way home!"
+      ],
+      [
+        "This little piggy had an apple sweet,",
+        "This little piggy danced with tapping feet;",
+        "This little piggy jumped up high,",
+        "This little piggy waved goodbye,",
+        "And this little piggy cried, 'Wee, wee, wee!'",
+        "All the way home!"
       ]
     ],
     "rhymeScheme": "ABCB",
@@ -289,6 +303,12 @@ export const FUN_PLAYFUL_POEMS: Poem[] = [
       [
         "Pease porridge hot, pease porridge cold,",
         "Pease porridge in the pot, nine days old;",
+        "Some like it hot, some like it cold,",
+        "Some like it in the pot, nine days old!"
+      ],
+      [
+        "Mommy likes it hot, Daddy likes it cold,",
+        "Baby likes it in the pot, nine days old;",
         "Some like it hot, some like it cold,",
         "Some like it in the pot, nine days old!"
       ]
@@ -422,6 +442,12 @@ export const FUN_PLAYFUL_POEMS: Poem[] = [
         "She had so many children she didn't know what to do;",
         "She gave them some broth without any bread,",
         "And kissed them all soundly and put them to bed."
+      ],
+      [
+        "Next morning she woke as the sun rose up bright,",
+        "Her children were smiling in morning daylight;",
+        "She gave them sweet porridge with honey and cream,",
+        "And off they all skipped in a happy sunbeam!"
       ]
     ],
     "rhymeScheme": "AABB",
@@ -462,6 +488,13 @@ export const FUN_PLAYFUL_POEMS: Poem[] = [
         "The butcher, the baker, the candlestick-maker,",
         "They all jumped out of a rotten potato,",
         "'Twas enough to make a man stare!"
+      ],
+      [
+        "Rub-a-dub-dub, they sailed in the tub,",
+        "Across the wide blue sea!",
+        "With a loaf of fresh bread and a candle of red,",
+        "They cheered and they sang as they bobbed up ahead,",
+        "As merry as three could be!"
       ]
     ],
     "rhymeScheme": "AABBC",
@@ -557,6 +590,14 @@ export const FUN_PLAYFUL_POEMS: Poem[] = [
         "Give them to your sons!",
         "One a penny, two a penny,",
         "Hot cross buns!"
+      ],
+      [
+        "Fresh and sweet and piping hot,",
+        "Straight from the baker's oven pot!",
+        "If you have no pennies,",
+        "Come and sing a song;",
+        "We will share a warm sweet bun,",
+        "All the morning long!"
       ]
     ],
     "rhymeScheme": "AABBA",
@@ -595,6 +636,12 @@ export const FUN_PLAYFUL_POEMS: Poem[] = [
         "Jack jump over the candlestick!",
         "Jack jumped high, Jack jumped low,",
         "Jack didn't burn his little toe!"
+      ],
+      [
+        "Jack jumped over the garden gate,",
+        "Jack had dinner on a silver plate;",
+        "Jack jumped high, Jack jumped low,",
+        "Jack jumped around in the candle glow!"
       ]
     ],
     "rhymeScheme": "AABB",
@@ -681,6 +728,12 @@ export const FUN_PLAYFUL_POEMS: Poem[] = [
       [
         "Will you wake him? No, not I,",
         "For if I do, he'll be sure to cry."
+      ],
+      [
+        "Up jumped the boy and rubbed his eyes,",
+        "Out in the morning sunlit skies;",
+        "He blew on his horn so loud and clear,",
+        "And gathered the flock from far and near!"
       ]
     ],
     "rhymeScheme": "AABB",
@@ -763,6 +816,12 @@ export const FUN_PLAYFUL_POEMS: Poem[] = [
         "Kissed the girls and made them cry;",
         "When the boys came out to play,",
         "Georgie Porgie ran away!"
+      ],
+      [
+        "When the girls came back to play,",
+        "Georgie brought a treat that day;",
+        "Shared his pudding sweet and warm,",
+        "Kept his friends away from harm!"
       ]
     ],
     "rhymeScheme": "AABB",
@@ -807,6 +866,30 @@ export const FUN_PLAYFUL_POEMS: Poem[] = [
         "Here I am! Here I am!",
         "How are you this morning? Very well, I thank you!",
         "Run away, run away."
+      ],
+      [
+        "Where is Tall Man? Where is Tall Man?",
+        "Here I am! Here I am!",
+        "How are you this morning? Very well, I thank you!",
+        "Run away, run away."
+      ],
+      [
+        "Where is Ring Man? Where is Ring Man?",
+        "Here I am! Here I am!",
+        "How are you this morning? Very well, I thank you!",
+        "Run away, run away."
+      ],
+      [
+        "Where is Pinky? Where is Pinky?",
+        "Here I am! Here I am!",
+        "How are you this morning? Very well, I thank you!",
+        "Run away, run away."
+      ],
+      [
+        "Where are all the friends? Where are all the friends?",
+        "Here we are! Here we are!",
+        "How are you this morning? Very well, we thank you!",
+        "Run away, run away."
       ]
     ],
     "rhymeScheme": "AABB",
@@ -845,6 +928,12 @@ export const FUN_PLAYFUL_POEMS: Poem[] = [
         "Went to bed with his trousers on;",
         "One shoe off, and one shoe on,",
         "Diddle, diddle, dumpling, my son John!"
+      ],
+      [
+        "Diddle, diddle, dumpling, up he woke,",
+        "Just as the golden morning broke;",
+        "Both shoes tied and slippers neat,",
+        "Skipping gladly down the street!"
       ]
     ],
     "rhymeScheme": "AABB",

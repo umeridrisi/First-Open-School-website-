@@ -149,6 +149,12 @@ export const GOOD_HABITS_POEMS: Poem[] = [
         "Clean up, clean up, everybody do your share!",
         "Pick up the blocks and put them in the bin,",
         "Tidy up the classroom and we will play again!"
+      ],
+      [
+        "Clean up, clean up, put the toys away,",
+        "We'll bring them out another sunny day!",
+        "Stack up the books upon the wooden shelf,",
+        "Be proud of all you did and praise yourself!"
       ]
     ],
     "rhymeScheme": "AABB",

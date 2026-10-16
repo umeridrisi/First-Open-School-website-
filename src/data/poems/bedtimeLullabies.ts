@@ -67,6 +67,12 @@ export const BEDTIME_LULLABIES_POEMS: Poem[] = [
         "First star I see tonight;",
         "I wish I may, I wish I might,",
         "Have the wish I wish tonight."
+      ],
+      [
+        "Shining up above so high,",
+        "Like a diamond in the sky;",
+        "Watch me through the peaceful night,",
+        "Till the morning brings its light."
       ]
     ],
     "rhymeScheme": "AAAA",
@@ -105,6 +111,12 @@ export const BEDTIME_LULLABIES_POEMS: Poem[] = [
         "When the wind blows, the cradle will rock;",
         "When the bough breaks, the cradle will fall,",
         "And down will come baby, cradle and all."
+      ],
+      [
+        "Baby is nodding, baby is still,",
+        "Soft little breezes blow over the hill;",
+        "Mother is rocking, mother is near,",
+        "Sleep now, my baby, without any fear."
       ]
     ],
     "rhymeScheme": "AABB",
@@ -197,7 +209,14 @@ export const BEDTIME_LULLABIES_POEMS: Poem[] = [
       [
         "And if that billy goat won't pull,",
         "Mama's gonna buy you a cart and bull.",
-        "And you'll still be the sweetest little baby in town."
+        "And if that cart and bull turn over,",
+        "Mama's gonna buy you a dog named Rover."
+      ],
+      [
+        "And if that dog named Rover won't bark,",
+        "Mama's gonna buy you a horse and cart.",
+        "And if that horse and cart fall down,",
+        "You'll still be the sweetest little baby in town!"
       ]
     ],
     "rhymeScheme": "AABB",
@@ -285,7 +304,7 @@ export const BEDTIME_LULLABIES_POEMS: Poem[] = [
         "'Where are you going, and what do you wish?'",
         "The old moon asked the three.",
         "'We have come to fish for the herring fish",
-        "That live in this beautiful sea;'"
+        "That live in this beautiful sea!'"
       ],
       [
         "The little stars were the herring fish",
@@ -294,6 +313,26 @@ export const BEDTIME_LULLABIES_POEMS: Poem[] = [
         "Never afeard are we!",
         "So cried the stars to the fishermen three:",
         "Wynken, Blynken, and Nod."
+      ],
+      [
+        "All night long their nets they threw",
+        "To the stars in the twinkling foam—",
+        "Then down from the skies came the wooden shoe,",
+        "Bringing the fishermen home;",
+        "'Twas all so pretty a sail it seemed",
+        "As if it could not be,",
+        "And some folk thought 'twas a dream they'd dreamed",
+        "Of sailing that beautiful sea."
+      ],
+      [
+        "Wynken and Blynken are two little eyes,",
+        "And Nod is a little head,",
+        "And the wooden shoe that sailed the skies",
+        "Is a wee one's trundle-bed;",
+        "So shut your eyes while Mother sings",
+        "Of wonderful sights that be,",
+        "And you shall see the beautiful things",
+        "As you rock in the misty sea!"
       ]
     ],
     "rhymeScheme": "ABCB",

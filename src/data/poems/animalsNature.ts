@@ -68,6 +68,18 @@ export const ANIMALS_NATURE_POEMS: Poem[] = [
         "Down came the rain and washed the spider out;",
         "Out came the sun and dried up all the rain,",
         "And the itsy bitsy spider climbed up the spout again."
+      ],
+      [
+        "The itsy bitsy spider climbed up the kitchen wall;",
+        "Swoosh went the fan and made the spider fall;",
+        "Off went the fan, no longer did it blow,",
+        "And the itsy bitsy spider back up the wall did go!"
+      ],
+      [
+        "The great big hairy spider climbed up the garden tree;",
+        "Down came the wind and blew him wild and free;",
+        "Out came the sun with rays so warm and bright,",
+        "And the great big hairy spider spun his web all night!"
       ]
     ],
     "rhymeScheme": "ABCB",
@@ -114,6 +126,14 @@ export const ANIMALS_NATURE_POEMS: Poem[] = [
         "But always you yourself you hid.",
         "I felt you push, I heard you call,",
         "I could not see yourself at all—",
+        "O wind, a-blowing all day long,",
+        "O wind, that sings so loud a song!"
+      ],
+      [
+        "O you that are so strong and cold,",
+        "O blower, are you young or old?",
+        "Are you a beast of field and tree,",
+        "Or just a stronger child than me?",
         "O wind, a-blowing all day long,",
         "O wind, that sings so loud a song!"
       ]
@@ -217,6 +237,30 @@ export const ANIMALS_NATURE_POEMS: Poem[] = [
         "What a beautiful Pussy you are,",
         "You are,",
         "What a beautiful Pussy you are!'"
+      ],
+      [
+        "Pussy said to the Owl, 'You elegant fowl!",
+        "How charmingly sweet you sing!",
+        "O let us be married! too long we have tarried:",
+        "But what shall we do for a ring?'",
+        "They sailed away, for a year and a day,",
+        "To the land where the Bong-tree grows."
+      ],
+      [
+        "And there in a wood a Piggy-wig stood",
+        "With a ring at the end of his nose,",
+        "'Dear pig, are you willing to sell for one shilling",
+        "Your ring?' Said the Piggy, 'I will.'",
+        "So they took it away, and were married next day",
+        "By the Turkey who lives on the hill!"
+      ],
+      [
+        "They dined on mince, and slices of quince,",
+        "Which they ate with a runcible spoon;",
+        "And hand in hand, on the edge of the sand,",
+        "They danced by the light of the moon,",
+        "The moon,",
+        "They danced by the light of the moon!"
       ]
     ],
     "rhymeScheme": "ABCB",
@@ -398,6 +442,12 @@ export const ANIMALS_NATURE_POEMS: Poem[] = [
         "Your house is on fire and your children are gone;",
         "All except one, and that's little Ann,",
         "And she has crept under the warming pan."
+      ],
+      [
+        "Ladybird, ladybird, fly from my hand,",
+        "Fly over the garden, fly over the land;",
+        "Rest on the rosebuds and whisper goodnight,",
+        "Until the sun wakes you with morning daylight!"
       ]
     ],
     "rhymeScheme": "AABB",
@@ -436,6 +486,12 @@ export const ANIMALS_NATURE_POEMS: Poem[] = [
         "Niddle-noddle went his head, wiggle-waggle went his tail;",
         "He opened his beak and sang his little song,",
         "Then fluttered his red wings and flew right along!"
+      ],
+      [
+        "Little Robin Redbreast hopped onto a tree,",
+        "Sang to the kittens, 'You cannot catch me!'",
+        "Pussycat reached up, but Robin took flight,",
+        "Perched on the rooftop so merry and bright!"
       ]
     ],
     "rhymeScheme": "AABB",
@@ -523,6 +579,12 @@ export const ANIMALS_NATURE_POEMS: Poem[] = [
         "I've been to London to visit the queen.",
         "Pussycat, pussycat, what did you there?",
         "I frightened a little mouse under her chair!"
+      ],
+      [
+        "Pussycat, pussycat, what did she say?",
+        "She gave me some cream in a saucer of clay.",
+        "Pussycat, pussycat, how did you purr?",
+        "I curled by the hearth in a warm ball of fur!"
       ]
     ],
     "rhymeScheme": "AABB",
@@ -650,6 +712,18 @@ export const ANIMALS_NATURE_POEMS: Poem[] = [
         "And what will poor robin do then, poor thing?",
         "He'll sit in a barn, and keep himself warm,",
         "And hide his head under his wing, poor thing!"
+      ],
+      [
+        "The north wind doth blow, and we shall have snow,",
+        "And what will the dormouse do then, poor thing?",
+        "Roll'd up like a ball, in his nest by the wall,",
+        "He'll sleep till warm weather and spring, poor thing!"
+      ],
+      [
+        "The north wind doth blow, and we shall have snow,",
+        "And what will the honeybee do, poor thing?",
+        "In her cozy bee hive, she will stay well alive,",
+        "And wait for the flowers of spring, poor thing!"
       ]
     ],
     "rhymeScheme": "AABB",
@@ -688,6 +762,12 @@ export const ANIMALS_NATURE_POEMS: Poem[] = [
         "So I cried, 'Little bird, will you stop, stop, stop?'",
         "I was going to the window to say, 'How do you do?'",
         "When he shook his little tail and far away he flew!"
+      ],
+      [
+        "Then upon the garden wall he gave a happy tweet,",
+        "Pecking on the yellow crumbs around my dancing feet;",
+        "He flapped his feather wings and tilted up his head,",
+        "'Good morning to you, little friend!' the merry birdie said!"
       ]
     ],
     "rhymeScheme": "AABB",

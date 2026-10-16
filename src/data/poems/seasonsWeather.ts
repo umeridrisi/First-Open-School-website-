@@ -17,6 +17,18 @@ export const SEASONS_WEATHER_POEMS: Poem[] = [
         "Come again another day;",
         "Little children want to play,",
         "Rain, rain, go away!"
+      ],
+      [
+        "Rain, rain, go away,",
+        "Come again another day;",
+        "Little Johnny wants to play,",
+        "On the green grass by the bay!"
+      ],
+      [
+        "Rain, rain, go to Spain,",
+        "Never show your face again;",
+        "All the flowers in the lane,",
+        "Singing in the sunny plain!"
       ]
     ],
     "rhymeScheme": "AAAA",
@@ -105,6 +117,18 @@ export const SEASONS_WEATHER_POEMS: Poem[] = [
         "Not at all like proper children, which is always very slow;",
         "For he sometimes shoots up taller like an india-rubber ball,",
         "And he sometimes gets so little that there's none of him at all."
+      ],
+      [
+        "He hasn't got a notion of how children ought to play,",
+        "And can only make a fool of me in every sort of way.",
+        "He stays so close beside me, he's a coward you can see;",
+        "I'd think shame to stick to nursie as that shadow sticks to me!"
+      ],
+      [
+        "One morning, very early, before the sun was up,",
+        "I rose and found the shining dew on every buttercup;",
+        "But my lazy little shadow, like an arrant sleepy-head,",
+        "Had stayed at home behind me and was fast asleep in bed!"
       ]
     ],
     "rhymeScheme": "AABB",

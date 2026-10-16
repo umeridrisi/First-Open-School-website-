@@ -123,6 +123,18 @@ export const PAKISTANI_RHYMES_POEMS: Poem[] = [
         'Titli boli: \'Na baba na, mera ghar hai paas!\'',
         'The bus driver said: \'Come sit right by me!\'',
         'Titli said: \'No thank you, my home is close and free!\''
+      ],
+      [
+        'Titli udi, rail mein chadi,',
+        'Seat na mili toh rone lagi!',
+        'The butterfly flew and boarded a train,',
+        'Crying for a seat across the sunny plain!'
+      ],
+      [
+        'Ticket babu ne bola: \'Ticket dikhao!\'',
+        'Titli boli: \'Mere paas toh par hain, aasmaan mein aao!\'',
+        'The conductor said: \'Show your ticket to me!\'',
+        'Titli said: \'I have lovely wings to soar wild and free!\''
       ]
     ],
     rhymeScheme: 'AABB',
@@ -447,14 +459,20 @@ export const PAKISTANI_RHYMES_POEMS: Poem[] = [
       [
         'Bulbul ka bacha, khata tha khichdi,',
         'Peeta tha paani, gaata tha gaana!',
-        'Ek din jo us ko par nikal aaye,',
-        'Far-far karke woh udh gaya!'
+        'A baby nightingale, gentle and sweet,',
+        'Ate warm lentils and seeds for a treat!'
       ],
       [
-        'A little nightingale, gentle and sweet,',
-        'Ate warm lentils and seeds for a treat;',
-        'Drank fresh water and sang with delight,',
-        'Opened his wings and took off in flight!'
+        'Roz subha ko, aana jaana,',
+        'Phoolon ki shaakhon pe, dhoom machaana!',
+        'Every bright morning he hopped in the breeze,',
+        'Singing with joy in the flowering trees!'
+      ],
+      [
+        'Ek din jo us ko, par nikal aaye,',
+        'Far-far karke woh udh gaya!',
+        'One sunny day when his feathers grew bright,',
+        'He flapped his soft wings and took off in flight!'
       ]
     ],
     rhymeScheme: 'AABB',

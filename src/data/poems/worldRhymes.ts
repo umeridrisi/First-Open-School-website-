@@ -881,6 +881,12 @@ export const WORLD_RHYMES_POEMS: Poem[] = [
         "Upstairs and downstairs in his nightgown,",
         "Tapping at the window, crying through the lock,",
         "Are the children in their beds? Now it's eight o'clock!"
+      ],
+      [
+        "Hey, Willie Winkie! Are you coming in?",
+        "The cat is singing purrs, the spinning wheel will spin;",
+        "The dog is sleeping on the floor, the baby's fast asleep,",
+        "Into the quiet nursery the peaceful moonbeams creep!"
       ]
     ],
     "rhymeScheme": "AABB",
@@ -919,6 +925,12 @@ export const WORLD_RHYMES_POEMS: Poem[] = [
         "Dance to your daddy, my little lamb!",
         "You shall have a fishy in a little dishy,",
         "You shall have a fishy when the boat comes in!"
+      ],
+      [
+        "Dance to your mammy, my little lamby,",
+        "Dance to your mammy, my little pet!",
+        "You shall have a coatie and a velvet capie,",
+        "When the fishing boat comes in from the net!"
       ]
     ],
     "rhymeScheme": "AABB",
@@ -959,7 +971,15 @@ export const WORLD_RHYMES_POEMS: Poem[] = [
         "Crying: 'Cockles and mussels, alive, alive, oh!'"
       ],
       [
+        "She was a fishmonger, and sure 'twas no wonder,",
+        "For so were her father and mother before;",
+        "And they both wheeled their barrows through streets broad and narrow,",
+        "Crying: 'Cockles and mussels, alive, alive, oh!'"
+      ],
+      [
         "'Alive, alive, oh! Alive, alive, oh!'",
+        "Crying: 'Cockles and mussels, alive, alive, oh!'",
+        "Through streets broad and narrow, she wheeled her wheelbarrow,",
         "Crying: 'Cockles and mussels, alive, alive, oh!'"
       ]
     ],
@@ -1048,6 +1068,12 @@ export const WORLD_RHYMES_POEMS: Poem[] = [
         "Through the quiet forest where the pine trees grow.",
         "Sleep little fawn beneath the moon's soft beam,",
         "Drift on the waters of a peaceful dream."
+      ],
+      [
+        "Through cedar trees and hills so high,",
+        "Under the glowing starry sky;",
+        "The gentle water sings a tune,",
+        "Beneath the silver autumn moon."
       ]
     ],
     "rhymeScheme": "AABB",
@@ -1444,6 +1470,20 @@ export const WORLD_RHYMES_POEMS: Poem[] = [
         "Carry me safely back to home,",
         "Hopp, hopp, hopp, hopp, hopp!",
         "Pferdchen, lauf Galopp!"
+      ],
+      [
+        "Tipp, tipp, tapp! Nicht zu schnell im Trab!",
+        "Gently walking down the trail,",
+        "Pony waving bushy tail,",
+        "Tipp, tipp, tipp, tipp, tapp!",
+        "Nicht zu schnell im Trab!"
+      ],
+      [
+        "Brr, brr, steh! Steh, mein Pferdchen, steh!",
+        "Now our merry journey's done,",
+        "Rest beneath the evening sun,",
+        "Brr, brr, brr, brr, steh!",
+        "Steh, mein Pferdchen, steh!"
       ]
     ],
     "rhymeScheme": "AABBA",
