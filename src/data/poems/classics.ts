@@ -29,6 +29,18 @@ export const CLASSIC_POEMS: Poem[] = [
         "Thanks you for your tiny spark;",
         "He could not see which way to go,",
         "If you did not twinkle so."
+      ],
+      [
+        "In the dark blue sky you keep,",
+        "And often through my curtains peep,",
+        "For you never shut your eye,",
+        "Till the sun is in the sky."
+      ],
+      [
+        "As your bright and tiny spark",
+        "Lights the traveler in the dark,",
+        "Though I know not what you are,",
+        "Twinkle, twinkle, little star."
       ]
     ],
     "rhymeScheme": "AABB",
@@ -371,10 +383,22 @@ export const CLASSIC_POEMS: Poem[] = [
         "Till Mary did appear."
       ],
       [
+        "And then it ran to her, and laid",
+        "Its head upon her arm,",
+        "As if it said, \"I'm not afraid,",
+        "You'll keep me from all harm.\""
+      ],
+      [
         "\"Why does the lamb love Mary so?\"",
         "The eager children cry;",
         "\"Why, Mary loves the lamb, you know,\"",
         "The teacher did reply."
+      ],
+      [
+        "And you each gentle animal",
+        "In confidence may bind,",
+        "And make them follow at your call,",
+        "If you are always kind."
       ]
     ],
     "rhymeScheme": "ABCB",
@@ -683,6 +707,30 @@ export const CLASSIC_POEMS: Poem[] = [
         "And a very fine fiddle had he;",
         "Oh, there's none so rare as can compare",
         "With King Cole and his fiddlers three."
+      ],
+      [
+        "Old King Cole was a merry old soul,",
+        "And a merry old soul was he;",
+        "He called for his pipe, and he called for his bowl,",
+        "And he called for his pipers three."
+      ],
+      [
+        "Every piper had a pipe so fine,",
+        "And a very fine pipe had he;",
+        "Twee-tweedle-dee, went the pipers three,",
+        "With King Cole and his fiddlers three."
+      ],
+      [
+        "Old King Cole was a merry old soul,",
+        "And a merry old soul was he;",
+        "He called for his pipe, and he called for his bowl,",
+        "And he called for his drummers three."
+      ],
+      [
+        "Every drummer had a drum so fine,",
+        "And a very fine drum had he;",
+        "Rub-a-dub-dub, went the drummers three,",
+        "With King Cole and his merry company!"
       ]
     ],
     "rhymeScheme": "ABCB",
@@ -1169,6 +1217,24 @@ export const CLASSIC_POEMS: Poem[] = [
         "And his buttons were made of penny loaves,",
         "Of penny loaves, of penny loaves,",
         "And his buttons were made of penny loaves,",
+        "And his name was Aiken Drum."
+      ],
+      [
+        "And his hat was made of good roast beef,",
+        "Of good roast beef, of good roast beef,",
+        "And his hat was made of good roast beef,",
+        "And his name was Aiken Drum."
+      ],
+      [
+        "And his waistcoat was made of crust of pies,",
+        "Of crust of pies, of crust of pies,",
+        "And his waistcoat was made of crust of pies,",
+        "And his name was Aiken Drum."
+      ],
+      [
+        "And he played upon a ladle,",
+        "A ladle, a ladle,",
+        "And he played upon a ladle,",
         "And his name was Aiken Drum."
       ]
     ],

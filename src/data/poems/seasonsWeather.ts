@@ -349,6 +349,30 @@ export const SEASONS_WEATHER_POEMS: Poem[] = [
         "Laughing and smiling in the snow;",
         "Out came the sun and it shone all day,",
         "And one little snowman melted away!"
+      ],
+      [
+        "Three little snowmen standing in a row,",
+        "Each with a carrot nose aglow;",
+        "Out came the sun and it shone all day,",
+        "And one little snowman melted away!"
+      ],
+      [
+        "Two little snowmen standing in a row,",
+        "Bundled in scarves against the blow;",
+        "Out came the sun and it shone all day,",
+        "And one little snowman melted away!"
+      ],
+      [
+        "One little snowman standing in a row,",
+        "Waving goodbye before he'd go;",
+        "Out came the sun and it shone all day,",
+        "And the last little snowman melted away!"
+      ],
+      [
+        "No little snowmen standing in a row,",
+        "Just shiny puddles left below;",
+        "Springtime sun shines warm and bright,",
+        "Waking the flowers into the light!"
       ]
     ],
     "rhymeScheme": "AABB",
@@ -428,11 +452,13 @@ export const SEASONS_WEATHER_POEMS: Poem[] = [
     "stanzas": [
       [
         "The fog comes",
-        "On little cat feet.",
+        "on little cat feet."
+      ],
+      [
         "It sits looking",
-        "Over harbor and city",
-        "On silent haunches",
-        "And then moves on."
+        "over harbor and city",
+        "on silent haunches",
+        "and then moves on."
       ]
     ],
     "rhymeScheme": "Free Verse",

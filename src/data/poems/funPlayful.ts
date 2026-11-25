@@ -25,6 +25,24 @@ export const FUN_PLAYFUL_POEMS: Poem[] = [
         "'No more monkeys jumping on the bed!'"
       ],
       [
+        "Three little monkeys jumping on the bed,",
+        "One fell off and bumped his head!",
+        "Mama called the doctor, and the doctor said,",
+        "'No more monkeys jumping on the bed!'"
+      ],
+      [
+        "Two little monkeys jumping on the bed,",
+        "One fell off and bumped his head!",
+        "Mama called the doctor, and the doctor said,",
+        "'No more monkeys jumping on the bed!'"
+      ],
+      [
+        "One little monkey jumping on the bed,",
+        "He fell off and bumped his head!",
+        "Mama called the doctor, and the doctor said,",
+        "'No more monkeys jumping on the bed!'"
+      ],
+      [
         "No little monkeys jumping on the bed,",
         "None fell off and bumped their head!",
         "Doctor called Mama, and the doctor said,",
@@ -121,6 +139,12 @@ export const FUN_PLAYFUL_POEMS: Poem[] = [
         "Rich and ripe and mellow.",
         "What is green? The grass is green,",
         "With small flowers between."
+      ],
+      [
+        "What is violet? Clouds are violet",
+        "In the summer twilight.",
+        "What is orange? Why, an orange,",
+        "Just an orange!"
       ]
     ],
     "rhymeScheme": "AABB",
@@ -544,6 +568,18 @@ export const FUN_PLAYFUL_POEMS: Poem[] = [
         "A penny for a needle;",
         "That's the way the money goes,",
         "POP! goes the weasel!"
+      ],
+      [
+        "Up and down the City Road,",
+        "In and out the Eagle,",
+        "That's the way the money goes,",
+        "POP! goes the weasel!"
+      ],
+      [
+        "Half a pound of tuppenny rice,",
+        "Half a pound of treacle;",
+        "Mix it up and make it nice,",
+        "POP! goes the weasel!"
       ]
     ],
     "rhymeScheme": "ABCB",
@@ -686,6 +722,24 @@ export const FUN_PLAYFUL_POEMS: Poem[] = [
         "And dreamt she heard them bleating;",
         "When she awoke, her heart it broke,",
         "For the vision was but fleeting."
+      ],
+      [
+        "Then up she took her little crook,",
+        "Determined for to find them;",
+        "She found them indeed, but it made her heart bleed,",
+        "For they'd left their tails behind them."
+      ],
+      [
+        "It happened one day, as Bo-Peep did stray",
+        "Into a meadow hard by,",
+        "There she espied their tails side by side,",
+        "All hung on a tree to dry."
+      ],
+      [
+        "She heaved a sigh and wiped her eye,",
+        "And over the hillocks she raced,",
+        "And tried what she could, as a shepherdess should,",
+        "To tack each one back in its place!"
       ]
     ],
     "rhymeScheme": "AABB",

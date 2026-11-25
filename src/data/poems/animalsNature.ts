@@ -403,6 +403,30 @@ export const ANIMALS_NATURE_POEMS: Poem[] = [
         "Four little ducks went out one day,",
         "Over the hills and far away.",
         "Mother duck said, 'Quack, quack, quack, quack,'",
+        "But only three little ducks came back."
+      ],
+      [
+        "Three little ducks went out one day,",
+        "Over the hills and far away.",
+        "Mother duck said, 'Quack, quack, quack, quack,'",
+        "But only two little ducks came back."
+      ],
+      [
+        "Two little ducks went out one day,",
+        "Over the hills and far away.",
+        "Mother duck said, 'Quack, quack, quack, quack,'",
+        "But only one little duck came back."
+      ],
+      [
+        "One little duck went out one day,",
+        "Over the hills and far away.",
+        "Mother duck said, 'Quack, quack, quack, quack,'",
+        "But none of the five little ducks came back."
+      ],
+      [
+        "Sad mother duck went out one day,",
+        "Over the hills and far away.",
+        "Mother duck said, 'Quack, quack, quack, quack,'",
         "And all of the five little ducks came back!"
       ]
     ],
@@ -536,6 +560,18 @@ export const ANIMALS_NATURE_POEMS: Poem[] = [
         "How neat she spreads the wax!",
         "And labors hard to store it well",
         "With the sweet food she makes."
+      ],
+      [
+        "In works of labor or of skill,",
+        "I would be busy too;",
+        "For Satan finds some mischief still",
+        "For idle hands to do."
+      ],
+      [
+        "In books, or work, or healthful play,",
+        "Let my first years be passed,",
+        "That I may give for every day",
+        "Some good account at last."
       ]
     ],
     "rhymeScheme": "ABAB",
@@ -663,15 +699,41 @@ export const ANIMALS_NATURE_POEMS: Poem[] = [
     "badgeBg": "bg-emerald-100 text-emerald-800 border-emerald-300",
     "stanzas": [
       [
+        "There was a hole in the middle of the ground,",
+        "The prettiest hole that you ever did see;",
+        "And in that hole there was a tree,",
+        "The prettiest tree that you ever did see.",
+        "And the tree in the hole, and the hole in the ground,",
         "And the green grass grew all around, all around,",
-        "And the green grass grew all around!",
-        "And on that tree there was a branch,",
-        "The prettiest branch that you ever did see."
+        "And the green grass grew all around!"
       ],
       [
+        "And on that tree there was a branch,",
+        "The prettiest branch that you ever did see;",
         "And on that branch there was a nest,",
+        "The prettiest nest that you ever did see.",
+        "And the nest on the branch, and the branch on the tree,",
+        "And the tree in the hole, and the hole in the ground,",
+        "And the green grass grew all around, all around,",
+        "And the green grass grew all around!"
+      ],
+      [
         "And in that nest there was an egg,",
+        "The prettiest egg that you ever did see;",
         "And in that egg there was a bird,",
+        "The prettiest bird that you ever did see.",
+        "And the bird in the egg, and the egg in the nest,",
+        "And the nest on the branch, and the branch on the tree,",
+        "And the tree in the hole, and the hole in the ground,",
+        "And the green grass grew all around, all around,",
+        "And the green grass grew all around!"
+      ],
+      [
+        "And on that bird there was a feather,",
+        "The prettiest feather that you ever did see;",
+        "And the feather on the bird, and the bird in the egg,",
+        "And the egg in the nest, and the nest on the branch,",
+        "And the branch on the tree, and the tree in the hole,",
         "And the green grass grew all around, all around,",
         "And the green grass grew all around!"
       ]
@@ -807,13 +869,21 @@ export const ANIMALS_NATURE_POEMS: Poem[] = [
         "Gave thee life, and bid thee feed",
         "By the stream and o'er the mead;",
         "Gave thee clothing of delight,",
-        "Softest clothing, woolly, bright."
+        "Softest clothing, woolly, bright;",
+        "Gave thee such a tender voice,",
+        "Making all the vales rejoice!",
+        "Little Lamb, who made thee?",
+        "Dost thou know who made thee?"
       ],
       [
         "Little Lamb, I'll tell thee,",
         "Little Lamb, I'll tell thee:",
         "He is called by thy name,",
         "For He calls Himself a Lamb.",
+        "He is meek, and He is mild;",
+        "He became a little child.",
+        "I a child, and thou a lamb,",
+        "We are called by His name.",
         "Little Lamb, God bless thee!",
         "Little Lamb, God bless thee!"
       ]
@@ -961,6 +1031,26 @@ export const ANIMALS_NATURE_POEMS: Poem[] = [
         "And you shall have some pie.'",
         "'Purr-r, purr-r, purr-r,",
         "Oh, let us have some pie!'"
+      ],
+      [
+        "The three little kittens put on their mittens,",
+        "And soon ate up the pie;",
+        "'Oh, mother dear, we greatly fear",
+        "Our mittens we have soiled!'",
+        "'What! Soiled your mittens, you naughty kittens!'",
+        "Then they began to sigh,",
+        "'Mee-ow, mee-ow, mee-ow.'",
+        "Then they began to sigh."
+      ],
+      [
+        "The three little kittens, they washed their mittens,",
+        "And hung them out to dry;",
+        "'Oh, mother dear, do you not hear,",
+        "Our mittens we have washed!'",
+        "'What! Washed your mittens? You're good little kittens!",
+        "But I smell a rat close by!'",
+        "'Mee-ow, mee-ow, mee-ow,",
+        "We smell a rat close by!'"
       ]
     ],
     "rhymeScheme": "AABBC",

@@ -25,6 +25,18 @@ export const PAKISTANI_RHYMES_POEMS: Poem[] = [
         'Every corner shining with knowledge pure and bright!'
       ],
       [
+        'Ho mere dam se yunhi mere watan ki zeenat,',
+        'Jis tarah phool se hoti hai chaman ki zeenat!',
+        'May my homeland shine with beauty through the deeds I do,',
+        'Just as blossoms bring their splendor to a garden true!'
+      ],
+      [
+        'Zindagi ho meri parwaane ki soorat Ya Rab!',
+        'Ilm ki shama se ho mujh ko muhabbat Ya Rab!',
+        'May my life be like a moth that seeks the glowing flame,',
+        'May I love the lamp of knowledge in Your noble name!'
+      ],
+      [
         'Ho mera kaam gharibon ki himayat karna,',
         'Dard-mandon se za\'eefon se muhabbat karna!',
         'Let it be my duty to support the weak and poor,',
@@ -64,27 +76,57 @@ export const PAKISTANI_RHYMES_POEMS: Poem[] = [
     stanzas: [
       [
         'Koi pahaar yeh kehta tha ek gulehri se,',
-        'Tujhe sharam ho to paani mein jaa ke doob marey!',
+        'Tujhe ho sharam to paani mein jaa ke doob marey!',
         'A towering mountain said to a tiny squirrel nearby:',
-        '\'You should feel so small beneath my summits high!\''
+        '\'If you had any shame, you\'d hide from summits high!\''
       ],
       [
-        'Kaha gulehri ne: Munh sambhal kar boli,',
-        'Yeh kachchi baatein hain dil se zara nikaal unhein!',
+        'Zara si cheez hai, is par ghuroor, kya kehna!',
+        'Yeh aql aur yeh samajh, yeh sha\'oor, kya kehna!',
+        '\'You tiny little creature, so full of foolish pride,',
+        'Pretending you have wisdom and cleverness inside!\''
+      ],
+      [
+        'Kaha gulehri ne: Munh sambhal kar bolo,',
+        'Yeh kachchi baatein hain dil se inhein nikaal dalo!',
         'Said the squirrel: \'Hold your tongue and think once more,',
         'Cast these foolish boasts away from wisdom\'s door!\''
       ],
       [
-        'Jo main badi nahi teri tarah to kya gham hai,',
+        'Jo main badi nahi teri tarah to kya parwah,',
         'Nahi hai tu bhi to aakhir meri tarah chhota!',
         '\'If I am not as giant as you, what of that, pray?',
         'Neither can you dart and hop as nimble in your way!\''
       ],
       [
+        'Har ek cheez se paida Khuda ki qudrat hai,',
+        'Koi bada, koi chhota, yeh us ki hikmat hai!',
+        '\'In every living creature, God\'s wisdom shines so clear;',
+        'Some things are great mountains, some swift and small right here!\''
+      ],
+      [
+        'Bada jahaan mein tujh ko bana diya us ne,',
+        'Mujhe darakht pe chadhna sikha diya us ne!',
+        '\'He made you grand and mighty across the earth below,',
+        'And taught my nimble paws up the tallest trees to go!\''
+      ],
+      [
+        'Qadam uthane ki taqat nahi zara tujh mein,',
+        'Niri badai hai, khoobi hai aur kya tujh mein?',
+        '\'You haven\'t got the power to take a single pace—',
+        'Your size is all you boast of; what else fills your space?\''
+      ],
+      [
+        'Jo tu bada hai to mujh sa hunar dikha mujh ko,',
+        'Yeh chhalia hi zara tod kar dikha mujh ko!',
+        '\'If you can carry forests upon your rocky back,',
+        'Let\'s see you gently crack this tiny chestnut snack!\''
+      ],
+      [
         'Nahi hai cheez nikammi koi zamaane mein,',
         'Koi bura nahi qudrat ke kaarkhaane mein!',
-        '\'If I cannot carry grand forests on my back,',
-        'Neither can you crack a tiny chestnut snack!\''
+        '\'Nothing in this wide world was ever made in vain;',
+        'Nothing is worthless in nature\'s grand domain!\''
       ]
     ],
     rhymeScheme: 'AABB',
@@ -288,21 +330,21 @@ export const PAKISTANI_RHYMES_POEMS: Poem[] = [
     stanzas: [
       [
         'Jugnu ki roshni hai kaashana-e-chaman mein,',
-        'Ya shama jal rahi hai zille-an-juman mein!',
-        'Is it a spark that dropped from a starry height,',
-        'Or a tiny flying candle glowing in the night?'
+        'Ya shama jal rahi hai phoolon ki anjuman mein!',
+        'Is it a spark that glows inside the garden bower,',
+        'Or a tiny flying candle beside each blooming flower?'
       ],
       [
-        'Pohanchi zameen pe taaron ki anjuman hai,',
-        'Ya chaand ki kiran hai jo be-hijaab aayi!',
-        'Has a shower of little stars descended to the ground,',
-        'Or moonbeams softly dancing without a single sound?'
+        'Aaya hai aasmaan se ud kar koi sitara,',
+        'Ya jaan pad gayi hai mahtaab ki kiran mein!',
+        'Has a little shooting star come drifting to the ground,',
+        'Or moonbeams come to life without a single sound?'
       ],
       [
-        'Suraj ne di hai dhoop, chaand ko noor-e-chaman,',
-        'Jugnu ko diya hai parwaz ka roshan kafan!',
-        'The sun brings golden rays, the moon silver light,',
-        'And to the little firefly, a lantern for its flight!'
+        'Har cheez ko jahaan mein qudrat ne dilbari di,',
+        'Parwaane ko tapish di, jugnu ko roshni di!',
+        'To every living creature, nature gave a lovely sight:',
+        'Warmth to the gentle moth, and to the firefly its light!'
       ]
     ],
     rhymeScheme: 'AABB',
@@ -421,12 +463,24 @@ export const PAKISTANI_RHYMES_POEMS: Poem[] = [
       [
         'Guriya meri pyari hai,',
         'Phoolon ki yeh rani hai!',
+        'My little doll is dear to me,',
+        'Queen of the flower garden free!'
+      ],
+      [
         'Aankhein iski neeli hain,',
-        'Gaal iske gulabi hain!'
+        'Gaal iske gulabi hain!',
+        'Her bright eyes shine a sky of blue,',
+        'Her cheeks are soft and rosy too!'
       ],
       [
         'Resham jaisa kurta iska,',
         'Chamakta hua jhoomar iska!',
+        'A silky kurta she wears bright,',
+        'With sparkling jhoomar catching light!'
+      ],
+      [
+        'Jab yeh soti hai to hum gaate,',
+        'Meethe meethe geet sunaate!',
         'When she sleeps I sing a song,',
         'Happy and gentle all day long!'
       ]

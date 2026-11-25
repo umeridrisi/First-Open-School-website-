@@ -35,54 +35,111 @@ app.get("/robots.txt", (_req, res) => {
   const robotsTxt = `# ==============================================================================
 # First Open School - Robots.txt
 # Early Literacy, Phonics, Numeracy & Kids Science Encyclopedia
+# Standard: RFC 9309 (Robots Exclusion Protocol)
+# Policy: Search = Allow | AI Model Training = Disallow | Live Reference = Allow
 # ==============================================================================
 
-# Search Engines
-User-agent: *
+# ------------------------------------------------------------------------------
+# Search Engines (search=yes)
+# ------------------------------------------------------------------------------
+User-agent: Googlebot
 Allow: /
 Disallow: /api/
 
-# AI Crawlers & Large Language Models
-User-agent: GPTBot
+User-agent: Googlebot-Image
 Allow: /
+Disallow: /api/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /api/
+
+User-agent: Applebot
+Allow: /
+Disallow: /api/
+
+# ------------------------------------------------------------------------------
+# Live AI Reference & Citation Crawlers (use=reference)
+# ------------------------------------------------------------------------------
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /api/
 
 User-agent: ChatGPT-User
 Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
+Disallow: /api/
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /api/
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /api/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /api/
+
+User-agent: Claude-User
+Allow: /
+Disallow: /api/
+
+# ------------------------------------------------------------------------------
+# AI Model Training Crawlers (ai-train=no)
+# Official RFC 9309 directives respected by Google & AI vendors
+# ------------------------------------------------------------------------------
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
 
 User-agent: Applebot-Extended
-Allow: /
+Disallow: /
 
 User-agent: Amazonbot
-Allow: /
-
-User-agent: Cohere-ai
-Allow: /
+Disallow: /
 
 User-agent: CCBot
-Allow: /
+Disallow: /
 
 User-agent: Bytespider
-Allow: /
+Disallow: /
 
 User-agent: FacebookBot
-Allow: /
+Disallow: /
 
-# XML Sitemap
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: Cohere-ai
+Disallow: /
+
+# ------------------------------------------------------------------------------
+# Default Crawlers
+# ------------------------------------------------------------------------------
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /*?*preview=*
+Disallow: /*?*debug=*
+
+# Canonical XML Sitemap
 Sitemap: ${baseUrl}/sitemap.xml
 
-# LLM Documentation Standard
+# LLM Documentation Standards
+# Discoverable structured curriculum content for LLMs and AI Agents:
 # ${baseUrl}/llms.txt
 # ${baseUrl}/llms-full.txt
 `;

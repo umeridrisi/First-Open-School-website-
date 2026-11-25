@@ -154,13 +154,15 @@ export const BEDTIME_LULLABIES_POEMS: Poem[] = [
         "Golden slumbers kiss your eyes,",
         "Smiles awake you when you rise;",
         "Sleep, pretty wantons, do not cry,",
-        "And I will sing a lullaby."
+        "And I will sing a lullaby,",
+        "Rock them, rock them, lullaby."
       ],
       [
-        "Rock them, rock them, lullaby,",
-        "Safe beneath the starry sky;",
-        "Morning light will shine again,",
-        "Over valley, hill, and plain."
+        "Care is heavy, therefore sleep you,",
+        "You are care, and care must keep you;",
+        "Sleep, pretty wantons, do not cry,",
+        "And I will sing a lullaby,",
+        "Rock them, rock them, lullaby."
       ]
     ],
     "rhymeScheme": "AABB",
@@ -414,13 +416,17 @@ export const BEDTIME_LULLABIES_POEMS: Poem[] = [
         "Lullaby and good night,",
         "With pink roses bedight,",
         "With lilies o'erspread,",
-        "Is baby's sweet bed."
-      ],
-      [
-        "Lay thee down now and rest,",
-        "May thy slumber be blest;",
+        "Is baby's sweet bed.",
         "Lay thee down now and rest,",
         "May thy slumber be blest."
+      ],
+      [
+        "Lullaby and good night,",
+        "Thy mother's delight,",
+        "Bright angels beside",
+        "My darling abide;",
+        "They will guard thee at rest,",
+        "Thou shalt wake on my breast."
       ]
     ],
     "rhymeScheme": "AABB",
@@ -462,9 +468,21 @@ export const BEDTIME_LULLABIES_POEMS: Poem[] = [
       ],
       [
         "Blacks and bays, dapples and grays,",
-        "All the pretty little horses;",
+        "Coach and six-a-little horses;",
         "Hush-a-bye, don't you cry,",
         "Go to sleep, little baby."
+      ],
+      [
+        "Way down yonder in the meadow,",
+        "Lies a pretty little baby;",
+        "Birds and butterflies flutter around,",
+        "Sing to sleep my little baby."
+      ],
+      [
+        "Hush-a-bye, don't you cry,",
+        "Go to sleep, little baby;",
+        "When you wake, you shall have",
+        "All the pretty little horses."
       ]
     ],
     "rhymeScheme": "ABCB",
@@ -508,6 +526,18 @@ export const BEDTIME_LULLABIES_POEMS: Poem[] = [
         "Someone's singing, friend, kumbaya,",
         "Someone's resting, friend, kumbaya,",
         "Someone's dreaming, friend, kumbaya,",
+        "O friend, kumbaya."
+      ],
+      [
+        "Someone's laughing, friend, kumbaya,",
+        "Someone's smiling, friend, kumbaya,",
+        "Someone's sleeping, friend, kumbaya,",
+        "O friend, kumbaya."
+      ],
+      [
+        "Kumbaya, my friend, kumbaya,",
+        "Kumbaya, my friend, kumbaya,",
+        "Peace be with you through the night,",
         "O friend, kumbaya."
       ]
     ],
@@ -647,6 +677,24 @@ export const BEDTIME_LULLABIES_POEMS: Poem[] = [
         "Stars begin to peep,",
         "Birds and beasts and flowers",
         "Soon will be asleep."
+      ],
+      [
+        "Give to little children",
+        "Visions bright of Thee;",
+        "Guard the sailors tossing",
+        "On the deep blue sea."
+      ],
+      [
+        "Through the long night watches,",
+        "May Thine angels spread",
+        "Their white wings above me,",
+        "Watching round my bed."
+      ],
+      [
+        "When the morning wakens,",
+        "Then may I arise,",
+        "Pure and fresh and gentle",
+        "In Thy loving eyes."
       ]
     ],
     "rhymeScheme": "ABCB",

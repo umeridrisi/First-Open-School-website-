@@ -108,6 +108,12 @@ export const WORLD_RHYMES_POEMS: Poem[] = [
       ],
       [
         "Kookaburra sits in the old gum tree,",
+        "Eating all the gumdrops he can see;",
+        "Stop, Kookaburra, stop, Kookaburra,",
+        "Leave some there for me!"
+      ],
+      [
+        "Kookaburra sits in the old gum tree,",
         "Counting all the monkeys he can see;",
         "Stop, Kookaburra, stop, Kookaburra,",
         "That's not a monkey, that's me!"
@@ -385,14 +391,32 @@ export const WORLD_RHYMES_POEMS: Poem[] = [
       [
         "The little chicks say,",
         "Peep, peep, peep,",
-        "When they need their breakfast,",
-        "When they want to sleep!"
+        "When they are hungry,",
+        "And cold and need sleep!"
       ],
       [
         "La gallina busca",
         "El maíz y el trigo,",
         "Les da la comida,",
         "Y les presta abrigo."
+      ],
+      [
+        "Mother hen goes searching",
+        "For sweet corn and wheat;",
+        "She gives them their dinner",
+        "And warms them from feet to beak!"
+      ],
+      [
+        "Bajo sus dos alas,",
+        "Acurrucaditos,",
+        "Duermen los pollitos",
+        "Hasta el otro día."
+      ],
+      [
+        "Beneath her two wings,",
+        "Tucked cozy and tight,",
+        "The little chicks sleep",
+        "Through the quiet night!"
       ]
     ],
     "rhymeScheme": "ABCB",
@@ -491,6 +515,30 @@ export const WORLD_RHYMES_POEMS: Poem[] = [
         "The meadows are dressed when the springtime is here;",
         "In bright colors, in bright colors,",
         "The birds sing their melodies joyous and clear!"
+      ],
+      [
+        "De colores, de colores",
+        "Es el arco iris que vemos lucir;",
+        "Y por eso los grandes amores",
+        "De muchos colores me gustan a mí!"
+      ],
+      [
+        "In bright colors, in bright colors,",
+        "The rainbow shines out in the sky up above;",
+        "And that's why all the wonderful things",
+        "Of so many colors are what I most love!"
+      ],
+      [
+        "Canta el gallo, canta el gallo",
+        "Con el quiri, quiri, quiri, quiri, quiri;",
+        "La gallina, la gallina",
+        "Con el cara, cara, cara, cara, cara!"
+      ],
+      [
+        "Sings the rooster, sings the rooster",
+        "With his cock-a-doodle-doodle-doodle-doo;",
+        "And the mama hen answers",
+        "With her cluck-a-cluck-a-cluck-a-cluck for you!"
       ]
     ],
     "rhymeScheme": "ABCB",
@@ -1199,13 +1247,25 @@ export const WORLD_RHYMES_POEMS: Poem[] = [
         "Chanda mama door ke,",
         "Puye pakaye boor ke;",
         "Uncle Moon high in the night,",
-        "Showering stars of silver light."
+        "Baking sweet treats golden bright."
       ],
       [
         "Aap khaye thali mein,",
         "Munne ko de pyali mein!",
-        "Sweet treats for the little child,",
-        "Sleep with gentle dreams and mild."
+        "He eats from a silver plate,",
+        "And fills the baby's little bowl full weight!"
+      ],
+      [
+        "Pyali gayi toot,",
+        "Munna gaya rooth;",
+        "Laayenge nayi pyaliya,",
+        "Baja baja ke taliya!"
+      ],
+      [
+        "When the little cup gave a crack,",
+        "Baby pouted and turned his back;",
+        "We'll bring a brand new bowl today,",
+        "Clapping our hands in happy play!"
       ]
     ],
     "rhymeScheme": "AABB",
@@ -1382,6 +1442,18 @@ export const WORLD_RHYMES_POEMS: Poem[] = [
         "You'll come a-waltzing Matilda, with me!",
         "And he sang as he watched and waited 'til his billy boiled:",
         "'You'll come a-waltzing Matilda, with me!'"
+      ],
+      [
+        "Down came a jumbuck to drink at that billabong,",
+        "Up jumped the swagman and greeted him with glee;",
+        "And they shared sweet damper beneath the coolibah,",
+        "Singing 'You'll come a-waltzing Matilda, with me!'"
+      ],
+      [
+        "Waltzing Matilda, Waltzing Matilda,",
+        "You'll come a-waltzing Matilda, with me!",
+        "Over the outback beneath the starry Southern Cross,",
+        "You'll come a-waltzing Matilda, with me!"
       ]
     ],
     "rhymeScheme": "ABCB",
