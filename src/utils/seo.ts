@@ -3,8 +3,8 @@ import { ALPHABET_DATA, DIGIT_DATA } from '../data/curriculumData';
 import {
   LETTER_LEARNING_NOTES,
   DIGIT_LEARNING_NOTES,
-  ALPHABETS_OVERVIEW_SECTIONS,
-  DIGITS_OVERVIEW_SECTIONS,
+  ALPHABETS_INDEX_SECTIONS,
+  DIGITS_INDEX_SECTIONS,
 } from '../data/learningGuides';
 import { ENCYCLOPEDIA_ENTRIES, ENCYCLOPEDIA_CATEGORIES } from '../data/encyclopediaData';
 import { POEMS_DATA, POEM_CATEGORIES, getPoemById } from '../data/poemsData';
@@ -1731,28 +1731,21 @@ export function renderSemanticRouteHtml(route: AppRoute): string {
           </p>
 
           <div style="background:#fff9f0;border:2px solid #ff6b6b;border-radius:1rem;padding:1.5rem;margin-bottom:2rem;">
-            <h2 style="font-size:1.3rem;font-weight:900;color:#2d2d2d;margin:0 0 0.5rem 0;">How to Practice Letter ${char}</h2>
+            <h2 style="font-size:1.3rem;font-weight:900;color:#2d2d2d;margin:0 0 0.75rem 0;">${note ? escapeHtmlText(note.headline) : `How to Practice Letter ${char}`}</h2>
             <p style="font-size:1.05rem;line-height:1.65;color:#444;margin:0 0 1rem 0;">
-              ${note ? escapeHtmlText(note.soundGuide) : `Listen to the sound '${escapeHtmlText(letter.phonicsSound)}', repeat the word '${escapeHtmlText(letter.exampleWord)}', and practice tracing the uppercase and lowercase strokes.`}
+              ${note ? escapeHtmlText(note.storyParagraph) : `Listen to the sound '${escapeHtmlText(letter.phonicsSound)}', repeat the word '${escapeHtmlText(letter.exampleWord)}', and practice tracing the uppercase and lowercase strokes.`}
             </p>
             ${note ? `
               <p style="font-size:1rem;line-height:1.65;color:#444;margin:0 0 1rem 0;">
-                <strong>Handwriting &amp; Recognition Tip:</strong> ${escapeHtmlText(note.formationTip)} Practice words: ${escapeHtmlText(note.everydayWords.join(', '))}.
+                <strong>Writing &amp; Spotting Tip:</strong> ${escapeHtmlText(note.writingParagraph)}
+              </p>
+              <p style="font-size:1rem;line-height:1.65;color:#444;margin:0 0 1rem 0;">
+                <strong>Try This Together:</strong> ${escapeHtmlText(note.teacherActivity)} Practice words: ${escapeHtmlText(note.everydayWords.join(', '))}.
               </p>
             ` : ''}
             <a href="/tracing/${char}" style="display:inline-block;padding:0.75rem 1.5rem;background:#ffd93d;color:#2d2d2d;text-decoration:none;font-weight:900;border-radius:0.75rem;border:2px solid #2d2d2d;">
               Practice Tracing Letter ${char} Now &rarr;
             </a>
-          </div>
-
-          <div style="border-top:1px solid #eee;padding-top:1.5rem;margin-bottom:2rem;">
-            <h2 style="font-size:1.25rem;font-weight:900;color:#2d2d2d;margin:0 0 1rem 0;">Alphabet &amp; Early Phonics Guide</h2>
-            ${ALPHABETS_OVERVIEW_SECTIONS.map(sec => `
-              <div style="margin-bottom:1rem;">
-                <h3 style="font-size:1.05rem;font-weight:800;color:#2d2d2d;margin:0 0 0.35rem 0;">${escapeHtmlText(sec.heading)}</h3>
-                <p style="font-size:0.98rem;line-height:1.65;color:#444;margin:0;">${escapeHtmlText(sec.body)}</p>
-              </div>
-            `).join('')}
           </div>
 
           <h3 style="font-size:1.2rem;font-weight:900;color:#2d2d2d;margin:0 0 1rem 0;">Explore All 26 English Alphabets:</h3>
@@ -1786,7 +1779,7 @@ export function renderSemanticRouteHtml(route: AppRoute): string {
           </div>
           <div style="border-top:1px solid #eee;padding-top:1.5rem;">
             <h2 style="font-size:1.3rem;font-weight:900;color:#2d2d2d;margin:0 0 1rem 0;">Alphabet &amp; Early Phonics Guide</h2>
-            ${ALPHABETS_OVERVIEW_SECTIONS.map(sec => `
+            ${ALPHABETS_INDEX_SECTIONS.map(sec => `
               <div style="margin-bottom:1.1rem;">
                 <h3 style="font-size:1.05rem;font-weight:800;color:#2d2d2d;margin:0 0 0.35rem 0;">${escapeHtmlText(sec.heading)}</h3>
                 <p style="font-size:1rem;line-height:1.65;color:#444;margin:0;">${escapeHtmlText(sec.body)}</p>
@@ -1811,28 +1804,21 @@ export function renderSemanticRouteHtml(route: AppRoute): string {
           </p>
 
           <div style="background:#fff9f0;border:2px solid #6bcb77;border-radius:1rem;padding:1.5rem;margin-bottom:2rem;">
-            <h2 style="font-size:1.3rem;font-weight:900;color:#2d2d2d;margin:0 0 0.5rem 0;">Learning Number ${val}</h2>
+            <h2 style="font-size:1.3rem;font-weight:900;color:#2d2d2d;margin:0 0 0.75rem 0;">${note ? escapeHtmlText(note.headline) : `Learning Number ${val}`}</h2>
             <p style="font-size:1.05rem;line-height:1.65;color:#444;margin:0 0 1rem 0;">
-              ${note ? escapeHtmlText(note.senseParagraph) : `Count the items, listen to the number word '${escapeHtmlText(digitObj.word)}', and practice stroke tracing on the tactile canvas.`}
+              ${note ? escapeHtmlText(note.storyParagraph) : `Count the items, listen to the number word '${escapeHtmlText(digitObj.word)}', and practice stroke tracing on the tactile canvas.`}
             </p>
             ${note ? `
               <p style="font-size:1rem;line-height:1.65;color:#444;margin:0 0 1rem 0;">
-                <strong>Pattern &amp; Mental Math Tip:</strong> ${escapeHtmlText(note.patternTip)} Everyday examples: ${escapeHtmlText(note.everydayExamples.join(', '))}.
+                <strong>Counting &amp; Seeing It:</strong> ${escapeHtmlText(note.countingParagraph)}
+              </p>
+              <p style="font-size:1rem;line-height:1.65;color:#444;margin:0 0 1rem 0;">
+                <strong>Try This Together:</strong> ${escapeHtmlText(note.teacherActivity)} Everyday examples: ${escapeHtmlText(note.everydayExamples.join(', '))}.
               </p>
             ` : ''}
             <a href="/tracing/${val}" style="display:inline-block;padding:0.75rem 1.5rem;background:#ffd93d;color:#2d2d2d;text-decoration:none;font-weight:900;border-radius:0.75rem;border:2px solid #2d2d2d;">
               Practice Tracing Number ${val} Now &rarr;
             </a>
-          </div>
-
-          <div style="border-top:1px solid #eee;padding-top:1.5rem;margin-bottom:2rem;">
-            <h2 style="font-size:1.25rem;font-weight:900;color:#2d2d2d;margin:0 0 1rem 0;">Early Math &amp; Counting Guide (0–20)</h2>
-            ${DIGITS_OVERVIEW_SECTIONS.map(sec => `
-              <div style="margin-bottom:1rem;">
-                <h3 style="font-size:1.05rem;font-weight:800;color:#2d2d2d;margin:0 0 0.35rem 0;">${escapeHtmlText(sec.heading)}</h3>
-                <p style="font-size:0.98rem;line-height:1.65;color:#444;margin:0;">${escapeHtmlText(sec.body)}</p>
-              </div>
-            `).join('')}
           </div>
 
           <h3 style="font-size:1.2rem;font-weight:900;color:#2d2d2d;margin:0 0 1rem 0;">Explore All Digits 0 to 20:</h3>
@@ -1865,7 +1851,7 @@ export function renderSemanticRouteHtml(route: AppRoute): string {
           </div>
           <div style="border-top:1px solid #eee;padding-top:1.5rem;">
             <h2 style="font-size:1.3rem;font-weight:900;color:#2d2d2d;margin:0 0 1rem 0;">Early Math &amp; Counting Guide (0–20)</h2>
-            ${DIGITS_OVERVIEW_SECTIONS.map(sec => `
+            ${DIGITS_INDEX_SECTIONS.map(sec => `
               <div style="margin-bottom:1.1rem;">
                 <h3 style="font-size:1.05rem;font-weight:800;color:#2d2d2d;margin:0 0 0.35rem 0;">${escapeHtmlText(sec.heading)}</h3>
                 <p style="font-size:1rem;line-height:1.65;color:#444;margin:0;">${escapeHtmlText(sec.body)}</p>
