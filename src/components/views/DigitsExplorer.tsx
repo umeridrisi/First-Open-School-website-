@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { DigitData, StudentProfile, ParentSettings } from '../../types';
 import { DIGIT_DATA, CURRICULUM_TIER_DETAILS, AGE_TIER_INFO } from '../../data/curriculumData';
+import { DIGIT_LEARNING_NOTES, DIGITS_OVERVIEW_SECTIONS } from '../../data/learningGuides';
 import { speakText, playSoundEffect } from '../../utils/sound';
-import { Volume2, PenTool, CheckCircle, Sparkles, Hash, GraduationCap, HelpCircle } from 'lucide-react';
+import { Volume2, PenTool, CheckCircle, Sparkles, Hash, GraduationCap, HelpCircle, BookOpen } from 'lucide-react';
 
 interface DigitsExplorerProps {
   student: StudentProfile;
@@ -368,6 +369,71 @@ export const DigitsExplorer: React.FC<DigitsExplorerProps> = ({
           );
         })}
       </div>
+
+      {/* Selected Number Educational Info & Early Numeracy Guide */}
+      {(() => {
+        const note = DIGIT_LEARNING_NOTES[selectedDigit.value];
+        return (
+          <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-6">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700">
+                  <BookOpen className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-black text-[#2D2D2D]">
+                    About Number {selectedDigit.value} ({selectedDigit.word})
+                  </h3>
+                  <p className="text-xs font-semibold text-slate-500">
+                    {selectedDigit.value % 2 === 0 ? 'Even Number' : 'Odd Number'} · {selectedDigit.value >= 10 ? 'Two-Digit Number' : 'Single-Digit Number'} · {selectedDigit.mathTip}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {note && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <h4 className="text-sm font-black text-slate-800">
+                    Number Sense &amp; Quantity Meaning
+                  </h4>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    {note.senseParagraph}
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <div className="space-y-1.5">
+                    <h4 className="text-sm font-black text-slate-800">
+                      Pattern &amp; Mental Math Tip
+                    </h4>
+                    <p className="text-sm text-slate-600 leading-relaxed">
+                      {note.patternTip}
+                    </p>
+                  </div>
+                  <div className="text-xs font-semibold text-slate-500 pt-1">
+                    <span className="font-extrabold text-slate-700">Where Kids See {selectedDigit.value}: </span>
+                    {note.everydayExamples.join(' · ')}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div className="pt-6 border-t border-slate-100 space-y-5">
+              <h3 className="text-lg font-black text-[#2D2D2D]">
+                Early Math &amp; Counting Guide (0–20)
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {DIGITS_OVERVIEW_SECTIONS.map((sec) => (
+                  <article key={sec.heading} className="space-y-2">
+                    <h4 className="text-sm font-black text-slate-800">{sec.heading}</h4>
+                    <p className="text-sm text-slate-600 leading-relaxed">{sec.body}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      })()}
 
     </div>
   );

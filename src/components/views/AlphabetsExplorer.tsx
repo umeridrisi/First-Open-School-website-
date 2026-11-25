@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { LetterData, StudentProfile, ParentSettings } from '../../types';
 import { ALPHABET_DATA, CURRICULUM_TIER_DETAILS, AGE_TIER_INFO } from '../../data/curriculumData';
+import { LETTER_LEARNING_NOTES, ALPHABETS_OVERVIEW_SECTIONS } from '../../data/learningGuides';
 import { speakText, playSoundEffect } from '../../utils/sound';
-import { Volume2, PenTool, CheckCircle, Sparkles, GraduationCap, Info, HelpCircle } from 'lucide-react';
+import { Volume2, PenTool, CheckCircle, Sparkles, GraduationCap, Info, HelpCircle, BookOpen } from 'lucide-react';
 
 interface AlphabetsExplorerProps {
   student: StudentProfile;
@@ -360,6 +361,72 @@ export const AlphabetsExplorer: React.FC<AlphabetsExplorerProps> = ({
           );
         })}
       </div>
+
+      {/* Selected Letter Educational Info & Phonics Guide */}
+      {(() => {
+        const note = LETTER_LEARNING_NOTES[selectedLetter.char];
+        return (
+          <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-6">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-2xl bg-rose-50 border border-rose-200 flex items-center justify-center text-rose-600">
+                  <BookOpen className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-black text-[#2D2D2D]">
+                    About Letter {selectedLetter.char} ({selectedLetter.char}
+                    {selectedLetter.lowercase})
+                  </h3>
+                  <p className="text-xs font-semibold text-slate-500 capitalize">
+                    {selectedLetter.category} · Sound: {selectedLetter.phonicsSound} · Keyword: {selectedLetter.exampleWord}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {note && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <h4 className="text-sm font-black text-slate-800">
+                    Sound &amp; Pronunciation Guide
+                  </h4>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    {note.soundGuide}
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <div className="space-y-1.5">
+                    <h4 className="text-sm font-black text-slate-800">
+                      Handwriting &amp; Recognition Tip
+                    </h4>
+                    <p className="text-sm text-slate-600 leading-relaxed">
+                      {note.formationTip}
+                    </p>
+                  </div>
+                  <div className="text-xs font-semibold text-slate-500 pt-1">
+                    <span className="font-extrabold text-slate-700">Practice Words: </span>
+                    {note.everydayWords.join(' · ')}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div className="pt-6 border-t border-slate-100 space-y-5">
+              <h3 className="text-lg font-black text-[#2D2D2D]">
+                Alphabet &amp; Early Phonics Guide
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {ALPHABETS_OVERVIEW_SECTIONS.map((sec) => (
+                  <article key={sec.heading} className="space-y-2">
+                    <h4 className="text-sm font-black text-slate-800">{sec.heading}</h4>
+                    <p className="text-sm text-slate-600 leading-relaxed">{sec.body}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      })()}
 
     </div>
   );
