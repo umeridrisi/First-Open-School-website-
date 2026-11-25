@@ -1,39 +1,59 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { 
-  StudentProfile, 
-  ParentSettings, 
-  DrawingTemplate, 
-  DrawingCategory 
+import {
+  StudentProfile,
+  ParentSettings,
+  DrawingTemplate,
+  DrawingCategory,
 } from '../../types';
-import { 
-  DRAWING_CATEGORIES, 
-  DRAWING_TEMPLATES, 
-  getDrawingTemplateById 
+import {
+  DRAWING_CATEGORIES,
+  DRAWING_TEMPLATES,
+  getDrawingTemplateById,
 } from '../../data/drawingsData';
+import { CURRICULUM_TIER_DETAILS } from '../../data/curriculumData';
 import { playSoundEffect, speakText } from '../../utils/sound';
-import { 
-  Paintbrush, 
-  Eraser, 
-  RotateCcw, 
-  RotateCw, 
-  Trash2, 
-  Download, 
-  Printer, 
-  Sparkles, 
-  CheckCircle, 
-  Palette, 
-  ChevronRight, 
-  Images, 
-  Share2, 
-  BookOpen, 
-  Eye, 
+import {
+  CANVAS_LOGICAL_SIZE,
+  PAPER_OPTIONS,
+  PaperType,
+  Point2D,
+  getPaperOption,
+  rasterizeSvgOutline,
+  scanlineFloodFill,
+  computeTemplateRegionMask,
+  buildClipMaskCanvas,
+  drawSmoothBrushSegment,
+  drawCrayonSegment,
+  drawWatercolorSegment,
+  drawSpraySegment,
+  compositeArtworkDataUrl,
+} from '../../utils/drawingEngine';
+import {
+  PaintBucket,
+  Paintbrush,
+  Pencil,
+  Droplets,
+  Sparkles,
+  Eraser,
+  Sticker,
+  RotateCcw,
+  RotateCw,
+  Trash2,
+  Printer,
+  Download,
   Heart,
-  Award,
+  Images,
+  Palette,
+  Eye,
+  EyeOff,
+  FlipHorizontal2,
+  ShieldCheck,
   GraduationCap,
-  HelpCircle
+  HelpCircle,
+  BookOpen,
+  X,
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { CURRICULUM_TIER_DETAILS } from '../../data/curriculumData';
 
 interface DrawingsStudioProps {
   student: StudentProfile;
@@ -43,106 +63,199 @@ interface DrawingsStudioProps {
   onAwardStars?: (stars: number) => void;
 }
 
-type DrawingTool = 'brush' | 'crayon' | 'rainbow' | 'eraser' | 'stamp';
-type PaperType = 'white' | 'cream' | 'chalkboard' | 'sky' | 'mint';
-
-interface Point {
-  x: number;
-  y: number;
-}
+type DrawingTool =
+  | 'fill'
+  | 'brush'
+  | 'crayon'
+  | 'watercolor'
+  | 'rainbow'
+  | 'spray'
+  | 'eraser'
+  | 'stamp';
 
 interface SavedArtwork {
   id: string;
   title: string;
+  templateId?: string;
   dataUrl: string;
   createdAt: string;
 }
 
 const COLOR_SWATCHES = [
-  { name: 'Pitch Black', hex: '#1E293B' },
+  { name: 'Charcoal Black', hex: '#1E293B' },
+  { name: 'Slate Gray', hex: '#64748B' },
   { name: 'Ruby Red', hex: '#EF4444' },
-  { name: 'Warm Orange', hex: '#F97316' },
-  { name: 'Sunflower Yellow', hex: '#FBBF24' },
-  { name: 'Leaf Green', hex: '#10B981' },
-  { name: 'Emerald Mint', hex: '#059669' },
+  { name: 'Sunset Orange', hex: '#F97316' },
+  { name: 'Amber Gold', hex: '#F59E0B' },
+  { name: 'Sun Yellow', hex: '#FACC15' },
+  { name: 'Lime Green', hex: '#84CC16' },
+  { name: 'Emerald Green', hex: '#10B981' },
+  { name: 'Teal Mint', hex: '#0D9488' },
   { name: 'Ocean Cyan', hex: '#06B6D4' },
   { name: 'Sky Blue', hex: '#3B82F6' },
+  { name: 'Indigo Blue', hex: '#4F46E5' },
   { name: 'Royal Purple', hex: '#8B5CF6' },
-  { name: 'Bubblegum Pink', hex: '#EC4899' },
-  { name: 'Rose Coral', hex: '#F43F5E' },
-  { name: 'Choco Brown', hex: '#78350F' },
-  { name: 'Cloud White', hex: '#FFFFFF' }
+  { name: 'Berry Pink', hex: '#EC4899' },
+  { name: 'Cocoa Brown', hex: '#78350F' },
+  { name: 'Snow White', hex: '#FFFFFF' },
 ];
 
-const STAMPS = ['⭐', '❤️', '🌸', '🦋', '👑', '🚀', '🐾', '🌈', '💎', '🎨'];
+const STAMPS = ['⭐', '❤️', '🌸', '🦋', '👑', '🚀', '🐾', '🌈', '💎', '🎨', '🦄', '☀️'];
+
+const TOOL_ITEMS: {
+  id: DrawingTool;
+  label: string;
+  icon: React.ReactNode;
+  activeClass: string;
+}[] = [
+  {
+    id: 'fill',
+    label: 'Paint Bucket',
+    icon: <PaintBucket className="w-4 h-4" />,
+    activeClass: 'bg-blue-600 text-white border-blue-700',
+  },
+  {
+    id: 'brush',
+    label: 'Smooth Brush',
+    icon: <Paintbrush className="w-4 h-4" />,
+    activeClass: 'bg-rose-600 text-white border-rose-700',
+  },
+  {
+    id: 'crayon',
+    label: 'Wax Crayon',
+    icon: <Pencil className="w-4 h-4" />,
+    activeClass: 'bg-amber-500 text-white border-amber-600',
+  },
+  {
+    id: 'watercolor',
+    label: 'Watercolor',
+    icon: <Droplets className="w-4 h-4" />,
+    activeClass: 'bg-cyan-600 text-white border-cyan-700',
+  },
+  {
+    id: 'rainbow',
+    label: 'Rainbow Ink',
+    icon: <Sparkles className="w-4 h-4" />,
+    activeClass: 'bg-gradient-to-r from-rose-500 via-amber-500 to-emerald-500 text-white border-slate-800',
+  },
+  {
+    id: 'spray',
+    label: 'Sparkle Spray',
+    icon: <Sparkles className="w-4 h-4" />,
+    activeClass: 'bg-purple-600 text-white border-purple-700',
+  },
+  {
+    id: 'stamp',
+    label: 'Stickers',
+    icon: <Sticker className="w-4 h-4" />,
+    activeClass: 'bg-emerald-600 text-white border-emerald-700',
+  },
+  {
+    id: 'eraser',
+    label: 'Eraser',
+    icon: <Eraser className="w-4 h-4" />,
+    activeClass: 'bg-slate-800 text-white border-slate-900',
+  },
+];
 
 export const DrawingsStudio: React.FC<DrawingsStudioProps> = ({
   student,
   settings,
   initialTemplateId,
   initialCategory,
-  onAwardStars
+  onAwardStars,
 }) => {
-  const [showParentNote, setShowParentNote] = useState<boolean>(false);
+  const [showParentNote, setShowParentNote] = useState(false);
   const tierDetail = CURRICULUM_TIER_DETAILS[student.ageTier] || CURRICULUM_TIER_DETAILS['kindergarten'];
   const artCurriculum = tierDetail.subjects.drawings;
 
-  // Main Studio Mode: 'canvas' (Drawing Studio) or 'printables' (Worksheet Library)
-  const [activeView, setActiveView] = useState<'canvas' | 'printables'>(
-    initialTemplateId ? 'canvas' : 'canvas'
+  const [activeView, setActiveView] = useState<'canvas' | 'printables'>(() =>
+    initialCategory && !initialTemplateId ? 'printables' : 'canvas'
   );
 
-  // Active Template
   const [selectedTemplate, setSelectedTemplate] = useState<DrawingTemplate | null>(() => {
     if (initialTemplateId) {
       return getDrawingTemplateById(initialTemplateId) || null;
     }
     try {
       const saved = localStorage.getItem(`first_open_last_drawing_${student.id}`);
+      if (saved === '__blank__') return null;
       if (saved) {
         const found = getDrawingTemplateById(saved);
         if (found) return found;
       }
     } catch {}
     if (student.ageTier === 'grade-1-2' || student.ageTier === 'k12-foundations') {
-      const found = DRAWING_TEMPLATES.find(t => t.id === 'space-rocket' || t.category === 'vehicles-space');
+      const found = DRAWING_TEMPLATES.find((t) => t.id === 'cosmic-rocket');
       if (found) return found;
     }
-    return DRAWING_TEMPLATES[0]; // Default to first template
+    return DRAWING_TEMPLATES[0];
   });
 
-  // Persist last viewed drawing template
   useEffect(() => {
-    if (selectedTemplate) {
-      try {
-        localStorage.setItem(`first_open_last_drawing_${student.id}`, selectedTemplate.id);
-      } catch {}
+    if (initialTemplateId) {
+      const found = getDrawingTemplateById(initialTemplateId);
+      if (found) {
+        setSelectedTemplate(found);
+        setActiveView('canvas');
+      }
     }
+  }, [initialTemplateId]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        `first_open_last_drawing_${student.id}`,
+        selectedTemplate ? selectedTemplate.id : '__blank__'
+      );
+    } catch {}
   }, [selectedTemplate, student.id]);
 
-  // Filter Category for Printables Library
   const [selectedCategory, setSelectedCategory] = useState<DrawingCategory | 'all'>(
     (initialCategory as DrawingCategory) || 'all'
   );
 
-  // Drawing Tools State
-  const [activeTool, setActiveTool] = useState<DrawingTool>('brush');
-  const [activeColor, setActiveColor] = useState<string>('#EF4444');
-  const [brushSize, setBrushSize] = useState<number>(10);
+  useEffect(() => {
+    if (initialCategory && !initialTemplateId) {
+      setSelectedCategory(initialCategory as DrawingCategory);
+      setActiveView('printables');
+    }
+  }, [initialCategory, initialTemplateId]);
+
+  // Studio Tool States
+  const [activeTool, setActiveTool] = useState<DrawingTool>('fill');
+  const [activeColor, setActiveColor] = useState<string>('#F97316');
+  const [brushSize, setBrushSize] = useState<number>(16);
   const [activeStamp, setActiveStamp] = useState<string>('⭐');
   const [paperType, setPaperType] = useState<PaperType>('white');
+  const [showOutlines, setShowOutlines] = useState<boolean>(true);
+  const [stayInLines, setStayInLines] = useState<boolean>(true);
+  const [mirrorMode, setMirrorMode] = useState<boolean>(false);
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
 
-  // Canvas Refs
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  // Stacked Canvases (fixed 640x640 logical coordinates, never cleared on resize)
+  const paintCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const previewCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const outlineCanvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  // Offscreen buffers for Stay-in-Lines & Flood Fill
+  const strokeBufferRef = useRef<HTMLCanvasElement | null>(null);
+  const clipMaskRef = useRef<HTMLCanvasElement | null>(null);
+  const outlineAlphaRef = useRef<Uint8Array | null>(null);
+
+  // Pointer & Curve Interpolation State
   const isDrawingRef = useRef<boolean>(false);
-  const lastPointRef = useRef<Point | null>(null);
+  const activePointerIdRef = useRef<number | null>(null);
+  const strokePointsRef = useRef<Point2D[]>([]);
+  const activeStrokeMaskedRef = useRef<boolean>(false);
   const rainbowHueRef = useRef<number>(0);
 
-  // History Stack for Undo / Redo
+  // Undo / Redo History
   const undoStackRef = useRef<ImageData[]>([]);
   const redoStackRef = useRef<ImageData[]>([]);
+  const [historyMeta, setHistoryMeta] = useState({ canUndo: false, canRedo: false, hasPaint: false });
 
-  // Saved Artworks Gallery
+  // Modals & Saved Gallery
   const [savedArtworks, setSavedArtworks] = useState<SavedArtwork[]>(() => {
     try {
       const saved = localStorage.getItem('fos_saved_artworks');
@@ -151,106 +264,109 @@ export const DrawingsStudio: React.FC<DrawingsStudioProps> = ({
       return [];
     }
   });
-
   const [showGalleryModal, setShowGalleryModal] = useState<boolean>(false);
   const [showPrintModal, setShowPrintModal] = useState<boolean>(false);
   const [printTargetTemplate, setPrintTargetTemplate] = useState<DrawingTemplate | null>(null);
+  const [printMode, setPrintMode] = useState<'blank' | 'painted'>('blank');
+  const [paintedPrintPreview, setPaintedPrintPreview] = useState<string | null>(null);
 
-  // Initialize Canvas
-  const setupCanvas = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    if (!ctx) return;
+  const paperOpt = getPaperOption(paperType);
 
-    // Set internal resolution
-    const rect = canvas.getBoundingClientRect();
-    const dpr = window.devicePixelRatio || 1;
-    const width = rect.width || 600;
-    const height = rect.height || 600;
-
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    ctx.scale(dpr, dpr);
-
-    // Initial background
-    fillBackground(ctx, width, height, paperType);
-
-    // Save initial state to undo stack
-    const initialImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    undoStackRef.current = [initialImageData];
-    redoStackRef.current = [];
-  }, [paperType]);
-
-  const fillBackground = (ctx: CanvasRenderingContext2D, width: number, height: number, type: PaperType) => {
-    switch (type) {
-      case 'cream':
-        ctx.fillStyle = '#FEF9EF';
-        break;
-      case 'chalkboard':
-        ctx.fillStyle = '#1E293B';
-        break;
-      case 'sky':
-        ctx.fillStyle = '#E0F2FE';
-        break;
-      case 'mint':
-        ctx.fillStyle = '#DCFCE7';
-        break;
-      case 'white':
-      default:
-        ctx.fillStyle = '#FFFFFF';
-        break;
-    }
-    ctx.fillRect(0, 0, width, height);
-  };
-
-  useEffect(() => {
-    setupCanvas();
-  }, [setupCanvas]);
-
-  // Handle window resize
-  useEffect(() => {
-    const handleResize = () => {
-      // Re-setup on orientation or major size change
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+  const syncHistoryMeta = useCallback(() => {
+    setHistoryMeta({
+      canUndo: undoStackRef.current.length > 1,
+      canRedo: redoStackRef.current.length > 0,
+      hasPaint: undoStackRef.current.length > 1,
+    });
   }, []);
 
-  // Save current canvas state to undo stack
-  const pushState = () => {
-    const canvas = canvasRef.current;
+  const pushHistory = useCallback(() => {
+    const canvas = paintCanvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
     if (!ctx) return;
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    undoStackRef.current.push(imageData);
-    if (undoStackRef.current.length > 20) {
+
+    const snap = ctx.getImageData(0, 0, CANVAS_LOGICAL_SIZE, CANVAS_LOGICAL_SIZE);
+    undoStackRef.current.push(snap);
+    if (undoStackRef.current.length > 25) {
       undoStackRef.current.shift();
     }
     redoStackRef.current = [];
-  };
+    syncHistoryMeta();
+  }, [syncHistoryMeta]);
 
-  // Undo
+  // Initialize Paint Canvas & Offscreen Buffers Once
+  useEffect(() => {
+    const paint = paintCanvasRef.current;
+    if (!paint) return;
+    const ctx = paint.getContext('2d', { willReadFrequently: true });
+    if (!ctx) return;
+
+    ctx.clearRect(0, 0, CANVAS_LOGICAL_SIZE, CANVAS_LOGICAL_SIZE);
+    const emptySnap = ctx.getImageData(0, 0, CANVAS_LOGICAL_SIZE, CANVAS_LOGICAL_SIZE);
+    undoStackRef.current = [emptySnap];
+    redoStackRef.current = [];
+    syncHistoryMeta();
+
+    const buf = document.createElement('canvas');
+    buf.width = CANVAS_LOGICAL_SIZE;
+    buf.height = CANVAS_LOGICAL_SIZE;
+    strokeBufferRef.current = buf;
+  }, [syncHistoryMeta]);
+
+  // Rasterize Selected Template Outline whenever template, visibility, or paper ink changes
+  useEffect(() => {
+    let cancelled = false;
+    const outlineCanvas = outlineCanvasRef.current;
+
+    if (!selectedTemplate || !showOutlines) {
+      outlineAlphaRef.current = null;
+      if (outlineCanvas) {
+        const ctx = outlineCanvas.getContext('2d');
+        ctx?.clearRect(0, 0, CANVAS_LOGICAL_SIZE, CANVAS_LOGICAL_SIZE);
+      }
+      return;
+    }
+
+    rasterizeSvgOutline(selectedTemplate.svgOutline, CANVAS_LOGICAL_SIZE, paperOpt.inkHex)
+      .then(({ canvas, alphaMask }) => {
+        if (cancelled) return;
+        outlineAlphaRef.current = alphaMask;
+        if (outlineCanvas) {
+          const ctx = outlineCanvas.getContext('2d');
+          if (ctx) {
+            ctx.clearRect(0, 0, CANVAS_LOGICAL_SIZE, CANVAS_LOGICAL_SIZE);
+            ctx.drawImage(canvas, 0, 0);
+          }
+        }
+      })
+      .catch(() => {
+        if (!cancelled) outlineAlphaRef.current = null;
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedTemplate, showOutlines, paperOpt.inkHex]);
+
   const handleUndo = () => {
-    const canvas = canvasRef.current;
+    const canvas = paintCanvasRef.current;
     if (!canvas || undoStackRef.current.length <= 1) return;
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
     if (!ctx) return;
 
-    const current = undoStackRef.current.pop();
-    if (current) redoStackRef.current.push(current);
-
-    const previous = undoStackRef.current[undoStackRef.current.length - 1];
-    if (previous) {
-      ctx.putImageData(previous, 0, 0);
+    const popped = undoStackRef.current.pop();
+    if (popped) redoStackRef.current.push(popped);
+    const prev = undoStackRef.current[undoStackRef.current.length - 1];
+    if (prev) {
+      ctx.putImageData(prev, 0, 0);
       playSoundEffect('click', settings.soundEffects);
+      syncHistoryMeta();
     }
   };
 
-  // Redo
   const handleRedo = () => {
-    const canvas = canvasRef.current;
+    const canvas = paintCanvasRef.current;
     if (!canvas || redoStackRef.current.length === 0) return;
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
     if (!ctx) return;
@@ -260,139 +376,363 @@ export const DrawingsStudio: React.FC<DrawingsStudioProps> = ({
       undoStackRef.current.push(next);
       ctx.putImageData(next, 0, 0);
       playSoundEffect('click', settings.soundEffects);
+      syncHistoryMeta();
     }
   };
 
-  // Clear Canvas
-  const handleClear = () => {
-    const canvas = canvasRef.current;
+  const handleClearCanvas = () => {
+    const canvas = paintCanvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
     if (!ctx) return;
-    const rect = canvas.getBoundingClientRect();
-    fillBackground(ctx, rect.width, rect.height, paperType);
-    pushState();
+
+    ctx.clearRect(0, 0, CANVAS_LOGICAL_SIZE, CANVAS_LOGICAL_SIZE);
+    pushHistory();
     playSoundEffect('pop', settings.soundEffects);
   };
 
-  // Change paper background
-  const handleChangePaper = (type: PaperType) => {
-    setPaperType(type);
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    if (!ctx) return;
-    const rect = canvas.getBoundingClientRect();
-    fillBackground(ctx, rect.width, rect.height, type);
-    pushState();
+  const handleSelectTemplate = (template: DrawingTemplate | null) => {
+    if (template?.id === selectedTemplate?.id) return;
+    setSelectedTemplate(template);
+    setShowOutlines(true);
+    // Clear previous template's paint cleanly when switching coloring pages
+    const canvas = paintCanvasRef.current;
+    if (canvas) {
+      const ctx = canvas.getContext('2d', { willReadFrequently: true });
+      if (ctx) {
+        ctx.clearRect(0, 0, CANVAS_LOGICAL_SIZE, CANVAS_LOGICAL_SIZE);
+        const emptySnap = ctx.getImageData(0, 0, CANVAS_LOGICAL_SIZE, CANVAS_LOGICAL_SIZE);
+        undoStackRef.current = [emptySnap];
+        redoStackRef.current = [];
+        syncHistoryMeta();
+      }
+    }
+    if (!template && activeTool === 'fill') {
+      setActiveTool('brush');
+    }
     playSoundEffect('click', settings.soundEffects);
   };
 
-  // Get pointer coordinates relative to canvas
-  const getCanvasPoint = (e: React.PointerEvent<HTMLCanvasElement>): Point => {
-    const canvas = canvasRef.current!;
+  const getLogicalPoint = (e: React.PointerEvent<HTMLCanvasElement>): Point2D => {
+    const canvas = paintCanvasRef.current!;
     const rect = canvas.getBoundingClientRect();
     return {
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
+      x: Math.max(0, Math.min(CANVAS_LOGICAL_SIZE, ((e.clientX - rect.left) / rect.width) * CANVAS_LOGICAL_SIZE)),
+      y: Math.max(0, Math.min(CANVAS_LOGICAL_SIZE, ((e.clientY - rect.top) / rect.height) * CANVAS_LOGICAL_SIZE)),
     };
   };
 
-  // Pointer Down
-  const handlePointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    canvas.setPointerCapture(e.pointerId);
-    isDrawingRef.current = true;
-    const pt = getCanvasPoint(e);
-    lastPointRef.current = pt;
+  const mirrorPoint = (pt: Point2D): Point2D => ({
+    x: CANVAS_LOGICAL_SIZE - pt.x,
+    y: pt.y,
+  });
 
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    if (!ctx) return;
+  const refreshMaskedPreview = () => {
+    const preview = previewCanvasRef.current;
+    const buf = strokeBufferRef.current;
+    const mask = clipMaskRef.current;
+    if (!preview || !buf || !mask) return;
 
-    if (activeTool === 'stamp') {
-      // Draw stamp sticker
+    const pCtx = preview.getContext('2d');
+    if (!pCtx) return;
+
+    pCtx.clearRect(0, 0, CANVAS_LOGICAL_SIZE, CANVAS_LOGICAL_SIZE);
+    pCtx.globalCompositeOperation = 'source-over';
+    pCtx.drawImage(buf, 0, 0);
+    pCtx.globalCompositeOperation = 'destination-in';
+    pCtx.drawImage(mask, 0, 0);
+    pCtx.globalCompositeOperation = 'source-over';
+  };
+
+  const drawToolDot = (ctx: CanvasRenderingContext2D, pt: Point2D, color: string) => {
+    if (activeTool === 'eraser') {
       ctx.save();
-      ctx.font = `${brushSize * 2.5}px sans-serif`;
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(activeStamp, pt.x, pt.y);
-      ctx.restore();
-      playSoundEffect('pop', settings.soundEffects);
-      pushState();
-    } else {
-      // Start drawing stroke
+      ctx.globalCompositeOperation = 'destination-out';
       ctx.beginPath();
       ctx.arc(pt.x, pt.y, brushSize / 2, 0, Math.PI * 2);
-      ctx.fillStyle = activeTool === 'eraser' 
-        ? (paperType === 'chalkboard' ? '#1E293B' : paperType === 'sky' ? '#E0F2FE' : paperType === 'mint' ? '#DCFCE7' : paperType === 'cream' ? '#FEF9EF' : '#FFFFFF')
-        : activeTool === 'rainbow' 
-        ? `hsl(${rainbowHueRef.current}, 100%, 50%)`
-        : activeColor;
+      ctx.fillStyle = 'rgba(0,0,0,1)';
       ctx.fill();
-    }
-  };
-
-  // Pointer Move
-  const handlePointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
-    if (!isDrawingRef.current || !lastPointRef.current || activeTool === 'stamp') return;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    if (!ctx) return;
-
-    const currentPoint = getCanvasPoint(e);
-
-    ctx.lineWidth = brushSize;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-
-    if (activeTool === 'eraser') {
-      ctx.strokeStyle = paperType === 'chalkboard' ? '#1E293B' : paperType === 'sky' ? '#E0F2FE' : paperType === 'mint' ? '#DCFCE7' : paperType === 'cream' ? '#FEF9EF' : '#FFFFFF';
-    } else if (activeTool === 'rainbow') {
-      rainbowHueRef.current = (rainbowHueRef.current + 3) % 360;
-      ctx.strokeStyle = `hsl(${rainbowHueRef.current}, 100%, 50%)`;
-    } else if (activeTool === 'crayon') {
-      ctx.strokeStyle = activeColor;
-      ctx.globalAlpha = 0.65;
-    } else {
-      ctx.strokeStyle = activeColor;
-      ctx.globalAlpha = 1.0;
+      ctx.restore();
+      return;
     }
 
+    if (activeTool === 'crayon') {
+      drawCrayonSegment(ctx, pt, pt, color, brushSize);
+      return;
+    }
+    if (activeTool === 'watercolor') {
+      drawWatercolorSegment(ctx, pt, pt, color, brushSize);
+      return;
+    }
+    if (activeTool === 'spray') {
+      drawSpraySegment(ctx, pt, pt, color, brushSize);
+      return;
+    }
+
+    ctx.save();
     ctx.beginPath();
-    ctx.moveTo(lastPointRef.current.x, lastPointRef.current.y);
-    ctx.lineTo(currentPoint.x, currentPoint.y);
-    ctx.stroke();
-    ctx.globalAlpha = 1.0; // Reset
-
-    lastPointRef.current = currentPoint;
+    ctx.arc(pt.x, pt.y, brushSize / 2, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.restore();
   };
 
-  // Pointer Up
-  const handlePointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
-    if (!isDrawingRef.current) return;
-    const canvas = canvasRef.current;
-    if (canvas) {
-      canvas.releasePointerCapture(e.pointerId);
+  const handlePointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (activePointerIdRef.current !== null) return;
+    const paint = paintCanvasRef.current;
+    if (!paint) return;
+    const paintCtx = paint.getContext('2d', { willReadFrequently: true });
+    if (!paintCtx) return;
+
+    const pt = getLogicalPoint(e);
+
+    // 1. Paint Bucket (Flood Fill)
+    if (activeTool === 'fill') {
+      const changedPrimary = scanlineFloodFill(
+        paintCtx,
+        showOutlines ? outlineAlphaRef.current : null,
+        pt.x,
+        pt.y,
+        activeColor,
+        CANVAS_LOGICAL_SIZE
+      );
+      let changedMirror = false;
+      if (mirrorMode) {
+        const mPt = mirrorPoint(pt);
+        changedMirror = scanlineFloodFill(
+          paintCtx,
+          showOutlines ? outlineAlphaRef.current : null,
+          mPt.x,
+          mPt.y,
+          activeColor,
+          CANVAS_LOGICAL_SIZE
+        );
+      }
+      if (changedPrimary || changedMirror) {
+        pushHistory();
+        playSoundEffect('pop', settings.soundEffects);
+      }
+      return;
     }
+
+    // 2. Stamp Sticker
+    if (activeTool === 'stamp') {
+      const fontSize = Math.max(24, brushSize * 2.6);
+      const drawStampAt = (pos: Point2D) => {
+        paintCtx.save();
+        paintCtx.font = `${fontSize}px sans-serif`;
+        paintCtx.textAlign = 'center';
+        paintCtx.textBaseline = 'middle';
+        paintCtx.fillText(activeStamp, pos.x, pos.y);
+        paintCtx.restore();
+      };
+      drawStampAt(pt);
+      if (mirrorMode) drawStampAt(mirrorPoint(pt));
+      pushHistory();
+      playSoundEffect('pop', settings.soundEffects);
+      return;
+    }
+
+    // 3. Continuous Stroke Tools
+    paint.setPointerCapture(e.pointerId);
+    activePointerIdRef.current = e.pointerId;
+    isDrawingRef.current = true;
+    strokePointsRef.current = [pt];
+
+    const canMask =
+      stayInLines &&
+      activeTool !== 'eraser' &&
+      Boolean(selectedTemplate && showOutlines && outlineAlphaRef.current);
+
+    activeStrokeMaskedRef.current = canMask;
+
+    let targetCtx: CanvasRenderingContext2D = paintCtx;
+    if (canMask && outlineAlphaRef.current && strokeBufferRef.current) {
+      const seeds = mirrorMode ? [pt, mirrorPoint(pt)] : [pt];
+      const regionMask = computeTemplateRegionMask(
+        outlineAlphaRef.current,
+        seeds,
+        CANVAS_LOGICAL_SIZE
+      );
+      clipMaskRef.current = buildClipMaskCanvas(regionMask, CANVAS_LOGICAL_SIZE);
+
+      const bufCtx = strokeBufferRef.current.getContext('2d');
+      if (bufCtx) {
+        bufCtx.clearRect(0, 0, CANVAS_LOGICAL_SIZE, CANVAS_LOGICAL_SIZE);
+        targetCtx = bufCtx;
+      }
+    }
+
+    const strokeColor =
+      activeTool === 'rainbow' ? `hsl(${rainbowHueRef.current}, 95%, 52%)` : activeColor;
+
+    drawToolDot(targetCtx, pt, strokeColor);
+    if (mirrorMode) {
+      drawToolDot(targetCtx, mirrorPoint(pt), strokeColor);
+    }
+
+    if (canMask) {
+      refreshMaskedPreview();
+    }
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (!isDrawingRef.current || activePointerIdRef.current !== e.pointerId) return;
+    const paint = paintCanvasRef.current;
+    if (!paint) return;
+
+    const targetCtx =
+      activeStrokeMaskedRef.current && strokeBufferRef.current
+        ? strokeBufferRef.current.getContext('2d')
+        : paint.getContext('2d', { willReadFrequently: true });
+    if (!targetCtx) return;
+
+    const curr = getLogicalPoint(e);
+    const pts = strokePointsRef.current;
+    const prev = pts[pts.length - 1];
+    const dist = Math.hypot(curr.x - prev.x, curr.y - prev.y);
+    if (dist < 1.5) return;
+
+    pts.push(curr);
+
+    if (activeTool === 'rainbow') {
+      rainbowHueRef.current = (rainbowHueRef.current + dist * 0.6) % 360;
+    }
+    const strokeColor =
+      activeTool === 'rainbow' ? `hsl(${rainbowHueRef.current}, 95%, 52%)` : activeColor;
+
+    if (activeTool === 'crayon') {
+      drawCrayonSegment(targetCtx, prev, curr, strokeColor, brushSize);
+      if (mirrorMode) drawCrayonSegment(targetCtx, mirrorPoint(prev), mirrorPoint(curr), strokeColor, brushSize);
+    } else if (activeTool === 'watercolor') {
+      drawWatercolorSegment(targetCtx, prev, curr, strokeColor, brushSize);
+      if (mirrorMode) drawWatercolorSegment(targetCtx, mirrorPoint(prev), mirrorPoint(curr), strokeColor, brushSize);
+    } else if (activeTool === 'spray') {
+      drawSpraySegment(targetCtx, prev, curr, strokeColor, brushSize);
+      if (mirrorMode) drawSpraySegment(targetCtx, mirrorPoint(prev), mirrorPoint(curr), strokeColor, brushSize);
+    } else {
+      const isEraser = activeTool === 'eraser';
+      if (pts.length === 2) {
+        const midEnd: Point2D = {
+          x: (pts[0].x + pts[1].x) / 2,
+          y: (pts[0].y + pts[1].y) / 2,
+        };
+        drawSmoothBrushSegment(targetCtx, pts[0], pts[0], midEnd, strokeColor, brushSize, isEraser);
+        if (mirrorMode) {
+          drawSmoothBrushSegment(
+            targetCtx,
+            mirrorPoint(pts[0]),
+            mirrorPoint(pts[0]),
+            mirrorPoint(midEnd),
+            strokeColor,
+            brushSize,
+            isEraser
+          );
+        }
+      } else {
+        const pPrev = pts[pts.length - 3];
+        const pCtrl = pts[pts.length - 2];
+        const pNext = pts[pts.length - 1];
+        const mid1: Point2D = { x: (pPrev.x + pCtrl.x) / 2, y: (pPrev.y + pCtrl.y) / 2 };
+        const mid2: Point2D = { x: (pCtrl.x + pNext.x) / 2, y: (pCtrl.y + pNext.y) / 2 };
+
+        drawSmoothBrushSegment(targetCtx, pCtrl, mid1, mid2, strokeColor, brushSize, isEraser);
+        if (mirrorMode) {
+          drawSmoothBrushSegment(
+            targetCtx,
+            mirrorPoint(pCtrl),
+            mirrorPoint(mid1),
+            mirrorPoint(mid2),
+            strokeColor,
+            brushSize,
+            isEraser
+          );
+        }
+      }
+    }
+
+    if (activeStrokeMaskedRef.current) {
+      refreshMaskedPreview();
+    }
+  };
+
+  const finishStroke = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (!isDrawingRef.current || activePointerIdRef.current !== e.pointerId) return;
+    const paint = paintCanvasRef.current;
+    if (paint && paint.hasPointerCapture(e.pointerId)) {
+      paint.releasePointerCapture(e.pointerId);
+    }
+
+    const paintCtx = paint?.getContext('2d', { willReadFrequently: true });
+    const targetCtx =
+      activeStrokeMaskedRef.current && strokeBufferRef.current
+        ? strokeBufferRef.current.getContext('2d')
+        : paintCtx;
+
+    const pts = strokePointsRef.current;
+    if (
+      targetCtx &&
+      pts.length >= 2 &&
+      (activeTool === 'brush' || activeTool === 'rainbow' || activeTool === 'eraser')
+    ) {
+      const pCtrl = pts[pts.length - 2];
+      const pEnd = pts[pts.length - 1];
+      const mid: Point2D = { x: (pCtrl.x + pEnd.x) / 2, y: (pCtrl.y + pEnd.y) / 2 };
+      const strokeColor =
+        activeTool === 'rainbow' ? `hsl(${rainbowHueRef.current}, 95%, 52%)` : activeColor;
+      const isEraser = activeTool === 'eraser';
+      drawSmoothBrushSegment(targetCtx, pEnd, mid, pEnd, strokeColor, brushSize, isEraser);
+      if (mirrorMode) {
+        drawSmoothBrushSegment(
+          targetCtx,
+          mirrorPoint(pEnd),
+          mirrorPoint(mid),
+          mirrorPoint(pEnd),
+          strokeColor,
+          brushSize,
+          isEraser
+        );
+      }
+    }
+
+    if (activeStrokeMaskedRef.current && paintCtx && previewCanvasRef.current) {
+      refreshMaskedPreview();
+      paintCtx.drawImage(previewCanvasRef.current, 0, 0);
+      previewCanvasRef.current
+        .getContext('2d')
+        ?.clearRect(0, 0, CANVAS_LOGICAL_SIZE, CANVAS_LOGICAL_SIZE);
+      strokeBufferRef.current
+        ?.getContext('2d')
+        ?.clearRect(0, 0, CANVAS_LOGICAL_SIZE, CANVAS_LOGICAL_SIZE);
+    }
+
     isDrawingRef.current = false;
-    lastPointRef.current = null;
-    if (activeTool !== 'stamp') {
-      pushState();
-    }
+    activePointerIdRef.current = null;
+    activeStrokeMaskedRef.current = false;
+    strokePointsRef.current = [];
+    pushHistory();
   };
 
-  // Save to Gallery
+  const getExportDataUrl = (): string | null => {
+    const paint = paintCanvasRef.current;
+    if (!paint) return null;
+    const outline =
+      selectedTemplate && showOutlines ? outlineCanvasRef.current : null;
+    return compositeArtworkDataUrl(paperOpt.bgHex, paint, outline, CANVAS_LOGICAL_SIZE);
+  };
+
   const handleSaveToGallery = () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const dataUrl = canvas.toDataURL('image/png');
+    const dataUrl = getExportDataUrl();
+    if (!dataUrl) return;
+
     const newArt: SavedArtwork = {
       id: `art_${Date.now()}`,
-      title: selectedTemplate ? selectedTemplate.title : `Free Painting #${savedArtworks.length + 1}`,
+      title: selectedTemplate
+        ? selectedTemplate.title
+        : `Free Painting #${savedArtworks.length + 1}`,
+      templateId: selectedTemplate?.id,
       dataUrl,
-      createdAt: new Date().toLocaleDateString()
+      createdAt: new Date().toLocaleDateString(),
     };
 
     const updated = [newArt, ...savedArtworks.slice(0, 15)];
@@ -404,520 +744,687 @@ export const DrawingsStudio: React.FC<DrawingsStudioProps> = ({
     confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
     playSoundEffect('victory', settings.soundEffects);
     speakText('Artwork saved to your gallery!', settings.voiceGuidance);
+    setStatusMessage('Saved to your Masterpiece Gallery!');
+    setTimeout(() => setStatusMessage(null), 3200);
     if (onAwardStars) onAwardStars(1);
   };
 
-  // Download artwork image
   const handleDownloadImage = () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    const dataUrl = getExportDataUrl();
+    if (!dataUrl) return;
     const link = document.createElement('a');
-    link.download = `FirstOpenSchool_Drawing_${Date.now()}.png`;
-    link.href = canvas.toDataURL('image/png');
+    const slug = selectedTemplate ? selectedTemplate.id : 'free-painting';
+    link.download = `first-open-school-${slug}.png`;
+    link.href = dataUrl;
     link.click();
     playSoundEffect('star', settings.soundEffects);
+    setStatusMessage('Downloaded PNG image!');
+    setTimeout(() => setStatusMessage(null), 2600);
   };
 
-  // Trigger Offline Print for Parent
-  const handlePrintWorksheet = (template: DrawingTemplate) => {
+  const handleDeleteArtwork = (id: string) => {
+    const updated = savedArtworks.filter((a) => a.id !== id);
+    setSavedArtworks(updated);
+    try {
+      localStorage.setItem('fos_saved_artworks', JSON.stringify(updated));
+    } catch {}
+    playSoundEffect('click', settings.soundEffects);
+  };
+
+  const handleLoadArtworkToCanvas = (art: SavedArtwork) => {
+    const paint = paintCanvasRef.current;
+    if (!paint) return;
+    const ctx = paint.getContext('2d', { willReadFrequently: true });
+    if (!ctx) return;
+
+    const img = new Image();
+    img.onload = () => {
+      setSelectedTemplate(null);
+      setShowOutlines(false);
+      ctx.clearRect(0, 0, CANVAS_LOGICAL_SIZE, CANVAS_LOGICAL_SIZE);
+      ctx.drawImage(img, 0, 0, CANVAS_LOGICAL_SIZE, CANVAS_LOGICAL_SIZE);
+      pushHistory();
+      setShowGalleryModal(false);
+      setActiveView('canvas');
+      playSoundEffect('pop', settings.soundEffects);
+    };
+    img.src = art.dataUrl;
+  };
+
+  const handleOpenPrintModal = (template: DrawingTemplate | null) => {
     setPrintTargetTemplate(template);
+    const hasCurrentPaint = historyMeta.hasPaint && template?.id === selectedTemplate?.id;
+    if (hasCurrentPaint || (!template && historyMeta.hasPaint)) {
+      const previewUrl = getExportDataUrl();
+      setPaintedPrintPreview(previewUrl);
+      setPrintMode(template ? 'blank' : 'painted');
+    } else {
+      setPaintedPrintPreview(null);
+      setPrintMode('blank');
+    }
     setShowPrintModal(true);
   };
 
-  const handleExecuteBrowserPrint = () => {
-    window.print();
-  };
+  const filteredTemplates =
+    selectedCategory === 'all'
+      ? DRAWING_TEMPLATES
+      : DRAWING_TEMPLATES.filter((t) => t.category === selectedCategory);
 
-  // Filter templates
-  const filteredTemplates = selectedCategory === 'all'
-    ? DRAWING_TEMPLATES
-    : DRAWING_TEMPLATES.filter(t => t.category === selectedCategory);
+  const activeTipText = (() => {
+    if (statusMessage) return statusMessage;
+    if (activeTool === 'fill') {
+      return selectedTemplate && showOutlines
+        ? 'Tap inside any closed shape to fill it cleanly with color.'
+        : 'Paint Bucket fills connected regions on your canvas.';
+    }
+    if (activeTool === 'stamp') {
+      return `Tap anywhere on the canvas to stamp ${activeStamp} stickers.`;
+    }
+    if (mirrorMode) {
+      return 'Mirror Draw is on — every brushstroke reflects left-to-right!';
+    }
+    if (stayInLines && selectedTemplate && showOutlines && activeTool !== 'eraser') {
+      return 'Stay-in-Lines is on — paint stays neatly inside whichever shape you touch first.';
+    }
+    return selectedTemplate
+      ? `Coloring ${selectedTemplate.title}. Paint sits cleanly beneath the crisp outlines!`
+      : 'Free-paint canvas — mix brushes, crayons, watercolors, and stickers.';
+  })();
 
   return (
     <div className="space-y-6 pb-12">
-      
-      {/* CURRICULUM ALIGNMENT HEADER BANNER */}
-      <div className="bg-gradient-to-r from-rose-50 via-white to-amber-50 rounded-[28px] p-5 sm:p-6 border-3 border-[#2D2D2D] shadow-[0_5px_0_#000] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <div className="space-y-1.5 max-w-2xl">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#FF6B6B] text-white text-xs font-black uppercase tracking-wider">
-              <GraduationCap className="w-3.5 h-3.5" />
-              <span>Curriculum Tier: {tierDetail.gradeLabel}</span>
-            </span>
-            <span className="text-xs font-bold text-gray-500">
-              100% Open Access &bull; Full Blank Canvas &amp; {DRAWING_TEMPLATES.length}+ Free Templates
-            </span>
-          </div>
-
-          <h3 className="text-xl sm:text-2xl font-black text-[#2D2D2D] tracking-tight">
-            Creative Expression &amp; Motor Focus: {artCurriculum.focusTitle} 🎨
-          </h3>
-
-          <p className="text-xs sm:text-sm font-semibold text-gray-700 leading-relaxed">
-            {artCurriculum.scopeSummary}
-          </p>
-
-          {showParentNote && (
-            <div className="mt-2 p-3 bg-white rounded-xl border-2 border-rose-200 text-xs text-rose-950 font-medium leading-relaxed animate-in fade-in">
-              <strong className="block font-black text-rose-900 mb-1">Parent Explanation:</strong>
-              {artCurriculum.parentExplanation}
+      {/* Studio Top Bar & Mode Switcher */}
+      <div className="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200 shadow-xs space-y-4">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <div className="flex flex-wrap items-center gap-2 text-xs font-bold text-slate-500">
+              <span className="inline-flex items-center gap-1.5 text-rose-700 font-extrabold">
+                <GraduationCap className="w-4 h-4" />
+                <span>{tierDetail.gradeLabel}</span>
+              </span>
+              <span aria-hidden="true">·</span>
+              <span>{DRAWING_TEMPLATES.length} Coloring Pages &amp; Blank Canvas</span>
             </div>
-          )}
-        </div>
 
-        <div className="flex flex-col sm:flex-row md:flex-col gap-2 shrink-0">
-          <button
-            onClick={() => {
-              setShowParentNote(!showParentNote);
-              playSoundEffect('click', settings.soundEffects);
-            }}
-            className="px-4 py-2 bg-white hover:bg-rose-50 text-rose-900 font-black text-xs uppercase tracking-wider rounded-xl border-2 border-rose-300 shadow-xs cursor-pointer flex items-center justify-center gap-1.5"
-          >
-            <HelpCircle className="w-4 h-4" />
-            <span>{showParentNote ? 'Hide Parent Guide' : 'Why This Fits My Kid'}</span>
-          </button>
-
-          <a
-            href="/curriculum"
-            className="px-4 py-2 bg-[#FFD93D] hover:bg-yellow-400 text-[#2D2D2D] font-black text-xs uppercase tracking-wider rounded-xl border-2 border-[#2D2D2D] shadow-[0_3px_0_#000] active:translate-y-0.5 active:shadow-none transition-all flex items-center justify-center gap-1.5 no-underline"
-          >
-            <span>Full Curriculum Guide &rarr;</span>
-          </a>
-        </div>
-      </div>
-
-      {/* Top Banner & Header */}
-      <div className="bg-gradient-to-r from-[#FF6B6B] via-[#FF8E53] to-[#FFD93D] rounded-3xl p-6 sm:p-8 border-4 border-[#2D2D2D] shadow-[0_8px_0_#000] text-white">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="space-y-2 max-w-2xl">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-xs text-white text-xs font-black uppercase tracking-wider border border-white/30">
-              <Sparkles className="w-3.5 h-3.5 text-yellow-200" />
-              <span>CREATIVE ARTS &amp; PRINTABLES STUDIO &bull; ONLINE &amp; OFFLINE</span>
-            </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
-              Draw, Paint &amp; Print 🎨
+            <h1 className="text-2xl sm:text-3xl font-black text-[#2D2D2D] tracking-tight">
+              Drawings &amp; Art Studio
             </h1>
-            <p className="text-sm sm:text-base font-medium text-white/95 leading-relaxed">
-              Express your imagination on the giant digital canvas, color inside outlined animals and vehicles, or print out clean offline paper coloring activity sheets for tabletop painting!
+            <p className="text-sm font-medium text-slate-600 max-w-2xl">
+              {artCurriculum.scopeSummary}
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-2.5">
-            <button
-              onClick={() => {
-                setActiveView('canvas');
-                playSoundEffect('click', settings.soundEffects);
-              }}
-              className={`px-5 py-3 rounded-2xl font-black text-xs uppercase tracking-tight border-3 border-[#2D2D2D] shadow-[0_4px_0_#000] transition-all cursor-pointer flex items-center gap-2 ${
-                activeView === 'canvas'
-                  ? 'bg-white text-[#2D2D2D]'
-                  : 'bg-white/20 text-white hover:bg-white/30'
-              }`}
-            >
-              <Palette className="w-4 h-4 text-[#FF6B6B]" />
-              <span>Canvas Studio</span>
-            </button>
+          <div className="flex flex-wrap items-center gap-2 shrink-0">
+            <div className="flex items-center gap-1 p-1 bg-slate-100 rounded-2xl">
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveView('canvas');
+                  playSoundEffect('click', settings.soundEffects);
+                }}
+                className={`px-4 py-2 rounded-xl text-xs font-extrabold transition-colors whitespace-nowrap shrink-0 cursor-pointer flex items-center gap-1.5 ${
+                  activeView === 'canvas'
+                    ? 'bg-white text-slate-900 shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                <Palette className="w-4 h-4 text-rose-600" />
+                <span>Art Canvas</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveView('printables');
+                  playSoundEffect('click', settings.soundEffects);
+                }}
+                className={`px-4 py-2 rounded-xl text-xs font-extrabold transition-colors whitespace-nowrap shrink-0 cursor-pointer flex items-center gap-1.5 ${
+                  activeView === 'printables'
+                    ? 'bg-white text-slate-900 shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                <Printer className="w-4 h-4 text-blue-600" />
+                <span>Coloring Sheets ({DRAWING_TEMPLATES.length})</span>
+              </button>
+            </div>
 
             <button
-              onClick={() => {
-                setActiveView('printables');
-                playSoundEffect('click', settings.soundEffects);
-              }}
-              className={`px-5 py-3 rounded-2xl font-black text-xs uppercase tracking-tight border-3 border-[#2D2D2D] shadow-[0_4px_0_#000] transition-all cursor-pointer flex items-center gap-2 ${
-                activeView === 'printables'
-                  ? 'bg-white text-[#2D2D2D]'
-                  : 'bg-white/20 text-white hover:bg-white/30'
-              }`}
-            >
-              <Printer className="w-4 h-4 text-[#4D96FF]" />
-              <span>Parent Printables ({DRAWING_TEMPLATES.length})</span>
-            </button>
-
-            <button
+              type="button"
               onClick={() => {
                 setShowGalleryModal(true);
                 playSoundEffect('click', settings.soundEffects);
               }}
-              className="px-4 py-3 rounded-2xl bg-white/20 text-white font-black text-xs uppercase tracking-tight border-3 border-[#2D2D2D] shadow-[0_4px_0_#000] hover:bg-white/30 transition-all cursor-pointer flex items-center gap-2"
+              className="px-4 py-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 font-extrabold text-xs transition-colors whitespace-nowrap shrink-0 cursor-pointer flex items-center gap-1.5"
             >
-              <Images className="w-4 h-4 text-amber-200" />
-              <span>My Gallery ({savedArtworks.length})</span>
+              <Images className="w-4 h-4" />
+              <span className="tabular-nums">My Gallery ({savedArtworks.length})</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setShowParentNote((v) => !v);
+                playSoundEffect('click', settings.soundEffects);
+              }}
+              className="px-3.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-colors whitespace-nowrap shrink-0 cursor-pointer flex items-center gap-1.5"
+            >
+              <HelpCircle className="w-4 h-4" />
+              <span>{showParentNote ? 'Hide Note' : 'Parent Tip'}</span>
             </button>
           </div>
         </div>
+
+        {showParentNote && (
+          <div className="pt-3 border-t border-slate-100 text-xs text-slate-600 leading-relaxed">
+            <strong className="font-extrabold text-slate-800">Teacher &amp; Parent Note: </strong>
+            {artCurriculum.parentExplanation}
+          </div>
+        )}
       </div>
 
-      {/* VIEW 1: INTERACTIVE CANVAS STUDIO */}
+      {/* VIEW 1: TWO-ZONE INTERACTIVE ART STUDIO */}
       {activeView === 'canvas' && (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          
-          {/* Main Drawing Stage (8 cols) */}
-          <div className="lg:col-span-8 space-y-4">
-            
-            {/* Canvas Header Bar with Template Name & Actions */}
-            <div className="bg-white rounded-2xl p-4 border-4 border-[#2D2D2D] shadow-[0_6px_0_#000] flex flex-wrap items-center justify-between gap-3">
-              <div className="flex items-center space-x-3">
-                <span className="text-3xl">{selectedTemplate ? selectedTemplate.emoji : '🎨'}</span>
+          {/* LEFT ZONE: Art Stage (8 cols) */}
+          <div className="lg:col-span-8 bg-white rounded-3xl p-4 sm:p-6 border border-slate-200 shadow-xs space-y-4">
+            {/* Subject Header & Quick Studio Actions */}
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-2xl bg-rose-50 border border-rose-200 flex items-center justify-center text-2xl shrink-0">
+                  {selectedTemplate ? selectedTemplate.emoji : '🎨'}
+                </div>
                 <div>
-                  <h2 className="text-lg font-black text-[#2D2D2D] leading-tight">
-                    {selectedTemplate ? selectedTemplate.title : 'Free Painting Blank Canvas'}
+                  <h2 className="text-lg sm:text-xl font-black text-[#2D2D2D] leading-tight">
+                    {selectedTemplate ? selectedTemplate.title : 'Blank Free-Paint Canvas'}
                   </h2>
-                  <div className="text-xs font-bold text-gray-500">
-                    {selectedTemplate ? `${selectedTemplate.category.toUpperCase()} &bull; ${selectedTemplate.ageRecommendation}` : 'Draw whatever your heart imagines!'}
-                  </div>
+                  <p className="text-xs font-semibold text-slate-500">
+                    {selectedTemplate
+                      ? `${selectedTemplate.difficulty} · ${selectedTemplate.ageRecommendation}`
+                      : 'Open sketchbook · Express freely'}
+                  </p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <button
+                  type="button"
                   onClick={handleUndo}
-                  title="Undo last stroke"
-                  className="p-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 border-2 border-gray-300 text-gray-700 cursor-pointer transition-all active:scale-95"
+                  disabled={!historyMeta.canUndo}
+                  title="Undo last action"
+                  className="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 disabled:opacity-40 disabled:cursor-not-allowed text-slate-700 font-bold text-xs transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer"
                 >
-                  <RotateCcw className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={handleRedo}
-                  title="Redo stroke"
-                  className="p-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 border-2 border-gray-300 text-gray-700 cursor-pointer transition-all active:scale-95"
-                >
-                  <RotateCw className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={handleClear}
-                  title="Clear canvas"
-                  className="p-2.5 rounded-xl bg-rose-50 hover:bg-rose-100 border-2 border-rose-300 text-rose-600 cursor-pointer transition-all active:scale-95"
-                >
-                  <Trash2 className="w-4 h-4" />
+                  <RotateCcw className="w-3.5 h-3.5" />
+                  <span>Undo</span>
                 </button>
 
+                <button
+                  type="button"
+                  onClick={handleRedo}
+                  disabled={!historyMeta.canRedo}
+                  title="Redo action"
+                  className="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 disabled:opacity-40 disabled:cursor-not-allowed text-slate-700 font-bold text-xs transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer"
+                >
+                  <RotateCw className="w-3.5 h-3.5" />
+                  <span>Redo</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleClearCanvas}
+                  title="Clear paint"
+                  className="px-3 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold text-xs transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                  <span>Clear</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleDownloadImage}
+                  className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Download</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleOpenPrintModal(selectedTemplate)}
+                  className="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer"
+                >
+                  <Printer className="w-3.5 h-3.5" />
+                  <span>Print</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleSaveToGallery}
+                  className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer"
+                >
+                  <Heart className="w-3.5 h-3.5 fill-white" />
+                  <span>Save</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Smart Canvas Assist Toggles + Context Tip */}
+            <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 rounded-2xl bg-slate-50 border border-slate-200">
+              <span className="text-xs font-bold text-slate-700">{activeTipText}</span>
+
+              <div className="flex flex-wrap items-center gap-1.5 shrink-0">
                 {selectedTemplate && (
-                  <button
-                    onClick={() => handlePrintWorksheet(selectedTemplate)}
-                    className="px-3.5 py-2 rounded-xl bg-[#4D96FF] text-white font-black text-xs uppercase border-2 border-[#2D2D2D] shadow-xs hover:bg-blue-600 cursor-pointer transition-all flex items-center gap-1.5"
-                  >
-                    <Printer className="w-3.5 h-3.5" />
-                    <span>Print Sheet</span>
-                  </button>
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setStayInLines((v) => !v);
+                        playSoundEffect('click', settings.soundEffects);
+                      }}
+                      className={`px-2.5 py-1 rounded-lg text-xs font-extrabold transition-colors flex items-center gap-1 whitespace-nowrap shrink-0 cursor-pointer ${
+                        stayInLines
+                          ? 'bg-emerald-600 text-white'
+                          : 'bg-white text-slate-600 border border-slate-200 hover:text-slate-900'
+                      }`}
+                    >
+                      <ShieldCheck className="w-3.5 h-3.5" />
+                      <span>Stay in Lines</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setShowOutlines((v) => !v);
+                        playSoundEffect('click', settings.soundEffects);
+                      }}
+                      className={`px-2.5 py-1 rounded-lg text-xs font-extrabold transition-colors flex items-center gap-1 whitespace-nowrap shrink-0 cursor-pointer ${
+                        showOutlines
+                          ? 'bg-slate-800 text-white'
+                          : 'bg-white text-slate-600 border border-slate-200 hover:text-slate-900'
+                      }`}
+                    >
+                      {showOutlines ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
+                      <span>{showOutlines ? 'Outlines On' : 'Outlines Off'}</span>
+                    </button>
+                  </>
                 )}
 
                 <button
-                  onClick={handleSaveToGallery}
-                  className="px-4 py-2 rounded-xl bg-[#6BCB77] text-white font-black text-xs uppercase border-2 border-[#2D2D2D] shadow-xs hover:bg-emerald-600 cursor-pointer transition-all flex items-center gap-1.5"
+                  type="button"
+                  onClick={() => {
+                    setMirrorMode((v) => !v);
+                    playSoundEffect('click', settings.soundEffects);
+                  }}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-extrabold transition-colors flex items-center gap-1 whitespace-nowrap shrink-0 cursor-pointer ${
+                    mirrorMode
+                      ? 'bg-purple-600 text-white'
+                      : 'bg-white text-slate-600 border border-slate-200 hover:text-slate-900'
+                  }`}
                 >
-                  <Heart className="w-3.5 h-3.5 fill-white" />
-                  <span>Save Artwork</span>
+                  <FlipHorizontal2 className="w-3.5 h-3.5" />
+                  <span>Mirror Draw</span>
                 </button>
               </div>
             </div>
 
-            {/* Canvas Container with Outline Overlay */}
-            <div className="relative w-full aspect-square max-h-[620px] bg-white rounded-3xl border-4 border-[#2D2D2D] shadow-[0_8px_0_#000] overflow-hidden select-none touch-none flex items-center justify-center">
-              
-              {/* Underlying Drawing HTML5 Canvas */}
-              <canvas
-                ref={canvasRef}
-                onPointerDown={handlePointerDown}
-                onPointerMove={handlePointerMove}
-                onPointerUp={handlePointerUp}
-                className="w-full h-full cursor-crosshair touch-none block"
-              />
+            {/* Multi-Layer 640x640 Art Board */}
+            <div className="flex justify-center">
+              <div
+                className="relative w-full max-w-[600px] aspect-square rounded-3xl border-2 border-slate-300 shadow-inner overflow-hidden select-none touch-none"
+                style={{ backgroundColor: paperOpt.bgHex }}
+              >
+                {/* Layer 1: Paint Layer (Interactive Pointer Target) */}
+                <canvas
+                  ref={paintCanvasRef}
+                  width={CANVAS_LOGICAL_SIZE}
+                  height={CANVAS_LOGICAL_SIZE}
+                  onPointerDown={handlePointerDown}
+                  onPointerMove={handlePointerMove}
+                  onPointerUp={finishStroke}
+                  onPointerCancel={finishStroke}
+                  className="absolute inset-0 w-full h-full cursor-crosshair touch-none block"
+                />
 
-              {/* Template Lineart Overlay (Interactive Coloring Page) */}
-              {selectedTemplate && (
-                <div className="absolute inset-0 pointer-events-none p-6 flex items-center justify-center">
-                  <svg
-                    viewBox="0 0 500 500"
-                    className="w-full h-full opacity-90 transition-opacity"
-                    dangerouslySetInnerHTML={{ __html: selectedTemplate.svgOutline }}
+                {/* Layer 2: Masked Live Stroke Preview (GPU clipped when Stay in Lines is active) */}
+                <canvas
+                  ref={previewCanvasRef}
+                  width={CANVAS_LOGICAL_SIZE}
+                  height={CANVAS_LOGICAL_SIZE}
+                  className="absolute inset-0 w-full h-full pointer-events-none block"
+                />
+
+                {/* Layer 3: Crisp Rasterized Template Ink Overlay (Transparent Interiors!) */}
+                <canvas
+                  ref={outlineCanvasRef}
+                  width={CANVAS_LOGICAL_SIZE}
+                  height={CANVAS_LOGICAL_SIZE}
+                  className="absolute inset-0 w-full h-full pointer-events-none block"
+                />
+
+                {/* Optional Mirror Axis Visual Guide (non-exported) */}
+                {mirrorMode && (
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-px border-l border-dashed border-purple-400/70 pointer-events-none"
                   />
-                </div>
-              )}
+                )}
+              </div>
             </div>
 
-            {/* Parent Prompt & Learning Guidance Card */}
+            {/* Template Educator Prompt & Fun Fact */}
             {selectedTemplate && (
-              <div className="bg-[#FFF9F0] border-3 border-[#FFD93D] rounded-2xl p-4 shadow-xs space-y-2">
-                <div className="flex items-center gap-2 text-xs font-black uppercase text-[#B45309]">
-                  <Award className="w-4 h-4 text-amber-500" />
-                  <span>Parent &amp; Educator Activity Guide</span>
+              <div className="pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-1.5 text-xs font-extrabold text-slate-800">
+                    <BookOpen className="w-4 h-4 text-amber-600" />
+                    <span>Guided Activity</span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {selectedTemplate.learningPrompt}
+                  </p>
                 </div>
-                <p className="text-sm font-semibold text-[#2D2D2D]">
-                  {selectedTemplate.learningPrompt}
-                </p>
-                <div className="text-xs text-gray-600 bg-white/80 p-2.5 rounded-xl border border-amber-200 flex items-center gap-2">
-                  <span className="text-base">💡</span>
-                  <span><strong>Fun Fact:</strong> {selectedTemplate.funFact}</span>
+                <div className="space-y-1">
+                  <div className="text-xs font-extrabold text-slate-800">Fun Fact</div>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {selectedTemplate.funFact}
+                  </p>
                 </div>
               </div>
             )}
           </div>
 
-          {/* Right Toolbar & Swatches (4 cols) */}
+          {/* RIGHT ZONE: Art Tools, Colors, Paper & Templates (4 cols) */}
           <div className="lg:col-span-4 space-y-5">
-            
-            {/* Tool Selection Box */}
-            <div className="bg-white rounded-3xl p-5 border-4 border-[#2D2D2D] shadow-[0_6px_0_#000] space-y-4">
-              <h3 className="text-sm font-black uppercase tracking-wider text-gray-500">
-                1. Pick Drawing Tool
-              </h3>
+            {/* 1. Art Tools & Brush Size */}
+            <div className="bg-white rounded-3xl p-5 border border-slate-200 shadow-xs space-y-4">
+              <h3 className="text-sm font-extrabold text-slate-800">1. Art Tools</h3>
 
-              <div className="grid grid-cols-2 gap-2.5">
-                <button
-                  onClick={() => {
-                    setActiveTool('brush');
-                    playSoundEffect('click', settings.soundEffects);
-                  }}
-                  className={`p-3 rounded-2xl border-3 font-black text-xs uppercase flex items-center gap-2.5 transition-all cursor-pointer ${
-                    activeTool === 'brush'
-                      ? 'bg-[#FF6B6B] text-white border-[#2D2D2D] shadow-xs'
-                      : 'bg-gray-50 border-gray-200 text-gray-700 hover:border-gray-400'
-                  }`}
-                >
-                  <Paintbrush className="w-4 h-4" />
-                  <span>Paint Brush</span>
-                </button>
-
-                <button
-                  onClick={() => {
-                    setActiveTool('crayon');
-                    playSoundEffect('click', settings.soundEffects);
-                  }}
-                  className={`p-3 rounded-2xl border-3 font-black text-xs uppercase flex items-center gap-2.5 transition-all cursor-pointer ${
-                    activeTool === 'crayon'
-                      ? 'bg-[#F59E0B] text-white border-[#2D2D2D] shadow-xs'
-                      : 'bg-gray-50 border-gray-200 text-gray-700 hover:border-gray-400'
-                  }`}
-                >
-                  <span className="text-base">🖍️</span>
-                  <span>Wax Crayon</span>
-                </button>
-
-                <button
-                  onClick={() => {
-                    setActiveTool('rainbow');
-                    playSoundEffect('star', settings.soundEffects);
-                  }}
-                  className={`p-3 rounded-2xl border-3 font-black text-xs uppercase flex items-center gap-2.5 transition-all cursor-pointer ${
-                    activeTool === 'rainbow'
-                      ? 'bg-gradient-to-r from-red-500 via-amber-400 to-emerald-500 text-white border-[#2D2D2D] shadow-xs'
-                      : 'bg-gray-50 border-gray-200 text-gray-700 hover:border-gray-400'
-                  }`}
-                >
-                  <span className="text-base">🌈</span>
-                  <span>Magic Rainbow</span>
-                </button>
-
-                <button
-                  onClick={() => {
-                    setActiveTool('eraser');
-                    playSoundEffect('click', settings.soundEffects);
-                  }}
-                  className={`p-3 rounded-2xl border-3 font-black text-xs uppercase flex items-center gap-2.5 transition-all cursor-pointer ${
-                    activeTool === 'eraser'
-                      ? 'bg-[#4D96FF] text-white border-[#2D2D2D] shadow-xs'
-                      : 'bg-gray-50 border-gray-200 text-gray-700 hover:border-gray-400'
-                  }`}
-                >
-                  <Eraser className="w-4 h-4" />
-                  <span>Clean Eraser</span>
-                </button>
-              </div>
-
-              {/* Stroke Size Selector */}
-              <div className="space-y-2 pt-2 border-t border-gray-100">
-                <div className="flex justify-between items-center text-xs font-bold text-gray-600">
-                  <span>Stroke Thickness</span>
-                  <span>{brushSize}px</span>
-                </div>
-                <div className="grid grid-cols-4 gap-2">
-                  {[4, 10, 20, 36].map((size) => (
+              <div className="grid grid-cols-2 gap-2">
+                {TOOL_ITEMS.map((tool) => {
+                  const isActive = activeTool === tool.id;
+                  return (
                     <button
-                      key={size}
-                      onClick={() => setBrushSize(size)}
-                      className={`py-2 rounded-xl border-2 font-bold text-xs flex items-center justify-center cursor-pointer transition-all ${
-                        brushSize === size
-                          ? 'bg-[#2D2D2D] text-white border-[#2D2D2D]'
-                          : 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100'
+                      key={tool.id}
+                      type="button"
+                      onClick={() => {
+                        setActiveTool(tool.id);
+                        playSoundEffect('click', settings.soundEffects);
+                      }}
+                      className={`px-3 py-2.5 rounded-xl border text-xs font-extrabold flex items-center gap-2 transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                        isActive
+                          ? tool.activeClass
+                          : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
                       }`}
                     >
-                      <div
-                        className="rounded-full bg-current"
-                        style={{ width: Math.max(4, size / 2.5), height: Math.max(4, size / 2.5) }}
-                      />
+                      {tool.icon}
+                      <span className="truncate">{tool.label}</span>
                     </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Kid Palette Swatches */}
-            <div className="bg-white rounded-3xl p-5 border-4 border-[#2D2D2D] shadow-[0_6px_0_#000] space-y-4">
-              <div className="flex justify-between items-center">
-                <h3 className="text-sm font-black uppercase tracking-wider text-gray-500">
-                  2. Choose Color
-                </h3>
-                {selectedTemplate && (
-                  <span className="text-xs font-bold text-amber-600 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200">
-                    Suggested Available
-                  </span>
-                )}
+                  );
+                })}
               </div>
 
-              {/* Suggested Colors from Template */}
-              {selectedTemplate && selectedTemplate.suggestedColors.length > 0 && (
-                <div className="space-y-1.5 pb-2 border-b border-gray-100">
-                  <div className="text-xs font-bold text-gray-600">Template Matches:</div>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedTemplate.suggestedColors.map((sc) => (
+              {/* Stickers Picker (shown cleanly when Stamps selected) */}
+              {activeTool === 'stamp' && (
+                <div className="pt-3 border-t border-slate-100 space-y-2">
+                  <div className="text-xs font-bold text-slate-600">Pick a sticker:</div>
+                  <div className="grid grid-cols-6 gap-1.5">
+                    {STAMPS.map((stamp) => (
                       <button
-                        key={sc.hex}
+                        key={stamp}
+                        type="button"
                         onClick={() => {
-                          setActiveColor(sc.hex);
-                          if (activeTool === 'eraser') setActiveTool('brush');
+                          setActiveStamp(stamp);
                           playSoundEffect('pop', settings.soundEffects);
                         }}
-                        className={`px-3 py-1.5 rounded-xl border-2 text-xs font-bold flex items-center gap-2 cursor-pointer transition-all ${
-                          activeColor === sc.hex ? 'border-[#2D2D2D] shadow-xs scale-105' : 'border-gray-200'
+                        className={`h-10 text-xl rounded-xl border flex items-center justify-center cursor-pointer transition-transform ${
+                          activeStamp === stamp
+                            ? 'bg-emerald-50 border-emerald-500 scale-105'
+                            : 'bg-slate-50 border-slate-200 hover:bg-slate-100'
                         }`}
-                        style={{ backgroundColor: sc.hex, color: sc.hex === '#FFFFFF' ? '#2D2D2D' : '#FFFFFF' }}
                       >
-                        <span className="text-shadow-xs">{sc.name}</span>
+                        {stamp}
                       </button>
                     ))}
                   </div>
                 </div>
               )}
 
-              {/* Grid of 13 Kid-Friendly Swatches */}
-              <div className="grid grid-cols-7 gap-2">
-                {COLOR_SWATCHES.map((swatch) => (
-                  <button
-                    key={swatch.hex}
-                    onClick={() => {
-                      setActiveColor(swatch.hex);
-                      if (activeTool === 'eraser') setActiveTool('brush');
-                      playSoundEffect('pop', settings.soundEffects);
-                    }}
-                    title={swatch.name}
-                    className={`w-9 h-9 rounded-xl border-3 cursor-pointer transition-all transform active:scale-90 ${
-                      activeColor === swatch.hex
-                        ? 'border-[#2D2D2D] scale-110 shadow-xs'
-                        : 'border-transparent hover:scale-105'
-                    }`}
-                    style={{ backgroundColor: swatch.hex }}
+              {/* Smooth Size Slider + Quick Presets */}
+              {activeTool !== 'fill' && (
+                <div className="pt-3 border-t border-slate-100 space-y-2.5">
+                  <div className="flex items-center justify-between text-xs font-bold text-slate-700">
+                    <span>{activeTool === 'stamp' ? 'Sticker Size' : 'Brush Thickness'}</span>
+                    <span className="tabular-nums text-slate-900">{brushSize}px</span>
+                  </div>
+                  <input
+                    type="range"
+                    min={4}
+                    max={44}
+                    step={2}
+                    value={brushSize}
+                    onChange={(e) => setBrushSize(Number(e.target.value))}
+                    aria-label="Brush thickness"
+                    className="w-full accent-rose-600 cursor-pointer"
                   />
-                ))}
+                  <div className="grid grid-cols-4 gap-2">
+                    {[6, 14, 24, 38].map((sz) => (
+                      <button
+                        key={sz}
+                        type="button"
+                        onClick={() => setBrushSize(sz)}
+                        aria-label={`Set size ${sz}px`}
+                        className={`py-2 rounded-xl border flex items-center justify-center cursor-pointer transition-colors ${
+                          brushSize === sz
+                            ? 'bg-slate-900 text-white border-slate-900'
+                            : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
+                        }`}
+                      >
+                        <span
+                          className="rounded-full bg-current block"
+                          style={{
+                            width: Math.max(4, Math.round(sz / 2.6)),
+                            height: Math.max(4, Math.round(sz / 2.6)),
+                          }}
+                        />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* 2. Color Palette & Template Matches */}
+            <div className="bg-white rounded-3xl p-5 border border-slate-200 shadow-xs space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-sm font-extrabold text-slate-800">2. Color Palette</h3>
+                <label className="flex items-center gap-1.5 text-xs font-bold text-slate-600 cursor-pointer">
+                  <span>Custom</span>
+                  <input
+                    type="color"
+                    value={activeColor}
+                    onChange={(e) => {
+                      setActiveColor(e.target.value);
+                      if (activeTool === 'eraser' || activeTool === 'stamp') setActiveTool('brush');
+                    }}
+                    aria-label="Pick custom color"
+                    className="w-6 h-6 rounded-md border border-slate-300 cursor-pointer bg-transparent p-0"
+                  />
+                </label>
+              </div>
+
+              {selectedTemplate && selectedTemplate.suggestedColors.length > 0 && (
+                <div className="space-y-2 pb-3 border-b border-slate-100">
+                  <div className="text-xs font-bold text-slate-500">
+                    Suggested for {selectedTemplate.title}:
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {selectedTemplate.suggestedColors.map((sc) => {
+                      const isActive = activeColor.toLowerCase() === sc.hex.toLowerCase();
+                      return (
+                        <button
+                          key={sc.hex}
+                          type="button"
+                          onClick={() => {
+                            setActiveColor(sc.hex);
+                            if (activeTool === 'eraser' || activeTool === 'stamp') {
+                              setActiveTool('fill');
+                            }
+                            playSoundEffect('pop', settings.soundEffects);
+                          }}
+                          className={`px-2.5 py-1.5 rounded-xl border text-xs font-bold flex items-center gap-1.5 cursor-pointer transition-colors whitespace-nowrap shrink-0 ${
+                            isActive
+                              ? 'bg-slate-900 text-white border-slate-900'
+                              : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                          }`}
+                        >
+                          <span
+                            className="w-3.5 h-3.5 rounded-full border border-slate-300 shrink-0"
+                            style={{ backgroundColor: sc.hex }}
+                          />
+                          <span>{sc.name}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              <div className="grid grid-cols-8 gap-2">
+                {COLOR_SWATCHES.map((swatch) => {
+                  const isActive = activeColor.toLowerCase() === swatch.hex.toLowerCase();
+                  return (
+                    <button
+                      key={swatch.hex}
+                      type="button"
+                      title={swatch.name}
+                      aria-label={swatch.name}
+                      onClick={() => {
+                        setActiveColor(swatch.hex);
+                        if (activeTool === 'eraser' || activeTool === 'stamp') {
+                          setActiveTool('brush');
+                        }
+                        playSoundEffect('pop', settings.soundEffects);
+                      }}
+                      className={`w-8 h-8 rounded-full border-2 cursor-pointer transition-transform ${
+                        isActive
+                          ? 'border-slate-900 scale-110 ring-2 ring-slate-300'
+                          : 'border-slate-200 hover:scale-105'
+                      }`}
+                      style={{ backgroundColor: swatch.hex }}
+                    />
+                  );
+                })}
               </div>
             </div>
 
-            {/* Fun Stickers & Stamps */}
-            <div className="bg-white rounded-3xl p-5 border-4 border-[#2D2D2D] shadow-[0_6px_0_#000] space-y-3">
-              <h3 className="text-sm font-black uppercase tracking-wider text-gray-500">
-                3. Magic Stickers &amp; Stamps
-              </h3>
-              <p className="text-xs text-gray-500 font-medium">
-                Tap a sticker, then tap anywhere on your canvas to stamp it!
-              </p>
-              <div className="grid grid-cols-5 gap-2">
-                {STAMPS.map((stamp) => (
+            {/* 3. Paper & Coloring Pages */}
+            <div className="bg-white rounded-3xl p-5 border border-slate-200 shadow-xs space-y-4">
+              <div className="space-y-2">
+                <h3 className="text-sm font-extrabold text-slate-800">3. Paper Background</h3>
+                <div className="grid grid-cols-5 gap-1.5">
+                  {PAPER_OPTIONS.map((p) => {
+                    const isActive = paperType === p.id;
+                    return (
+                      <button
+                        key={p.id}
+                        type="button"
+                        title={p.label}
+                        aria-label={p.label}
+                        onClick={() => {
+                          setPaperType(p.id);
+                          playSoundEffect('click', settings.soundEffects);
+                        }}
+                        className={`p-1.5 rounded-xl border text-center cursor-pointer transition-colors space-y-1 ${
+                          isActive
+                            ? 'border-slate-900 bg-slate-100'
+                            : 'border-slate-200 hover:border-slate-300'
+                        }`}
+                      >
+                        <div
+                          className="w-full h-5 rounded-md border border-slate-300"
+                          style={{ backgroundColor: p.swatchHex }}
+                        />
+                        <div className="text-[10px] font-bold text-slate-600 truncate">
+                          {p.label.split(' ')[0]}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="pt-3 border-t border-slate-100 space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-sm font-extrabold text-slate-800">4. Coloring Pages</h3>
                   <button
-                    key={stamp}
-                    onClick={() => {
-                      setActiveTool('stamp');
-                      setActiveStamp(stamp);
-                      playSoundEffect('pop', settings.soundEffects);
-                    }}
-                    className={`h-11 text-2xl rounded-xl border-2 flex items-center justify-center cursor-pointer transition-all ${
-                      activeTool === 'stamp' && activeStamp === stamp
-                        ? 'bg-amber-100 border-[#2D2D2D] scale-110 shadow-xs'
-                        : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
+                    type="button"
+                    onClick={() => setActiveView('printables')}
+                    className="text-xs font-extrabold text-blue-600 hover:underline cursor-pointer"
+                  >
+                    Browse All ({DRAWING_TEMPLATES.length})
+                  </button>
+                </div>
+
+                <div className="flex flex-wrap gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => handleSelectTemplate(null)}
+                    className={`px-3 py-1.5 rounded-xl border text-xs font-bold cursor-pointer transition-colors whitespace-nowrap shrink-0 ${
+                      selectedTemplate === null
+                        ? 'bg-slate-900 text-white border-slate-900'
+                        : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
                     }`}
                   >
-                    {stamp}
+                    Blank Canvas
                   </button>
-                ))}
+
+                  {DRAWING_TEMPLATES.slice(0, 9).map((t) => (
+                    <button
+                      key={t.id}
+                      type="button"
+                      onClick={() => handleSelectTemplate(t)}
+                      className={`px-2.5 py-1.5 rounded-xl border text-xs font-bold cursor-pointer transition-colors flex items-center gap-1 whitespace-nowrap shrink-0 ${
+                        selectedTemplate?.id === t.id
+                          ? 'bg-rose-600 text-white border-rose-700'
+                          : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
+                      }`}
+                    >
+                      <span>{t.emoji}</span>
+                      <span className="truncate max-w-[110px]">{t.title}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
-
-            {/* Quick Template Switcher */}
-            <div className="bg-white rounded-3xl p-5 border-4 border-[#2D2D2D] shadow-[0_6px_0_#000] space-y-3">
-              <div className="flex justify-between items-center">
-                <h3 className="text-sm font-black uppercase tracking-wider text-gray-500">
-                  4. Coloring Pages
-                </h3>
-                <button
-                  onClick={() => setActiveView('printables')}
-                  className="text-xs font-bold text-[#4D96FF] hover:underline"
-                >
-                  View All &rarr;
-                </button>
-              </div>
-
-              <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
-                <button
-                  onClick={() => {
-                    setSelectedTemplate(null);
-                    playSoundEffect('click', settings.soundEffects);
-                  }}
-                  className={`px-3 py-2 rounded-xl font-bold text-xs shrink-0 border-2 cursor-pointer transition-all ${
-                    selectedTemplate === null
-                      ? 'bg-[#2D2D2D] text-white border-[#2D2D2D]'
-                      : 'bg-gray-50 border-gray-200 text-gray-700'
-                  }`}
-                >
-                  ✨ Blank Canvas
-                </button>
-
-                {DRAWING_TEMPLATES.slice(0, 8).map((t) => (
-                  <button
-                    key={t.id}
-                    onClick={() => {
-                      setSelectedTemplate(t);
-                      playSoundEffect('click', settings.soundEffects);
-                    }}
-                    className={`px-3 py-2 rounded-xl font-bold text-xs shrink-0 border-2 cursor-pointer transition-all flex items-center gap-1.5 ${
-                      selectedTemplate?.id === t.id
-                        ? 'bg-[#FF6B6B] text-white border-[#2D2D2D]'
-                        : 'bg-gray-50 border-gray-200 text-gray-700'
-                    }`}
-                  >
-                    <span>{t.emoji}</span>
-                    <span className="truncate max-w-[100px]">{t.title}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
           </div>
         </div>
       )}
 
-      {/* VIEW 2: PARENT PRINTABLES & COLORING SHEETS DIRECTORY */}
+      {/* VIEW 2: COLORING PAGES & PRINTABLES LIBRARY */}
       {activeView === 'printables' && (
         <div className="space-y-6">
-          
-          {/* Category Filter Pills */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+          <div className="flex flex-wrap items-center gap-1.5 p-1.5 bg-white rounded-2xl border border-slate-200 shadow-xs">
             <button
+              type="button"
               onClick={() => setSelectedCategory('all')}
-              className={`px-4 py-2.5 rounded-2xl font-black text-xs uppercase tracking-tight border-3 transition-all cursor-pointer whitespace-nowrap ${
+              className={`px-3.5 py-2 rounded-xl font-extrabold text-xs transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
                 selectedCategory === 'all'
-                  ? 'bg-[#2D2D2D] text-white border-[#2D2D2D] shadow-xs'
-                  : 'bg-white text-gray-700 border-gray-200 hover:border-gray-400'
+                  ? 'bg-slate-900 text-white'
+                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
               }`}
             >
-              All Coloring Sheets ({DRAWING_TEMPLATES.length})
+              All Sheets ({DRAWING_TEMPLATES.length})
             </button>
 
             {DRAWING_CATEGORIES.map((cat) => (
               <button
                 key={cat.id}
+                type="button"
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 py-2.5 rounded-2xl font-black text-xs uppercase tracking-tight border-3 transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                className={`px-3.5 py-2 rounded-xl font-extrabold text-xs transition-colors whitespace-nowrap shrink-0 flex items-center gap-1.5 cursor-pointer ${
                   selectedCategory === cat.id
-                    ? 'bg-[#FF6B6B] text-white border-[#2D2D2D] shadow-xs'
-                    : 'bg-white text-gray-700 border-gray-200 hover:border-gray-400'
+                    ? 'bg-rose-600 text-white'
+                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                 }`}
               >
                 <span>{cat.icon}</span>
@@ -926,195 +1433,208 @@ export const DrawingsStudio: React.FC<DrawingsStudioProps> = ({
             ))}
           </div>
 
-          {/* Grid of Printable Coloring Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredTemplates.map((template) => (
-              <div
+              <article
                 key={template.id}
-                className="bg-white rounded-3xl border-4 border-[#2D2D2D] shadow-[0_6px_0_#000] p-6 flex flex-col justify-between hover:-translate-y-1 transition-all"
+                className="bg-white rounded-3xl border border-slate-200 shadow-xs p-5 flex flex-col justify-between space-y-4 hover:border-slate-300 transition-colors"
               >
-                <div className="space-y-4">
-                  {/* Outline Preview Box */}
-                  <div className="w-full aspect-square bg-[#FFF9F0] rounded-2xl border-3 border-gray-200 flex items-center justify-center p-4 relative group">
+                <div className="space-y-3.5">
+                  <div className="w-full aspect-square bg-[#FFFEFA] rounded-2xl border border-slate-200 flex items-center justify-center p-4">
                     <svg
                       viewBox="0 0 500 500"
                       className="w-full h-full max-h-[220px]"
                       dangerouslySetInnerHTML={{ __html: template.svgOutline }}
                     />
-                    <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-white/90 border border-gray-300 text-xs font-black">
-                      {template.difficulty}
-                    </div>
                   </div>
 
-                  <div className="space-y-1.5">
-                    <div className="flex items-center gap-2 text-xs font-bold text-gray-500">
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2 text-xs font-bold text-slate-500">
                       <span>{template.emoji}</span>
-                      <span className="uppercase">{template.category}</span>
-                      <span>&bull;</span>
+                      <span className="capitalize">{template.category.replace('-', ' ')}</span>
+                      <span aria-hidden="true">·</span>
+                      <span>{template.difficulty}</span>
+                      <span aria-hidden="true">·</span>
                       <span>{template.ageRecommendation}</span>
                     </div>
-                    <h3 className="text-xl font-black text-[#2D2D2D]">
-                      {template.title}
-                    </h3>
-                    <p className="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                    <h3 className="text-lg font-black text-[#2D2D2D]">{template.title}</h3>
+                    <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
                       {template.description}
                     </p>
                   </div>
                 </div>
 
-                {/* Card Action Buttons: Color Online vs Print Offline */}
-                <div className="pt-5 mt-4 border-t border-gray-100 flex items-center gap-3">
+                <div className="pt-3 border-t border-slate-100 grid grid-cols-2 gap-2.5">
                   <button
+                    type="button"
                     onClick={() => {
-                      setSelectedTemplate(template);
+                      handleSelectTemplate(template);
                       setActiveView('canvas');
-                      playSoundEffect('click', settings.soundEffects);
                     }}
-                    className="flex-1 py-3 rounded-xl bg-[#FF6B6B] text-white font-black text-xs uppercase border-2 border-[#2D2D2D] shadow-xs hover:bg-rose-600 cursor-pointer transition-all flex items-center justify-center gap-1.5"
+                    className="py-2.5 px-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-xs transition-colors flex items-center justify-center gap-1.5 whitespace-nowrap cursor-pointer"
                   >
                     <Palette className="w-4 h-4" />
                     <span>Color Online</span>
                   </button>
 
                   <button
-                    onClick={() => handlePrintWorksheet(template)}
-                    className="flex-1 py-3 rounded-xl bg-[#4D96FF] text-white font-black text-xs uppercase border-2 border-[#2D2D2D] shadow-xs hover:bg-blue-600 cursor-pointer transition-all flex items-center justify-center gap-1.5"
+                    type="button"
+                    onClick={() => handleOpenPrintModal(template)}
+                    className="py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-extrabold text-xs transition-colors flex items-center justify-center gap-1.5 whitespace-nowrap cursor-pointer"
                   >
                     <Printer className="w-4 h-4" />
                     <span>Print Sheet</span>
                   </button>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
       )}
 
-      {/* MODAL: Printable Activity Sheet Preview & Direct Print */}
-      {showPrintModal && printTargetTemplate && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-white rounded-3xl border-4 border-[#2D2D2D] shadow-[0_12px_0_#000] max-w-2xl w-full p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
-            
-            <div className="flex justify-between items-center pb-4 border-b-2 border-gray-100">
-              <div className="flex items-center gap-3">
-                <span className="text-3xl">{printTargetTemplate.emoji}</span>
-                <div>
-                  <h3 className="text-xl font-black text-[#2D2D2D]">
-                    Print Activity Sheet: {printTargetTemplate.title}
-                  </h3>
-                  <p className="text-xs text-gray-500 font-bold">
-                    Printable Worksheet formatted for standard A4 / 8.5x11 paper
-                  </p>
-                </div>
+      {/* MODAL: Printable Activity Sheet Preview */}
+      {showPrintModal && (
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white rounded-3xl border border-slate-200 shadow-xl max-w-2xl w-full p-6 sm:p-8 space-y-5 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-start justify-between gap-4 pb-4 border-b border-slate-100">
+              <div>
+                <h3 className="text-xl font-black text-[#2D2D2D]">
+                  Print {printTargetTemplate ? printTargetTemplate.title : 'Artwork'}
+                </h3>
+                <p className="text-xs text-slate-500 font-medium">
+                  Formatted cleanly for standard Letter or A4 paper
+                </p>
               </div>
               <button
+                type="button"
+                aria-label="Close print preview"
                 onClick={() => setShowPrintModal(false)}
-                className="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 border-2 border-gray-300 font-black text-sm flex items-center justify-center cursor-pointer"
+                className="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center cursor-pointer"
               >
-                &times;
+                <X className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Printable Paper Preview (what will be sent to the printer) */}
-            <div className="p-6 bg-white border-4 border-dashed border-gray-400 rounded-2xl space-y-4 print:border-none print:p-0">
-              <div className="flex justify-between items-center pb-3 border-b-2 border-gray-200 text-xs font-bold text-gray-600">
-                <div>
-                  <span className="font-black text-[#2D2D2D]">FIRST OPEN SCHOOL</span> &bull; Art &amp; Drawing
+            {printTargetTemplate && paintedPrintPreview && (
+              <div className="flex items-center gap-1 p-1 bg-slate-100 rounded-xl w-fit">
+                <button
+                  type="button"
+                  onClick={() => setPrintMode('blank')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer ${
+                    printMode === 'blank' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600'
+                  }`}
+                >
+                  Blank Coloring Sheet
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setPrintMode('painted')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer ${
+                    printMode === 'painted' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600'
+                  }`}
+                >
+                  My Painted Artwork
+                </button>
+              </div>
+            )}
+
+            <div
+              id="printable-sheet-area"
+              className="p-6 bg-white border-2 border-dashed border-slate-300 rounded-2xl space-y-4"
+            >
+              <div className="flex justify-between items-center pb-3 border-b border-slate-200 text-xs font-bold text-slate-600">
+                <span>First Open School · Drawings &amp; Art</span>
+                <span>Artist: {student.name}</span>
+              </div>
+
+              {printTargetTemplate && (
+                <div className="text-center space-y-1">
+                  <h4 className="text-xl font-black text-[#2D2D2D]">
+                    {printTargetTemplate.title}
+                  </h4>
+                  <p className="text-xs text-slate-500">{printTargetTemplate.learningPrompt}</p>
                 </div>
-                <div>firstopenschool.com</div>
+              )}
+
+              <div className="w-full aspect-square max-w-[340px] mx-auto flex items-center justify-center my-2">
+                {printMode === 'painted' && paintedPrintPreview ? (
+                  <img
+                    src={paintedPrintPreview}
+                    alt={printTargetTemplate?.title || 'Painted artwork'}
+                    className="w-full h-full object-contain rounded-xl border border-slate-200"
+                  />
+                ) : printTargetTemplate ? (
+                  <svg
+                    viewBox="0 0 500 500"
+                    className="w-full h-full stroke-[#000000]"
+                    dangerouslySetInnerHTML={{ __html: printTargetTemplate.svgOutline }}
+                  />
+                ) : null}
               </div>
 
-              <div className="flex justify-between items-center text-xs font-bold text-gray-700 pt-2">
-                <div>Artist Name: __________________________</div>
-                <div>Date: ____________</div>
-              </div>
-
-              <div className="text-center pt-2">
-                <h4 className="text-2xl font-black text-[#2D2D2D]">
-                  {printTargetTemplate.title}
-                </h4>
-                <p className="text-xs text-gray-500 font-medium">
-                  {printTargetTemplate.learningPrompt}
-                </p>
-              </div>
-
-              {/* Large High-Contrast Vector Lineart */}
-              <div className="w-full aspect-square max-w-[340px] mx-auto flex items-center justify-center my-4">
-                <svg
-                  viewBox="0 0 500 500"
-                  className="w-full h-full stroke-[#000000]"
-                  dangerouslySetInnerHTML={{ __html: printTargetTemplate.svgOutline }}
-                />
-              </div>
-
-              {/* Suggested Color Palette Guide */}
-              <div className="bg-gray-50 p-3 rounded-xl border border-gray-200 text-xs space-y-1">
-                <div className="font-bold text-gray-700">Recommended Colors for Kids:</div>
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {printTargetTemplate.suggestedColors.map(c => (
-                    <span key={c.hex} className="inline-flex items-center gap-1 font-semibold text-gray-600">
-                      <span className="w-3.5 h-3.5 rounded-full border border-gray-400" style={{ backgroundColor: c.hex }} />
-                      <span>{c.name}</span>
-                    </span>
-                  ))}
+              {printTargetTemplate && printMode === 'blank' && (
+                <div className="text-xs text-slate-600 text-center space-y-1 pt-2 border-t border-slate-100">
+                  <div>
+                    <strong className="text-slate-800">Suggested Colors: </strong>
+                    {printTargetTemplate.suggestedColors.map((c) => c.name).join(' · ')}
+                  </div>
+                  <div className="italic text-slate-500">{printTargetTemplate.funFact}</div>
                 </div>
-              </div>
-
-              <div className="text-[11px] text-gray-500 italic text-center pt-2">
-                &ldquo;{printTargetTemplate.funFact}&rdquo;
-              </div>
+              )}
             </div>
 
-            <div className="flex flex-wrap justify-end gap-3 pt-4 border-t border-gray-100">
+            <div className="flex justify-end gap-2.5 pt-2">
               <button
+                type="button"
                 onClick={() => setShowPrintModal(false)}
-                className="px-5 py-2.5 rounded-xl bg-gray-100 text-gray-700 font-black text-xs uppercase cursor-pointer hover:bg-gray-200"
+                className="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs cursor-pointer"
               >
                 Close
               </button>
-
               <button
-                onClick={handleExecuteBrowserPrint}
-                className="px-6 py-2.5 rounded-xl bg-[#4D96FF] text-white font-black text-xs uppercase border-2 border-[#2D2D2D] shadow-xs hover:bg-blue-600 cursor-pointer flex items-center gap-2"
+                type="button"
+                onClick={() => window.print()}
+                className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs cursor-pointer flex items-center gap-1.5"
               >
                 <Printer className="w-4 h-4" />
-                <span>Open Print Dialog</span>
+                <span>Print Now</span>
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* MODAL: Child's Masterpieces Gallery */}
+      {/* MODAL: Masterpiece Gallery */}
       {showGalleryModal && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl border-4 border-[#2D2D2D] shadow-[0_12px_0_#000] max-w-3xl w-full p-6 sm:p-8 space-y-6 max-h-[85vh] overflow-y-auto">
-            <div className="flex justify-between items-center pb-4 border-b-2 border-gray-100">
-              <div className="flex items-center gap-3">
-                <span className="text-3xl">🖼️</span>
-                <div>
-                  <h3 className="text-xl font-black text-[#2D2D2D]">
-                    {student.name}&apos;s Masterpiece Gallery
-                  </h3>
-                  <p className="text-xs text-gray-500 font-bold">
-                    {savedArtworks.length} saved paintings and drawings
-                  </p>
-                </div>
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl border border-slate-200 shadow-xl max-w-3xl w-full p-6 sm:p-8 space-y-6 max-h-[85vh] overflow-y-auto">
+            <div className="flex items-start justify-between gap-4 pb-4 border-b border-slate-100">
+              <div>
+                <h3 className="text-xl font-black text-[#2D2D2D]">
+                  {student.name}&apos;s Masterpiece Gallery
+                </h3>
+                <p className="text-xs text-slate-500 font-medium tabular-nums">
+                  {savedArtworks.length} saved {savedArtworks.length === 1 ? 'artwork' : 'artworks'}
+                </p>
               </div>
               <button
+                type="button"
+                aria-label="Close gallery"
                 onClick={() => setShowGalleryModal(false)}
-                className="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 border-2 border-gray-300 font-black text-sm flex items-center justify-center cursor-pointer"
+                className="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center cursor-pointer"
               >
-                &times;
+                <X className="w-4 h-4" />
               </button>
             </div>
 
             {savedArtworks.length === 0 ? (
-              <div className="py-12 text-center space-y-3">
-                <span className="text-5xl">🎨</span>
-                <h4 className="text-lg font-black text-gray-700">No Saved Paintings Yet!</h4>
-                <p className="text-xs text-gray-500 max-w-sm mx-auto">
-                  Create a painting on the canvas and tap &ldquo;Save Artwork&rdquo; to add it to your personal gallery!
+              <div className="py-12 text-center space-y-2">
+                <div className="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center mx-auto text-2xl">
+                  🎨
+                </div>
+                <h4 className="text-base font-extrabold text-slate-800">No saved paintings yet</h4>
+                <p className="text-xs text-slate-500 max-w-sm mx-auto">
+                  Paint on the canvas and click Save to keep your favorite artworks in your personal gallery.
                 </p>
               </div>
             ) : (
@@ -1122,23 +1642,42 @@ export const DrawingsStudio: React.FC<DrawingsStudioProps> = ({
                 {savedArtworks.map((art) => (
                   <div
                     key={art.id}
-                    className="bg-[#FFF9F0] border-2 border-[#2D2D2D] rounded-2xl p-3 shadow-xs space-y-2 flex flex-col justify-between"
+                    className="bg-slate-50 border border-slate-200 rounded-2xl p-3 space-y-2.5 flex flex-col justify-between"
                   >
-                    <div className="aspect-square bg-white rounded-xl border border-gray-200 overflow-hidden flex items-center justify-center">
-                      <img src={art.dataUrl} alt={art.title} className="w-full h-full object-contain" />
+                    <div className="aspect-square bg-white rounded-xl border border-slate-200 overflow-hidden flex items-center justify-center">
+                      <img
+                        src={art.dataUrl}
+                        alt={art.title}
+                        className="w-full h-full object-contain"
+                      />
                     </div>
                     <div>
-                      <div className="text-sm font-black text-[#2D2D2D] truncate">{art.title}</div>
-                      <div className="text-[11px] text-gray-500">{art.createdAt}</div>
+                      <div className="text-sm font-extrabold text-slate-900 truncate">{art.title}</div>
+                      <div className="text-xs text-slate-500">{art.createdAt}</div>
                     </div>
-                    <div className="flex gap-2 pt-1">
+                    <div className="flex items-center gap-1.5 pt-1">
+                      <button
+                        type="button"
+                        onClick={() => handleLoadArtworkToCanvas(art)}
+                        className="flex-1 py-1.5 px-2 rounded-lg bg-white hover:bg-slate-100 border border-slate-200 text-slate-800 text-xs font-bold cursor-pointer"
+                      >
+                        Open
+                      </button>
                       <a
                         href={art.dataUrl}
                         download={`${art.title}.png`}
-                        className="flex-1 py-1.5 rounded-lg bg-[#4D96FF] text-white text-xs font-bold text-center border border-[#2D2D2D] shadow-xs"
+                        className="py-1.5 px-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold text-center no-underline"
                       >
-                        Download
+                        Save PNG
                       </a>
+                      <button
+                        type="button"
+                        aria-label={`Delete ${art.title}`}
+                        onClick={() => handleDeleteArtwork(art.id)}
+                        className="p-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 cursor-pointer"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
                     </div>
                   </div>
                 ))}
@@ -1147,7 +1686,6 @@ export const DrawingsStudio: React.FC<DrawingsStudioProps> = ({
           </div>
         </div>
       )}
-
     </div>
   );
 };

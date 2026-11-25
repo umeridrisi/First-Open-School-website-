@@ -42,3 +42,23 @@
   transform: translateY(4px);
   box-shadow: none !important;
 }
+
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  #printable-sheet-area,
+  #printable-sheet-area * {
+    visibility: visible !important;
+  }
+  #printable-sheet-area {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    padding: 24px !important;
+    background: #ffffff !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
+
